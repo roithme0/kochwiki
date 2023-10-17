@@ -23,5 +23,6 @@ html {
 
 main {
   flex: 1 0 0;
+  overflow-y: auto;
   width: 100dvw;
 }

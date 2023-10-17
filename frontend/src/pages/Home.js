@@ -7,9 +7,10 @@ import Header from "../components/Header.js"
 import Footer from "../components/Footer.js"
 
 export default function Home() {
+  const headline = "Startseite"
   return (
     <>
-      <Header headline="home" />
+      <Header headline={headline} />
       <main>
         <section className="main-content">
           <a href="#" className="recipes-anchor">
