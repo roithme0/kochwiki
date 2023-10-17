@@ -1,3 +1,11 @@
 from django.shortcuts import render
 
-# Create your views here.
+from .models import Recipe
+from .serializers import RecipeSerializer
+
+from rest_framework.generics import ListCreateAPIView
+
+
+class RecipeView(ListCreateAPIView):
+    queryset = Recipe.objects.all()
+    serializer_class = RecipeSerializer
