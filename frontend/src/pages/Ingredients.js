@@ -1,16 +1,18 @@
 import "./Ingredients.css"
 
 import Header from "../components/Header.js"
+import DisplayIngredient from "../components/DisplayIngredient.js"
+import EditIngredient from "../components/EditIngredient.js"
 import Footer from "../components/Footer.js"
 
-import React, { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+import { useState, useEffect } from "react"
 import axios from "axios"
 
 export default function Ingredients() {
   const headline = "Zutaten"
   const back = { url: "/", visibility: "" }
   const [ingredients, setIngredients] = useState([])
+  const [editing, setEditing] = useState(null)
 
   useEffect(() => {
     axios.get("http://localhost:8000/recipes/ingredients/").then(response => {
@@ -25,13 +27,16 @@ export default function Ingredients() {
       <main className="ingredients">
         <article className="ingredients-wrapper">
           {ingredients.map(ingredient => (
-            <div key={ingredient.id} className="ingredient">
-              <span>{ingredient.name}</span>
-              <span>{ingredient.brand ? ingredient.band : "/"}</span>
-              <span>{ingredient.kcal ? ingredient.kcal : "/"}</span>
-              <span>{ingredient.carbs ? ingredient.kcal : "/"}</span>
-              <span>{ingredient.protein ? ingredient.protein : "/"}</span>
-              <span>{ingredient.fat ? ingredient.fat : "/"}</span>
+            <div key={ingredient.id} className="ingredient-wrapper">
+              {editing === ingredient.id ? (
+                <EditIngredient ingredient={ingredient} />
+              ) : (
+                <DisplayIngredient
+                  ingredient={ingredient}
+                  editIngredient={editIngredient}
+                  deleteIngredient={deleteIngredient}
+                />
+              )}
             </div>
           ))}
         </article>
@@ -39,4 +44,12 @@ export default function Ingredients() {
       <Footer />
     </>
   )
+
+  function editIngredient(id) {
+    setEditing(id)
+  }
+
+  function deleteIngredient(id) {
+    setIngredients(ingredients.filter(ingredient => ingredient.id !== id))
+  }
 }

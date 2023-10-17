@@ -1,12 +1,26 @@
 .ingredients {
   & .ingredients-wrapper {
-    --columns: 6;
+    --ingredient-columns: 6;
+    --button-columns: 2;
+    --columns: calc(var(--ingredient-columns) + var(--button-columns));
     display: grid;
-    grid-template-columns: repeat(var(--columns), auto);
+    grid-template-columns:
+      repeat(calc(var(--ingredient-columns)), auto)
+      repeat(calc(var(--button-columns)), min-content);
+  }
+
+  & .ingredient-wrapper {
+    grid-column: span var(--columns);
+    display: grid;
+    grid-template-columns: subgrid;
+
+    > img {
+      height: 1rem;
+    }
   }
 
   & .ingredient {
-    grid-column: span var(--columns);
+    grid-column: span var(--ingredient-columns);
     display: grid;
     grid-template-columns: subgrid;
   }
