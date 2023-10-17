@@ -14,15 +14,15 @@ export default function Home() {
   return (
     <>
       <Header headline={headline} back={back} />
-      <main>
-        <section className="main-content">
+      <main className="home">
+        <nav className="nav-wrapper">
           <Link to="/recipes" className="recipes-anchor">
             <img src={Recipes} alt="Rezepte" />
           </Link>
           <Link to="/ingredients" className="ingredients-anchor">
             <img src={Ingredients} alt="Zutaten" />
           </Link>
-        </section>
+        </nav>
       </main>
       <Footer />
     </>

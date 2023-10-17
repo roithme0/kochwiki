@@ -9,23 +9,23 @@ import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import axios from "axios"
 
-export default function Home() {
+export default function Recipes() {
   const headline = "Rezepte"
   const back = { url: "/", visibility: "" }
   const [recipes, setRecipes] = useState([])
 
   useEffect(() => {
-    axios.get("http://localhost:8000/recipes/list/").then(response => {
+    axios.get("http://localhost:8000/recipes/recipes/").then(response => {
       setRecipes(response.data)
-      console.log(response.data)
+      console.debug(response.data)
     })
   }, [])
 
   return (
     <>
       <Header headline={headline} back={back} />
-      <main>
-        <section className="main-content">
+      <main className="recipes">
+        <article className="main-content">
           {recipes.map(recipe => (
             <Link to="#" key={recipe.id}>
               {recipe.image ? (
@@ -36,7 +36,7 @@ export default function Home() {
               <span>{recipe.name}</span>
             </Link>
           ))}
-        </section>
+        </article>
       </main>
       <Footer />
     </>

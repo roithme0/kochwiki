@@ -1,9 +1,14 @@
 from django.shortcuts import render
 
-from .models import Recipe
-from .serializers import RecipeSerializer
+from .models import Ingredient, Recipe
+from .serializers import IngredientSerializer, RecipeSerializer
 
 from rest_framework.generics import ListCreateAPIView
+
+
+class IngredientView(ListCreateAPIView):
+    queryset = Ingredient.objects.all()
+    serializer_class = IngredientSerializer
 
 
 class RecipeView(ListCreateAPIView):
