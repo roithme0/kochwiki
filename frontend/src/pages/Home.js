@@ -10,9 +10,10 @@ import { Link } from "react-router-dom"
 
 export default function Home() {
   const headline = "Startseite"
+  const back = { url: "/", visibility: "hidden" }
   return (
     <>
-      <Header headline={headline} />
+      <Header headline={headline} back={back} />
       <main>
         <section className="main-content">
           <Link to="/recipes" className="recipes-anchor">
