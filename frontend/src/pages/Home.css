@@ -1,0 +1,18 @@
+.main-content {
+  display: flex;
+  gap: var(--gap);
+}
+
+.recipes-anchor,
+.ingredients-anchor {
+  flex: 1 0 0;
+
+  > img {
+    object-fit: contain;
+    padding: var(--gap);
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--secondary-background);
+    border-radius: 2rem;
+  }
+}

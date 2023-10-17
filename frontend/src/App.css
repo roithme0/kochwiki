@@ -3,8 +3,10 @@
   --header-font-size: 2rem;
   --footer-font-size: var(--header-font-size);
   --primary-background: white;
+  --secondary-background: rgb(228, 228, 228);
   --header-height: 2.2rem;
   --footer-height: var(--header-height);
+  --gap: 1rem;
 }
 
 html {
@@ -19,6 +21,7 @@ html {
   background-color: var(--primary-background);
 }
 
-.content {
+main {
   flex: 1 0 0;
+  width: 100dvw;
 }
