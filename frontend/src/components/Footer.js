@@ -1,14 +1,16 @@
 import "./Footer.css"
 
-import AccountStarOutline from "../assets/images/mdi/account-star-outline.png"
+import accountStarOutline from "../assets/images/mdi/account-star-outline.png"
+
+import { Link } from "react-router-dom"
 
 export default function Footer() {
   return (
     <footer>
       <section className="footer-content">
-        <a href="#" className="admin-anchor">
-          <img src={AccountStarOutline} alt="Admin" className="admin" />
-        </a>
+        <Link to="/admin" className="admin-anchor">
+          <img src={accountStarOutline} alt="Admin" className="admin" />
+        </Link>
       </section>
     </footer>
   )
