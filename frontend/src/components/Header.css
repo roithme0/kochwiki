@@ -6,8 +6,13 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  & img {
+    height: var(--header-font-size);
+  }
 }
 
 h1 {
   margin: 0;
+  font-size: var(--header-font-size);
 }
