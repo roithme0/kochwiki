@@ -1,6 +1,8 @@
 :root {
   --primary-font-color: black;
   --primary-background: white;
+  --header-height: 2.2rem;
+  --footer-height: var(--header-height);
 }
 
 html {
@@ -8,6 +10,13 @@ html {
   color: var(--primary-font-color);
 }
 
-body {
+.root {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
   background-color: var(--primary-background);
+}
+
+.content {
+  flex: 1 0 0;
 }
