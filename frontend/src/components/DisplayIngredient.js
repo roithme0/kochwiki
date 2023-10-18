@@ -9,12 +9,22 @@ export default function DisplayIngredient({
   return (
     <>
       <div key={ingredient.id} className="ingredient">
-        <span>{ingredient.name}</span>
-        <span>{ingredient.brand ? ingredient.brand : "/"}</span>
-        <span>{ingredient.kcal ? ingredient.kcal : "/"}</span>
-        <span>{ingredient.carbs ? ingredient.carbs : "/"}</span>
-        <span>{ingredient.protein ? ingredient.protein : "/"}</span>
-        <span>{ingredient.fat ? ingredient.fat : "/"}</span>
+        <span className="display-field">{ingredient.name}</span>
+        <span className="display-field">
+          {ingredient.brand ? ingredient.brand : "/"}
+        </span>
+        <span className="display-field">
+          {ingredient.kcal ? ingredient.kcal : "/"}
+        </span>
+        <span className="display-field">
+          {ingredient.carbs ? ingredient.carbs : "/"}
+        </span>
+        <span className="display-field">
+          {ingredient.protein ? ingredient.protein : "/"}
+        </span>
+        <span className="display-field">
+          {ingredient.fat ? ingredient.fat : "/"}
+        </span>
       </div>
       <img
         src={pencil}

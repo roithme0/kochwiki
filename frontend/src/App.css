@@ -2,10 +2,11 @@
   --primary-font-color: black;
   --header-font-size: 2rem;
   --footer-font-size: var(--header-font-size);
-  --primary-background: grey;
+  --primary-background: white;
   --secondary-background: rgb(228, 228, 228);
   --header-height: 2.2rem;
   --footer-height: var(--header-height);
+  --highlight-color: lightblue;
   --gap: 1rem;
 }
 
