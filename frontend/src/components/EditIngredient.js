@@ -1,6 +1,9 @@
 import check from "../assets/images/mdi/check.png"
 import cancel from "../assets/images/mdi/cancel.png"
 
+import InputText from "./ui/InputText.js"
+import InputNumber from "./ui/InputNumber.js"
+
 import { useState } from "react"
 
 export default function EditIngredient({ ingredient }) {
@@ -16,49 +19,12 @@ export default function EditIngredient({ ingredient }) {
   return (
     <>
       <form key={ingredient.id} className="ingredient">
-        <input
-          type="text"
-          required
-          value={name}
-          onChange={event => setName(event.target.value)}
-        />
-        <input
-          type="text"
-          value={brand}
-          onChange={event => setBrand(event.target.value)}
-        />
-        <input
-          type="number"
-          value={kcal}
-          onChange={event => {
-            const value = event.target.value
-            !isNaN(parseInt(value)) ? setKcal(value) : setKcal(kcal)
-          }}
-        />
-        <input
-          type="number"
-          value={carbs}
-          onChange={event => {
-            const value = event.target.value
-            !isNaN(parseFloat(value)) ? setCarbs(value) : setCarbs(carbs)
-          }}
-        />
-        <input
-          type="number"
-          value={protein}
-          onChange={event => {
-            const value = event.target.value
-            !isNaN(parseFloat(value)) ? setProtein(value) : setProtein(protein)
-          }}
-        />
-        <input
-          type="number"
-          value={fat}
-          onChange={event => {
-            const value = event.target.value
-            !isNaN(parseFloat(value)) ? setFat(value) : setFat(fat)
-          }}
-        />
+        <InputText value={name} setValue={setName} />
+        <InputText value={brand} setValue={setBrand} />
+        <InputNumber value={kcal} setValue={setKcal} />
+        <InputNumber value={carbs} setValue={setCarbs} />
+        <InputNumber value={protein} setValue={setProtein} />
+        <InputNumber value={fat} setValue={setFat} />
       </form>
       <img src={check} className="save-ingredient" />
       <img src={cancel} className="cancel-ingredient" />
