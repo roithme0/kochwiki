@@ -1,25 +1,7 @@
 .input-number {
   & input[type="number"] {
-    --padding-vertical: 0.25rem;
-    --padding-horizontal: 0.75rem;
-    background-color: var(--secondary-background);
-    border-radius: calc(1rem + var(--padding-vertical));
-    border: none;
-    outline: 2px solid var(--primary-font-color);
-    outline-offset: calc(-1 * 2px);
-    padding: var(--padding-vertical) var(--padding-horizontal);
-    box-sizing: border-box;
-    width: 100%;
-    overflow: auto;
-    font: inherit;
-
     /* remove arrows */
     -moz-appearance: textfield;
-
-    &:focus {
-      background-color: var(--highlight-color);
-      outline-color: blue;
-    }
   }
 
   /* remove arrows */

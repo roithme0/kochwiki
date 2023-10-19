@@ -1,8 +1,9 @@
+import "./Input.css"
 import "./InputNumber.css"
 
 export default function InputNumber({ value, setValue }) {
   return (
-    <div className="input-number">
+    <div className="input input-number">
       <input
         type="number"
         value={value}

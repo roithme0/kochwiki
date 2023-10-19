@@ -2,7 +2,7 @@ import "./InputText.css"
 
 export default function InputText({ value, setValue }) {
   return (
-    <div className="input-text">
+    <div className="input input-text">
       <input
         type="text"
         value={value}
