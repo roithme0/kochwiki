@@ -3,6 +3,7 @@
   --padding-vertical: 0.25rem;
   --padding-horizontal: 0.5rem;
   height: var(--height);
+  padding: 0;
   box-sizing: border-box;
   border-radius: 0.5rem;
   width: 100%;

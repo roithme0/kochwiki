@@ -2,6 +2,7 @@
   --primary-color: black;
   --positive-color: lightgreen;
   --negative-color: rgb(255, 141, 141);
+  --highlight-color: rgb(69, 173, 208);
   --header-font-size: 2rem;
   --footer-font-size: var(--header-font-size);
   --primary-background: white;
