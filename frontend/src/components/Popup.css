@@ -1,17 +1,16 @@
 .popup {
   & .popup-wrapper {
-    --bottom-border-radius: calc(1rem + var(--gap));
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: var(--primary-background);
     padding: var(--gap);
-    border-radius: 1rem 1rem var(--bottom-border-radius)
-      var(--bottom-border-radius);
+    border-radius: 1.5rem;
     display: flex;
     flex-direction: column;
     gap: var(--gap);
+    animation: fade 0.25s ease-out forwards;
   }
 
   & .header {
@@ -38,5 +37,15 @@
     width: 100%;
     height: 100%;
     background-color: rgb(0, 0, 0, 0.5);
+    animation: fade 0.25s ease-out backwards;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

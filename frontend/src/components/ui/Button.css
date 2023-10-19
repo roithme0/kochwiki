@@ -4,27 +4,56 @@
   --padding-horizontal: 0.5rem;
   height: var(--height);
   box-sizing: border-box;
+  border-radius: 0.5rem;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 
+  &:focus,
+  &:hover {
+    outline: none;
+  }
+
   &.close {
     border: none;
     background-color: transparent;
+
+    &:focus,
+    &:hover {
+      > * {
+        transform: scale(1.2);
+        transition: transform 0.25s ease-out;
+      }
+    }
+
+    > * {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 
   &.positive {
-    border: 2px solid var(--primary-color);
-    border-radius: calc(var(--height) / 2 + var(--padding-vertical));
-    background-color: var(--secondary-background);
+    border: 2px solid var(--positive-color);
+    background-color: var(--positive-background);
+
+    &:focus,
+    &:hover {
+      background-color: var(--positive-color);
+      transition: background-color 0.25s ease-out;
+    }
   }
 
   &.negative {
-    border: 2px solid var(--primary-color);
-    border-radius: calc(var(--height) / 2 + var(--padding-vertical));
-    background-color: var(--secondary-background);
+    border: 2px solid var(--negative-color);
+    background-color: var(--negative-background);
+
+    &:focus,
+    &:hover {
+      background-color: var(--negative-color);
+      transition: background-color 0.25s ease-out;
+    }
   }
 
   > * {

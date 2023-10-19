@@ -1,20 +1,18 @@
 .input {
   & input {
-    --padding: 0.25rem;
     border: none;
     border-bottom: 2px solid var(--primary-color);
-    padding: var(--padding) calc(1rem + var(--padding)) 0 var(--padding);
+    padding: 0 0.25rem;
     box-sizing: border-box;
     width: 100%;
     overflow: auto;
     font: inherit;
 
     &:focus {
-      background-color: var(--highlight-color);
-      border-radius: 0.25rem 1rem 1rem 0.25rem;
+      background-color: var(--highlight-background);
+      border-radius: 0.25rem;
       border-color: transparent;
-      transition: border-radius 0.25s ease-in-out,
-        background-color 0.5s ease-out, outline-color 0.5s ease-in-out;
+      transition: background-color 0.5s ease-out, outline-color 0.5s ease-in-out;
     }
   }
 }

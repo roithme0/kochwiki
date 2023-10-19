@@ -72,7 +72,7 @@ export default function EditIngredient(ingredient) {
             classNames={"save-ingredient"}
           />
           <Button
-            type={"positive"}
+            type={"negative"}
             img={cancel}
             classNames={"cancel-ingredient"}
           />
