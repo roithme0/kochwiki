@@ -1,12 +1,13 @@
+import "./EditIngredient.css"
+
 import check from "../assets/images/mdi/check.png"
 import cancel from "../assets/images/mdi/cancel.png"
 
-import InputText from "./ui/InputText.js"
-import InputNumber from "./ui/InputNumber.js"
+import Field from "./ui/Field"
 
 import { useState } from "react"
 
-export default function EditIngredient({ ingredient }) {
+export default function EditIngredient(ingredient) {
   const [name, setName] = useState(ingredient.name)
   const [brand, setBrand] = useState(ingredient.brand ? ingredient.brand : "")
   const [kcal, setKcal] = useState(ingredient.kcal ? ingredient.kcal : "")
@@ -18,16 +19,61 @@ export default function EditIngredient({ ingredient }) {
 
   return (
     <>
-      <form key={ingredient.id} className="ingredient">
-        <InputText value={name} setValue={setName} />
-        <InputText value={brand} setValue={setBrand} />
-        <InputNumber value={kcal} setValue={setKcal} />
-        <InputNumber value={carbs} setValue={setCarbs} />
-        <InputNumber value={protein} setValue={setProtein} />
-        <InputNumber value={fat} setValue={setFat} />
-      </form>
-      <img src={check} className="save-ingredient" />
-      <img src={cancel} className="cancel-ingredient" />
+      <div className="edit-ingredient">
+        <form key={ingredient.id} className="ingredient-form">
+          <Field
+            label={"name"}
+            name={"name"}
+            type={"text"}
+            value={name}
+            setValue={setName}
+          />
+          <Field
+            label={"brand"}
+            name={"brand"}
+            type={"text"}
+            value={brand}
+            setValue={setBrand}
+          />
+          <Field
+            label={"kcal"}
+            name={"kcal"}
+            type={"number"}
+            value={kcal}
+            setValue={setKcal}
+          />
+          <Field
+            label={"carbs"}
+            name={"carbs"}
+            type={"number"}
+            value={carbs}
+            setValue={setCarbs}
+          />
+          <Field
+            label={"protein"}
+            name={"protein"}
+            type={"number"}
+            value={protein}
+            setValue={setProtein}
+          />
+          <Field
+            label={"fat"}
+            name={"fat"}
+            type={"number"}
+            value={fat}
+            setValue={setFat}
+          />
+          {/* <InputText name={"brand"} value={brand} setValue={setBrand} />
+          <InputNumber name={"kcal"} value={kcal} setValue={setKcal} />
+          <InputNumber name={"carbs"} value={carbs} setValue={setCarbs} />
+          <InputNumber name={"protein"} value={protein} setValue={setProtein} />
+          <InputNumber name={"fat"} value={fat} setValue={setFat} /> */}
+        </form>
+        <div className="buttons-wrapper">
+          <img src={check} className="save-ingredient" />
+          <img src={cancel} className="cancel-ingredient" />
+        </div>
+      </div>
     </>
   )
 }

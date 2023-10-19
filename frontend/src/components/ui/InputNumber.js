@@ -1,11 +1,12 @@
 import "./Input.css"
 import "./InputNumber.css"
 
-export default function InputNumber({ value, setValue }) {
+export default function InputNumber({ name, value, setValue }) {
   return (
     <div className="input input-number">
       <input
         type="number"
+        name={name}
         value={value}
         onChange={event => {
           const value = event.target.value

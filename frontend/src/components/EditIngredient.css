@@ -1,0 +1,11 @@
+.edit-ingredient {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+
+  & .ingredients-form {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    gap: var(--gap);
+  }
+}

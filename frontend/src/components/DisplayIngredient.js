@@ -26,16 +26,18 @@ export default function DisplayIngredient({
           {ingredient.fat ? ingredient.fat : "/"}
         </span>
       </div>
-      <img
-        src={pencil}
-        onClick={() => editIngredient(ingredient.id)}
-        className="edit-ingredient"
-      />
-      <img
-        src={trashBin}
-        onClick={() => deleteIngredient(ingredient.id)}
-        className="delete-ingredient"
-      />
+      <div className="buttons-wrapper">
+        <img
+          src={pencil}
+          onClick={() => editIngredient(ingredient)}
+          className="edit-ingredient"
+        />
+        <img
+          src={trashBin}
+          onClick={() => deleteIngredient(ingredient.id)}
+          className="delete-ingredient"
+        />
+      </div>
     </>
   )
 }

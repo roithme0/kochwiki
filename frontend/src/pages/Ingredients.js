@@ -2,8 +2,9 @@ import "./Ingredients.css"
 
 import Header from "../components/Header.js"
 import DisplayIngredient from "../components/DisplayIngredient.js"
-import EditIngredient from "../components/EditIngredient.js"
 import Footer from "../components/Footer.js"
+import Popup from "../components/Popup.js"
+import EditIngredient from "../components/EditIngredient"
 
 import { useState, useEffect } from "react"
 import axios from "axios"
@@ -28,25 +29,22 @@ export default function Ingredients() {
         <article className="ingredients-wrapper">
           {ingredients.map(ingredient => (
             <div key={ingredient.id} className="ingredient-wrapper">
-              {editing === ingredient.id ? (
-                <EditIngredient ingredient={ingredient} />
-              ) : (
-                <DisplayIngredient
-                  ingredient={ingredient}
-                  editIngredient={editIngredient}
-                  deleteIngredient={deleteIngredient}
-                />
-              )}
+              <DisplayIngredient
+                ingredient={ingredient}
+                editIngredient={editIngredient}
+                deleteIngredient={deleteIngredient}
+              />
             </div>
           ))}
         </article>
       </main>
       <Footer />
+      {editing && <Popup Component={EditIngredient} props={editing}></Popup>}
     </>
   )
 
-  function editIngredient(id) {
-    setEditing(id)
+  function editIngredient(ingredient) {
+    setEditing(ingredient)
   }
 
   function deleteIngredient(id) {
