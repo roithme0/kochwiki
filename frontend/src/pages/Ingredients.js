@@ -39,7 +39,13 @@ export default function Ingredients() {
         </article>
       </main>
       <Footer />
-      {editing && <Popup Component={EditIngredient} props={editing}></Popup>}
+      {editing && (
+        <Popup
+          Component={EditIngredient}
+          title={"Zutat bearbeiten"}
+          props={editing}
+        ></Popup>
+      )}
     </>
   )
 

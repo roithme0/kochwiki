@@ -3,9 +3,30 @@
   flex-direction: column;
   gap: var(--gap);
 
-  & .ingredients-form {
+  & .ingredient-form {
     display: grid;
     grid-template-columns: min-content 1fr;
     gap: var(--gap);
+  }
+
+  & .field {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: subgrid;
+    align-items: center;
+    padding-right: 0.75rem;
+
+    &:focus-within {
+      padding-right: 0;
+      transition: padding-right 0.25s ease-out;
+    }
+
+    > label {
+      font-weight: bold;
+
+      &::after {
+        content: ":";
+      }
+    }
   }
 }

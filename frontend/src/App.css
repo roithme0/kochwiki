@@ -1,9 +1,10 @@
 :root {
-  --primary-font-color: black;
+  --primary-color: black;
   --header-font-size: 2rem;
   --footer-font-size: var(--header-font-size);
   --primary-background: white;
   --secondary-background: rgb(228, 228, 228);
+  --tertiary-background: rgb(193, 193, 193);
   --header-height: 2.2rem;
   --footer-height: var(--header-height);
   --highlight-color: lightblue;
@@ -12,7 +13,7 @@
 
 html {
   font-family: "Untitled Sans", Arial, Helvetica, sans-serif;
-  color: var(--primary-font-color);
+  color: var(--primary-color);
 }
 
 .root {

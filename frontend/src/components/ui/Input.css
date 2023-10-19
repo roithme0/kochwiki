@@ -1,13 +1,9 @@
 .input {
   & input {
-    --padding-vertical: 0.25rem;
-    --padding-horizontal: 0.75rem;
-    background-color: var(--secondary-background);
-    border-radius: calc(1rem + var(--padding-vertical));
+    --padding: 0.25rem;
     border: none;
-    outline: 2px solid var(--primary-font-color);
-    outline-offset: calc(-1 * 2px);
-    padding: var(--padding-vertical) var(--padding-horizontal);
+    border-bottom: 2px solid var(--primary-color);
+    padding: var(--padding) calc(1rem + var(--padding)) 0 var(--padding);
     box-sizing: border-box;
     width: 100%;
     overflow: auto;
@@ -15,7 +11,10 @@
 
     &:focus {
       background-color: var(--highlight-color);
-      outline-color: blue;
+      border-radius: 0.25rem 1rem 1rem 0.25rem;
+      border-color: transparent;
+      transition: border-radius 0.25s ease-in-out,
+        background-color 0.5s ease-out, outline-color 0.5s ease-in-out;
     }
   }
 }

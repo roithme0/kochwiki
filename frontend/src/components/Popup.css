@@ -1,12 +1,34 @@
 .popup {
   & .popup-wrapper {
+    --bottom-border-radius: calc(1rem + var(--gap));
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: var(--primary-background);
     padding: var(--gap);
-    border-radius: 1rem;
+    border-radius: 1rem 1rem var(--bottom-border-radius)
+      var(--bottom-border-radius);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+  }
+
+  & .header {
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    gap: var(--gap);
+
+    > h2 {
+      margin: 0;
+      white-space: nowrap;
+    }
+  }
+
+  & .buttons-wrapper {
+    display: flex;
+    align-content: center;
+    gap: var(--gap);
   }
 
   & .background {
@@ -16,15 +38,5 @@
     width: 100%;
     height: 100%;
     background-color: rgb(0, 0, 0, 0.5);
-  }
-
-  & .buttons-wrapper {
-    display: flex;
-    align-content: center;
-
-    > img {
-      height: 2rem;
-      cursor: pointer;
-    }
   }
 }

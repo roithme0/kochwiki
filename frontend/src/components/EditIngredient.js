@@ -3,7 +3,8 @@ import "./EditIngredient.css"
 import check from "../assets/images/mdi/check.png"
 import cancel from "../assets/images/mdi/cancel.png"
 
-import Field from "./ui/Field"
+import Field from "./ui/Field.js"
+import Button from "./ui/Button.js"
 
 import { useState } from "react"
 
@@ -63,15 +64,18 @@ export default function EditIngredient(ingredient) {
             value={fat}
             setValue={setFat}
           />
-          {/* <InputText name={"brand"} value={brand} setValue={setBrand} />
-          <InputNumber name={"kcal"} value={kcal} setValue={setKcal} />
-          <InputNumber name={"carbs"} value={carbs} setValue={setCarbs} />
-          <InputNumber name={"protein"} value={protein} setValue={setProtein} />
-          <InputNumber name={"fat"} value={fat} setValue={setFat} /> */}
         </form>
         <div className="buttons-wrapper">
-          <img src={check} className="save-ingredient" />
-          <img src={cancel} className="cancel-ingredient" />
+          <Button
+            type={"positive"}
+            img={check}
+            classNames={"save-ingredient"}
+          />
+          <Button
+            type={"positive"}
+            img={cancel}
+            classNames={"cancel-ingredient"}
+          />
         </div>
       </div>
     </>

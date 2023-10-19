@@ -1,0 +1,36 @@
+.button {
+  --height: 2rem;
+  --padding-vertical: 0.25rem;
+  --padding-horizontal: 0.5rem;
+  height: var(--height);
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  &.close {
+    border: none;
+    background-color: transparent;
+  }
+
+  &.positive {
+    border: 2px solid var(--primary-color);
+    border-radius: calc(var(--height) / 2 + var(--padding-vertical));
+    background-color: var(--secondary-background);
+  }
+
+  &.negative {
+    border: 2px solid var(--primary-color);
+    border-radius: calc(var(--height) / 2 + var(--padding-vertical));
+    background-color: var(--secondary-background);
+  }
+
+  > * {
+    height: var(--height);
+    box-sizing: border-box;
+    object-fit: contain;
+    padding: var(--padding-vertical) var(--padding-horizontal);
+  }
+}
