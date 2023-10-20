@@ -10,11 +10,11 @@
 
     &:focus {
       background-color: var(--highlight-background);
-      outline-color: var(--highlight-color);
+      outline: 2px solid var(--highlight-color);
       border-radius: 0.25rem;
       border-color: transparent;
-      transition: background-color 0.5s ease-out, outline 0.5s ease-out,
-        border-color 0.2s ease-out;
+      transition: background-color 0.25s ease-out, outline 0.25s ease-out,
+        border-color 0.25s ease-out;
     }
   }
 }

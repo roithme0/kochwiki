@@ -1,5 +1,5 @@
 .button {
-  --height: 2rem;
+  --height: 1.7rem;
   --padding-vertical: 0.25rem;
   --padding-horizontal: 0.5rem;
   height: var(--height);
@@ -30,8 +30,7 @@
     }
 
     > * {
-      padding-left: 0;
-      padding-right: 0;
+      padding: 0;
     }
   }
 

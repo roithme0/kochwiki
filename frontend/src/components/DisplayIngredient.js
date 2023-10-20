@@ -30,12 +30,12 @@ export default function DisplayIngredient({
         <img
           src={pencil}
           onClick={() => editIngredient(ingredient)}
-          className="edit-ingredient"
+          className="edit"
         />
         <img
           src={trashBin}
           onClick={() => deleteIngredient(ingredient.id)}
-          className="delete-ingredient"
+          className="delete"
         />
       </div>
     </>

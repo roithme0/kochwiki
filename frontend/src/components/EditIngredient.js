@@ -23,46 +23,50 @@ export default function EditIngredient({ submitEdit, cancelEdit, ingredient }) {
       <div className="edit-ingredient">
         <form key={ingredient.id} className="ingredient-form">
           <Field
-            label={"name"}
+            label={"Name"}
             name={"name"}
             type={"text"}
             value={name}
             setValue={setName}
           />
           <Field
-            label={"brand"}
+            label={"Marke"}
             name={"brand"}
             type={"text"}
             value={brand}
             setValue={setBrand}
           />
           <Field
-            label={"kcal"}
+            label={"Kalorien"}
             name={"kcal"}
             type={"number"}
             value={kcal}
             setValue={setKcal}
+            unit={"kcal"}
           />
           <Field
-            label={"carbs"}
+            label={"Kohlenhydrate"}
             name={"carbs"}
             type={"number"}
             value={carbs}
             setValue={setCarbs}
+            unit={"g"}
           />
           <Field
-            label={"protein"}
+            label={"Protein"}
             name={"protein"}
             type={"number"}
             value={protein}
             setValue={setProtein}
+            unit={"g"}
           />
           <Field
-            label={"fat"}
+            label={"Fett"}
             name={"fat"}
             type={"number"}
             value={fat}
             setValue={setFat}
+            unit={"g"}
           />
         </form>
         <div className="buttons-wrapper">
