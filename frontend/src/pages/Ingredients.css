@@ -1,5 +1,5 @@
 .ingredients {
-  & .ingredients-wrapper {
+  & .ingredients-grid {
     --ingredient-columns: 6;
     --buttons-columns: 2;
     --columns: calc(var(--ingredient-columns) + var(--buttons-columns));
@@ -7,9 +7,16 @@
     grid-template-columns:
       repeat(calc(var(--ingredient-columns)), auto)
       repeat(calc(var(--buttons-columns)), min-content);
-    gap: calc(var(--gap) / 4);
+    gap: 0.2rem 0.1rem;
   }
 
+  & .ingredients-wrapper {
+    grid-column: span var(--columns);
+    display: grid;
+    grid-template-columns: subgrid;
+  }
+
+  & .header-wrapper,
   & .ingredient-wrapper {
     --padding-vertical: 0.25rem;
     --padding-horizontal: 0.75rem;
@@ -19,6 +26,14 @@
     align-items: center;
   }
 
+  & .header-wrapper {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    padding-bottom: 0.25rem;
+  }
+
+  & .header,
   & .ingredient {
     grid-column: span var(--ingredient-columns);
     display: grid;
@@ -27,7 +42,19 @@
     > span {
       padding: var(--padding-vertical) var(--padding-horizontal);
       border-radius: calc(1rem + var(--padding-vertical));
-      background-color: var(--secondary-background);
+    }
+  }
+
+  & .header {
+    > span {
+      font-weight: bold;
+      background-color: var(--quartenary-backgroud);
+    }
+  }
+
+  & .ingredient {
+    > span {
+      background-color: var(--tertiary-background);
     }
   }
 
@@ -36,9 +63,8 @@
     display: grid;
     grid-template-columns: subgrid;
 
-    > img {
+    > * {
       height: calc(1rem + var(--padding-vertical));
-      cursor: pointer;
     }
   }
 }

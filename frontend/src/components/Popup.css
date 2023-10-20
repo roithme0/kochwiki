@@ -16,14 +16,21 @@
   }
 
   & .header {
+    --font-size: 1.5rem;
     display: grid;
     grid-template-columns: 1fr min-content;
     gap: var(--gap);
+    align-items: center;
 
     > h2 {
+      font-size: var(--font-size);
       margin: 0;
       white-space: nowrap;
     }
+  }
+
+  & .neutral {
+    height: var(--font-size);
   }
 
   & .buttons-wrapper {

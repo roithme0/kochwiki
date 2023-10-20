@@ -12,7 +12,7 @@ export default function Popup({ closePopup, Component, title, ...props }) {
         <div className="header">
           <h2 className="title">{title}</h2>
           <Button
-            type={"close"}
+            type={"neutral"}
             img={close}
             onClick={closePopup}
             classNames={"close"}

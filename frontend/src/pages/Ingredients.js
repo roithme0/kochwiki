@@ -26,16 +26,21 @@ export default function Ingredients() {
     <>
       <Header headline={headline} back={back} />
       <main className="ingredients">
-        <article className="ingredients-wrapper">
-          {ingredients.map(ingredient => (
-            <div key={ingredient.id} className="ingredient-wrapper">
-              <DisplayIngredient
-                ingredient={ingredient}
-                editIngredient={editIngredient}
-                deleteIngredient={deleteIngredient}
-              />
-            </div>
-          ))}
+        <article className="ingredients-grid">
+          <div className="header-wrapper">
+            <DisplayIngredient />
+          </div>
+          <div className="ingredients-wrapper">
+            {ingredients.map(ingredient => (
+              <div key={ingredient.id} className="ingredient-wrapper">
+                <DisplayIngredient
+                  ingredient={ingredient}
+                  editIngredient={editIngredient}
+                  deleteIngredient={deleteIngredient}
+                />
+              </div>
+            ))}
+          </div>
         </article>
       </main>
       <Footer />

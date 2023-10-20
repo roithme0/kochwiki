@@ -1,14 +1,36 @@
+import "./DisplayIngredient.css"
+
 import pencil from "../assets/images/mdi/pencil.png"
 import trashBin from "../assets/images/mdi/trash-bin.png"
 
+import Button from "./ui/Button.js"
+
 export default function DisplayIngredient({
-  ingredient,
-  editIngredient,
-  deleteIngredient,
+  ingredient = null,
+  editIngredient = null,
+  deleteIngredient = null,
 }) {
+  if (ingredient === null) {
+    return (
+      <>
+        <div className="header">
+          <span className="header-field">Name</span>
+          <span className="header-field">Marke</span>
+          <span className="header-field">kcal</span>
+          <span className="header-field">Kohlenhydrate</span>
+          <span className="header-field">Protein</span>
+          <span className="header-field">Fett</span>
+        </div>
+        <div className="buttons-wrapper">
+          <div></div>
+          <div></div>
+        </div>
+      </>
+    )
+  }
   return (
     <>
-      <div key={ingredient.id} className="ingredient">
+      <div className="ingredient">
         <span className="display-field">{ingredient.name}</span>
         <span className="display-field">
           {ingredient.brand ? ingredient.brand : "/"}
@@ -27,15 +49,17 @@ export default function DisplayIngredient({
         </span>
       </div>
       <div className="buttons-wrapper">
-        <img
-          src={pencil}
+        <Button
+          type={"neutral"}
+          img={pencil}
           onClick={() => editIngredient(ingredient)}
-          className="edit"
+          classNames="edit"
         />
-        <img
-          src={trashBin}
+        <Button
+          type={"neutral"}
+          img={trashBin}
           onClick={() => deleteIngredient(ingredient.id)}
-          className="delete"
+          classNames="delete"
         />
       </div>
     </>

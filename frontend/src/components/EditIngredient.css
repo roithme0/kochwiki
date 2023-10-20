@@ -31,4 +31,8 @@
     grid-template-columns: 1fr min-content;
     gap: var(--gap);
   }
+
+  & .buttons-wrapper {
+    height: 1.7rem;
+  }
 }
