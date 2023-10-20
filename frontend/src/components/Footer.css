@@ -1,11 +1,16 @@
 footer {
   flex: 0 0 var(--footer-height);
+  padding: calc(var(--gap) / 2);
+  box-sizing: border-box;
 }
 
 .footer-content {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  width: var(--used-width);
+  max-width: 100%;
+  margin: 0 auto;
 
   & img {
     height: var(--footer-font-size);

@@ -16,10 +16,10 @@ export default function DisplayIngredient({
         <div className="header">
           <span className="header-field">Name</span>
           <span className="header-field">Marke</span>
-          <span className="header-field">kcal</span>
-          <span className="header-field">Kohlenhydrate</span>
-          <span className="header-field">Protein</span>
-          <span className="header-field">Fett</span>
+          <span className="header-field makro">Kalorien</span>
+          <span className="header-field makro">Kohlenhydrate</span>
+          <span className="header-field makro">Protein</span>
+          <span className="header-field makro">Fett</span>
         </div>
         <div className="buttons-wrapper">
           <div></div>
@@ -35,16 +35,16 @@ export default function DisplayIngredient({
         <span className="display-field">
           {ingredient.brand ? ingredient.brand : "/"}
         </span>
-        <span className="display-field">
+        <span className="display-field makro">
           {ingredient.kcal ? ingredient.kcal : "/"}
         </span>
-        <span className="display-field">
+        <span className="display-field makro">
           {ingredient.carbs ? ingredient.carbs : "/"}
         </span>
-        <span className="display-field">
+        <span className="display-field makro">
           {ingredient.protein ? ingredient.protein : "/"}
         </span>
-        <span className="display-field">
+        <span className="display-field makro">
           {ingredient.fat ? ingredient.fat : "/"}
         </span>
       </div>

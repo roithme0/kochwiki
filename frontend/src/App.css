@@ -14,6 +14,7 @@
   --negative-background: rgb(255, 201, 201);
   --header-height: 2.2rem;
   --footer-height: var(--header-height);
+  --used-width: 80rem;
   --gap: 1rem;
 }
 
@@ -26,11 +27,16 @@ html {
   display: flex;
   flex-direction: column;
   height: 100dvh;
+  width: 100dvw;
   background-color: var(--primary-background);
 }
 
 main {
   flex: 1 0 0;
   overflow-y: auto;
-  width: 100dvw;
+  width: var(--used-width);
+  max-width: 100dvw;
+  margin: 0 auto;
+  padding: 0 calc(var(--gap) / 2);
+  box-sizing: border-box;
 }

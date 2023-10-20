@@ -1,11 +1,16 @@
 header {
   flex: 0 0 var(--header-height);
+  padding: calc(var(--gap) / 2);
+  box-sizing: border-box;
 }
 
 .header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: var(--used-width);
+  max-width: 100%;
+  margin: 0 auto;
 
   & img {
     height: var(--header-font-size);
