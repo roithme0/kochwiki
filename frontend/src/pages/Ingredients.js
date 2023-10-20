@@ -14,11 +14,11 @@ export default function Ingredients() {
   const back = { url: "/", visibility: "" }
   const [ingredients, setIngredients] = useState([])
   const [editing, setEditing] = useState(null)
+  const [sortKey, setSortKey] = useState("name")
 
   useEffect(() => {
     axios.get("http://localhost:8000/recipes/ingredients/").then(response => {
       setIngredients(response.data)
-      console.debug(response.data)
     })
   }, [])
 
@@ -28,7 +28,7 @@ export default function Ingredients() {
       <main className="ingredients">
         <article className="ingredients-grid">
           <div className="header-wrapper">
-            <DisplayIngredient />
+            <DisplayIngredient onClick={sortIngredients} sortKey={sortKey} />
           </div>
           <div className="ingredients-wrapper">
             {ingredients.map(ingredient => (
@@ -56,6 +56,36 @@ export default function Ingredients() {
       )}
     </>
   )
+
+  function sortIngredients(key) {
+    if (key === sortKey) {
+      setIngredients(
+        [...ingredients].sort((a, b) => {
+          if (a[key] < b[key]) {
+            return 1
+          }
+          if (a[key] > b[key]) {
+            return -1
+          }
+          return 0
+        })
+      )
+      setSortKey(key + "Reverse")
+    } else {
+      setIngredients(
+        [...ingredients].sort((a, b) => {
+          if (a[key] < b[key]) {
+            return -1
+          }
+          if (a[key] > b[key]) {
+            return 1
+          }
+          return 0
+        })
+      )
+      setSortKey(key)
+    }
+  }
 
   function editIngredient(ingredient) {
     setEditing(ingredient)

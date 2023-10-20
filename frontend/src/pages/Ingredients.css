@@ -54,6 +54,7 @@
     > span {
       font-weight: bold;
       background-color: var(--quartenary-backgroud);
+      cursor: pointer;
     }
   }
 
