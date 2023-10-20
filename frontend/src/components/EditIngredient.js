@@ -8,7 +8,7 @@ import Button from "./ui/Button.js"
 
 import { useState } from "react"
 
-export default function EditIngredient(ingredient) {
+export default function EditIngredient({ submitEdit, cancelEdit, ingredient }) {
   const [name, setName] = useState(ingredient.name)
   const [brand, setBrand] = useState(ingredient.brand ? ingredient.brand : "")
   const [kcal, setKcal] = useState(ingredient.kcal ? ingredient.kcal : "")
@@ -69,11 +69,13 @@ export default function EditIngredient(ingredient) {
           <Button
             type={"positive"}
             img={check}
+            onClick={submitEdit}
             classNames={"save-ingredient"}
           />
           <Button
             type={"negative"}
             img={cancel}
+            onClick={cancelEdit}
             classNames={"cancel-ingredient"}
           />
         </div>

@@ -41,9 +41,12 @@ export default function Ingredients() {
       <Footer />
       {editing && (
         <Popup
+          closePopup={closePopup}
           Component={EditIngredient}
           title={"Zutat bearbeiten"}
-          props={editing}
+          submitEdit={submitEdit}
+          cancelEdit={cancelEdit}
+          ingredient={editing}
         ></Popup>
       )}
     </>
@@ -51,6 +54,18 @@ export default function Ingredients() {
 
   function editIngredient(ingredient) {
     setEditing(ingredient)
+  }
+
+  function closePopup() {
+    setEditing(null)
+  }
+
+  function submitEdit() {
+    setEditing(null)
+  }
+
+  function cancelEdit() {
+    setEditing(null)
   }
 
   function deleteIngredient(id) {
