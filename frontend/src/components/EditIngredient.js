@@ -6,17 +6,13 @@ import cancel from "../assets/images/mdi/cancel.png"
 import Field from "./ui/Field.js"
 import Button from "./ui/Button.js"
 
-import { useState } from "react"
-
 export default function EditIngredient({ submitEdit, cancelEdit, ingredient }) {
-  const [name, setName] = useState(ingredient.name)
-  const [brand, setBrand] = useState(ingredient.brand ? ingredient.brand : "")
-  const [kcal, setKcal] = useState(ingredient.kcal ? ingredient.kcal : "")
-  const [carbs, setCarbs] = useState(ingredient.carbs ? ingredient.carbs : "")
-  const [protein, setProtein] = useState(
-    ingredient.protein ? ingredient.protein : ""
-  )
-  const [fat, setFat] = useState(ingredient.fat ? ingredient.fat : "")
+  const name = ingredient.name
+  const brand = ingredient.brand ? ingredient.brand : ""
+  const kcal = ingredient.kcal ? ingredient.kcal : ""
+  const carbs = ingredient.carbs ? ingredient.carbs : ""
+  const protein = ingredient.protein ? ingredient.protein : ""
+  const fat = ingredient.fat ? ingredient.fat : ""
 
   return (
     <>
@@ -26,46 +22,40 @@ export default function EditIngredient({ submitEdit, cancelEdit, ingredient }) {
             label={"Name"}
             name={"name"}
             type={"text"}
-            value={name}
-            setValue={setName}
+            initialValue={name}
           />
           <Field
             label={"Marke"}
             name={"brand"}
             type={"text"}
-            value={brand}
-            setValue={setBrand}
+            initialValue={brand}
           />
           <Field
             label={"Kalorien"}
             name={"kcal"}
             type={"number"}
-            value={kcal}
-            setValue={setKcal}
+            initialValue={kcal}
             unit={"kcal"}
           />
           <Field
             label={"Kohlenhydrate"}
             name={"carbs"}
             type={"number"}
-            value={carbs}
-            setValue={setCarbs}
+            initialValue={carbs}
             unit={"g"}
           />
           <Field
             label={"Protein"}
             name={"protein"}
             type={"number"}
-            value={protein}
-            setValue={setProtein}
+            initialValue={protein}
             unit={"g"}
           />
           <Field
             label={"Fett"}
             name={"fat"}
             type={"number"}
-            value={fat}
-            setValue={setFat}
+            initialValue={fat}
             unit={"g"}
           />
         </form>
