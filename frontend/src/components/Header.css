@@ -1,7 +1,5 @@
 header {
   flex: 0 0 var(--header-height);
-  padding: calc(var(--gap) / 2);
-  box-sizing: border-box;
 }
 
 .header-content {
@@ -11,6 +9,8 @@ header {
   width: var(--used-width);
   max-width: 100%;
   margin: 0 auto;
+  padding: calc(var(--gap) / 2);
+  box-sizing: border-box;
 
   & img {
     height: var(--header-font-size);
