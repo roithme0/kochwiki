@@ -9,7 +9,7 @@ import sort from "../assets/images/mdi/sort.png"
 import Header from "../components/Header.js"
 import Footer from "../components/Footer.js"
 import Popup from "../components/Popup.js"
-import EditIngredient from "../components/EditIngredient"
+import EditIngredientPopup from "../components/popups/EditIngredientPopup.js"
 import Button from "../components/ui/Button.js"
 import FetchIngredients from "../hooks/FetchIngredients.js"
 
@@ -51,7 +51,7 @@ export default function Ingredients() {
       {editing && (
         <Popup
           closePopup={closePopup}
-          Component={EditIngredient}
+          Component={EditIngredientPopup}
           title={"Zutat bearbeiten"}
           submitEdit={submitEdit}
           cancelEdit={cancelEdit}

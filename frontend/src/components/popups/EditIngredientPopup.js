@@ -1,12 +1,16 @@
-import "./EditIngredient.css"
+import "./EditIngredientPopup.css"
 
-import check from "../assets/images/mdi/check.png"
-import cancel from "../assets/images/mdi/cancel.png"
+import check from "../../assets/images/mdi/check.png"
+import cancel from "../../assets/images/mdi/cancel.png"
 
-import Field from "./ui/Field.js"
-import Button from "./ui/Button.js"
+import Field from "../ui/Field.js"
+import Button from "../ui/Button.js"
 
-export default function EditIngredient({ submitEdit, cancelEdit, ingredient }) {
+export default function EditIngredientPopup({
+  submitEdit,
+  cancelEdit,
+  ingredient,
+}) {
   const name = ingredient.name
   const brand = ingredient.brand ? ingredient.brand : ""
   const kcal = ingredient.kcal ? ingredient.kcal : ""
