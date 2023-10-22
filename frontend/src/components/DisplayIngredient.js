@@ -4,6 +4,7 @@ import pencil from "../assets/images/mdi/pencil.png"
 import trashBin from "../assets/images/mdi/trash-bin.png"
 import sortAscending from "../assets/images/mdi/sort-ascending.png"
 import sortDescending from "../assets/images/mdi/sort-descending.png"
+import sort from "../assets/images/mdi/sort.png"
 
 import Button from "./ui/Button.js"
 
@@ -16,24 +17,42 @@ export default function DisplayIngredient({
 }) {
   if (ingredient) {
     return (
+      <Ingredient
+        ingredient={ingredient}
+        editIngredient={editIngredient}
+        deleteIngredient={deleteIngredient}
+      />
+    )
+  } else {
+    return <Header onClick={onClick} sortKey={sortKey} />
+  }
+
+  function Ingredient({ ingredient, editIngredient, deleteIngredient }) {
+    return (
       <>
         <div className="ingredient">
-          <span className="display-field">{ingredient.name}</span>
-          <span className="display-field">
-            {ingredient.brand ? ingredient.brand : "/"}
-          </span>
-          <span className="display-field makro">
-            {ingredient.kcal ? ingredient.kcal : "/"}
-          </span>
-          <span className="display-field makro">
-            {ingredient.carbs ? ingredient.carbs : "/"}
-          </span>
-          <span className="display-field makro">
-            {ingredient.protein ? ingredient.protein : "/"}
-          </span>
-          <span className="display-field makro">
-            {ingredient.fat ? ingredient.fat : "/"}
-          </span>
+          <IngredientField value={ingredient.name} defaultValue={"/"} />
+          <IngredientField value={ingredient.brand} defaultValue={"/"} />
+          <IngredientField
+            classNames={"makro"}
+            value={ingredient.kcal}
+            defaultValue={"/"}
+          />
+          <IngredientField
+            classNames={"makro"}
+            value={ingredient.carbs}
+            defaultValue={"/"}
+          />
+          <IngredientField
+            classNames={"makro"}
+            value={ingredient.protein}
+            defaultValue={"/"}
+          />
+          <IngredientField
+            classNames={"makro"}
+            value={ingredient.fat}
+            defaultValue={"/"}
+          />
         </div>
         <div className="buttons-wrapper">
           <Button
@@ -52,52 +71,89 @@ export default function DisplayIngredient({
       </>
     )
   }
-  return (
-    <>
-      <div className="header">
-        <div className="header-field-wrapper">
-          <span onClick={() => onClick("name")} className="header-field">
-            Name
-          </span>
-          {sortKey === "name" ? (
-            <img src={sortAscending}></img>
-          ) : sortKey === "nameReverse" ? (
-            <img src={sortDescending}></img>
-          ) : null}
+
+  function IngredientField({ classNames = "", value, defaultValue }) {
+    return (
+      <span className={"ingredient-field " + classNames}>
+        {value ? value : defaultValue}
+      </span>
+    )
+  }
+
+  function Header({ onClick, sortKey }) {
+    return (
+      <>
+        <div className="header">
+          <HeaderField
+            fieldName="name"
+            value="Name"
+            onClick={onClick}
+            sortKey={sortKey}
+          />
+          <HeaderField
+            fieldName="brand"
+            value="Marke"
+            onClick={onClick}
+            sortKey={sortKey}
+          />
+          <HeaderField
+            classNames={"makro"}
+            fieldName="kcal"
+            value="Kalorien"
+            onClick={onClick}
+            sortKey={sortKey}
+          />
+          <HeaderField
+            classNames={"makro"}
+            fieldName="carbs"
+            value="Kohlenhydrate"
+            onClick={onClick}
+            sortKey={sortKey}
+          />
+          <HeaderField
+            classNames={"makro"}
+            fieldName="protein"
+            value="Protein"
+            onClick={onClick}
+            sortKey={sortKey}
+          />
+          <HeaderField
+            classNames={"makro"}
+            fieldName="fat"
+            value="Fett"
+            onClick={onClick}
+            sortKey={sortKey}
+          />
         </div>
-        <div className="header-field-wrapper">
-          <span onClick={() => onClick("brand")} className="header-field">
-            Marke
-          </span>
+        <div className="buttons-wrapper">
+          <div></div>
+          <div></div>
         </div>
-        <div className="header-field-wrapper">
-          <span onClick={() => onClick("kcal")} className="header-field makro">
-            Kalorien
-          </span>
-        </div>
-        <div className="header-field-wrapper">
-          <span onClick={() => onClick("carbs")} className="header-field makro">
-            Kohlenhydrate
-          </span>
-        </div>
-        <div className="header-field-wrapper">
-          <span
-            onClick={() => onClick("protein")}
-            className="header-field makro"
-          >
-            Protein
-          </span>
-        </div>
-        <div className="header-field-wrapper">
-          <span onClick={() => onClick("fat")} className="header-field makro">
-            Fett
-          </span>
-        </div>
+      </>
+    )
+  }
+
+  function HeaderField({
+    classNames = "",
+    fieldName,
+    value,
+    onClick,
+    sortKey,
+  }) {
+    return (
+      <div
+        onClick={() => onClick(fieldName)}
+        className={"header-field-wrapper " + classNames}
+      >
+        <span className="header-field">{value}</span>
+        {sortKey === fieldName ? (
+          <img src={sortAscending}></img>
+        ) : sortKey === fieldName + "Reverse" ? (
+          <img src={sortDescending}></img>
+        ) : (
+          <img src={sort} className="hidden"></img>
+        )}
       </div>
-      <div className="buttons-wrapper">
-        <div></div>
-        <div></div>
-      </div>
-    </>
-  )
+    )
+  }
 }
