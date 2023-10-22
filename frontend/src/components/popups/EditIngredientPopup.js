@@ -6,60 +6,68 @@ import cancel from "../../assets/images/mdi/cancel.png"
 import Field from "../ui/Field.js"
 import Button from "../ui/Button.js"
 
+import { useState } from "react"
+
 export default function EditIngredientPopup({
   submitEdit,
   cancelEdit,
   ingredient,
 }) {
-  const name = ingredient.name
-  const brand = ingredient.brand ? ingredient.brand : ""
-  const kcal = ingredient.kcal ? ingredient.kcal : ""
-  const carbs = ingredient.carbs ? ingredient.carbs : ""
-  const protein = ingredient.protein ? ingredient.protein : ""
-  const fat = ingredient.fat ? ingredient.fat : ""
+  const [form, setForm] = useState({
+    name: ingredient.name,
+    brand: ingredient.brand ? ingredient.brand : "",
+    kcal: ingredient.kcal ? ingredient.kcal : "",
+    carbs: ingredient.carbs ? ingredient.carbs : "",
+    protein: ingredient.protein ? ingredient.protein : "",
+    fat: ingredient.fat ? ingredient.fat : "",
+  })
 
   return (
     <>
       <div className="edit-ingredient">
-        <form key={ingredient.id} className="ingredient-form">
+        <form
+          key={ingredient.id}
+          className="ingredient-form"
+          onChange={event => onChange(event)}
+        >
           <Field
             label={"Name"}
             name={"name"}
             type={"text"}
-            initialValue={name}
+            initialValue={form.name}
           />
           <Field
             label={"Marke"}
             name={"brand"}
             type={"text"}
-            initialValue={brand}
+            initialValue={form.brand}
           />
           <Field
             label={"Kalorien"}
             name={"kcal"}
             type={"number"}
-            initialValue={kcal}
+            initialValue={form.kcal}
             unit={"kcal"}
           />
           <Field
             label={"Kohlenhydrate"}
             name={"carbs"}
             type={"number"}
-            initialValue={carbs}
+            initialValue={form.carbs}
             unit={"g"}
           />
           <Field
             label={"Protein"}
             name={"protein"}
             type={"number"}
-            initialValue={protein}
+            initialValue={form.protein}
             unit={"g"}
           />
           <Field
             label={"Fett"}
             name={"fat"}
             type={"number"}
-            initialValue={fat}
+            initialValue={form.fat}
             unit={"g"}
           />
         </form>
@@ -80,4 +88,11 @@ export default function EditIngredientPopup({
       </div>
     </>
   )
+
+  function onChange(event) {
+    setForm({
+      ...form,
+      [event.target.name]: event.target.value,
+    })
+  }
 }
