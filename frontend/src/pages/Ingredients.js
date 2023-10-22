@@ -11,9 +11,9 @@ import Footer from "../components/Footer.js"
 import Popup from "../components/Popup.js"
 import EditIngredient from "../components/EditIngredient"
 import Button from "../components/ui/Button.js"
+import FetchIngredients from "../hooks/FetchIngredients.js"
 
 import { useState, useEffect } from "react"
-import axios from "axios"
 
 export default function Ingredients() {
   const headline = "Zutaten"
@@ -23,9 +23,7 @@ export default function Ingredients() {
   const [sortKey, setSortKey] = useState("name")
 
   useEffect(() => {
-    axios.get("http://localhost:8000/recipes/ingredients/").then(response => {
-      setIngredients(response.data)
-    })
+    FetchIngredients(setIngredients)
   }, [])
 
   return (
