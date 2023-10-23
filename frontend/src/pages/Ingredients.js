@@ -23,11 +23,11 @@ export default function Ingredients() {
   const back = { url: "/", visibility: "" }
 
   const [ingredients, setIngredients] = useState([])
+  const [sortKey, setSortKey] = useState(null)
   const [editing, setEditing] = useState(null)
-  const [sortKey, setSortKey] = useState("name")
 
   useEffect(() => {
-    fetchIngredients(setIngredients)
+    fetchIngredients({ callback: sortIngredients, kwargs: { key: "name" } })
   }, [])
 
   return (
@@ -131,7 +131,7 @@ export default function Ingredients() {
     }) {
       return (
         <div
-          onClick={() => clickHandler(fieldName)}
+          onClick={() => clickHandler({ key: fieldName })}
           className={"header-field-wrapper " + classNames}
         >
           <span className="header-field">{value}</span>
@@ -178,13 +178,13 @@ export default function Ingredients() {
           <Button
             type={"neutral"}
             img={pencil}
-            clickHandler={() => editIngredient(ingredient)}
+            clickHandler={() => editIngredient({ ingredient: ingredient })}
             classNames="edit"
           />
           <Button
             type={"neutral"}
             img={trashBin}
-            clickHandler={() => deleteIngredient(ingredient.id)}
+            clickHandler={() => deleteIngredient({ id: ingredient.id })}
             classNames="delete"
           />
         </div>
@@ -200,11 +200,12 @@ export default function Ingredients() {
     }
   }
 
-  function sortIngredients(key) {
+  function sortIngredients({ key, fetchedIngredients = ingredients }) {
+    console.log(key, sortKey)
     const reverseFactor = key === sortKey ? -1 : 1
     let res = 0
     setIngredients(
-      [...ingredients].sort((a, b) => {
+      [...fetchedIngredients].sort((a, b) => {
         if (a[key] < b[key]) {
           res = -1
         } else if (a[key] > b[key]) {
@@ -218,33 +219,37 @@ export default function Ingredients() {
     setSortKey(reverseFactor === -1 ? key + "Reverse" : key)
   }
 
-  function editIngredient(ingredient) {
+  function editIngredient({ ingredient }) {
     setEditing(ingredient)
     document
       .getElementById("ingredient-wrapper-" + ingredient.id)
       .classList.add("editing")
   }
 
-  function closePopup(event = null) {
+  function closePopup({ event = null }) {
     if (event) event.preventDefault() // for closing popup using form button
-    fetchIngredient(editing.id, response => {
-      const updatedIngredient = response
-      const updatedIngredients = ingredients.map(ingredient => {
-        if (ingredient.id === updatedIngredient.id) {
-          return updatedIngredient
-        } else {
-          return ingredient
-        }
-      })
-      setIngredients(updatedIngredients)
-      document
-        .getElementById("ingredient-wrapper-" + editing.id)
-        .classList.remove("editing")
-      setEditing(null)
+    fetchIngredient({
+      id: editing.id,
+      callback: response => {
+        const updatedIngredient = response
+        setIngredients(
+          ingredients.map(ingredient => {
+            if (ingredient.id === updatedIngredient.id) {
+              return updatedIngredient
+            } else {
+              return ingredient
+            }
+          })
+        )
+        document
+          .getElementById("ingredient-wrapper-" + editing.id)
+          .classList.remove("editing")
+        setEditing(null)
+      },
     })
   }
 
-  function deleteIngredient(id) {
+  function deleteIngredient({ id }) {
     setIngredients(ingredients.filter(ingredient => ingredient.id !== id))
   }
 }
