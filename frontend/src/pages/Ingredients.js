@@ -12,8 +12,7 @@ import Popup from "../components/Popup"
 import EditIngredientPopup from "../components/popups/EditIngredientPopup"
 import Button from "../components/ui/Button"
 
-import fetchIngredients from "../hooks/fetchIngredients"
-import fetchIngredient from "../hooks/fetchIngredient"
+import { fetchIngredient, fetchIngredients } from "../services/api/Ingredient"
 
 import { useState, useEffect } from "react"
 
