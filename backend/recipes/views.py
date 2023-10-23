@@ -9,7 +9,7 @@ from .serializers import (
 from rest_framework.response import Response
 from rest_framework.generics import (
     CreateAPIView,
-    UpdateAPIView,
+    RetrieveUpdateAPIView,
     RetrieveAPIView,
     ListAPIView,
 )
@@ -23,13 +23,14 @@ class CreateIngredientView(CreateAPIView):
     serializer_class = EditIngredientSerializer
 
 
-class UpdateIngredientView(UpdateAPIView):
+class UpdateIngredientView(RetrieveUpdateAPIView):
     queryset = Ingredient.objects.all()
     serializer_class = EditIngredientSerializer
 
     def put(self, request, *args, **kwargs):
         logger.info(request.data)
-        serializer = self.serializer_class(data=request.data)
+        instance = self.get_object()
+        serializer = self.serializer_class(instance, data=request.data)
         if serializer.is_valid():
             logger.info("update ingredient valid")
             self.perform_update(serializer)
