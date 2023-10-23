@@ -6,20 +6,22 @@ import sortAscending from "../assets/images/mdi/sort-ascending.png"
 import sortDescending from "../assets/images/mdi/sort-descending.png"
 import sort from "../assets/images/mdi/sort.png"
 
-import Header from "../components/Header.js"
-import Footer from "../components/Footer.js"
-import Popup from "../components/Popup.js"
-import EditIngredientPopup from "../components/popups/EditIngredientPopup.js"
-import Button from "../components/ui/Button.js"
+import Header from "../components/Header"
+import Footer from "../components/Footer"
+import Popup from "../components/Popup"
+import EditIngredientPopup from "../components/popups/EditIngredientPopup"
+import Button from "../components/ui/Button"
 
-import fetchIngredients from "../hooks/fetchIngredients.js"
-import fetchIngredient from "../hooks/fetchIngredient.js"
+import fetchIngredients from "../hooks/fetchIngredients"
+import fetchIngredient from "../hooks/fetchIngredient"
 
 import { useState, useEffect } from "react"
 
 export default function Ingredients() {
+  // page header
   const headline = "Zutaten"
   const back = { url: "/", visibility: "" }
+
   const [ingredients, setIngredients] = useState([])
   const [editing, setEditing] = useState(null)
   const [sortKey, setSortKey] = useState("name")
@@ -34,7 +36,7 @@ export default function Ingredients() {
       <main className="ingredients">
         <article className="ingredients-grid">
           <div className="header-wrapper">
-            <DisplayIngredient
+            <DisplayIngredientHeader
               clickHandler={sortIngredients}
               sortKey={sortKey}
             />
@@ -68,130 +70,57 @@ export default function Ingredients() {
     </>
   )
 
-  function DisplayIngredient({
-    ingredient = null,
-    editIngredient = null,
-    deleteIngredient = null,
-    clickHandler = null,
-    sortKey = null,
-  }) {
-    if (ingredient) {
-      return (
-        <Ingredient
-          ingredient={ingredient}
-          editIngredient={editIngredient}
-          deleteIngredient={deleteIngredient}
-        />
-      )
-    } else {
-      return <IngredientHeader clickHandler={clickHandler} sortKey={sortKey} />
-    }
-
-    function Ingredient({ ingredient, editIngredient, deleteIngredient }) {
-      return (
-        <>
-          <div className="ingredient">
-            <IngredientField value={ingredient.name} defaultValue={"/"} />
-            <IngredientField value={ingredient.brand} defaultValue={"/"} />
-            <IngredientField
-              classNames={"makro"}
-              value={ingredient.kcal}
-              defaultValue={"/"}
-            />
-            <IngredientField
-              classNames={"makro"}
-              value={ingredient.carbs}
-              defaultValue={"/"}
-            />
-            <IngredientField
-              classNames={"makro"}
-              value={ingredient.protein}
-              defaultValue={"/"}
-            />
-            <IngredientField
-              classNames={"makro"}
-              value={ingredient.fat}
-              defaultValue={"/"}
-            />
-          </div>
-          <div className="buttons-wrapper">
-            <Button
-              type={"neutral"}
-              img={pencil}
-              clickHandler={() => editIngredient(ingredient)}
-              classNames="edit"
-            />
-            <Button
-              type={"neutral"}
-              img={trashBin}
-              clickHandler={() => deleteIngredient(ingredient.id)}
-              classNames="delete"
-            />
-          </div>
-        </>
-      )
-    }
-
-    function IngredientField({ classNames = "", value, defaultValue }) {
-      return (
-        <span className={"ingredient-field " + classNames}>
-          {value ? value : defaultValue}
-        </span>
-      )
-    }
-
-    function IngredientHeader({ clickHandler, sortKey }) {
-      return (
-        <>
-          <div className="header">
-            <IngredientHeaderField
-              fieldName="name"
-              value="Name"
-              clickHandler={clickHandler}
-              sortKey={sortKey}
-            />
-            <IngredientHeaderField
-              fieldName="brand"
-              value="Marke"
-              clickHandler={clickHandler}
-              sortKey={sortKey}
-            />
-            <IngredientHeaderField
-              classNames={"makro"}
-              fieldName="kcal"
-              value="Kalorien"
-              clickHandler={clickHandler}
-              sortKey={sortKey}
-            />
-            <IngredientHeaderField
-              classNames={"makro"}
-              fieldName="carbs"
-              value="Kohlenhydrate"
-              clickHandler={clickHandler}
-              sortKey={sortKey}
-            />
-            <IngredientHeaderField
-              classNames={"makro"}
-              fieldName="protein"
-              value="Protein"
-              clickHandler={clickHandler}
-              sortKey={sortKey}
-            />
-            <IngredientHeaderField
-              classNames={"makro"}
-              fieldName="fat"
-              value="Fett"
-              clickHandler={clickHandler}
-              sortKey={sortKey}
-            />
-          </div>
-          <div className="buttons-wrapper">
-            <div></div>
-            <div></div>
-          </div>
-        </>
-      )
-    }
+  function DisplayIngredientHeader({ clickHandler, sortKey }) {
+    return (
+      <>
+        <div className="header">
+          <IngredientHeaderField
+            fieldName="name"
+            value="Name"
+            clickHandler={clickHandler}
+            sortKey={sortKey}
+          />
+          <IngredientHeaderField
+            fieldName="brand"
+            value="Marke"
+            clickHandler={clickHandler}
+            sortKey={sortKey}
+          />
+          <IngredientHeaderField
+            classNames={"makro"}
+            fieldName="kcal"
+            value="Kalorien"
+            clickHandler={clickHandler}
+            sortKey={sortKey}
+          />
+          <IngredientHeaderField
+            classNames={"makro"}
+            fieldName="carbs"
+            value="Kohlenhydrate"
+            clickHandler={clickHandler}
+            sortKey={sortKey}
+          />
+          <IngredientHeaderField
+            classNames={"makro"}
+            fieldName="protein"
+            value="Protein"
+            clickHandler={clickHandler}
+            sortKey={sortKey}
+          />
+          <IngredientHeaderField
+            classNames={"makro"}
+            fieldName="fat"
+            value="Fett"
+            clickHandler={clickHandler}
+            sortKey={sortKey}
+          />
+        </div>
+        <div className="buttons-wrapper">
+          <div></div>
+          <div></div>
+        </div>
+      </>
+    )
 
     function IngredientHeaderField({
       classNames = "",
@@ -214,6 +143,59 @@ export default function Ingredients() {
             <img src={sort} className="hidden"></img>
           )}
         </div>
+      )
+    }
+  }
+
+  function DisplayIngredient({ ingredient, editIngredient, deleteIngredient }) {
+    return (
+      <>
+        <div className="ingredient">
+          <IngredientField value={ingredient.name} defaultValue={"/"} />
+          <IngredientField value={ingredient.brand} defaultValue={"/"} />
+          <IngredientField
+            classNames={"makro"}
+            value={ingredient.kcal}
+            defaultValue={"/"}
+          />
+          <IngredientField
+            classNames={"makro"}
+            value={ingredient.carbs}
+            defaultValue={"/"}
+          />
+          <IngredientField
+            classNames={"makro"}
+            value={ingredient.protein}
+            defaultValue={"/"}
+          />
+          <IngredientField
+            classNames={"makro"}
+            value={ingredient.fat}
+            defaultValue={"/"}
+          />
+        </div>
+        <div className="buttons-wrapper">
+          <Button
+            type={"neutral"}
+            img={pencil}
+            clickHandler={() => editIngredient(ingredient)}
+            classNames="edit"
+          />
+          <Button
+            type={"neutral"}
+            img={trashBin}
+            clickHandler={() => deleteIngredient(ingredient.id)}
+            classNames="delete"
+          />
+        </div>
+      </>
+    )
+
+    function IngredientField({ classNames = "", value, defaultValue }) {
+      return (
+        <span className={"ingredient-field " + classNames}>
+          {value ? value : defaultValue}
+        </span>
       )
     }
   }

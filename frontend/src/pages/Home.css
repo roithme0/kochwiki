@@ -4,8 +4,8 @@
     gap: var(--gap);
   }
 
-  & .recipes-anchor,
-  & .ingredients-anchor {
+  & .recipes-link,
+  & .ingredients-link {
     flex: 1 0 0;
 
     > img {
