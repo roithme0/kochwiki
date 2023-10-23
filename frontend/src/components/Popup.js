@@ -14,7 +14,7 @@ export default function Popup({ closePopup, Component, title, ...props }) {
           <Button
             type={"neutral"}
             img={close}
-            clickHandler={event => closePopup({ event: event })}
+            clickHandler={closePopup}
             classNames={"close"}
           />
         </div>

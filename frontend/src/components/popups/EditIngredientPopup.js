@@ -3,14 +3,17 @@ import "./EditIngredientPopup.css"
 import check from "../../assets/images/mdi/check.png"
 import cancel from "../../assets/images/mdi/cancel.png"
 
-import Field from "../ui/Field.js"
-import Button from "../ui/Button.js"
+import Field from "../ui/Field"
+import Button from "../ui/Button"
+
+import { putIngredient } from "../../services/api/Ingredient"
 
 import { useState } from "react"
 import axios from "axios"
 
 export default function EditIngredientPopup({ closePopup, ingredient }) {
   const [form, setForm] = useState({
+    id: ingredient.id,
     name: ingredient.name,
     brand: ingredient.brand ? ingredient.brand : "",
     kcal: ingredient.kcal ? ingredient.kcal : "",
@@ -81,7 +84,7 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
             <Button
               type={"negative"}
               img={cancel}
-              clickHandler={closePopup}
+              clickHandler={event => closePopup({ event })}
               classNames={"cancel-ingredient"}
             />
           </div>
@@ -99,15 +102,6 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
 
   async function submitHandler(event) {
     event.preventDefault()
-    try {
-      const response = await axios.put(
-        `http://localhost:8000/recipes/ingredient/update/${ingredient.id}/`,
-        form
-      )
-      console.debug("successfully updated ingredient: ", response)
-      closePopup()
-    } catch (error) {
-      console.error("update ingredient: ", error.response)
-    }
+    putIngredient({ form: form, callback: closePopup })
   }
 }

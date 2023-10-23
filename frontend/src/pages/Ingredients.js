@@ -200,7 +200,6 @@ export default function Ingredients() {
   }
 
   function sortIngredients({ key, fetchedIngredients = ingredients }) {
-    console.log(key, sortKey)
     const reverseFactor = key === sortKey ? -1 : 1
     let res = 0
     setIngredients(
@@ -226,26 +225,27 @@ export default function Ingredients() {
   }
 
   function closePopup({ event = null }) {
-    if (event) event.preventDefault() // for closing popup using form button
+    event && event.preventDefault() // for closing popup using form button
     fetchIngredient({
       id: editing.id,
-      callback: response => {
-        const updatedIngredient = response
-        setIngredients(
-          ingredients.map(ingredient => {
-            if (ingredient.id === updatedIngredient.id) {
-              return updatedIngredient
-            } else {
-              return ingredient
-            }
-          })
-        )
-        document
-          .getElementById("ingredient-wrapper-" + editing.id)
-          .classList.remove("editing")
-        setEditing(null)
-      },
+      callback: updateIngredients,
     })
+  }
+
+  function updateIngredients({ fetchedIngredient }) {
+    setIngredients(
+      ingredients.map(ingredient => {
+        if (ingredient.id === fetchedIngredient.id) {
+          return fetchedIngredient
+        } else {
+          return ingredient
+        }
+      })
+    )
+    document
+      .getElementById("ingredient-wrapper-" + editing.id)
+      .classList.remove("editing")
+    setEditing(null)
   }
 
   function deleteIngredient({ id }) {
