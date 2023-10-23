@@ -28,8 +28,8 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
       <div className="edit-ingredient">
         <form
           key={ingredient.id}
-          onChange={event => changeHandler(event)}
-          onSubmit={event => submitHandler(event)}
+          onChange={event => changeHandler({ event })}
+          onSubmit={event => submitHandler({ event })}
           className="ingredient-form"
         >
           <div className="fields-wrapper">
@@ -92,14 +92,14 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
     </>
   )
 
-  function changeHandler(event) {
+  function changeHandler({ event }) {
     setForm({
       ...form,
       [event.target.name]: event.target.value,
     })
   }
 
-  async function submitHandler(event) {
+  async function submitHandler({ event }) {
     event.preventDefault()
     putIngredient({ form: form, callback: closePopup })
   }
