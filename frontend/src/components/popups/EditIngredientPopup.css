@@ -6,9 +6,19 @@
   max-width: 100%;
 
   & .ingredient-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+  }
+
+  & .fields-wrapper {
     display: grid;
     grid-template-columns: min-content 1fr;
     gap: var(--gap);
+  }
+
+  & .buttons-wrapper {
+    height: 1.7rem;
   }
 
   & .field {
@@ -30,9 +40,5 @@
     display: grid;
     grid-template-columns: 1fr min-content;
     gap: var(--gap);
-  }
-
-  & .buttons-wrapper {
-    height: 1.7rem;
   }
 }

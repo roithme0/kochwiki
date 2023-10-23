@@ -14,11 +14,11 @@ export default function Popup({ closePopup, Component, title, ...props }) {
           <Button
             type={"neutral"}
             img={close}
-            onClick={closePopup}
+            clickHandler={closePopup}
             classNames={"close"}
           />
         </div>
-        <Component {...props}></Component>
+        <Component closePopup={closePopup} {...props}></Component>
       </div>
     </div>
   )

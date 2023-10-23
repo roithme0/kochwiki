@@ -38,6 +38,12 @@
     padding-bottom: 0.25rem;
   }
 
+  & .ingredient-wrapper.editing {
+    & span {
+      background-color: var(--highlight-background);
+    }
+  }
+
   & .header,
   & .ingredient {
     grid-column: span var(--ingredient-columns);

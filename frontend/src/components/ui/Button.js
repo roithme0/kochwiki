@@ -1,9 +1,18 @@
 import "./Button.css"
 
-export default function Button({ type, img, onClick, classNames = "" }) {
+export default function Button({
+  type,
+  img,
+  alternativeText = "",
+  clickHandler,
+  classNames = "",
+}) {
   return (
-    <button className={"button " + type}>
-      <img src={img} onClick={onClick} className={classNames} />
+    <button
+      onClick={clickHandler ? event => clickHandler(event) : undefined}
+      className={"button " + type}
+    >
+      <img src={img} alt={alternativeText} className={classNames} />
     </button>
   )
 }

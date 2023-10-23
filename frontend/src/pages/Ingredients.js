@@ -11,7 +11,9 @@ import Footer from "../components/Footer.js"
 import Popup from "../components/Popup.js"
 import EditIngredientPopup from "../components/popups/EditIngredientPopup.js"
 import Button from "../components/ui/Button.js"
-import FetchIngredients from "../hooks/FetchIngredients.js"
+
+import fetchIngredients from "../hooks/fetchIngredients.js"
+import fetchIngredient from "../hooks/fetchIngredient.js"
 
 import { useState, useEffect } from "react"
 
@@ -23,7 +25,7 @@ export default function Ingredients() {
   const [sortKey, setSortKey] = useState("name")
 
   useEffect(() => {
-    FetchIngredients(setIngredients)
+    fetchIngredients(setIngredients)
   }, [])
 
   return (
@@ -32,11 +34,18 @@ export default function Ingredients() {
       <main className="ingredients">
         <article className="ingredients-grid">
           <div className="header-wrapper">
-            <DisplayIngredient onClick={sortIngredients} sortKey={sortKey} />
+            <DisplayIngredient
+              clickHandler={sortIngredients}
+              sortKey={sortKey}
+            />
           </div>
           <div className="ingredients-wrapper">
             {ingredients.map(ingredient => (
-              <div key={ingredient.id} className="ingredient-wrapper">
+              <div
+                key={ingredient.id}
+                className="ingredient-wrapper"
+                id={"ingredient-wrapper-" + ingredient.id}
+              >
                 <DisplayIngredient
                   ingredient={ingredient}
                   editIngredient={editIngredient}
@@ -53,8 +62,6 @@ export default function Ingredients() {
           closePopup={closePopup}
           Component={EditIngredientPopup}
           title={"Zutat bearbeiten"}
-          submitEdit={submitEdit}
-          cancelEdit={cancelEdit}
           ingredient={editing}
         ></Popup>
       )}
@@ -65,7 +72,7 @@ export default function Ingredients() {
     ingredient = null,
     editIngredient = null,
     deleteIngredient = null,
-    onClick = null,
+    clickHandler = null,
     sortKey = null,
   }) {
     if (ingredient) {
@@ -77,7 +84,7 @@ export default function Ingredients() {
         />
       )
     } else {
-      return <IngredientHeader onClick={onClick} sortKey={sortKey} />
+      return <IngredientHeader clickHandler={clickHandler} sortKey={sortKey} />
     }
 
     function Ingredient({ ingredient, editIngredient, deleteIngredient }) {
@@ -111,13 +118,13 @@ export default function Ingredients() {
             <Button
               type={"neutral"}
               img={pencil}
-              onClick={() => editIngredient(ingredient)}
+              clickHandler={() => editIngredient(ingredient)}
               classNames="edit"
             />
             <Button
               type={"neutral"}
               img={trashBin}
-              onClick={() => deleteIngredient(ingredient.id)}
+              clickHandler={() => deleteIngredient(ingredient.id)}
               classNames="delete"
             />
           </div>
@@ -133,48 +140,48 @@ export default function Ingredients() {
       )
     }
 
-    function IngredientHeader({ onClick, sortKey }) {
+    function IngredientHeader({ clickHandler, sortKey }) {
       return (
         <>
           <div className="header">
             <IngredientHeaderField
               fieldName="name"
               value="Name"
-              onClick={onClick}
+              clickHandler={clickHandler}
               sortKey={sortKey}
             />
             <IngredientHeaderField
               fieldName="brand"
               value="Marke"
-              onClick={onClick}
+              clickHandler={clickHandler}
               sortKey={sortKey}
             />
             <IngredientHeaderField
               classNames={"makro"}
               fieldName="kcal"
               value="Kalorien"
-              onClick={onClick}
+              clickHandler={clickHandler}
               sortKey={sortKey}
             />
             <IngredientHeaderField
               classNames={"makro"}
               fieldName="carbs"
               value="Kohlenhydrate"
-              onClick={onClick}
+              clickHandler={clickHandler}
               sortKey={sortKey}
             />
             <IngredientHeaderField
               classNames={"makro"}
               fieldName="protein"
               value="Protein"
-              onClick={onClick}
+              clickHandler={clickHandler}
               sortKey={sortKey}
             />
             <IngredientHeaderField
               classNames={"makro"}
               fieldName="fat"
               value="Fett"
-              onClick={onClick}
+              clickHandler={clickHandler}
               sortKey={sortKey}
             />
           </div>
@@ -190,12 +197,12 @@ export default function Ingredients() {
       classNames = "",
       fieldName,
       value,
-      onClick,
+      clickHandler,
       sortKey,
     }) {
       return (
         <div
-          onClick={() => onClick(fieldName)}
+          onClick={() => clickHandler(fieldName)}
           className={"header-field-wrapper " + classNames}
         >
           <span className="header-field">{value}</span>
@@ -243,18 +250,28 @@ export default function Ingredients() {
 
   function editIngredient(ingredient) {
     setEditing(ingredient)
+    document
+      .getElementById("ingredient-wrapper-" + ingredient.id)
+      .classList.add("editing")
   }
 
-  function closePopup() {
-    setEditing(null)
-  }
-
-  function submitEdit() {
-    setEditing(null)
-  }
-
-  function cancelEdit() {
-    setEditing(null)
+  function closePopup(event = null) {
+    if (event) event.preventDefault() // for closing popup using form button
+    fetchIngredient(editing.id, response => {
+      const updatedIngredient = response
+      const updatedIngredients = ingredients.map(ingredient => {
+        if (ingredient.id === updatedIngredient.id) {
+          return updatedIngredient
+        } else {
+          return ingredient
+        }
+      })
+      setIngredients(updatedIngredients)
+      document
+        .getElementById("ingredient-wrapper-" + editing.id)
+        .classList.remove("editing")
+      setEditing(null)
+    })
   }
 
   function deleteIngredient(id) {
