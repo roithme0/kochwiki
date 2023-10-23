@@ -101,10 +101,11 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
     })
-      .then(response => response.json())
-      .then(data => {
-        closePopup()
+      .then(response => {
+        response.json()
+        response.status === 200 && closePopup()
       })
+      // .then(data => console.log(data))
       .catch(error => console.error(error))
   }
 }
