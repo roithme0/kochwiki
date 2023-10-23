@@ -8,6 +8,7 @@ export default function FetchIngredient(
   axios
     .get(`http://localhost:8000/recipes/ingredient/${id}/`)
     .then(response => {
+      console.debug("fetched ingredient: ", response.data)
       setFunction && setFunction(response.data)
       callback && callback(response.data)
     })
