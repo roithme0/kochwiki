@@ -1,8 +1,8 @@
 from .models import Ingredient, Recipe
 from .serializers import (
     IngredientSerializer,
-    CreateIngredientSerializer,
-    UpdateIngredientSerializer,
+    EditIngredientSerializer,
+    EditIngredientSerializer,
     RecipeSerializer,
 )
 
@@ -15,12 +15,12 @@ from rest_framework.generics import (
 
 
 class CreateIngredientView(CreateAPIView):
-    serializer_class = CreateIngredientSerializer
+    serializer_class = EditIngredientSerializer
 
 
 class UpdateIngredientView(UpdateAPIView):
     queryset = Ingredient.objects.all()
-    serializer_class = UpdateIngredientSerializer
+    serializer_class = EditIngredientSerializer
 
 
 class IngredientView(RetrieveAPIView):
