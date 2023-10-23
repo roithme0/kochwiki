@@ -9,15 +9,31 @@ logger = logging.getLogger("django")
 
 class EditIngredientSerializer(serializers.ModelSerializer):
     labels = serializers.SerializerMethodField()
+    field_errors = serializers.SerializerMethodField()
 
     class Meta:
         model = Ingredient
-        fields = "name", "brand", "kcal", "carbs", "protein", "fat"
+        fields = (
+            "name",
+            "brand",
+            "kcal",
+            "carbs",
+            "protein",
+            "fat",
+            "labels",
+            "field_errors",
+        )
 
-    def get_labels(self, *args):
+    def get_labels(self, obj):
         return get_labels(self.Meta.model, self.fields)
 
-    def run_validation(self, data):
+    def get_field_errors(self, obj):
+        if hasattr(obj, "errors"):
+            return obj.errors
+        else:
+            return {}
+
+    def validate(self, data):
         data["name"] = self.validate_name(data["name"])
         data["kcal"] = self.validate_makro(data["kcal"], "kcal")
         data["carbs"] = self.validate_makro(data["carbs"], "carbs")
@@ -26,6 +42,8 @@ class EditIngredientSerializer(serializers.ModelSerializer):
         return data
 
     def validate_name(self, value):
+        if value == "":
+            raise serializers.ValidationError("name must not be empty")
         return value
 
     def validate_makro(self, value, name):
@@ -44,7 +62,7 @@ class IngredientSerializer(serializers.ModelSerializer):
         model = Ingredient
         fields = "__all__"
 
-    def get_labels(self, *args):
+    def get_labels(self, obj):
         return get_labels(self.Meta.model, self.fields)
 
 

@@ -7,6 +7,7 @@ import Field from "../ui/Field.js"
 import Button from "../ui/Button.js"
 
 import { useState } from "react"
+import axios from "axios"
 
 export default function EditIngredientPopup({ closePopup, ingredient }) {
   const [form, setForm] = useState({
@@ -16,6 +17,8 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
     carbs: ingredient.carbs ? ingredient.carbs : "",
     protein: ingredient.protein ? ingredient.protein : "",
     fat: ingredient.fat ? ingredient.fat : "",
+    labels: ingredient.labels,
+    fieldErrors: ingredient.field_errors,
   })
 
   return (
@@ -94,18 +97,17 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
     })
   }
 
-  function submitHandler(event) {
+  async function submitHandler(event) {
     event.preventDefault()
-    fetch(`http://localhost:8000/recipes/ingredient/update/${ingredient.id}/`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    })
-      .then(response => {
-        response.json()
-        response.status === 200 && closePopup()
-      })
-      // .then(data => console.log(data))
-      .catch(error => console.error(error))
+    try {
+      const response = await axios.put(
+        `http://localhost:8000/recipes/ingredient/update/${ingredient.id}/`,
+        form
+      )
+      console.debug("successfully updated ingredient: ", response)
+      closePopup()
+    } catch (error) {
+      console.error("update ingredient: ", error.response)
+    }
   }
 }
