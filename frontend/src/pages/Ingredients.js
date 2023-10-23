@@ -201,33 +201,21 @@ export default function Ingredients() {
   }
 
   function sortIngredients(key) {
-    if (key === sortKey) {
-      setIngredients(
-        [...ingredients].sort((a, b) => {
-          if (a[key] < b[key]) {
-            return 1
-          }
-          if (a[key] > b[key]) {
-            return -1
-          }
-          return 0
-        })
-      )
-      setSortKey(key + "Reverse")
-    } else {
-      setIngredients(
-        [...ingredients].sort((a, b) => {
-          if (a[key] < b[key]) {
-            return -1
-          }
-          if (a[key] > b[key]) {
-            return 1
-          }
-          return 0
-        })
-      )
-      setSortKey(key)
-    }
+    const reverseFactor = key === sortKey ? -1 : 1
+    let res = 0
+    setIngredients(
+      [...ingredients].sort((a, b) => {
+        if (a[key] < b[key]) {
+          res = -1
+        } else if (a[key] > b[key]) {
+          res = 1
+        } else {
+          res = 0
+        }
+        return res * reverseFactor
+      })
+    )
+    setSortKey(reverseFactor === -1 ? key + "Reverse" : key)
   }
 
   function editIngredient(ingredient) {
