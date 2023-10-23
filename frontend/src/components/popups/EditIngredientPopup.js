@@ -9,7 +9,6 @@ import Button from "../ui/Button"
 import { putIngredient } from "../../services/api/Ingredient"
 
 import { useState } from "react"
-import axios from "axios"
 
 export default function EditIngredientPopup({ closePopup, ingredient }) {
   const [form, setForm] = useState({
