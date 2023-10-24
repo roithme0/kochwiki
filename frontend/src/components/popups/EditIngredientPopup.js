@@ -12,7 +12,9 @@ import { useState } from "react"
 
 export default function EditIngredientPopup({ closePopup, ingredient }) {
   const labels = ingredient.labels
+  const blankFields = ingredient.blank_fields
   const [form, setForm] = useState({
+    id: ingredient.id,
     name: ingredient.name,
     brand: ingredient.brand ? ingredient.brand : "",
     kcal: ingredient.kcal ? ingredient.kcal : "",
@@ -36,18 +38,21 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
               label={labels.name}
               name="name"
               type="text"
+              required={!blankFields.name}
               initialValue={form.name}
             />
             <Field
               label={labels.brand}
               name="brand"
               type="text"
+              required={!blankFields.brand}
               initialValue={form.brand}
             />
             <Field
               label={labels.kcal}
               name="kcal"
               type="number"
+              required={!blankFields.kcal}
               initialValue={form.kcal}
               unit="kcal"
             />
@@ -55,6 +60,7 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
               label={labels.carbs}
               name="carbs"
               type="number"
+              required={!blankFields.carbs}
               initialValue={form.carbs}
               unit="g"
             />
@@ -62,6 +68,7 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
               label={labels.protein}
               name="protein"
               type="number"
+              required={!blankFields.protein}
               initialValue={form.protein}
               unit="g"
             />
@@ -69,6 +76,7 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
               label={labels.fat}
               name="fat"
               type="number"
+              required={!blankFields.fat}
               initialValue={form.fat}
               unit="g"
             />

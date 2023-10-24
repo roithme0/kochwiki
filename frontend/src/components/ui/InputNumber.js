@@ -5,7 +5,11 @@ import { isNumericKeyCode, isFunctionalKeyCode } from "../../utils/ASCII.js"
 
 import { useState } from "react"
 
-export default function InputNumber({ name, initialValue = "" }) {
+export default function InputNumber({
+  name,
+  required = false,
+  initialValue = "",
+}) {
   const [value, setValue] = useState(initialValue)
 
   return (
@@ -13,6 +17,7 @@ export default function InputNumber({ name, initialValue = "" }) {
       <input
         type="number"
         name={name}
+        required={required}
         value={value}
         onKeyDown={onKeyDown}
         onChange={onChange}

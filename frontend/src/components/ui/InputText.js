@@ -2,7 +2,11 @@ import "./InputText.css"
 
 import { useState } from "react"
 
-export default function InputText({ name, initialValue = "" }) {
+export default function InputText({
+  name,
+  required = false,
+  initialValue = "",
+}) {
   const [value, setValue] = useState(initialValue)
 
   return (
@@ -10,6 +14,7 @@ export default function InputText({ name, initialValue = "" }) {
       <input
         type="text"
         name={name}
+        required={required}
         value={value}
         onChange={event => onChange(event)}
       />
