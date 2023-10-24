@@ -96,23 +96,30 @@ export default function Ingredients() {
             sortKey={sortKey}
           />
           <IngredientHeaderField
-            classNames={"makro"}
+            classNames="makro"
             fieldName="carbs"
             value={labels.carbs}
             clickHandler={clickHandler}
             sortKey={sortKey}
           />
           <IngredientHeaderField
-            classNames={"makro"}
+            classNames="makro"
             fieldName={labels.protein}
             value="Protein"
             clickHandler={clickHandler}
             sortKey={sortKey}
           />
           <IngredientHeaderField
-            classNames={"makro"}
+            classNames="makro"
             fieldName="fat"
             value={labels.fat}
+            clickHandler={clickHandler}
+            sortKey={sortKey}
+          />
+          <IngredientHeaderField
+            classNames="unit"
+            fieldName="unit"
+            value={labels.unit}
             clickHandler={clickHandler}
             sortKey={sortKey}
           />
@@ -153,28 +160,13 @@ export default function Ingredients() {
     return (
       <>
         <div className="ingredient">
-          <IngredientField value={ingredient.name} defaultValue={"/"} />
-          <IngredientField value={ingredient.brand} defaultValue={"/"} />
-          <IngredientField
-            classNames={"makro"}
-            value={ingredient.kcal}
-            defaultValue={"/"}
-          />
-          <IngredientField
-            classNames={"makro"}
-            value={ingredient.carbs}
-            defaultValue={"/"}
-          />
-          <IngredientField
-            classNames={"makro"}
-            value={ingredient.protein}
-            defaultValue={"/"}
-          />
-          <IngredientField
-            classNames={"makro"}
-            value={ingredient.fat}
-            defaultValue={"/"}
-          />
+          <IngredientField value={ingredient.name} />
+          <IngredientField value={ingredient.brand} />
+          <IngredientField classNames="makro" value={ingredient.kcal} />
+          <IngredientField classNames="makro" value={ingredient.carbs} />
+          <IngredientField classNames="makro" value={ingredient.protein} />
+          <IngredientField classNames="makro" value={ingredient.fat} />
+          <IngredientField classNames="unit" value={ingredient.unit} />
         </div>
         <div className="buttons-wrapper">
           <Button
@@ -193,7 +185,7 @@ export default function Ingredients() {
       </>
     )
 
-    function IngredientField({ classNames = "", value, defaultValue }) {
+    function IngredientField({ classNames = "", value, defaultValue = "/" }) {
       return (
         <span className={"ingredient-field " + classNames}>
           {value ? value : defaultValue}

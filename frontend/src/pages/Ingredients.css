@@ -1,6 +1,6 @@
 .ingredients {
   & .ingredients-grid {
-    --ingredient-columns: 6;
+    --ingredient-columns: 7;
     --buttons-columns: 2;
     --columns: calc(var(--ingredient-columns) + var(--buttons-columns));
     display: grid;
@@ -95,7 +95,8 @@
 
     & .header,
     & .ingredient {
-      > .makro {
+      > .makro,
+      > .unit {
         display: none;
       }
     }

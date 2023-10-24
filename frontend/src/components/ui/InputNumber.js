@@ -19,20 +19,20 @@ export default function InputNumber({
         name={name}
         required={required}
         value={value}
-        onKeyDown={onKeyDown}
-        onChange={onChange}
+        onKeyDown={keyDownHandler}
+        onChange={changeHandler}
       />
     </div>
   )
 
-  function onKeyDown(event) {
+  function keyDownHandler(event) {
     const charCode = event.which
     if (!isNumericKeyCode(charCode) && !isFunctionalKeyCode(charCode)) {
       event.preventDefault()
     }
   }
 
-  function onChange(event) {
+  function changeHandler(event) {
     const newValue = event.target.value
     setValue(newValue)
   }

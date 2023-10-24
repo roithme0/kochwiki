@@ -19,6 +19,7 @@ class EditIngredientSerializer(serializers.ModelSerializer):
             "carbs",
             "protein",
             "fat",
+            "unit",
             "field_errors",
         )
 
@@ -48,6 +49,7 @@ class IngredientSerializer(serializers.ModelSerializer):
     labels = serializers.SerializerMethodField()
     blank_fields = serializers.SerializerMethodField()
     max_length = serializers.SerializerMethodField()
+    options = serializers.SerializerMethodField()
 
     class Meta:
         model = Ingredient
@@ -62,6 +64,9 @@ class IngredientSerializer(serializers.ModelSerializer):
     def get_max_length(self, obj):
         return get_max_length(self.Meta.model, self.fields)
 
+    def get_options(self, obj):
+        return get_options(self.Meta.model, self.fields)
+
 
 class RecipeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -69,22 +74,13 @@ class RecipeSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-def get_max_length(model, fields):
-    max_length = {}
+def get_options(model, fields):
+    options = {}
     for field in model._meta.get_fields():
         if field.name in fields:
-            max_length[field.name] = field.max_length
-    logger.warning(max_length)
-    return max_length
-
-
-def get_blank_fields(model, fields):
-    blank_fields = {}
-    for field in model._meta.get_fields():
-        if field.name in fields:
-            blank_fields[field.name] = field.blank
-    logger.warning(blank_fields)
-    return blank_fields
+            options[field.name] = field.choices
+    logger.debug(options)
+    return options
 
 
 def get_labels(model, fields):
@@ -94,3 +90,21 @@ def get_labels(model, fields):
             labels[field.name] = field.verbose_name
     logger.debug(labels)
     return labels
+
+
+def get_blank_fields(model, fields):
+    blank_fields = {}
+    for field in model._meta.get_fields():
+        if field.name in fields:
+            blank_fields[field.name] = field.blank
+    logger.debug(blank_fields)
+    return blank_fields
+
+
+def get_max_length(model, fields):
+    max_length = {}
+    for field in model._meta.get_fields():
+        if field.name in fields:
+            max_length[field.name] = field.max_length
+    logger.debug(max_length)
+    return max_length

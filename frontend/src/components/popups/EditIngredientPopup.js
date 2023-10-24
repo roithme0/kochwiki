@@ -14,6 +14,7 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
   const labels = ingredient.labels
   const blankFields = ingredient.blank_fields
   const maxLength = ingredient.max_length
+  const options = ingredient.options
 
   const [form, setForm] = useState({
     id: ingredient.id,
@@ -23,6 +24,7 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
     carbs: ingredient.carbs ? ingredient.carbs : "",
     protein: ingredient.protein ? ingredient.protein : "",
     fat: ingredient.fat ? ingredient.fat : "",
+    unit: ingredient.unit,
     fieldErrors: ingredient.field_errors,
   })
 
@@ -83,6 +85,14 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
               required={!blankFields.fat}
               initialValue={form.fat}
               unit="g"
+            />
+            <Field
+              label={labels.unit}
+              name="unit"
+              type="select"
+              options={options.unit}
+              required={!blankFields.unit}
+              initialValue={form.unit}
             />
           </div>
           <div className="buttons-wrapper">

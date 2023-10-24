@@ -2,18 +2,26 @@ import "./Field.css"
 
 import InputText from "./InputText"
 import InputNumber from "./InputNumber"
+import Select from "./Select"
 
 export default function Field({
   label,
   name,
   type,
   maxLength = null,
+  options = null,
   required = false,
   initialValue,
   unit = "",
 }) {
   const InputComponent =
-    type === "text" ? InputText : type === "number" ? InputNumber : null
+    type === "text"
+      ? InputText
+      : type === "number"
+      ? InputNumber
+      : type === "select"
+      ? Select
+      : null
 
   return (
     <div className="field">
@@ -24,6 +32,7 @@ export default function Field({
             name={name}
             required={required}
             maxLength={maxLength}
+            options={options}
             initialValue={initialValue}
           />
         )}
