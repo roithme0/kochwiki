@@ -1,7 +1,11 @@
 import "./Input.css"
 import "./InputNumber.css"
 
-import { isNumericKeyCode, isFunctionalKeyCode } from "../../utils/ASCII.js"
+import {
+  isIntegerKeyCode,
+  isFloatKeyCode,
+  isFunctionalKeyCode,
+} from "../../utils/ASCII.js"
 
 import { useState } from "react"
 
@@ -9,6 +13,7 @@ export default function InputNumber({
   name,
   required = false,
   initialValue = "",
+  float = false,
 }) {
   const [value, setValue] = useState(initialValue)
 
@@ -27,8 +32,20 @@ export default function InputNumber({
 
   function keyDownHandler(event) {
     const charCode = event.which
-    if (!isNumericKeyCode(charCode) && !isFunctionalKeyCode(charCode)) {
-      event.preventDefault()
+    if (!isIntegerKeyCode(charCode) && !isFunctionalKeyCode(charCode)) {
+      console.log("float", float)
+      if (!float) {
+        console.log("!float")
+        event.preventDefault()
+      } else {
+        console.log("float")
+        if (!isFloatKeyCode(charCode)) {
+          console.log("float", float, "prevent")
+          event.preventDefault()
+        } else {
+          console.log("float", float, "allow")
+        }
+      }
     }
   }
 

@@ -68,6 +68,7 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
               type="number"
               required={!blankFields.carbs}
               initialValue={form.carbs}
+              float={true}
               unit="g"
             />
             <Field
@@ -76,6 +77,7 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
               type="number"
               required={!blankFields.protein}
               initialValue={form.protein}
+              float={true}
               unit="g"
             />
             <Field
@@ -84,6 +86,7 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
               type="number"
               required={!blankFields.fat}
               initialValue={form.fat}
+              float={true}
               unit="g"
             />
             <Field
