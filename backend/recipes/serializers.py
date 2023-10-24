@@ -12,37 +12,21 @@ class EditIngredientSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Ingredient
-        fields = (
-            "name",
-            "brand",
-            "kcal",
-            "carbs",
-            "protein",
-            "fat",
-            "unit",
-            "field_errors",
-        )
+        fields = "__all__"
+        read_only_fields = ["id"]
+
+    def to_internal_value(self, data):
+        makro_fields = ["kcal", "carbs", "protein", "fat"]
+        for field in makro_fields:
+            if data.get(field) == "":
+                data[field] = None
+        return super().to_internal_value(data)
 
     def get_field_errors(self, obj):
         if hasattr(obj, "errors"):
             return obj.errors
         else:
             return {}
-
-    def validate(self, data):
-        data["kcal"] = self.validate_makro(data["kcal"], "kcal")
-        data["carbs"] = self.validate_makro(data["carbs"], "carbs")
-        data["protein"] = self.validate_makro(data["protein"], "protein")
-        data["fat"] = self.validate_makro(data["fat"], "fat")
-        return data
-
-    def validate_makro(self, value, name):
-        if value == "":
-            return None
-        try:
-            return int(value)
-        except ValueError:
-            raise serializers.ValidationError(f"{name} must be an integer or empty")
 
 
 class IngredientSerializer(serializers.ModelSerializer):
