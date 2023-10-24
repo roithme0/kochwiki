@@ -1,11 +1,13 @@
 .input {
-  & input {
+  & input,
+  & select {
     border: none;
     border-bottom: 2px solid var(--primary-color);
     padding: 0 0.25rem;
     box-sizing: border-box;
     width: 100%;
     overflow: auto;
+    background-color: inherit;
     font: inherit;
 
     &:focus {

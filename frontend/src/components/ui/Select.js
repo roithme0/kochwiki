@@ -1,3 +1,4 @@
+import "./Input.css"
 import "./Select.css"
 
 import { useState } from "react"
@@ -9,7 +10,6 @@ export default function InputSelect({
   initialValue = "",
 }) {
   const [value, setValue] = useState(initialValue)
-  console.log(choices)
   return (
     <div className="input select">
       <select

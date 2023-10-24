@@ -1,3 +1,4 @@
+import "./Input.css"
 import "./InputText.css"
 
 import { useState } from "react"
