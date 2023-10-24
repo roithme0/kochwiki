@@ -11,15 +11,14 @@ import { putIngredient } from "../../services/api/Ingredient"
 import { useState } from "react"
 
 export default function EditIngredientPopup({ closePopup, ingredient }) {
+  const labels = ingredient.labels
   const [form, setForm] = useState({
-    id: ingredient.id,
     name: ingredient.name,
     brand: ingredient.brand ? ingredient.brand : "",
     kcal: ingredient.kcal ? ingredient.kcal : "",
     carbs: ingredient.carbs ? ingredient.carbs : "",
     protein: ingredient.protein ? ingredient.protein : "",
     fat: ingredient.fat ? ingredient.fat : "",
-    labels: ingredient.labels,
     fieldErrors: ingredient.field_errors,
   })
 
@@ -34,57 +33,53 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
         >
           <div className="fields-wrapper">
             <Field
-              label={"Name"}
-              name={"name"}
-              type={"text"}
+              label={labels.name}
+              name="name"
+              type="text"
               initialValue={form.name}
             />
             <Field
-              label={"Marke"}
-              name={"brand"}
-              type={"text"}
+              label={labels.brand}
+              name="brand"
+              type="text"
               initialValue={form.brand}
             />
             <Field
-              label={"Kalorien"}
-              name={"kcal"}
-              type={"number"}
+              label={labels.kcal}
+              name="kcal"
+              type="number"
               initialValue={form.kcal}
-              unit={"kcal"}
+              unit="kcal"
             />
             <Field
-              label={"Kohlenhydrate"}
-              name={"carbs"}
-              type={"number"}
+              label={labels.carbs}
+              name="carbs"
+              type="number"
               initialValue={form.carbs}
-              unit={"g"}
+              unit="g"
             />
             <Field
-              label={"Protein"}
-              name={"protein"}
-              type={"number"}
+              label={labels.protein}
+              name="protein"
+              type="number"
               initialValue={form.protein}
-              unit={"g"}
+              unit="g"
             />
             <Field
-              label={"Fett"}
-              name={"fat"}
-              type={"number"}
+              label={labels.fat}
+              name="fat"
+              type="number"
               initialValue={form.fat}
-              unit={"g"}
+              unit="g"
             />
           </div>
           <div className="buttons-wrapper">
+            <Button type="positive" img={check} classNames="save-ingredient" />
             <Button
-              type={"positive"}
-              img={check}
-              classNames={"save-ingredient"}
-            />
-            <Button
-              type={"negative"}
+              type="negative"
               img={cancel}
               clickHandler={event => closePopup({ event })}
-              classNames={"cancel-ingredient"}
+              classNames="cancel-ingredient"
             />
           </div>
         </form>

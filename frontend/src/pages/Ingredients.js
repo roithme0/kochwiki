@@ -29,6 +29,9 @@ export default function Ingredients() {
     fetchIngredients({ callback: sortIngredients, kwargs: { key: "name" } })
   }, [])
 
+  if (ingredients.length === 0) return <span>Keine Zutaten gefunden.</span>
+
+  const labels = ingredients[0].labels
   return (
     <>
       <Header headline={headline} back={back} />
@@ -75,33 +78,33 @@ export default function Ingredients() {
         <div className="header">
           <IngredientHeaderField
             fieldName="name"
-            value="Name"
+            value={labels.name}
             clickHandler={clickHandler}
             sortKey={sortKey}
           />
           <IngredientHeaderField
             fieldName="brand"
-            value="Marke"
+            value={labels.brand}
             clickHandler={clickHandler}
             sortKey={sortKey}
           />
           <IngredientHeaderField
             classNames={"makro"}
             fieldName="kcal"
-            value="Kalorien"
+            value={labels.kcal}
             clickHandler={clickHandler}
             sortKey={sortKey}
           />
           <IngredientHeaderField
             classNames={"makro"}
             fieldName="carbs"
-            value="Kohlenhydrate"
+            value={labels.carbs}
             clickHandler={clickHandler}
             sortKey={sortKey}
           />
           <IngredientHeaderField
             classNames={"makro"}
-            fieldName="protein"
+            fieldName={labels.protein}
             value="Protein"
             clickHandler={clickHandler}
             sortKey={sortKey}
@@ -109,7 +112,7 @@ export default function Ingredients() {
           <IngredientHeaderField
             classNames={"makro"}
             fieldName="fat"
-            value="Fett"
+            value={labels.fat}
             clickHandler={clickHandler}
             sortKey={sortKey}
           />
