@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 from simple_history.models import HistoricalRecords
 import logging
@@ -30,21 +31,36 @@ class Ingredient(models.Model):
     kcal = models.PositiveSmallIntegerField(
         blank=True,
         null=True,
+        validators=[
+            MaxValueValidator(999),
+        ],
         verbose_name="Kalorien",
     )
     carbs = models.FloatField(
         blank=True,
         null=True,
+        validators=[
+            MinValueValidator(0),
+            MaxValueValidator(999),
+        ],
         verbose_name="Kohlenhydrate",
     )
     protein = models.FloatField(
         blank=True,
         null=True,
+        validators=[
+            MinValueValidator(0),
+            MaxValueValidator(999),
+        ],
         verbose_name="Protein",
     )
     fat = models.FloatField(
         blank=True,
         null=True,
+        validators=[
+            MinValueValidator(0),
+            MaxValueValidator(999),
+        ],
         verbose_name="Fett",
     )
 
@@ -64,10 +80,22 @@ class Recipe(models.Model):
     )
     servings = models.PositiveSmallIntegerField(
         default=2,
+        blank=True,
+        null=True,
+        validators=[
+            MinValueValidator(1),
+            MaxValueValidator(4),
+        ],
         verbose_name="Portionen",
     )
     preptime = models.PositiveSmallIntegerField(
-        blank=True, null=True, verbose_name="Zubereitungszeit"
+        blank=True,
+        null=True,
+        validators=[
+            MinValueValidator(1),
+            MaxValueValidator(999),
+        ],
+        verbose_name="Zubereitungszeit",
     )
     origin_name = models.CharField(
         max_length=200,
@@ -157,6 +185,9 @@ class Recipe(models.Model):
 
 class Amount(models.Model):
     index = models.PositiveSmallIntegerField(
+        validators=[
+            MinValueValidator(0),
+        ],
         verbose_name="Index",
     )
     ingredient = models.ForeignKey(
@@ -166,6 +197,10 @@ class Amount(models.Model):
         verbose_name="Zutat",
     )
     amount = models.FloatField(
+        validators=[
+            MinValueValidator(0),
+            MaxValueValidator(9999),
+        ],
         verbose_name="Menge",
     )
     recipe = models.ForeignKey(
@@ -191,6 +226,10 @@ class Amount(models.Model):
 
 class Step(models.Model):
     index = models.PositiveSmallIntegerField(
+        validators=[
+            MinValueValidator(0),
+            MaxValueValidator(99),
+        ],
         verbose_name="Index",
     )
     description = models.TextField(
