@@ -33,17 +33,11 @@ export default function InputNumber({
   function keyDownHandler(event) {
     const charCode = event.which
     if (!isIntegerKeyCode(charCode) && !isFunctionalKeyCode(charCode)) {
-      console.log("float", float)
       if (!float) {
-        console.log("!float")
         event.preventDefault()
       } else {
-        console.log("float")
         if (!isFloatKeyCode(charCode)) {
-          console.log("float", float, "prevent")
           event.preventDefault()
-        } else {
-          console.log("float", float, "allow")
         }
       }
     }
