@@ -5,14 +5,12 @@ import InputNumber from "./InputNumber"
 import Select from "./Select"
 
 export default function Field({ label, name, type, unit = "", ...props }) {
-  const InputComponent =
-    type === "text"
-      ? InputText
-      : type === "number"
-      ? InputNumber
-      : type === "select"
-      ? Select
-      : null
+  const types = {
+    text: InputText,
+    number: InputNumber,
+    select: Select,
+  }
+  const InputComponent = types[type]
 
   return (
     <div className="field">
