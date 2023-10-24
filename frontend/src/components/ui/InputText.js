@@ -17,7 +17,7 @@ export default function InputText({
         type="text"
         name={name}
         maxLength={maxLength}
-        required={required}
+        // required={required}
         value={value}
         onChange={event => changeHandler(event)}
       />

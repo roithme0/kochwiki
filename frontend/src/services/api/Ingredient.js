@@ -4,6 +4,7 @@ export async function fetchIngredient({
   id,
   setFunction = null,
   callback = null,
+  callbackError = null,
   kwargs = {},
 }) {
   try {
@@ -16,13 +17,16 @@ export async function fetchIngredient({
     callback && callback(kwargs)
     return response.data
   } catch (error) {
-    console.error("ERROR: could not fetch ingredient", error)
+    console.error("ERROR: could not fetch ingredient", error.response)
+    callbackError && callbackError({ errorResponse: error.response })
+    return error.response
   }
 }
 
 export async function fetchIngredients({
   setFunction = null,
   callback = null,
+  callbackError = null,
   kwargs = {},
 }) {
   try {
@@ -35,11 +39,18 @@ export async function fetchIngredients({
     callback && callback(kwargs)
     return response.data
   } catch (error) {
-    console.error("ERROR: could not fetch ingredients", error)
+    console.error("ERROR: could not fetch ingredients", error.response)
+    callbackError && callbackError({ errorResponse: error.response })
+    return error.response
   }
 }
 
-export async function putIngredient({ form, callback = null, kwargs = {} }) {
+export async function putIngredient({
+  form,
+  callback = null,
+  callbackError = null,
+  kwargs = {},
+}) {
   try {
     const response = await axios.put(
       `http://localhost:8000/recipes/ingredient/update/${form.id}/`,
@@ -51,5 +62,7 @@ export async function putIngredient({ form, callback = null, kwargs = {} }) {
     return response.data
   } catch (error) {
     console.error("ERROR: failed to update ingredient: ", error.response)
+    callbackError && callbackError({ errorResponse: error.response })
+    return error.response
   }
 }

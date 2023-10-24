@@ -25,7 +25,7 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
     protein: ingredient.protein ? ingredient.protein : "",
     fat: ingredient.fat ? ingredient.fat : "",
     unit: ingredient.unit,
-    fieldErrors: ingredient.field_errors,
+    fieldErrors: {},
   })
 
   return (
@@ -45,6 +45,9 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
               maxLength={maxLength.name}
               required={!blankFields.name}
               initialValue={form.name}
+              fieldErrors={
+                "name" in form.fieldErrors ? form.fieldErrors.name : []
+              }
             />
             <Field
               label={verbose_names.brand}
@@ -53,6 +56,9 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
               maxLength={maxLength.brand}
               required={!blankFields.brand}
               initialValue={form.brand}
+              fieldErrors={
+                "brand" in form.fieldErrors ? form.fieldErrors.brand : []
+              }
             />
             <Field
               label={verbose_names.kcal}
@@ -61,6 +67,9 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
               required={!blankFields.kcal}
               initialValue={form.kcal}
               unit="kcal"
+              fieldErrors={
+                "kcal" in form.fieldErrors ? form.fieldErrors.kcal : []
+              }
             />
             <Field
               label={verbose_names.carbs}
@@ -70,6 +79,9 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
               initialValue={form.carbs}
               float={true}
               unit="g"
+              fieldErrors={
+                "carbs" in form.fieldErrors ? form.fieldErrors.carbs : []
+              }
             />
             <Field
               label={verbose_names.protein}
@@ -79,6 +91,9 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
               initialValue={form.protein}
               float={true}
               unit="g"
+              fieldErrors={
+                "protein" in form.fieldErrors ? form.fieldErrors.protein : []
+              }
             />
             <Field
               label={verbose_names.fat}
@@ -88,6 +103,9 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
               initialValue={form.fat}
               float={true}
               unit="g"
+              fieldErrors={
+                "fat" in form.fieldErrors ? form.fieldErrors.fat : []
+              }
             />
             <Field
               label={verbose_names.unit}
@@ -96,6 +114,9 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
               choices={choices.unit}
               required={!blankFields.unit}
               initialValue={form.unit}
+              fieldErrors={
+                "unit" in form.fieldErrors ? form.fieldErrors.unit : []
+              }
             />
           </div>
           <div className="buttons-wrapper">
@@ -121,6 +142,18 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
 
   async function submitHandler({ event }) {
     event.preventDefault()
-    putIngredient({ form: form, callback: closePopup })
+    putIngredient({
+      form: form,
+      callback: closePopup,
+      callbackError: updateFieldErrors,
+    })
+  }
+
+  function updateFieldErrors({ errorResponse }) {
+    const errors = errorResponse.data
+    setForm({
+      ...form,
+      fieldErrors: errors,
+    })
   }
 }

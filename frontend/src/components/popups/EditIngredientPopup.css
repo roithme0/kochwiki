@@ -20,25 +20,4 @@
   & .buttons-wrapper {
     height: 1.7rem;
   }
-
-  & .field {
-    grid-column: span 2;
-    display: grid;
-    grid-template-columns: subgrid;
-    align-items: center;
-
-    > label {
-      font-weight: bold;
-
-      &::after {
-        content: ":";
-      }
-    }
-  }
-
-  & .input-wrapper.number {
-    display: grid;
-    grid-template-columns: 1fr min-content;
-    gap: var(--gap);
-  }
 }
