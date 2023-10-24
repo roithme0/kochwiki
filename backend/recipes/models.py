@@ -66,7 +66,10 @@ class Ingredient(models.Model):
 
     history = HistoricalRecords()
 
-    unique_together = ["name", "brand"]
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=["name", "brand"], name="unique_ingredient")
+        ]
 
     def __str__(self):
         return self.name if not self.brand else self.name + " von " + self.brand
