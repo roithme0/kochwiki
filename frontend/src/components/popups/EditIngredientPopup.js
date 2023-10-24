@@ -65,6 +65,17 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
               }
             />
             <Field
+              label={verbose_names.unit}
+              name="unit"
+              type="select"
+              choices={choices.unit}
+              required={!blankFields.unit}
+              initialValue={form.unit}
+              fieldErrors={
+                "unit" in form.fieldErrors ? form.fieldErrors.unit : []
+              }
+            />
+            <Field
               label={verbose_names.kcal}
               name="kcal"
               type="number"
@@ -109,17 +120,6 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
               unit="g"
               fieldErrors={
                 "fat" in form.fieldErrors ? form.fieldErrors.fat : []
-              }
-            />
-            <Field
-              label={verbose_names.unit}
-              name="unit"
-              type="select"
-              choices={choices.unit}
-              required={!blankFields.unit}
-              initialValue={form.unit}
-              fieldErrors={
-                "unit" in form.fieldErrors ? form.fieldErrors.unit : []
               }
             />
           </div>

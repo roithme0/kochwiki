@@ -89,6 +89,13 @@ export default function Ingredients() {
             sortKey={sortKey}
           />
           <IngredientHeaderField
+            classNames="unit"
+            fieldName="unit"
+            value={verbose_names.unit}
+            clickHandler={clickHandler}
+            sortKey={sortKey}
+          />
+          <IngredientHeaderField
             classNames={"makro"}
             fieldName="kcal"
             value={verbose_names.kcal}
@@ -113,13 +120,6 @@ export default function Ingredients() {
             classNames="makro"
             fieldName="fat"
             value={verbose_names.fat}
-            clickHandler={clickHandler}
-            sortKey={sortKey}
-          />
-          <IngredientHeaderField
-            classNames="unit"
-            fieldName="unit"
-            value={verbose_names.unit}
             clickHandler={clickHandler}
             sortKey={sortKey}
           />
@@ -162,11 +162,11 @@ export default function Ingredients() {
         <div className="ingredient">
           <IngredientField value={ingredient.name} />
           <IngredientField value={ingredient.brand} />
+          <IngredientField classNames="unit" value={ingredient.unit} />
           <IngredientField classNames="makro" value={ingredient.kcal} />
           <IngredientField classNames="makro" value={ingredient.carbs} />
           <IngredientField classNames="makro" value={ingredient.protein} />
           <IngredientField classNames="makro" value={ingredient.fat} />
-          <IngredientField classNames="unit" value={ingredient.unit} />
         </div>
         <div className="buttons-wrapper">
           <Button
