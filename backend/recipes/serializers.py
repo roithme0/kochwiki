@@ -47,6 +47,7 @@ class EditIngredientSerializer(serializers.ModelSerializer):
 class IngredientSerializer(serializers.ModelSerializer):
     labels = serializers.SerializerMethodField()
     blank_fields = serializers.SerializerMethodField()
+    max_length = serializers.SerializerMethodField()
 
     class Meta:
         model = Ingredient
@@ -58,11 +59,23 @@ class IngredientSerializer(serializers.ModelSerializer):
     def get_blank_fields(self, obj):
         return get_blank_fields(self.Meta.model, self.fields)
 
+    def get_max_length(self, obj):
+        return get_max_length(self.Meta.model, self.fields)
+
 
 class RecipeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recipe
         fields = "__all__"
+
+
+def get_max_length(model, fields):
+    max_length = {}
+    for field in model._meta.get_fields():
+        if field.name in fields:
+            max_length[field.name] = field.max_length
+    logger.warning(max_length)
+    return max_length
 
 
 def get_blank_fields(model, fields):

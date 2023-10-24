@@ -13,6 +13,8 @@ import { useState } from "react"
 export default function EditIngredientPopup({ closePopup, ingredient }) {
   const labels = ingredient.labels
   const blankFields = ingredient.blank_fields
+  const maxLength = ingredient.max_length
+
   const [form, setForm] = useState({
     id: ingredient.id,
     name: ingredient.name,
@@ -38,6 +40,7 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
               label={labels.name}
               name="name"
               type="text"
+              maxLength={maxLength.name}
               required={!blankFields.name}
               initialValue={form.name}
             />
@@ -45,6 +48,7 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
               label={labels.brand}
               name="brand"
               type="text"
+              maxLength={maxLength.brand}
               required={!blankFields.brand}
               initialValue={form.brand}
             />

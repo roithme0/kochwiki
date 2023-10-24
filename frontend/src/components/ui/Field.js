@@ -7,6 +7,7 @@ export default function Field({
   label,
   name,
   type,
+  maxLength = null,
   required = false,
   initialValue,
   unit = "",
@@ -22,6 +23,7 @@ export default function Field({
           <InputComponent
             name={name}
             required={required}
+            maxLength={maxLength}
             initialValue={initialValue}
           />
         )}

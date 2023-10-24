@@ -4,6 +4,7 @@ import { useState } from "react"
 
 export default function InputText({
   name,
+  maxLength,
   required = false,
   initialValue = "",
 }) {
@@ -14,6 +15,7 @@ export default function InputText({
       <input
         type="text"
         name={name}
+        maxLength={maxLength}
         required={required}
         value={value}
         onChange={event => onChange(event)}
