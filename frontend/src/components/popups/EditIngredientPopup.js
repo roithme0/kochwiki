@@ -26,11 +26,15 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
     fat: ingredient.fat ? ingredient.fat : "",
     unit: ingredient.unit,
     fieldErrors: {},
+    nonFieldErrors: {},
   })
 
   return (
     <>
       <div className="edit-ingredient">
+        {form.nonFieldErrors.length > 0 && (
+          <NonFieldErrors nonFieldErrors={form.nonFieldErrors} />
+        )}
         <form
           key={ingredient.id}
           onChange={event => changeHandler({ event })}
@@ -145,15 +149,31 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
     putIngredient({
       form: form,
       callback: closePopup,
-      callbackError: updateFieldErrors,
+      callbackError: updateErrors,
     })
   }
 
-  function updateFieldErrors({ errorResponse }) {
+  function updateErrors({ errorResponse }) {
     const errors = errorResponse.data
+    const fieldErrors = "field_errors" in errors ? errors.field_errors : {}
+    const nonFieldErrors =
+      "non_field_errors" in errors ? errors.non_field_errors : []
     setForm({
       ...form,
-      fieldErrors: errors,
+      fieldErrors: fieldErrors,
+      nonFieldErrors: nonFieldErrors,
     })
+  }
+
+  function NonFieldErrors({ nonFieldErrors }) {
+    return (
+      <div className="non-field-errors-wrapper">
+        {nonFieldErrors.map((error, index) => (
+          <span key={index} className="non-field-error">
+            {error}
+          </span>
+        ))}
+      </div>
+    )
   }
 }

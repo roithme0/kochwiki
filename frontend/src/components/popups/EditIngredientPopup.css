@@ -20,4 +20,19 @@
   & .buttons-wrapper {
     height: 1.7rem;
   }
+
+  & .non-field-errors-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--gap) / 4);
+  }
+
+  & .non-field-error {
+    background-color: var(--negative-background);
+    border: 2px solid var(--negative-color);
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+  }
 }

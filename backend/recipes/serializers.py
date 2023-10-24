@@ -22,11 +22,28 @@ class EditIngredientSerializer(serializers.ModelSerializer):
                 data[field] = None
         return super().to_internal_value(data)
 
+    # def validate(self, data):
+    #     # rest framework cannot validate unique constraint: https://github.com/encode/django-rest-framework/issues/7173
+    #     logger.warning(data)
+    #     return data
+
+    def validate(self, data):
+        queryset = Ingredient.objects.exclude(pk=self.instance.pk)
+        if queryset.filter(name=data["name"], brand=data["brand"]).exists():
+            raise serializers.ValidationError("Diese Zutat existiert bereits.")
+        return data
+
     def get_field_errors(self, obj):
         if hasattr(obj, "errors"):
             return obj.errors
         else:
             return {}
+
+    def get_non_field_errors(self, obj):
+        if hasattr(obj, "non_field_errors"):
+            return obj.non_field_errors
+        else:
+            return []
 
 
 class IngredientSerializer(serializers.ModelSerializer):
