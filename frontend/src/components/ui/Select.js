@@ -4,12 +4,12 @@ import { useState } from "react"
 
 export default function InputSelect({
   name,
-  options,
+  choices,
   required = false,
   initialValue = "",
 }) {
   const [value, setValue] = useState(initialValue)
-
+  console.log(choices)
   return (
     <div className="input select">
       <select
@@ -18,9 +18,9 @@ export default function InputSelect({
         value={value}
         onChange={event => changeHandler(event)}
       >
-        {options.map(option => (
-          <option key={option.value} value={option.value}>
-            {option.label}
+        {choices.map(choice => (
+          <option key={choice.value} value={choice.value}>
+            {choice.label}
           </option>
         ))}
       </select>

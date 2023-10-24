@@ -31,7 +31,7 @@ export default function Ingredients() {
 
   if (ingredients.length === 0) return <span>Keine Zutaten gefunden.</span>
 
-  const labels = ingredients[0].labels
+  const verbose_names = ingredients[0].verbose_names
   return (
     <>
       <Header headline={headline} back={back} />
@@ -78,33 +78,33 @@ export default function Ingredients() {
         <div className="header">
           <IngredientHeaderField
             fieldName="name"
-            value={labels.name}
+            value={verbose_names.name}
             clickHandler={clickHandler}
             sortKey={sortKey}
           />
           <IngredientHeaderField
             fieldName="brand"
-            value={labels.brand}
+            value={verbose_names.brand}
             clickHandler={clickHandler}
             sortKey={sortKey}
           />
           <IngredientHeaderField
             classNames={"makro"}
             fieldName="kcal"
-            value={labels.kcal}
+            value={verbose_names.kcal}
             clickHandler={clickHandler}
             sortKey={sortKey}
           />
           <IngredientHeaderField
             classNames="makro"
             fieldName="carbs"
-            value={labels.carbs}
+            value={verbose_names.carbs}
             clickHandler={clickHandler}
             sortKey={sortKey}
           />
           <IngredientHeaderField
             classNames="makro"
-            fieldName={labels.protein}
+            fieldName={verbose_names.protein}
             value="Protein"
             clickHandler={clickHandler}
             sortKey={sortKey}
@@ -112,14 +112,14 @@ export default function Ingredients() {
           <IngredientHeaderField
             classNames="makro"
             fieldName="fat"
-            value={labels.fat}
+            value={verbose_names.fat}
             clickHandler={clickHandler}
             sortKey={sortKey}
           />
           <IngredientHeaderField
             classNames="unit"
             fieldName="unit"
-            value={labels.unit}
+            value={verbose_names.unit}
             clickHandler={clickHandler}
             sortKey={sortKey}
           />

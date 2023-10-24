@@ -46,17 +46,17 @@ class EditIngredientSerializer(serializers.ModelSerializer):
 
 
 class IngredientSerializer(serializers.ModelSerializer):
-    labels = serializers.SerializerMethodField()
+    verbose_names = serializers.SerializerMethodField()
     blank_fields = serializers.SerializerMethodField()
     max_length = serializers.SerializerMethodField()
-    options = serializers.SerializerMethodField()
+    choices = serializers.SerializerMethodField()
 
     class Meta:
         model = Ingredient
         fields = "__all__"
 
-    def get_labels(self, obj):
-        return get_labels(self.Meta.model, self.fields)
+    def get_verbose_names(self, obj):
+        return get_verbose_names(self.Meta.model, self.fields)
 
     def get_blank_fields(self, obj):
         return get_blank_fields(self.Meta.model, self.fields)
@@ -64,8 +64,8 @@ class IngredientSerializer(serializers.ModelSerializer):
     def get_max_length(self, obj):
         return get_max_length(self.Meta.model, self.fields)
 
-    def get_options(self, obj):
-        return get_options(self.Meta.model, self.fields)
+    def get_choices(self, obj):
+        return get_choices(self.Meta.model, self.fields)
 
 
 class RecipeSerializer(serializers.ModelSerializer):
@@ -74,22 +74,30 @@ class RecipeSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-def get_options(model, fields):
-    options = {}
+def get_choices(model, fields):
+    choices = {}
     for field in model._meta.get_fields():
         if field.name in fields:
-            options[field.name] = field.choices
-    logger.debug(options)
-    return options
+            choices[field.name] = field.choices
+            if field.choices:
+                choices[field.name] = [
+                    {
+                        "value": choice[0],
+                        "label": choice[1],
+                    }
+                    for choice in field.choices
+                ]
+    logger.debug(choices)
+    return choices
 
 
-def get_labels(model, fields):
-    labels = {}
+def get_verbose_names(model, fields):
+    verbose_names = {}
     for field in model._meta.get_fields():
         if field.name in fields:
-            labels[field.name] = field.verbose_name
-    logger.debug(labels)
-    return labels
+            verbose_names[field.name] = field.verbose_name
+    logger.debug(verbose_names)
+    return verbose_names
 
 
 def get_blank_fields(model, fields):

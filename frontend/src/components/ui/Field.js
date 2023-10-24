@@ -9,7 +9,7 @@ export default function Field({
   name,
   type,
   maxLength = null,
-  options = null,
+  choices = null,
   required = false,
   initialValue,
   unit = "",
@@ -32,7 +32,7 @@ export default function Field({
             name={name}
             required={required}
             maxLength={maxLength}
-            options={options}
+            choices={choices}
             initialValue={initialValue}
           />
         )}

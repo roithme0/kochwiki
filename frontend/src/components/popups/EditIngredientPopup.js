@@ -11,10 +11,10 @@ import { putIngredient } from "../../services/api/Ingredient"
 import { useState } from "react"
 
 export default function EditIngredientPopup({ closePopup, ingredient }) {
-  const labels = ingredient.labels
+  const verbose_names = ingredient.verbose_names
   const blankFields = ingredient.blank_fields
   const maxLength = ingredient.max_length
-  const options = ingredient.options
+  const choices = ingredient.choices
 
   const [form, setForm] = useState({
     id: ingredient.id,
@@ -39,7 +39,7 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
         >
           <div className="fields-wrapper">
             <Field
-              label={labels.name}
+              label={verbose_names.name}
               name="name"
               type="text"
               maxLength={maxLength.name}
@@ -47,7 +47,7 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
               initialValue={form.name}
             />
             <Field
-              label={labels.brand}
+              label={verbose_names.brand}
               name="brand"
               type="text"
               maxLength={maxLength.brand}
@@ -55,7 +55,7 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
               initialValue={form.brand}
             />
             <Field
-              label={labels.kcal}
+              label={verbose_names.kcal}
               name="kcal"
               type="number"
               required={!blankFields.kcal}
@@ -63,7 +63,7 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
               unit="kcal"
             />
             <Field
-              label={labels.carbs}
+              label={verbose_names.carbs}
               name="carbs"
               type="number"
               required={!blankFields.carbs}
@@ -71,7 +71,7 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
               unit="g"
             />
             <Field
-              label={labels.protein}
+              label={verbose_names.protein}
               name="protein"
               type="number"
               required={!blankFields.protein}
@@ -79,7 +79,7 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
               unit="g"
             />
             <Field
-              label={labels.fat}
+              label={verbose_names.fat}
               name="fat"
               type="number"
               required={!blankFields.fat}
@@ -87,10 +87,10 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
               unit="g"
             />
             <Field
-              label={labels.unit}
+              label={verbose_names.unit}
               name="unit"
               type="select"
-              options={options.unit}
+              choices={choices.unit}
               required={!blankFields.unit}
               initialValue={form.unit}
             />
