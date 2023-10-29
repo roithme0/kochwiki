@@ -10,6 +10,7 @@ from rest_framework.response import Response
 from rest_framework.generics import (
     CreateAPIView,
     RetrieveUpdateAPIView,
+    DestroyAPIView,
     RetrieveAPIView,
     ListAPIView,
 )
@@ -19,11 +20,11 @@ import logging
 logger = logging.getLogger("django")
 
 
-class CreateIngredientView(CreateAPIView):
+class CreateRetrieveIngredientView(CreateAPIView):
     serializer_class = EditIngredientSerializer
 
 
-class UpdateIngredientView(RetrieveUpdateAPIView):
+class RetrieveUpdateRetrieveIngredientView(RetrieveUpdateAPIView):
     queryset = Ingredient.objects.all()
     serializer_class = EditIngredientSerializer
 
@@ -40,16 +41,21 @@ class UpdateIngredientView(RetrieveUpdateAPIView):
             return Response(serializer.errors, status=403)
 
 
-class IngredientView(RetrieveAPIView):
+class DestroyRetrieveIngredientView(DestroyAPIView):
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
 
 
-class IngredientsView(ListAPIView):
+class RetrieveIngredientView(RetrieveAPIView):
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
 
 
-class RecipesView(ListAPIView):
+class ListIngredientsView(ListAPIView):
+    queryset = Ingredient.objects.all()
+    serializer_class = IngredientSerializer
+
+
+class ListRecipesView(ListAPIView):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer

@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export async function fetchIngredient({
+export async function getIngredient({
   id,
   setFunction = null,
   callback = null,
@@ -23,7 +23,7 @@ export async function fetchIngredient({
   }
 }
 
-export async function fetchIngredients({
+export async function getIngredients({
   setFunction = null,
   callback = null,
   callbackError = null,
@@ -62,6 +62,26 @@ export async function putIngredient({
     return response.data
   } catch (error) {
     console.error("ERROR: failed to update ingredient: ", error.response)
+    callbackError && callbackError({ errorResponse: error.response })
+    return error.response
+  }
+}
+
+export async function deleteIngredient({
+  id,
+  callback = null,
+  callbackError = null,
+  kwargs = {},
+}) {
+  try {
+    const response = await axios.delete(
+      `http://localhost:8000/recipes/ingredient/delete/${id}/`
+    )
+    console.debug("deleted ingredient: ", response)
+    callback && callback(kwargs)
+    return response.data
+  } catch (error) {
+    console.error("ERROR: failed to delete ingredient: ", error.response)
     callbackError && callbackError({ errorResponse: error.response })
     return error.response
   }

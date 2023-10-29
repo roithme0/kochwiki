@@ -1,25 +1,41 @@
 from django.urls import path
+from django.urls.conf import include
 
 from .views import (
-    CreateIngredientView,
-    UpdateIngredientView,
-    IngredientView,
-    IngredientsView,
-    RecipesView,
+    CreateRetrieveIngredientView,
+    RetrieveUpdateRetrieveIngredientView,
+    DestroyRetrieveIngredientView,
+    RetrieveIngredientView,
+    ListIngredientsView,
+    ListRecipesView,
 )
 
 app_name = "recipes"
 
 urlpatterns = [
     path(
-        "ingredient/create/", CreateIngredientView.as_view(), name="ingredient-create"
+        "ingredient/",
+        include(
+            [
+                path(
+                    "create/",
+                    CreateRetrieveIngredientView.as_view(),
+                    name="ingredient-create",
+                ),
+                path(
+                    "update/<int:pk>/",
+                    RetrieveUpdateRetrieveIngredientView.as_view(),
+                    name="ingredient-update",
+                ),
+                path(
+                    "delete/<int:pk>/",
+                    DestroyRetrieveIngredientView.as_view(),
+                    name="ingredient-delete",
+                ),
+                path("<int:pk>/", RetrieveIngredientView.as_view(), name="ingredient"),
+            ]
+        ),
     ),
-    path(
-        "ingredient/update/<int:pk>/",
-        UpdateIngredientView.as_view(),
-        name="ingredient-update",
-    ),
-    path("ingredient/<int:pk>/", IngredientView.as_view(), name="ingredient"),
-    path("ingredients/", IngredientsView.as_view(), name="ingredients"),
-    path("recipes/", RecipesView.as_view(), name="recipes"),
+    path("ingredients/", ListIngredientsView.as_view(), name="ingredients"),
+    path("recipes/", ListRecipesView.as_view(), name="recipes"),
 ]

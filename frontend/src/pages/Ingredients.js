@@ -12,7 +12,11 @@ import Popup from "../components/Popup"
 import EditIngredientPopup from "../components/popups/EditIngredientPopup"
 import Button from "../components/ui/Button"
 
-import { fetchIngredient, fetchIngredients } from "../services/api/Ingredient"
+import {
+  getIngredient,
+  getIngredients,
+  deleteIngredient,
+} from "../services/api/Ingredient"
 
 import { useState, useEffect } from "react"
 
@@ -26,7 +30,7 @@ export default function Ingredients() {
   const [editing, setEditing] = useState(null)
 
   useEffect(() => {
-    fetchIngredients({ callback: sortIngredients, kwargs: { key: "name" } })
+    getIngredients({ callback: sortIngredients, kwargs: { key: "name" } })
   }, [])
 
   if (ingredients.length === 0) return <span>Keine Zutaten gefunden.</span>
@@ -53,7 +57,7 @@ export default function Ingredients() {
                 <DisplayIngredient
                   ingredient={ingredient}
                   editIngredient={editIngredient}
-                  deleteIngredient={deleteIngredient}
+                  destroyIngredient={destroyIngredient}
                 />
               </div>
             ))}
@@ -156,7 +160,11 @@ export default function Ingredients() {
     }
   }
 
-  function DisplayIngredient({ ingredient, editIngredient, deleteIngredient }) {
+  function DisplayIngredient({
+    ingredient,
+    editIngredient,
+    destroyIngredient,
+  }) {
     return (
       <>
         <div className="ingredient">
@@ -178,7 +186,7 @@ export default function Ingredients() {
           <Button
             type={"neutral"}
             img={trashBin}
-            clickHandler={() => deleteIngredient({ id: ingredient.id })}
+            clickHandler={() => destroyIngredient({ id: ingredient.id })}
             classNames="delete"
           />
         </div>
@@ -221,7 +229,7 @@ export default function Ingredients() {
 
   function closePopup({ event = null }) {
     event && event.preventDefault() // for closing popup using form button
-    fetchIngredient({
+    getIngredient({
       id: editing.id,
       callback: updateIngredients,
     })
@@ -243,7 +251,11 @@ export default function Ingredients() {
     setEditing(null)
   }
 
-  function deleteIngredient({ id }) {
-    setIngredients(ingredients.filter(ingredient => ingredient.id !== id))
+  function destroyIngredient({ id }) {
+    deleteIngredient({
+      id: id,
+      callback: getIngredients,
+      kwargs: { setFunction: setIngredients },
+    })
   }
 }
