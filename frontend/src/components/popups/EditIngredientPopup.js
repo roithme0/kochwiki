@@ -1,5 +1,6 @@
 import "./EditIngredientPopup.css"
 
+import close from "../../assets/images/mdi/close.png"
 import check from "../../assets/images/mdi/check.png"
 import cancel from "../../assets/images/mdi/cancel.png"
 
@@ -10,7 +11,12 @@ import { putIngredient } from "../../services/api/Ingredient"
 
 import { useState } from "react"
 
-export default function EditIngredientPopup({ closePopup, ingredient }) {
+export default function EditIngredientPopup({
+  title,
+  ingredient,
+  closeHandler,
+  closeHandlerProps = {},
+}) {
   const verbose_names = ingredient.verbose_names
   const blankFields = ingredient.blank_fields
   const maxLength = ingredient.max_length
@@ -31,6 +37,17 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
 
   return (
     <>
+      <div className="header">
+        <h2 className="title">{title}</h2>
+        <Button
+          type={"neutral"}
+          img={close}
+          clickHandler={() =>
+            closeHandler({ closeHandlerProps: closeHandlerProps })
+          }
+          classNames={"close"}
+        />
+      </div>
       <div className="edit-ingredient">
         {form.nonFieldErrors.length > 0 && (
           <NonFieldErrors nonFieldErrors={form.nonFieldErrors} />
@@ -128,7 +145,10 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
             <Button
               type="negative"
               img={cancel}
-              clickHandler={event => closePopup({ event })}
+              clickHandler={event => {
+                event.preventDefault()
+                closeHandler({ closeHandlerProps: closeHandlerProps })
+              }}
               classNames="cancel-ingredient"
             />
           </div>
@@ -144,11 +164,12 @@ export default function EditIngredientPopup({ closePopup, ingredient }) {
     })
   }
 
-  async function submitHandler({ event }) {
+  function submitHandler({ event }) {
     event.preventDefault()
     putIngredient({
       form: form,
-      callback: closePopup,
+      callback: closeHandler,
+      callbackProps: closeHandlerProps,
       callbackError: updateErrors,
     })
   }

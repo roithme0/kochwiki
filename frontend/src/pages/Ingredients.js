@@ -30,7 +30,10 @@ export default function Ingredients() {
   const [editing, setEditing] = useState(null)
 
   useEffect(() => {
-    getIngredients({ callback: sortIngredients, kwargs: { key: "name" } })
+    getIngredients({
+      callback: sortIngredients,
+      callbackProps: { key: "name" },
+    })
   }, [])
 
   if (ingredients.length === 0) return <span>Keine Zutaten gefunden.</span>
@@ -67,10 +70,11 @@ export default function Ingredients() {
       <Footer />
       {editing && (
         <Popup
-          closePopup={closePopup}
           Component={EditIngredientPopup}
           title={"Zutat bearbeiten"}
           ingredient={editing}
+          closeHandler={closeEditPopup}
+          closeHandlerProps={{ id: editing.id }}
         ></Popup>
       )}
     </>
@@ -227,19 +231,14 @@ export default function Ingredients() {
       .classList.add("editing")
   }
 
-  function closePopup({ event = null }) {
-    event && event.preventDefault() // for closing popup using form button
-    getIngredient({
-      id: editing.id,
-      callback: updateIngredients,
-    })
-  }
-
-  function updateIngredients({ fetchedIngredient }) {
+  async function closeEditPopup({ id }) {
+    // update ingredient in case it was changed
+    // close popup
+    const updatedIngredient = await getIngredient({ id: id })
     setIngredients(
       ingredients.map(ingredient => {
-        if (ingredient.id === fetchedIngredient.id) {
-          return fetchedIngredient
+        if (ingredient.id === updatedIngredient.id) {
+          return updatedIngredient
         } else {
           return ingredient
         }
@@ -255,7 +254,7 @@ export default function Ingredients() {
     deleteIngredient({
       id: id,
       callback: getIngredients,
-      kwargs: { setFunction: setIngredients },
+      callbackProps: { setFunction: setIngredients },
     })
   }
 }
