@@ -67,7 +67,7 @@
     border-radius: calc(1rem + var(--padding-vertical));
     background-color: var(--quartenary-backgroud);
     border-radius: 1rem;
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
 
     > img {
