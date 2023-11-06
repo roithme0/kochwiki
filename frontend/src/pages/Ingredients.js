@@ -18,9 +18,6 @@ import { useState, useEffect } from "react"
 export default function Ingredients({ setHeadline, setBack }) {
   useEffect(() => {
     setHeadline("Zutaten")
-  }, [])
-
-  useEffect(() => {
     setBack({ url: "/", visibility: "" })
   }, [])
 

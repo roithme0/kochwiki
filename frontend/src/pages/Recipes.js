@@ -4,16 +4,12 @@ import imageOffOutline from "../assets/images/mdi/image-off-outline.png"
 
 import { fetchRecipes } from "../services/api/Recipe"
 
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import axios from "axios"
 
 export default function Recipes({ setHeadline, setBack }) {
   useEffect(() => {
     setHeadline("Rezepte")
-  }, [])
-
-  useEffect(() => {
     setBack({ url: "/", visibility: "" })
   }, [])
 

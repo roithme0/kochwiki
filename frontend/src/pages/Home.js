@@ -9,9 +9,6 @@ import { useEffect } from "react"
 export default function Home({ setHeadline, setBack }) {
   useEffect(() => {
     setHeadline("Startseite")
-  }, [])
-
-  useEffect(() => {
     setBack({ url: "/", visibility: "hidden" })
   }, [])
 
