@@ -1,16 +1,17 @@
-import "./App.css"
+import Main from "./components/Main"
+
+import Home from "./pages/Home"
+import Ingredients from "./pages/Ingredients"
+import Recipes from "./pages/Recipes"
 
 import { Route, Routes } from "react-router-dom"
-import Home from "./pages/Home.js"
-import Recipes from "./pages/Recipes.js"
-import Ingredients from "./pages/Ingredients.js"
 
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="recipes/" element={<Recipes />} />
-      <Route path="ingredients/" element={<Ingredients />} />
+      <Route path="/" element={<Main Component={Home} />} />
+      <Route path="ingredients/" element={<Main Component={Ingredients} />} />
+      <Route path="recipes/" element={<Main Component={Recipes} />} />
     </Routes>
   )
 }

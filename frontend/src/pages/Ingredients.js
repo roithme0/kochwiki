@@ -6,8 +6,6 @@ import sortAscending from "../assets/images/mdi/sort-ascending.png"
 import sortDescending from "../assets/images/mdi/sort-descending.png"
 import sort from "../assets/images/mdi/sort.png"
 
-import Header from "../components/Header"
-import Footer from "../components/Footer"
 import Popup from "../components/Popup"
 import EditIngredientPopup from "../components/popups/EditIngredientPopup"
 import DeleteIngredientPopup from "../components/popups/DeleteIngredientPopup"
@@ -17,10 +15,14 @@ import { getIngredient, getIngredients } from "../services/api/Ingredient"
 
 import { useState, useEffect } from "react"
 
-export default function Ingredients() {
-  // page header
-  const headline = "Zutaten"
-  const back = { url: "/", visibility: "" }
+export default function Ingredients({ setHeadline, setBack }) {
+  useEffect(() => {
+    setHeadline("Zutaten")
+  }, [])
+
+  useEffect(() => {
+    setBack({ url: "/", visibility: "" })
+  }, [])
 
   const [ingredients, setIngredients] = useState([])
   const [sortKey, setSortKey] = useState(null)
@@ -37,7 +39,6 @@ export default function Ingredients() {
   const verbose_names = ingredients.length ? ingredients[0].verbose_names : {}
   return (
     <>
-      <Header headline={headline} back={back} />
       <main className="ingredients">
         {ingredients.length ? (
           <IngredientsGrid />
@@ -45,7 +46,6 @@ export default function Ingredients() {
           <p>Keine Zutaten gefunden.</p>
         )}
       </main>
-      <Footer />
       {editing && (
         <Popup
           Component={EditIngredientPopup}
