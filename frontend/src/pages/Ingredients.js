@@ -10,13 +10,10 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 import Popup from "../components/Popup"
 import EditIngredientPopup from "../components/popups/EditIngredientPopup"
+import DeleteIngredientPopup from "../components/popups/DeleteIngredientPopup"
 import Button from "../components/ui/Button"
 
-import {
-  getIngredient,
-  getIngredients,
-  deleteIngredient,
-} from "../services/api/Ingredient"
+import { getIngredient, getIngredients } from "../services/api/Ingredient"
 
 import { useState, useEffect } from "react"
 
@@ -28,6 +25,7 @@ export default function Ingredients() {
   const [ingredients, setIngredients] = useState([])
   const [sortKey, setSortKey] = useState(null)
   const [editing, setEditing] = useState(null)
+  const [deleting, setDeleting] = useState(null)
 
   useEffect(() => {
     getIngredients({
@@ -60,7 +58,7 @@ export default function Ingredients() {
                 <DisplayIngredient
                   ingredient={ingredient}
                   editIngredient={editIngredient}
-                  destroyIngredient={destroyIngredient}
+                  deleteIngredient={deleteIngredient}
                 />
               </div>
             ))}
@@ -75,6 +73,15 @@ export default function Ingredients() {
           ingredient={editing}
           closeHandler={closeEditPopup}
           closeHandlerProps={{ id: editing.id }}
+        ></Popup>
+      )}
+      {deleting && (
+        <Popup
+          Component={DeleteIngredientPopup}
+          title={`${deleting.name} von ${deleting.brand} löschen?`}
+          ingredient={deleting}
+          closeHandler={closeDeletePopup}
+          closeHandlerProps={{ id: deleting.id }}
         ></Popup>
       )}
     </>
@@ -164,11 +171,7 @@ export default function Ingredients() {
     }
   }
 
-  function DisplayIngredient({
-    ingredient,
-    editIngredient,
-    destroyIngredient,
-  }) {
+  function DisplayIngredient({ ingredient, editIngredient, deleteIngredient }) {
     return (
       <>
         <div className="ingredient">
@@ -190,7 +193,7 @@ export default function Ingredients() {
           <Button
             type={"neutral"}
             img={trashBin}
-            clickHandler={() => destroyIngredient({ id: ingredient.id })}
+            clickHandler={() => deleteIngredient({ ingredient: ingredient })}
             classNames="delete"
           />
         </div>
@@ -231,30 +234,40 @@ export default function Ingredients() {
       .classList.add("editing")
   }
 
-  async function closeEditPopup({ id }) {
-    // update ingredient data in case it was changed
-    // close popup
-    const updatedIngredient = await getIngredient({ id: id })
-    setIngredients(
-      ingredients.map(ingredient => {
-        if (ingredient.id === updatedIngredient.id) {
-          return updatedIngredient
-        } else {
-          return ingredient
-        }
-      })
-    )
+  async function closeEditPopup({ updatedIngredient = null }) {
+    updatedIngredient &&
+      setIngredients(
+        ingredients.map(ingredient => {
+          if (ingredient.id === updatedIngredient.id) {
+            return updatedIngredient
+          } else {
+            return ingredient
+          }
+        })
+      )
     document
       .getElementById("ingredient-wrapper-" + editing.id)
       .classList.remove("editing")
     setEditing(null)
   }
 
-  function destroyIngredient({ id }) {
-    deleteIngredient({
-      id: id,
-      callback: getIngredients,
-      callbackProps: { setFunction: setIngredients },
-    })
+  function deleteIngredient({ ingredient }) {
+    setDeleting(ingredient)
+    document
+      .getElementById("ingredient-wrapper-" + ingredient.id)
+      .classList.add("deleting")
+  }
+
+  async function closeDeletePopup({ id = null, errorResponse = null }) {
+    if (id) {
+      // deleting was successfull
+      setIngredients(ingredients.filter(i => i.id !== id))
+    } else {
+      // deleting failed
+      document
+        .getElementById("ingredient-wrapper-" + deleting.id)
+        .classList.remove("deleting")
+    }
+    setDeleting(null)
   }
 }

@@ -37,7 +37,7 @@ export default function EditIngredientPopup({
   })
 
   return (
-    <div class="edit-ingredient-popup">
+    <div className="edit-ingredient-popup">
       <div className="header">
         <h2 className="title">{title}</h2>
         <Button
@@ -50,7 +50,7 @@ export default function EditIngredientPopup({
         />
       </div>
       <form
-        key={ingredient.id}
+        key={form.id}
         onChange={event => changeHandler({ event })}
         onSubmit={event => submitHandler({ event })}
         className="ingredient-form"

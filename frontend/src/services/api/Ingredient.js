@@ -4,8 +4,9 @@ export async function getIngredient({
   id,
   setFunction = null,
   callback = null,
-  callbackError = null,
   callbackProps = {},
+  callbackError = null,
+  callbackErrorProps = {},
 }) {
   try {
     const response = await axios.get(
@@ -15,11 +16,12 @@ export async function getIngredient({
     setFunction && setFunction(response.data)
     callbackProps.fetchedIngredient = response.data
     callback && callback(callbackProps)
-    return response.data
+    return { fetchedIngredient: response.data }
   } catch (error) {
     console.error("ERROR: could not fetch ingredient", error.response)
-    callbackError && callbackError({ errorResponse: error.response })
-    return error.response
+    callbackErrorProps.errorResponse = error.response
+    callbackError && callbackError(callbackErrorProps)
+    return { errorResponse: error.response }
   }
 }
 
@@ -28,6 +30,7 @@ export async function getIngredients({
   callback = null,
   callbackProps = {},
   callbackError = null,
+  callbackErrorProps = {},
 }) {
   try {
     const response = await axios.get(
@@ -37,11 +40,12 @@ export async function getIngredients({
     setFunction && setFunction(response.data)
     callbackProps.fetchedIngredients = response.data
     callback && callback(callbackProps)
-    return response.data
+    return { fetchedIngredients: response.data }
   } catch (error) {
     console.error("ERROR: could not fetch ingredients", error.response)
-    callbackError && callbackError({ errorResponse: error.response })
-    return error.response
+    callbackErrorProps.errorResponse = error.response
+    callbackError && callbackError(callbackErrorProps)
+    return { errorResponse: error.response }
   }
 }
 
@@ -50,6 +54,7 @@ export async function putIngredient({
   callback = null,
   callbackProps = {},
   callbackError = null,
+  callbackErrorProps = {},
 }) {
   try {
     const response = await axios.put(
@@ -59,11 +64,12 @@ export async function putIngredient({
     console.debug("updated ingredient: ", response)
     callbackProps.updatedIngredient = response.data
     callback && callback(callbackProps)
-    return response.data
+    return { updatedIngredient: response.data }
   } catch (error) {
     console.error("ERROR: failed to update ingredient: ", error.response)
-    callbackError && callbackError({ errorResponse: error.response })
-    return error.response
+    callbackErrorProps.errorResponse = error.response
+    callbackError && callbackError(callbackErrorProps)
+    return { errorResponse: error.response }
   }
 }
 
@@ -72,17 +78,20 @@ export async function deleteIngredient({
   callback = null,
   callbackError = null,
   callbackProps = {},
+  callbackErrorProps = {},
 }) {
   try {
     const response = await axios.delete(
       `http://localhost:8000/recipes/ingredient/delete/${id}/`
     )
     console.debug("deleted ingredient: ", response)
+    callbackProps.deletedIngredientID = id
     callback && callback(callbackProps)
-    return response.data
+    return { deletedIngredientID: id }
   } catch (error) {
     console.error("ERROR: failed to delete ingredient: ", error.response)
-    callbackError && callbackError({ errorResponse: error.response })
-    return error.response
+    callbackErrorProps.errorResponse = error.response
+    callbackError && callbackError(callbackErrorProps)
+    return { errorResponse: error.response }
   }
 }
