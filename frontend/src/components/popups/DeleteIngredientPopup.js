@@ -12,7 +12,6 @@ import { deleteIngredient } from "../../services/api/Ingredient"
 import { useState } from "react"
 
 export default function DeleteIngredientPopup({
-  title,
   ingredient,
   closeHandler,
   closeHandlerProps = {},
@@ -21,20 +20,15 @@ export default function DeleteIngredientPopup({
     id: ingredient.id,
     nonFieldErrors: [],
   })
+  const [question, setQuestion] = useState(
+    ingredient.brand
+      ? `${ingredient.name} von ${ingredient.brand} löschen?`
+      : `${ingredient.name} löschen?`
+  )
 
   return (
     <div className="edit-ingredient-popup">
-      <div className="header">
-        <h2 className="title">{title}</h2>
-        <Button
-          type={"neutral"}
-          img={close}
-          clickHandler={() =>
-            closeHandler({ closeHandlerProps: closeHandlerProps })
-          }
-          classNames={"close"}
-        />
-      </div>
+      <p className="question">{question}</p>
       <form
         key={form.id}
         onSubmit={event => submitHandler({ event: event })}
