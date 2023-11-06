@@ -34,35 +34,17 @@ export default function Ingredients() {
     })
   }, [])
 
-  if (ingredients.length === 0) return <span>Keine Zutaten gefunden.</span>
-
-  const verbose_names = ingredients[0].verbose_names
+  const verbose_names = ingredients.length ? ingredients[0].verbose_names : {}
   return (
     <>
       <Header headline={headline} back={back} />
       <main className="ingredients">
         <article className="ingredients-grid">
-          <div className="header-wrapper">
-            <DisplayIngredientHeader
-              clickHandler={sortIngredients}
-              sortKey={sortKey}
-            />
-          </div>
-          <div className="ingredients-wrapper">
-            {ingredients.map(ingredient => (
-              <div
-                key={ingredient.id}
-                className="ingredient-wrapper"
-                id={"ingredient-wrapper-" + ingredient.id}
-              >
-                <DisplayIngredient
-                  ingredient={ingredient}
-                  editIngredient={editIngredient}
-                  deleteIngredient={deleteIngredient}
-                />
-              </div>
-            ))}
-          </div>
+          {ingredients.length ? (
+            <IngredientsGrid />
+          ) : (
+            <p>Keine Zutaten gefunden.</p>
+          )}
         </article>
       </main>
       <Footer />
@@ -86,6 +68,35 @@ export default function Ingredients() {
       )}
     </>
   )
+
+  function IngredientsGrid() {
+    return (
+      <>
+        <div className="header-wrapper">
+          <DisplayIngredientHeader
+            clickHandler={sortIngredients}
+            sortKey={sortKey}
+          />
+        </div>
+
+        <div className="ingredients-wrapper">
+          {ingredients.map(ingredient => (
+            <div
+              key={ingredient.id}
+              className="ingredient-wrapper"
+              id={"ingredient-wrapper-" + ingredient.id}
+            >
+              <DisplayIngredient
+                ingredient={ingredient}
+                editIngredient={editIngredient}
+                deleteIngredient={deleteIngredient}
+              />
+            </div>
+          ))}
+        </div>
+      </>
+    )
+  }
 
   function DisplayIngredientHeader({ clickHandler, sortKey }) {
     return (
