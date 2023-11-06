@@ -39,13 +39,11 @@ export default function Ingredients() {
     <>
       <Header headline={headline} back={back} />
       <main className="ingredients">
-        <article className="ingredients-grid">
-          {ingredients.length ? (
-            <IngredientsGrid />
-          ) : (
-            <p>Keine Zutaten gefunden.</p>
-          )}
-        </article>
+        {ingredients.length ? (
+          <IngredientsGrid />
+        ) : (
+          <p>Keine Zutaten gefunden.</p>
+        )}
       </main>
       <Footer />
       {editing && (
@@ -71,7 +69,7 @@ export default function Ingredients() {
 
   function IngredientsGrid() {
     return (
-      <>
+      <article className="ingredients-grid">
         <div className="header-wrapper">
           <DisplayIngredientHeader
             clickHandler={sortIngredients}
@@ -94,7 +92,7 @@ export default function Ingredients() {
             </div>
           ))}
         </div>
-      </>
+      </article>
     )
   }
 
