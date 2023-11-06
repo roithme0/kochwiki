@@ -18,9 +18,6 @@ export default function EditIngredientPopup({
   submitCallback,
   closeHandler,
 }) {
-  console.log("ingredient", ingredient)
-  console.log("ingredient.verbose_names", ingredient.verbose_names)
-
   const verbose_names = ingredient.verbose_names
   const blankFields = ingredient.blank_fields
   const maxLength = ingredient.max_length
@@ -166,7 +163,7 @@ export default function EditIngredientPopup({
     event.preventDefault()
     const response = await putIngredient({
       form: form,
-      submitCallback: submitCallback,
+      callback: submitCallback,
       callbackError: updateErrors,
     })
     response.success && closeHandler()

@@ -21,18 +21,23 @@ export default function Ingredients({ setHeadline, setBack }) {
     setBack({ url: "/", visibility: "" })
   }, [])
 
+  const [unsortedIngredients, setUnsortedIngredients] = useState([])
   const [ingredients, setIngredients] = useState([])
   const [sortKey, setSortKey] = useState({ key: "name", reverseFactor: 1 })
   const [editing, setEditing] = useState(null)
   const [deleting, setDeleting] = useState(null)
 
   useEffect(() => {
-    getIngredients({ setFunction: setIngredients })
+    console.debug("fetching ingredients")
+    getIngredients({ setFunction: setUnsortedIngredients })
   }, [])
 
   useEffect(() => {
-    ingredients.length && sortIngredients()
-  }, [ingredients, sortKey])
+    if (unsortedIngredients.length) {
+      console.log("sort ingredients by: ", sortKey)
+      unsortedIngredients.length && sortIngredients()
+    }
+  }, [sortKey, unsortedIngredients])
 
   useEffect(() => {
     editing &&
@@ -152,9 +157,9 @@ export default function Ingredients({ setHeadline, setBack }) {
             className={"header-field-wrapper " + classNames}
           >
             <span className="header-field">{value}</span>
-            {sortKey === fieldName ? (
+            {sortKey.key === fieldName ? (
               <img src={sortAscending}></img>
-            ) : sortKey === fieldName + "Reverse" ? (
+            ) : sortKey.key === fieldName + "Reverse" ? (
               <img src={sortDescending}></img>
             ) : (
               <img src={sort} className="hidden"></img>
@@ -213,9 +218,10 @@ export default function Ingredients({ setHeadline, setBack }) {
   }
 
   function sortIngredients() {
+    const key = sortKey.key.replace("Reverse", "")
     let res = 0
     setIngredients(
-      [...ingredients].sort((a, b) => {
+      [...unsortedIngredients].sort((a, b) => {
         if (a[key] < b[key]) {
           res = -1
         } else if (a[key] > b[key]) {
@@ -223,10 +229,9 @@ export default function Ingredients({ setHeadline, setBack }) {
         } else {
           res = 0
         }
-        return res * reverseFactor
+        return res * sortKey.reverseFactor
       })
     )
-    setSortKey(reverseFactor === -1 ? key + "Reverse" : key)
   }
 
   async function updateIngredient({ updatedIngredient }) {
@@ -236,8 +241,8 @@ export default function Ingredients({ setHeadline, setBack }) {
 
     const response = await getIngredient({ id: updatedIngredient.id })
     response.success &&
-      setIngredients(
-        ingredients.map(ingredient => {
+      setUnsortedIngredients(
+        unsortedIngredients.map(ingredient => {
           if (ingredient.id === response.fetchedIngredient.id) {
             return response.fetchedIngredient
           } else {
