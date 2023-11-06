@@ -20,11 +20,10 @@ export default function DeleteIngredientPopup({
     id: ingredient.id,
     nonFieldErrors: [],
   })
-  const [question, setQuestion] = useState(
-    ingredient.brand
-      ? `${ingredient.name} von ${ingredient.brand} löschen?`
-      : `${ingredient.name} löschen?`
-  )
+
+  const question = ingredient.brand
+    ? `${ingredient.name} von ${ingredient.brand} löschen?`
+    : `${ingredient.name} löschen?`
 
   return (
     <div className="edit-ingredient-popup">
