@@ -1,11 +1,9 @@
 import "./DeleteIngredientPopup.css"
 
-import close from "../../assets/images/mdi/close.png"
 import check from "../../assets/images/mdi/check.png"
 import cancel from "../../assets/images/mdi/cancel.png"
 
 import Button from "../ui/Button"
-import NonFieldErrors from "../ui/NonFieldErrors"
 
 import { deleteIngredient } from "../../services/api/Ingredient"
 
@@ -18,7 +16,7 @@ export default function DeleteIngredientPopup({
 }) {
   const [form, setForm] = useState({
     id: ingredient.id,
-    nonFieldErrors: [],
+    errorDetail: "",
   })
 
   const question = ingredient.brand
@@ -33,6 +31,9 @@ export default function DeleteIngredientPopup({
         onSubmit={event => submitHandler({ event: event })}
         className="form"
       >
+        {form.errorDetail && (
+          <p className="error-detail">{`Fehler: ${form.errorDetail}`}</p>
+        )}
         <div className="buttons-wrapper">
           <Button type="positive" img={check} classNames="save-ingredient" />
           <Button
@@ -60,9 +61,7 @@ export default function DeleteIngredientPopup({
   }
 
   function updateErrors({ errorResponse }) {
-    const errors = errorResponse.data
-    const nonFieldErrors =
-      "non_field_errors" in errors ? errors.non_field_errors : []
-    setForm({ ...form, nonFieldErrors: nonFieldErrors })
+    const errorDetail = errorResponse.data.detail
+    setForm({ ...form, errorDetail: errorDetail })
   }
 }
