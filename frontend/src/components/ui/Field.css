@@ -5,7 +5,7 @@
   align-items: flex-start;
 
   > label {
-    font-weight: bold;
+    /* font-weight: bold; */
 
     &::after {
       content: ":";
@@ -21,7 +21,7 @@
   & .field-error {
     background-color: var(--negative-background);
     border: 2px solid var(--negative-color);
-    border-radius: 0.25rem;
+    border-radius: 0.5rem;
     padding: 0 0.25rem;
     box-sizing: border-box;
     width: 100%;

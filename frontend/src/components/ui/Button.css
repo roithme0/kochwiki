@@ -1,10 +1,9 @@
 .button {
-  --padding-vertical: 0.25rem;
-  --padding-horizontal: 0.5rem;
   padding: 0;
   box-sizing: border-box;
   aspect-ratio: 1;
   border-radius: 0.5rem;
+  padding: 0.25rem 0;
   width: 100%;
   display: flex;
   justify-content: center;

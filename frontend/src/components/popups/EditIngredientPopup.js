@@ -5,6 +5,7 @@ import check from "../../assets/images/mdi/check.png"
 import cancel from "../../assets/images/mdi/cancel.png"
 
 import Field from "../ui/Field"
+import NonFieldErrors from "../ui/NonFieldErrors"
 import Button from "../ui/Button"
 
 import { putIngredient } from "../../services/api/Ingredient"
@@ -36,7 +37,7 @@ export default function EditIngredientPopup({
   })
 
   return (
-    <>
+    <div class="edit-ingredient-popup">
       <div className="header">
         <h2 className="title">{title}</h2>
         <Button
@@ -48,113 +49,109 @@ export default function EditIngredientPopup({
           classNames={"close"}
         />
       </div>
-      <div className="edit-ingredient">
+      <form
+        key={ingredient.id}
+        onChange={event => changeHandler({ event })}
+        onSubmit={event => submitHandler({ event })}
+        className="ingredient-form"
+      >
+        <div className="fields-wrapper">
+          <Field
+            label={verbose_names.name}
+            name="name"
+            type="text"
+            maxLength={maxLength.name}
+            required={!blankFields.name}
+            initialValue={form.name}
+            fieldErrors={
+              "name" in form.fieldErrors ? form.fieldErrors.name : []
+            }
+          />
+          <Field
+            label={verbose_names.brand}
+            name="brand"
+            type="text"
+            maxLength={maxLength.brand}
+            required={!blankFields.brand}
+            initialValue={form.brand}
+            fieldErrors={
+              "brand" in form.fieldErrors ? form.fieldErrors.brand : []
+            }
+          />
+          <Field
+            label={verbose_names.unit}
+            name="unit"
+            type="select"
+            choices={choices.unit}
+            required={!blankFields.unit}
+            initialValue={form.unit}
+            fieldErrors={
+              "unit" in form.fieldErrors ? form.fieldErrors.unit : []
+            }
+          />
+          <Field
+            label={verbose_names.kcal}
+            name="kcal"
+            type="number"
+            required={!blankFields.kcal}
+            initialValue={form.kcal}
+            unit="kcal"
+            fieldErrors={
+              "kcal" in form.fieldErrors ? form.fieldErrors.kcal : []
+            }
+          />
+          <Field
+            label={verbose_names.carbs}
+            name="carbs"
+            type="number"
+            required={!blankFields.carbs}
+            initialValue={form.carbs}
+            float={true}
+            unit="g"
+            fieldErrors={
+              "carbs" in form.fieldErrors ? form.fieldErrors.carbs : []
+            }
+          />
+          <Field
+            label={verbose_names.protein}
+            name="protein"
+            type="number"
+            required={!blankFields.protein}
+            initialValue={form.protein}
+            float={true}
+            unit="g"
+            fieldErrors={
+              "protein" in form.fieldErrors ? form.fieldErrors.protein : []
+            }
+          />
+          <Field
+            label={verbose_names.fat}
+            name="fat"
+            type="number"
+            required={!blankFields.fat}
+            initialValue={form.fat}
+            float={true}
+            unit="g"
+            fieldErrors={"fat" in form.fieldErrors ? form.fieldErrors.fat : []}
+          />
+        </div>
         {form.nonFieldErrors.length > 0 && (
           <NonFieldErrors nonFieldErrors={form.nonFieldErrors} />
         )}
-        <form
-          key={ingredient.id}
-          onChange={event => changeHandler({ event })}
-          onSubmit={event => submitHandler({ event })}
-          className="ingredient-form"
-        >
-          <div className="fields-wrapper">
-            <Field
-              label={verbose_names.name}
-              name="name"
-              type="text"
-              maxLength={maxLength.name}
-              required={!blankFields.name}
-              initialValue={form.name}
-              fieldErrors={
-                "name" in form.fieldErrors ? form.fieldErrors.name : []
-              }
-            />
-            <Field
-              label={verbose_names.brand}
-              name="brand"
-              type="text"
-              maxLength={maxLength.brand}
-              required={!blankFields.brand}
-              initialValue={form.brand}
-              fieldErrors={
-                "brand" in form.fieldErrors ? form.fieldErrors.brand : []
-              }
-            />
-            <Field
-              label={verbose_names.unit}
-              name="unit"
-              type="select"
-              choices={choices.unit}
-              required={!blankFields.unit}
-              initialValue={form.unit}
-              fieldErrors={
-                "unit" in form.fieldErrors ? form.fieldErrors.unit : []
-              }
-            />
-            <Field
-              label={verbose_names.kcal}
-              name="kcal"
-              type="number"
-              required={!blankFields.kcal}
-              initialValue={form.kcal}
-              unit="kcal"
-              fieldErrors={
-                "kcal" in form.fieldErrors ? form.fieldErrors.kcal : []
-              }
-            />
-            <Field
-              label={verbose_names.carbs}
-              name="carbs"
-              type="number"
-              required={!blankFields.carbs}
-              initialValue={form.carbs}
-              float={true}
-              unit="g"
-              fieldErrors={
-                "carbs" in form.fieldErrors ? form.fieldErrors.carbs : []
-              }
-            />
-            <Field
-              label={verbose_names.protein}
-              name="protein"
-              type="number"
-              required={!blankFields.protein}
-              initialValue={form.protein}
-              float={true}
-              unit="g"
-              fieldErrors={
-                "protein" in form.fieldErrors ? form.fieldErrors.protein : []
-              }
-            />
-            <Field
-              label={verbose_names.fat}
-              name="fat"
-              type="number"
-              required={!blankFields.fat}
-              initialValue={form.fat}
-              float={true}
-              unit="g"
-              fieldErrors={
-                "fat" in form.fieldErrors ? form.fieldErrors.fat : []
-              }
-            />
-          </div>
-          <div className="buttons-wrapper">
-            <Button type="positive" img={check} classNames="save-ingredient" />
-            <Button
-              type="negative"
-              img={cancel}
-              clickHandler={event => {
-                event.preventDefault()
-                closeHandler({ closeHandlerProps: closeHandlerProps })
-              }}
-              classNames="cancel-ingredient"
-            />
-          </div>
-        </form>
-      </div>
-    </>
+        <div className="buttons-wrapper">
+          <Button type="positive" img={check} classNames="save-ingredient" />
+          <Button
+            type="negative"
+            img={cancel}
+            clickHandler={event => {
+              event.preventDefault()
+              closeHandler({ closeHandlerProps: closeHandlerProps })
+            }}
+            classNames="cancel-ingredient"
+          />
+        </div>
+      </form>
+    </div>
   )
 
   function changeHandler({ event }) {
@@ -184,17 +181,5 @@ export default function EditIngredientPopup({
       fieldErrors: fieldErrors,
       nonFieldErrors: nonFieldErrors,
     })
-  }
-
-  function NonFieldErrors({ nonFieldErrors }) {
-    return (
-      <div className="non-field-errors-wrapper">
-        {nonFieldErrors.map((error, index) => (
-          <span key={index} className="non-field-error">
-            {error}
-          </span>
-        ))}
-      </div>
-    )
   }
 }

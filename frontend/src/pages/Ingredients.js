@@ -232,7 +232,7 @@ export default function Ingredients() {
   }
 
   async function closeEditPopup({ id }) {
-    // update ingredient in case it was changed
+    // update ingredient data in case it was changed
     // close popup
     const updatedIngredient = await getIngredient({ id: id })
     setIngredients(

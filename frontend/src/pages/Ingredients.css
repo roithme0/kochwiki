@@ -82,9 +82,10 @@
     grid-column: span var(--buttons-columns);
     display: grid;
     grid-template-columns: subgrid;
+    gap: 0;
 
     > * {
-      height: calc(1rem + var(--padding-vertical));
+      height: 1.75rem;
     }
   }
 

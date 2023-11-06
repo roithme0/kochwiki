@@ -1,9 +1,27 @@
-.edit-ingredient {
+.edit-ingredient-popup {
   display: flex;
   flex-direction: column;
   gap: var(--gap);
   width: 20rem;
   max-width: 100%;
+
+  & .header {
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    gap: var(--gap);
+    align-items: center;
+    height: 2rem;
+
+    > h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0;
+      white-space: nowrap;
+    }
+  }
+  & .neutral {
+    height: 2rem;
+  }
 
   & .ingredient-form {
     display: flex;
@@ -17,22 +35,16 @@
     gap: var(--gap);
   }
 
-  & .buttons-wrapper {
-    height: 1.7rem;
-  }
-
-  & .non-field-errors-wrapper {
+  & .non-field-errors {
     display: flex;
     flex-direction: column;
     gap: calc(var(--gap) / 4);
   }
 
-  & .non-field-error {
-    background-color: var(--negative-background);
-    border: 2px solid var(--negative-color);
-    border-radius: 0.25rem;
-    padding: 0.25rem 0.5rem;
-    box-sizing: border-box;
-    width: 100%;
+  & .buttons-wrapper {
+    height: 2rem;
+    display: flex;
+    align-content: center;
+    gap: var(--gap);
   }
 }
