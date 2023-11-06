@@ -15,9 +15,12 @@ import { useState } from "react"
 export default function EditIngredientPopup({
   title,
   ingredient,
+  callback,
   closeHandler,
-  closeHandlerProps = {},
 }) {
+  console.log("ingredient", ingredient)
+  console.log("ingredient.verbose_names", ingredient.verbose_names)
+
   const verbose_names = ingredient.verbose_names
   const blankFields = ingredient.blank_fields
   const maxLength = ingredient.max_length
@@ -43,16 +46,14 @@ export default function EditIngredientPopup({
         <Button
           type={"neutral"}
           img={close}
-          clickHandler={() =>
-            closeHandler({ closeHandlerProps: closeHandlerProps })
-          }
+          clickHandler={closeHandler}
           classNames={"close"}
         />
       </div>
       <form
         key={form.id}
-        onChange={event => changeHandler({ event })}
-        onSubmit={event => submitHandler({ event })}
+        onChange={event => changeHandler({ event: event })}
+        onSubmit={event => submitHandler({ event: event })}
         className="ingredient-form"
       >
         <div className="fields-wrapper">
@@ -145,7 +146,7 @@ export default function EditIngredientPopup({
             img={cancel}
             clickHandler={event => {
               event.preventDefault()
-              closeHandler({ closeHandlerProps: closeHandlerProps })
+              closeHandler()
             }}
             classNames="cancel-ingredient"
           />
@@ -161,14 +162,14 @@ export default function EditIngredientPopup({
     })
   }
 
-  function submitHandler({ event }) {
+  async function submitHandler({ event }) {
     event.preventDefault()
-    putIngredient({
+    const result = await putIngredient({
       form: form,
-      callback: closeHandler,
-      callbackProps: closeHandlerProps,
+      callback: callback,
       callbackError: updateErrors,
     })
+    result.success && closeHandler()
   }
 
   function updateErrors({ errorResponse }) {

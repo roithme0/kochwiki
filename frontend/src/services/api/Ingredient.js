@@ -62,14 +62,15 @@ export async function putIngredient({
       form
     )
     console.debug("updated ingredient: ", response)
-    callbackProps.updatedIngredient = response.data
+    const updatedIngredient = response.data
+    callbackProps.updatedIngredient = updatedIngredient
     callback && callback(callbackProps)
-    return { updatedIngredient: response.data }
+    return { updatedIngredient: updatedIngredient, success: true }
   } catch (error) {
     console.error("ERROR: failed to update ingredient: ", error.response)
     callbackErrorProps.errorResponse = error.response
     callbackError && callbackError(callbackErrorProps)
-    return { errorResponse: error.response }
+    return { errorResponse: error.response, success: false }
   }
 }
 
