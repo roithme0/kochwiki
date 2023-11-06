@@ -22,16 +22,17 @@ export default function Ingredients({ setHeadline, setBack }) {
   }, [])
 
   const [ingredients, setIngredients] = useState([])
-  const [sortKey, setSortKey] = useState(null)
+  const [sortKey, setSortKey] = useState({ key: "name", reverseFactor: 1 })
   const [editing, setEditing] = useState(null)
   const [deleting, setDeleting] = useState(null)
 
   useEffect(() => {
-    getIngredients({
-      callback: sortIngredients,
-      callbackProps: { key: "name" },
-    })
+    getIngredients({ setFunction: setIngredients })
   }, [])
+
+  useEffect(() => {
+    ingredients.length && sortIngredients()
+  }, [ingredients, sortKey])
 
   useEffect(() => {
     editing &&
@@ -62,7 +63,7 @@ export default function Ingredients({ setHeadline, setBack }) {
           Component={EditIngredientPopup}
           title={"Zutat bearbeiten"}
           ingredient={editing}
-          callback={updateIngredient}
+          submitCallback={updateIngredient}
           closeHandler={() => setEditing(null)}
         ></Popup>
       )}
@@ -82,10 +83,7 @@ export default function Ingredients({ setHeadline, setBack }) {
     return (
       <article className="ingredients-grid">
         <div className="header-wrapper">
-          <DisplayIngredientHeader
-            clickHandler={sortIngredients}
-            sortKey={sortKey}
-          />
+          <DisplayIngredientHeader />
         </div>
 
         <div className="ingredients-wrapper">
@@ -102,56 +100,42 @@ export default function Ingredients({ setHeadline, setBack }) {
       </article>
     )
 
-    function DisplayIngredientHeader({ clickHandler, sortKey }) {
+    function DisplayIngredientHeader() {
       return (
         <>
           <div className="header">
             <IngredientHeaderField
               fieldName="name"
               value={verbose_names.name}
-              clickHandler={clickHandler}
-              sortKey={sortKey}
             />
             <IngredientHeaderField
               fieldName="brand"
               value={verbose_names.brand}
-              clickHandler={clickHandler}
-              sortKey={sortKey}
             />
             <IngredientHeaderField
               classNames="unit"
               fieldName="unit"
               value={verbose_names.unit}
-              clickHandler={clickHandler}
-              sortKey={sortKey}
             />
             <IngredientHeaderField
               classNames={"makro"}
               fieldName="kcal"
               value={verbose_names.kcal}
-              clickHandler={clickHandler}
-              sortKey={sortKey}
             />
             <IngredientHeaderField
               classNames="makro"
               fieldName="carbs"
               value={verbose_names.carbs}
-              clickHandler={clickHandler}
-              sortKey={sortKey}
             />
             <IngredientHeaderField
               classNames="makro"
               fieldName={verbose_names.protein}
               value="Protein"
-              clickHandler={clickHandler}
-              sortKey={sortKey}
             />
             <IngredientHeaderField
               classNames="makro"
               fieldName="fat"
               value={verbose_names.fat}
-              clickHandler={clickHandler}
-              sortKey={sortKey}
             />
           </div>
           <div className="buttons-wrapper">
@@ -161,16 +145,10 @@ export default function Ingredients({ setHeadline, setBack }) {
         </>
       )
 
-      function IngredientHeaderField({
-        classNames = "",
-        fieldName,
-        value,
-        clickHandler,
-        sortKey,
-      }) {
+      function IngredientHeaderField({ classNames = "", fieldName, value }) {
         return (
           <div
-            onClick={() => clickHandler({ key: fieldName })}
+            onClick={() => updateSortKey({ key: fieldName })}
             className={"header-field-wrapper " + classNames}
           >
             <span className="header-field">{value}</span>
@@ -225,11 +203,19 @@ export default function Ingredients({ setHeadline, setBack }) {
     }
   }
 
-  function sortIngredients({ key, fetchedIngredients = ingredients }) {
-    const reverseFactor = key === sortKey ? -1 : 1
+  function updateSortKey({ key }) {
+    var factor = 1
+    if (key === sortKey.key) {
+      key += "Reverse"
+      factor = -1
+    }
+    setSortKey({ key: key, reverseFactor: factor })
+  }
+
+  function sortIngredients() {
     let res = 0
     setIngredients(
-      [...fetchedIngredients].sort((a, b) => {
+      [...ingredients].sort((a, b) => {
         if (a[key] < b[key]) {
           res = -1
         } else if (a[key] > b[key]) {
@@ -243,20 +229,22 @@ export default function Ingredients({ setHeadline, setBack }) {
     setSortKey(reverseFactor === -1 ? key + "Reverse" : key)
   }
 
-  function updateIngredient({ updatedIngredient }) {
-    updatedIngredient &&
+  async function updateIngredient({ updatedIngredient }) {
+    document
+      .getElementById("ingredient-wrapper-" + updatedIngredient.id)
+      .classList.remove("editing")
+
+    const response = await getIngredient({ id: updatedIngredient.id })
+    response.success &&
       setIngredients(
         ingredients.map(ingredient => {
-          if (ingredient.id === updatedIngredient.id) {
-            return updatedIngredient
+          if (ingredient.id === response.fetchedIngredient.id) {
+            return response.fetchedIngredient
           } else {
             return ingredient
           }
         })
       )
-    document
-      .getElementById("ingredient-wrapper-" + updatedIngredient.id)
-      .classList.remove("editing")
   }
 
   async function closeDeletePopup({ id = null, errorResponse = null }) {

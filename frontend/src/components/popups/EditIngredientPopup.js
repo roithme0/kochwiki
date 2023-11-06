@@ -15,7 +15,7 @@ import { useState } from "react"
 export default function EditIngredientPopup({
   title,
   ingredient,
-  callback,
+  submitCallback,
   closeHandler,
 }) {
   console.log("ingredient", ingredient)
@@ -164,12 +164,12 @@ export default function EditIngredientPopup({
 
   async function submitHandler({ event }) {
     event.preventDefault()
-    const result = await putIngredient({
+    const response = await putIngredient({
       form: form,
-      callback: callback,
+      submitCallback: submitCallback,
       callbackError: updateErrors,
     })
-    result.success && closeHandler()
+    response.success && closeHandler()
   }
 
   function updateErrors({ errorResponse }) {

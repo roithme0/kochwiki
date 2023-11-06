@@ -16,12 +16,12 @@ export async function getIngredient({
     setFunction && setFunction(response.data)
     callbackProps.fetchedIngredient = response.data
     callback && callback(callbackProps)
-    return { fetchedIngredient: response.data }
+    return { fetchedIngredient: response.data, success: true }
   } catch (error) {
     console.error("ERROR: could not fetch ingredient", error.response)
     callbackErrorProps.errorResponse = error.response
     callbackError && callbackError(callbackErrorProps)
-    return { errorResponse: error.response }
+    return { errorResponse: error.response, success: false }
   }
 }
 
@@ -40,12 +40,12 @@ export async function getIngredients({
     setFunction && setFunction(response.data)
     callbackProps.fetchedIngredients = response.data
     callback && callback(callbackProps)
-    return { fetchedIngredients: response.data }
+    return { fetchedIngredients: response.data, success: true }
   } catch (error) {
     console.error("ERROR: could not fetch ingredients", error.response)
     callbackErrorProps.errorResponse = error.response
     callbackError && callbackError(callbackErrorProps)
-    return { errorResponse: error.response }
+    return { errorResponse: error.response, success: false }
   }
 }
 
@@ -88,11 +88,11 @@ export async function deleteIngredient({
     console.debug("deleted ingredient: ", response)
     callbackProps.deletedIngredientID = id
     callback && callback(callbackProps)
-    return { deletedIngredientID: id }
+    return { deletedIngredientID: id, success: true }
   } catch (error) {
     console.error("ERROR: failed to delete ingredient: ", error.response)
     callbackErrorProps.errorResponse = error.response
     callbackError && callbackError(callbackErrorProps)
-    return { errorResponse: error.response }
+    return { errorResponse: error.response, success: false }
   }
 }
