@@ -6,6 +6,8 @@ import arrowLeft from "../assets/images/mdi/arrow-left.png"
 import { Link } from "react-router-dom"
 
 export default function Header({ headline, back }) {
+  // render header
+
   return (
     <header>
       <section className="header-content">

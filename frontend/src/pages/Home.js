@@ -7,6 +7,8 @@ import { Link } from "react-router-dom"
 import { useEffect } from "react"
 
 export default function Home({ setHeadline, setBack }) {
+  // render home page
+
   useEffect(() => {
     setHeadline("Startseite")
     setBack({ url: "/", visibility: "hidden" })
