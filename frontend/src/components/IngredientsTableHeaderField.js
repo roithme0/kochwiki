@@ -9,7 +9,7 @@ export default function IngredientHeaderField({
   sortKey = "",
   updateSortKey = null,
 }) {
-  // render header field for table of ingredients
+  // render header field for ingredients table
 
   return (
     <div

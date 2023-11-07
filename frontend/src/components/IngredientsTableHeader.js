@@ -1,11 +1,11 @@
-import IngredientsHeaderField from "./IngredientsHeaderField"
+import IngredientsHeaderField from "./IngredientsTableHeaderField"
 
-export default function IngredientsHeader({
+export default function IngredientsTableHeader({
   ingredients,
   sortKey = "",
   updateSortKey = null,
 }) {
-  // render header for table of ingredients
+  // render header for ingredients table
 
   const classNames = {
     name: "",
@@ -21,7 +21,7 @@ export default function IngredientsHeader({
   console.debug("verboseNames: ", verboseNames)
 
   return (
-    <>
+    <div className="header-wrapper">
       <div className="header">
         {Object.keys(verboseNames).map(
           name =>
@@ -40,6 +40,6 @@ export default function IngredientsHeader({
         <div></div>
         <div></div>
       </div>
-    </>
+    </div>
   )
 }
