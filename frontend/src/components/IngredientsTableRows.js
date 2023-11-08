@@ -14,11 +14,13 @@ export default function IngredientsTableRows({ initialIngredients, sortKey }) {
 
   useEffect(() => {
     setUnsortedIngredients(initialIngredients)
+    // setIngredients(unsortedIngredients)
   }, [])
 
   useEffect(() => {
-    console.log("sorting ingredients by: ", sortKey)
+    console.debug("sorting ingredients by: ", sortKey)
     unsortedIngredients.length && sortIngredients()
+    console.debug("sorted ingredients: ", ingredients)
   }, [sortKey])
 
   // useEffect(() => {

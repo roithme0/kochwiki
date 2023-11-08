@@ -13,6 +13,7 @@ export default function IngredientHeaderField({
 
   return (
     <div
+      key={fieldName}
       onClick={updateSortKey && (() => updateSortKey({ key: fieldName }))}
       className={"header-field-wrapper " + classNames}
     >
