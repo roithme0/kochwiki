@@ -1,7 +1,8 @@
 import "./Ingredients.css"
 
-import { getIngredients } from "../../services/api/Ingredient/Ingredient"
 import { useState, useEffect } from "react"
+import { getIngredients } from "../../services/api/Ingredient/Ingredient"
+import IngredientsGrid from "../../components/IngredientsGrid/IngredientsGrid"
 
 export default function Ingredients({ setHeadline, setBack }) {
   // fetch and render ingredients
@@ -20,11 +21,11 @@ export default function Ingredients({ setHeadline, setBack }) {
 
   return (
     <main className="ingredients">
-      {/* {ingredients.length ? (
-        <IngredientsTable initialIngredients={ingredients} />
+      {ingredients.length ? (
+        <IngredientsGrid ingredients={ingredients} />
       ) : (
         <p className="placeholder">Keine Zutaten gefunden.</p>
-      )} */}
+      )}
     </main>
   )
 }
