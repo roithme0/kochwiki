@@ -1,0 +1,15 @@
+.ingredients-grid-header {
+  --columns: 7;
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  gap: calc(var(--gap) / 8);
+
+  & .header-field {
+    --padding-horizontal: 0.5rem;
+    --padding-vertical: 0.25rem;
+    margin: 0;
+    padding: var(--padding-vertical) var(--padding-horizontal);
+    background-color: var(--tertiary-background);
+    border-radius: calc(1rem + 2 * var(--padding-vertical));
+  }
+}

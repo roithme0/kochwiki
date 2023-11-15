@@ -7,7 +7,11 @@ export default function IngredientsGridHeader({ verboseNames }) {
         if (key === "id") {
           return null
         } else {
-          return <p key={key}>{value}</p>
+          return (
+            <p key={key} className="header-field">
+              {value}
+            </p>
+          )
         }
       })}
     </div>
