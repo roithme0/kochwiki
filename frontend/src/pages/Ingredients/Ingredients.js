@@ -2,7 +2,7 @@ import "./Ingredients.css"
 
 import IngredientsTable from "../components/IngredientsTable"
 
-import { getIngredients } from "../services/api/Ingredient"
+import { getIngredients } from "../../services/api/Ingredient/Ingredient"
 
 import { useState, useEffect } from "react"
 

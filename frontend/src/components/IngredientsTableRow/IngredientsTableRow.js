@@ -2,7 +2,7 @@ import pencil from "../assets/images/mdi/pencil.png"
 import trashBin from "../assets/images/mdi/trash-bin.png"
 
 import Button from "../components/ui/Button"
-import Popup from "../components/Popup"
+import Popup from "../popups/Popup/Popup"
 import EditIngredientPopup from "../components/popups/EditIngredientPopup"
 import DeleteIngredientPopup from "../components/popups/DeleteIngredientPopup"
 

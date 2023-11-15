@@ -2,7 +2,7 @@ import "./Recipes.css"
 
 import imageOffOutline from "../assets/images/mdi/image-off-outline.png"
 
-import { fetchRecipes } from "../services/api/Recipe"
+import { fetchRecipes } from "../../services/api/Recipe/Recipe"
 
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"

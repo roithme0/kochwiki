@@ -1,5 +1,5 @@
-import IngredientsTableHeader from "./IngredientsTableHeader"
-import IngredientsTableRows from "./IngredientsTableRows"
+import IngredientsTableHeader from "../IngredientsTableHeader/IngredientsTableHeader"
+import IngredientsTableRows from "../IngredientsTableRows/IngredientsTableRows"
 
 import { useState } from "react"
 

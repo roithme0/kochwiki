@@ -5,7 +5,7 @@ import {
   isIntegerKeyCode,
   isFloatKeyCode,
   isFunctionalKeyCode,
-} from "../../utils/ASCII.js"
+} from "../../../utils/ASCII.js"
 
 import { useState } from "react"
 

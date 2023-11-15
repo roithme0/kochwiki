@@ -1,4 +1,4 @@
-import IngredientsHeaderField from "./IngredientsTableHeaderField"
+import IngredientsHeaderField from "../IngredientsTableHeaderField/IngredientsTableHeaderField"
 
 export default function IngredientsTableHeader({
   ingredients,

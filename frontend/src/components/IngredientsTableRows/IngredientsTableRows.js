@@ -1,6 +1,6 @@
-import IngredientsTableRow from "./IngredientsTableRow"
+import IngredientsTableRow from "../IngredientsTableRow/IngredientsTableRow"
 
-import { getIngredient } from "../services/api/Ingredient"
+import { getIngredient } from "../../services/api/Ingredient/Ingredient"
 
 import { useState, useEffect } from "react"
 
