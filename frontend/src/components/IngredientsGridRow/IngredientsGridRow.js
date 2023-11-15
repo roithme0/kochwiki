@@ -1,13 +1,15 @@
 import "./IngredientsGridRow.css"
 
-export default function IngredientsGridRow({ ingredient, key }) {
+export default function IngredientsGridRow({ ingredient, fields }) {
+  // render row of ingredients grid
+
   return (
-    <div key={key} className="ingredients-grid-row">
-      {Object.keys(ingredient.verbose_names).map(fieldName => {
+    <div className="ingredients-grid-row">
+      {fields.map(fieldName => {
         if (fieldName === "id") {
           return null
         } else {
-          return <p>{fieldName}</p>
+          return <p key={fieldName}>{fieldName}</p>
         }
       })}
     </div>
