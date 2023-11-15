@@ -2,7 +2,7 @@
   --columns: 7;
   display: grid;
   grid-template-columns: repeat(var(--columns), 1fr);
-  gap: calc(var(--gap) / 8);
+  gap: 0.1rem;
 
   & .header-field {
     --padding-horizontal: 0.5rem;

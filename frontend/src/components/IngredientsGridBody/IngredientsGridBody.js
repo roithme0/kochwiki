@@ -1,5 +1,9 @@
 import "./IngredientsGridBody.css"
 
+import IngredientsGridRow from "../IngredientsGridRow/IngredientsGridRow"
+
 export default function IngredientsGridBody({ initialIngredients }) {
-  return <p>IngredientsGridBody</p>
+  return initialIngredients.map(ingredient => (
+    <IngredientsGridRow ingredient={ingredient} key={ingredient.id} />
+  ))
 }
