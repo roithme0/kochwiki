@@ -1,7 +1,7 @@
 import "./Header.css"
 
-import logo from "../assets/images/logo.png"
-import arrowLeft from "../assets/images/mdi/arrow-left.png"
+import logo from "../../assets/images/logo.png"
+import arrowLeft from "../../assets/images/mdi/arrow-left.png"
 
 import { Link } from "react-router-dom"
 

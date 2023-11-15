@@ -1,6 +1,6 @@
 import "./Recipes.css"
 
-import imageOffOutline from "../assets/images/mdi/image-off-outline.png"
+import imageOffOutline from "../../assets/images/mdi/image-off-outline.png"
 
 import { fetchRecipes } from "../../services/api/Recipe/Recipe"
 

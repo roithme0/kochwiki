@@ -1,4 +1,4 @@
-import "./Input.css"
+import "../Input.css"
 import "./Select.css"
 
 import { useState } from "react"

@@ -1,7 +1,7 @@
 import "./Home.css"
 
-import Recipes from "../assets/images/recipes.png"
-import Ingredients from "../assets/images/ingredients.png"
+import Recipes from "../../assets/images/recipes.png"
+import Ingredients from "../../assets/images/ingredients.png"
 
 import { Link } from "react-router-dom"
 import { useEffect } from "react"

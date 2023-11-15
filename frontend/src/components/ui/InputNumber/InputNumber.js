@@ -1,4 +1,4 @@
-import "./Input.css"
+import "../Input.css"
 import "./InputNumber.css"
 
 import {

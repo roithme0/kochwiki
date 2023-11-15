@@ -1,11 +1,11 @@
-import "./DeleteIngredientPopup.css"
+import "./IngredientDeletePopup.css"
 
-import check from "../../assets/images/mdi/check.png"
-import cancel from "../../assets/images/mdi/cancel.png"
+import check from "../../../assets/images/mdi/check.png"
+import cancel from "../../../assets/images/mdi/cancel.png"
 
-import Button from "../ui/Button"
+import Button from "../../ui/Button/Button"
 
-import { deleteIngredient } from "../../services/api/Ingredient"
+import { deleteIngredient } from "../../../services/api/Ingredient/Ingredient"
 
 import { useState } from "react"
 

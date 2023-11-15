@@ -1,6 +1,6 @@
 import "./Footer.css"
 
-import accountStarOutline from "../assets/images/mdi/account-star-outline.png"
+import accountStarOutline from "../../assets/images/mdi/account-star-outline.png"
 
 import { Link } from "react-router-dom"
 

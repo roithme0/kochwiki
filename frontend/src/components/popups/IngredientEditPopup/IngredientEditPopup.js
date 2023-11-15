@@ -1,14 +1,14 @@
-import "./EditIngredientPopup.css"
+import "./IngredientEditPopup.css"
 
-import close from "../../assets/images/mdi/close.png"
-import check from "../../assets/images/mdi/check.png"
-import cancel from "../../assets/images/mdi/cancel.png"
+import close from "../../../assets/images/mdi/close.png"
+import check from "../../../assets/images/mdi/check.png"
+import cancel from "../../../assets/images/mdi/cancel.png"
 
-import Field from "../ui/Field"
-import NonFieldErrors from "../ui/NonFieldErrors"
-import Button from "../ui/Button"
+import Field from "../../ui/Field/Field"
+import NonFieldErrors from "../../ui/NonFieldErrors/NonFieldErrors"
+import Button from "../../ui/Button/Button"
 
-import { putIngredient } from "../../services/api/Ingredient"
+import { putIngredient } from "../../../services/api/Ingredient/Ingredient"
 
 import { useState } from "react"
 

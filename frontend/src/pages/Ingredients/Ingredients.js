@@ -1,6 +1,6 @@
 import "./Ingredients.css"
 
-import IngredientsTable from "../components/IngredientsTable"
+import IngredientsTable from "../../components/IngredientsTable/IngredientsTable"
 
 import { getIngredients } from "../../services/api/Ingredient/Ingredient"
 

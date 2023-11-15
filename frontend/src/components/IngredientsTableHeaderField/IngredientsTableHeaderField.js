@@ -1,6 +1,6 @@
-import sortAscending from "../assets/images/mdi/sort-ascending.png"
-import sortDescending from "../assets/images/mdi/sort-descending.png"
-import sort from "../assets/images/mdi/sort.png"
+import sortAscending from "../../assets/images/mdi/sort-ascending.png"
+import sortDescending from "../../assets/images/mdi/sort-descending.png"
+import sort from "../../assets/images/mdi/sort.png"
 
 export default function IngredientHeaderField({
   fieldName,
