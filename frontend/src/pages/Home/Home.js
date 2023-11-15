@@ -12,7 +12,7 @@ export default function Home({ setHeadline, setBack }) {
   useEffect(() => {
     setHeadline("Startseite")
     setBack({ url: "/", visibility: "hidden" })
-  }, [])
+  }, [setHeadline, setBack])
 
   return (
     <main className="home">
