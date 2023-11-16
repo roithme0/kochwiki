@@ -1,4 +1,4 @@
-import "./IngredientsGrid.css"
+import css from "./IngredientsGrid.module.css"
 
 import IngredientsGridHeader from "../IngredientsGridHeader/IngredientsGridHeader"
 import IngredientsGridBody from "../IngredientsGridBody/IngredientsGridBody"
@@ -14,8 +14,8 @@ export default function IngredientsGrid({ ingredients }) {
   const [sortKey, setSortKey] = useState("")
 
   return (
-    <div className="ingredients-grid">
-      <div className="grid-controls">
+    <div className={css.ingredientsGrid}>
+      <div className={css.gridControls}>
         <Search setSearch={setSearch} />
         <IngredientsFilter setFilter={setFilter} />
       </div>

@@ -1,4 +1,4 @@
-import "./IngredientsGridHeader.css"
+import css from "./IngredientsGridHeader.module.css"
 
 import sort from "../../assets/images/mdi/sort.png"
 import sortDescending from "../../assets/images/mdi/sort-descending.png"
@@ -29,28 +29,32 @@ export default function IngredientsGridHeader({
   }, [headerFields, setSortKey])
 
   return (
-    <div className="ingredients-grid-header">
+    <div className={css.ingredientsGridHeader}>
       {headerFields.map(([fieldName, verboseName]) => (
         <div
           key={fieldName}
-          className="header-field"
+          className={css.headerField}
           onClick={() => setSortKey(getUpdatedSortKey({ fieldName, sortKey }))}
         >
-          <p className="column-name">{verboseName}</p>
+          <p className={css.columnName}>{verboseName}</p>
           {sortKey === fieldName ? (
             <img
               src={sortDescending}
               alt="absteigend sortiert"
-              className="sort sort-descending"
+              className={css.sort}
             />
           ) : sortKey === `${fieldName}Reverse` ? (
             <img
               src={sortAscending}
               alt="aufsteigend sortiert"
-              className="sort sort-ascending"
+              className={css.sort}
             />
           ) : (
-            <img src={sort} alt="sortieren" className="sort sort-placeholder" />
+            <img
+              src={sort}
+              alt="sortieren"
+              className={`${css.sort} ${css.sortPlaceholder}`}
+            />
           )}
         </div>
       ))}

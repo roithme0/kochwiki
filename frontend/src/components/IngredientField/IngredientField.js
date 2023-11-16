@@ -1,20 +1,18 @@
-import "./IngredientField.css"
+import css from "./IngredientField.module.css"
 
-export default function IngredientsField({ ingredient, fieldName }) {
+export default function IngredientField({ ingredient, fieldName }) {
   // render value of ingredient field
 
   if (fieldName === "id") {
     return null
   }
-  return (
-    <div className="ingredient-field">
-      {ingredient[fieldName] ? (
-        <p className="field-value">{ingredient[fieldName]}</p>
-      ) : (
-        <p key={fieldName} className="field-value">
-          /
-        </p>
-      )}
-    </div>
-  )
+  if (ingredient[fieldName]) {
+    return <p className={css.fieldValue}>{ingredient[fieldName]}</p>
+  } else {
+    return (
+      <p key={fieldName} className={css.fieldValue}>
+        /
+      </p>
+    )
+  }
 }

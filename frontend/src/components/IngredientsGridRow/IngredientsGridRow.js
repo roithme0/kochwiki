@@ -1,6 +1,6 @@
 import "./IngredientsGridRow.css"
 
-import IngredientsField from "../IngredientField/IngredientField"
+import IngredientField from "../IngredientField/IngredientField"
 
 export default function IngredientsGridRow({ ingredient, fields }) {
   // render row of ingredients grid
@@ -8,7 +8,7 @@ export default function IngredientsGridRow({ ingredient, fields }) {
   return (
     <div key={ingredient.id} className="ingredients-grid-row">
       {fields.map(fieldName => (
-        <IngredientsField
+        <IngredientField
           ingredient={ingredient}
           fieldName={fieldName}
           key={fieldName}

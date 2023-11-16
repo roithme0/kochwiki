@@ -1,4 +1,4 @@
-import "./IngredientsGridBody.css"
+import css from "./IngredientsGridBody.module.css"
 
 import IngredientsGridRow from "../IngredientsGridRow/IngredientsGridRow"
 import { useEffect, useState } from "react"
@@ -36,9 +36,9 @@ export default function IngredientsGridBody({
   }, [initialIngredients, sortKey, search])
 
   return (
-    <div className="ingredients-grid-body">
+    <div className={css.ingredientsGridBody}>
       {processedIngredients.length === 0 ? (
-        <p className="placeholder">Keine passenden Zutaten gefunden.</p>
+        <p className={css.placeholder}>Keine passenden Zutaten gefunden.</p>
       ) : null}
       {processedIngredients.map(ingredient => (
         <IngredientsGridRow
