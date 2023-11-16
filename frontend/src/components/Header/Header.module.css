@@ -1,8 +1,8 @@
-header {
+.header {
   flex: 0 0 var(--header-height);
 }
 
-.header-content {
+.headerContent {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,13 +15,13 @@ header {
   & img {
     height: var(--header-font-size);
   }
-
-  & .hidden {
-    visibility: hidden;
-  }
 }
 
-h1 {
+& .hidden {
+  visibility: hidden;
+}
+
+.h1 {
   margin: 0;
   font-size: var(--header-font-size);
   font-weight: 600;
