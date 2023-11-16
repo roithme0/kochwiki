@@ -6,9 +6,13 @@ export default function IngredientsGridRow({ ingredient, fields }) {
   // render row of ingredients grid
 
   return (
-    <div className="ingredients-grid-row">
+    <div key={ingredient.id} className="ingredients-grid-row">
       {fields.map(fieldName => (
-        <IngredientsField ingredient={ingredient} fieldName={fieldName} />
+        <IngredientsField
+          ingredient={ingredient}
+          fieldName={fieldName}
+          key={fieldName}
+        />
       ))}
     </div>
   )

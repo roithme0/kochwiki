@@ -1,11 +1,17 @@
 import "./IngredientsGridHeader.css"
 
+import { useEffect, useState } from "react"
+
 export default function IngredientsGridHeader({ verboseNames }) {
   // render header of ingredients grid
 
-  const verboseNamesCopy = { ...verboseNames }
-  delete verboseNamesCopy["id"]
-  const headerFields = Object.entries(verboseNamesCopy)
+  const [headerFields, setHeaderFields] = useState([])
+
+  useEffect(() => {
+    const verboseNamesCopy = { ...verboseNames }
+    delete verboseNamesCopy["id"]
+    setHeaderFields(Object.entries(verboseNamesCopy))
+  }, [verboseNames])
 
   return (
     <div className="ingredients-grid-header">

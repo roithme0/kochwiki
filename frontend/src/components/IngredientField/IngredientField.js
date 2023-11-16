@@ -7,9 +7,7 @@ export default function IngredientsField({ ingredient, fieldName }) {
   return (
     <div className="ingredient-field">
       {ingredient[fieldName] ? (
-        <p key={fieldName} className="field-value">
-          {ingredient[fieldName]}
-        </p>
+        <p className="field-value">{ingredient[fieldName]}</p>
       ) : (
         <p key={fieldName} className="field-value">
           /
