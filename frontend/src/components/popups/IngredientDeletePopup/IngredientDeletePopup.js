@@ -35,7 +35,7 @@ export default function DeleteIngredientPopup({
           <p className="error-detail">{`Fehler: ${form.errorDetail}`}</p>
         )}
         <div className="buttons-wrapper">
-          <Button type="positive" img={check} classNames="save-ingredient" />
+          <Button type="positive" img={check} />
           <Button
             type="negative"
             img={cancel}
@@ -43,7 +43,6 @@ export default function DeleteIngredientPopup({
               event.preventDefault()
               closeHandler({ closeHandlerProps: closeHandlerProps })
             }}
-            classNames="cancel-ingredient"
           />
         </div>
       </form>

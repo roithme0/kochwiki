@@ -4,7 +4,7 @@ import IngredientsGridHeader from "../IngredientsGridHeader/IngredientsGridHeade
 import IngredientsGridBody from "../IngredientsGridBody/IngredientsGridBody"
 import { useState } from "react"
 
-export default function IngredientsGrid({ ingredients }) {
+export default function IngredientsGrid({ ingredients, search }) {
   // render header and grid of ingredients
 
   const [sortKey, setSortKey] = useState("")
@@ -16,7 +16,11 @@ export default function IngredientsGrid({ ingredients }) {
         sortKey={sortKey}
         setSortKey={setSortKey}
       />
-      <IngredientsGridBody initialIngredients={ingredients} sortKey={sortKey} />
+      <IngredientsGridBody
+        initialIngredients={ingredients}
+        sortKey={sortKey}
+        search={search}
+      />
     </div>
   )
 }

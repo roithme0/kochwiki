@@ -1,4 +1,9 @@
 .ingredients {
+  margin-top: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+
   .placeholder {
     --padding-vertical: 0.25rem;
     --padding-horizontal: 0.75rem;

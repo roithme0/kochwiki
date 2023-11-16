@@ -3,11 +3,16 @@ import "./IngredientsGridBody.css"
 import IngredientsGridRow from "../IngredientsGridRow/IngredientsGridRow"
 import { useEffect, useState } from "react"
 
-export default function IngredientsGridBody({ initialIngredients, sortKey }) {
+export default function IngredientsGridBody({
+  initialIngredients,
+  sortKey,
+  search,
+}) {
   // render grid body
 
   const [rowFields, setRowFields] = useState([])
-  const [sortedIngredients, setSortedIngredients] = useState(initialIngredients)
+  const [processedIngredients, setProcessedIngredients] =
+    useState(initialIngredients)
 
   useEffect(() => {
     // prevent id field from beeing displayed
@@ -17,19 +22,33 @@ export default function IngredientsGridBody({ initialIngredients, sortKey }) {
   }, [initialIngredients])
 
   useEffect(() => {
-    // sort ingredients
-    setSortedIngredients(
-      sortIngredients({ ingredients: initialIngredients, sortKey: sortKey })
-    )
-  }, [initialIngredients, sortKey])
+    // sort and search ingredients
+    var ingredients = [...initialIngredients]
+    ingredients = sortIngredients({
+      ingredients: ingredients,
+      sortKey: sortKey,
+    })
+    ingredients = searchIngredients({
+      ingredients: ingredients,
+      search: search,
+    })
+    setProcessedIngredients(ingredients)
+  }, [initialIngredients, sortKey, search])
 
-  return sortedIngredients.map(ingredient => (
-    <IngredientsGridRow
-      ingredient={ingredient}
-      fields={rowFields}
-      key={ingredient.id}
-    />
-  ))
+  return (
+    <div className="ingredients-grid-body">
+      {processedIngredients.length === 0 ? (
+        <p className="placeholder">Keine passenden Zutaten gefunden.</p>
+      ) : null}
+      {processedIngredients.map(ingredient => (
+        <IngredientsGridRow
+          ingredient={ingredient}
+          fields={rowFields}
+          key={ingredient.id}
+        />
+      ))}
+    </div>
+  )
 }
 
 function sortIngredients({ ingredients, sortKey }) {
@@ -52,4 +71,19 @@ function sortIngredients({ ingredients, sortKey }) {
   return sortKey.endsWith("Reverse")
     ? sortedIngredients.reverse()
     : sortedIngredients
+}
+
+function searchIngredients({ ingredients, search }) {
+  // search ingredients by search string
+  if (!search) {
+    console.debug("no search string")
+    return ingredients
+  }
+  console.debug("searching ingredients: ", search)
+  return ingredients.filter(ingredient => {
+    return (
+      ingredient.name.toLowerCase().includes(search.toLowerCase()) ||
+      ingredient.brand.toLowerCase().includes(search.toLowerCase())
+    )
+  })
 }

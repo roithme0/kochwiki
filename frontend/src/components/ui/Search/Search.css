@@ -1,0 +1,31 @@
+.search {
+  --padding-vertical: 0.1rem;
+  --padding-horizontal: 0.5rem;
+  border-bottom: 2px solid var(--primary-color);
+  padding: var(--padding-vertical) var(--padding-horizontal);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+
+  &:focus-within {
+    border-color: transparent;
+    outline: 2px solid var(--highlight-color);
+    border-radius: calc(1rem + 2 * var(--padding-vertical));
+  }
+
+  & .search-field {
+    flex: 1;
+    padding: 0;
+    border: none;
+    font: inherit;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  & .button {
+    flex: 0;
+    height: 1.5rem;
+  }
+}

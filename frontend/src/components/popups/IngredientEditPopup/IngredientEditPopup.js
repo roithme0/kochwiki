@@ -40,12 +40,7 @@ export default function EditIngredientPopup({
     <div className="edit-ingredient-popup">
       <div className="header">
         <h2 className="title">{title}</h2>
-        <Button
-          type={"neutral"}
-          img={close}
-          clickHandler={closeHandler}
-          classNames={"close"}
-        />
+        <Button type="neutral" img={close} clickHandler={closeHandler} />
       </div>
       <form
         key={form.id}
@@ -137,7 +132,7 @@ export default function EditIngredientPopup({
           <NonFieldErrors nonFieldErrors={form.nonFieldErrors} />
         )}
         <div className="buttons-wrapper">
-          <Button type="positive" img={check} classNames="save-ingredient" />
+          <Button type="positive" img={check} />
           <Button
             type="negative"
             img={cancel}
@@ -145,7 +140,6 @@ export default function EditIngredientPopup({
               event.preventDefault()
               closeHandler()
             }}
-            classNames="cancel-ingredient"
           />
         </div>
       </form>
