@@ -1,4 +1,4 @@
-import "./Home.css"
+import css from "./Home.module.css"
 
 import Recipes from "../../assets/images/recipes.png"
 import Ingredients from "../../assets/images/ingredients.png"
@@ -15,12 +15,12 @@ export default function Home({ setHeadline, setBack }) {
   }, [setHeadline, setBack])
 
   return (
-    <main className="home">
-      <nav className="nav-wrapper">
-        <Link to="recipes/" className="recipes-link">
+    <main>
+      <nav className={css.navWrapper}>
+        <Link to="recipes/" className={css.recipesLink}>
           <img src={Recipes} alt="Rezepte" />
         </Link>
-        <Link to="ingredients/" className="ingredients-link">
+        <Link to="ingredients/" className={css.ingredientsLink}>
           <img src={Ingredients} alt="Zutaten" />
         </Link>
       </nav>

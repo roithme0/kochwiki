@@ -1,4 +1,4 @@
-import "./Recipes.css"
+import css from "./Recipes.module.css"
 
 import imageOffOutline from "../../assets/images/mdi/image-off-outline.png"
 
@@ -20,8 +20,8 @@ export default function Recipes({ setHeadline, setBack }) {
   }, [])
 
   return (
-    <main className="recipes">
-      <article className="main-content">
+    <main>
+      <article>
         {recipes.map(recipe => (
           <Link to="#" key={recipe.id}>
             {recipe.image ? (

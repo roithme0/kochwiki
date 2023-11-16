@@ -1,4 +1,4 @@
-import "./Ingredients.css"
+import css from "./Ingredients.module.css"
 
 import { useState, useEffect } from "react"
 import { getIngredients } from "../../services/api/Ingredient/Ingredient"
@@ -20,13 +20,11 @@ export default function Ingredients({ setHeadline, setBack }) {
   }, [setIngredients])
 
   return (
-    <main className="ingredients">
+    <main className={css.ingredients}>
       {ingredients.length ? (
-        <div className="ingredients">
-          <IngredientsGrid ingredients={ingredients} />
-        </div>
+        <IngredientsGrid ingredients={ingredients} />
       ) : (
-        <p className="placeholder">Keine Zutaten gefunden.</p>
+        <p className={css.placeholder}>Keine Zutaten gefunden.</p>
       )}
     </main>
   )
