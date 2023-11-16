@@ -1,14 +1,10 @@
-.ingredients-grid-header {
-  grid-column: span var(--columns);
-  display: grid;
-  grid-template-columns: subgrid;
-
-  & .header-field {
+.ingredient-field {
+  & .field-value {
     --padding-horizontal: 0.5rem;
     --padding-vertical: 0.25rem;
     margin: 0;
     padding: var(--padding-vertical) var(--padding-horizontal);
-    background-color: var(--tertiary-background);
+    background-color: var(--secondary-background);
     border-radius: calc(1rem + 2 * var(--padding-vertical));
   }
 }

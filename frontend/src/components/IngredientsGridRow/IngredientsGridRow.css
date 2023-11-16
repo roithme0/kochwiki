@@ -1,6 +1,5 @@
 .ingredients-grid-row {
-  --columns: 7;
+  grid-column: span var(--columns);
   display: grid;
-  grid-template-columns: repeat(var(--columns), 1fr);
-  gap: 0.1rem;
+  grid-template-columns: subgrid;
 }

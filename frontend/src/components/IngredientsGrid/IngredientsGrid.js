@@ -7,9 +7,9 @@ export default function IngredientsGrid({ ingredients }) {
   // render header and grid of ingredients
 
   return (
-    <>
+    <div className="ingredients-grid">
       <IngredientsGridHeader verboseNames={ingredients[0].verbose_names} />
       <IngredientsGridBody initialIngredients={ingredients} />
-    </>
+    </div>
   )
 }
