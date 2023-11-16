@@ -15,27 +15,33 @@ export default function IngredientsGridHeader({
   const [headerFields, setHeaderFields] = useState(Object.entries(verboseNames))
 
   useEffect(() => {
+    // prevent id field from beeing displayed
+    console.warn("getting verboseNames ...")
     const verboseNamesCopy = { ...verboseNames }
     delete verboseNamesCopy["id"]
     setHeaderFields(Object.entries(verboseNamesCopy))
   }, [verboseNames])
 
   useEffect(() => {
+    // set initial value for sort key
+    console.warn("setting initial sort key: ", headerFields[0][0])
     setSortKey(headerFields[0][0])
   }, [headerFields, setSortKey])
 
   return (
     <div className="ingredients-grid-header">
       {headerFields.map(([fieldName, verboseName]) => (
-        <div className="header-field">
-          <p key={fieldName} className="column-name">
-            {verboseName}
-          </p>
+        <div
+          key={fieldName}
+          className="header-field"
+          onClick={() => setSortKey(fieldName)}
+        >
+          <p className="column-name">{verboseName}</p>
           {sortKey === fieldName ? (
             <img
-              src={sortDescending}
+              src={sortAscending}
               alt="absteigend sortiert"
-              className="sort sort-descending"
+              className="sort sort-ascending"
             />
           ) : (
             <img src={sort} alt="sortieren" className="sort sort-placeholder" />
