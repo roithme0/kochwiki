@@ -11,7 +11,7 @@ export default function Recipes({ setHeadline, setBack }) {
   useEffect(() => {
     setHeadline("Rezepte")
     setBack({ url: "/", visibility: "" })
-  }, [])
+  }, [setHeadline, setBack])
 
   const [recipes, setRecipes] = useState([])
 

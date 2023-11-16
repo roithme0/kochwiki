@@ -8,7 +8,8 @@
 .gridControls {
   grid-column: span var(--columns);
   margin: 0.25rem 0;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr min-content;
   align-items: center;
   gap: var(--gap);
 }
