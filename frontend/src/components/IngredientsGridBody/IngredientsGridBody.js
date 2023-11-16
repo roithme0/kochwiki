@@ -5,8 +5,9 @@ import { useEffect, useState } from "react"
 
 export default function IngredientsGridBody({
   initialIngredients,
-  sortKey,
+  filter,
   search,
+  sortKey,
 }) {
   // render grid body
 
@@ -28,12 +29,16 @@ export default function IngredientsGridBody({
       ingredients: ingredients,
       sortKey: sortKey,
     })
+    ingredients = filterIngredients({
+      ingredients: ingredients,
+      filter: filter,
+    })
     ingredients = searchIngredients({
       ingredients: ingredients,
       search: search,
     })
     setProcessedIngredients(ingredients)
-  }, [initialIngredients, sortKey, search])
+  }, [initialIngredients, search, filter, sortKey])
 
   return (
     <div className={css.ingredientsGridBody}>
@@ -85,5 +90,17 @@ function searchIngredients({ ingredients, search }) {
       ingredient.name.toLowerCase().includes(search.toLowerCase()) ||
       ingredient.brand.toLowerCase().includes(search.toLowerCase())
     )
+  })
+}
+
+function filterIngredients({ ingredients, filter }) {
+  // filter ingredients by filter string
+  if (!filter) {
+    console.debug("no filter string")
+    return ingredients
+  }
+  console.debug("filtering ingredients: ", filter)
+  return ingredients.filter(ingredient => {
+    return ingredient.unit === filter
   })
 }

@@ -26,8 +26,9 @@ export default function IngredientsGrid({ ingredients }) {
       />
       <IngredientsGridBody
         initialIngredients={ingredients}
-        sortKey={sortKey}
         search={search}
+        filter={filter}
+        sortKey={sortKey}
       />
     </div>
   )

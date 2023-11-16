@@ -5,12 +5,9 @@
 }
 
 .headerField {
-  --padding-horizontal: 0.5rem;
-  --padding-vertical: 0.25rem;
-  padding: var(--padding-vertical) var(--padding-horizontal);
+  padding: 0.15rem 0.25rem;
   background-color: var(--tertiary-background);
   border-radius: var(--border-radius);
-  /* border-radius: calc(1rem + 2 * var(--padding-vertical)); */
   cursor: pointer;
   display: flex;
   align-items: center;

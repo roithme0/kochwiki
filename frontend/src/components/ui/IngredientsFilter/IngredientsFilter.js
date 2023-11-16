@@ -4,13 +4,24 @@ export default function IngredientsFilter({ setFilter }) {
   const choices = ["g", "ml", "Stk."]
 
   return (
-    <select className={css.selectUnit} defaultValue="">
-      <option value="">alle</option>
-      {choices.map((choice, index) => (
-        <option key={index} value={choice}>
-          {choice}
+    <label className={css.label}>
+      <select
+        className={css.selectUnit}
+        defaultValue=""
+        onChange={event => {
+          setFilter(event.target.value)
+        }}
+      >
+        <option disabled value="">
+          Einheit filtern ...
         </option>
-      ))}
-    </select>
+        <option value="">alle</option>
+        {choices.map((choice, index) => (
+          <option key={index} value={choice}>
+            {choice}
+          </option>
+        ))}
+      </select>
+    </label>
   )
 }
