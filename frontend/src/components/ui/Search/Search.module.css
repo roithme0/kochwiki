@@ -1,5 +1,5 @@
 .search {
-  --padding-vertical: 0.1rem;
+  --padding-vertical: 0.15rem;
   --padding-horizontal: 0.5rem;
   border-bottom: 2px solid var(--primary-color);
   padding: var(--padding-vertical) var(--padding-horizontal);
@@ -10,7 +10,8 @@
   &:focus-within {
     border-color: transparent;
     outline: 2px solid var(--highlight-color);
-    border-radius: calc(1rem + 2 * var(--padding-vertical));
+    border-radius: var(--border-radius);
+    /* border-radius: calc(1rem + 2 * var(--padding-vertical)); */
   }
 }
 

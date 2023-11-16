@@ -15,6 +15,7 @@
   --header-height: 2.2rem;
   --footer-height: var(--header-height);
   --used-width: 80rem;
+  --border-radius: 0.5rem;
   --gap: 1rem;
 }
 

@@ -1,9 +1,18 @@
 import css from "./IngredientsFilter.module.css"
 
-import Select from "../Select/Select"
-
 export default function IngredientsFilter({ setFilter }) {
   const choices = ["g", "ml", "Stk."]
 
-  return <Select choices={choices} />
+  return (
+    <select className={css.selectUnit}>
+      <option selected value="">
+        alle
+      </option>
+      {choices.map((choice, index) => (
+        <option key={index} value={choice}>
+          {choice}
+        </option>
+      ))}
+    </select>
+  )
 }

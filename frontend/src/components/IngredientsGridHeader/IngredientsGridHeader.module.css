@@ -9,7 +9,8 @@
   --padding-vertical: 0.25rem;
   padding: var(--padding-vertical) var(--padding-horizontal);
   background-color: var(--tertiary-background);
-  border-radius: calc(1rem + 2 * var(--padding-vertical));
+  border-radius: var(--border-radius);
+  /* border-radius: calc(1rem + 2 * var(--padding-vertical)); */
   cursor: pointer;
   display: flex;
   align-items: center;

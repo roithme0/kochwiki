@@ -1,0 +1,15 @@
+.selectUnit {
+  --padding-vertical: 0.15rem;
+  --padding-horizontal: 0.5rem;
+  padding: var(--padding-vertical) var(--padding-horizontal);
+  border: none;
+  border-bottom: 2px solid var(--primary-color);
+  background-color: transparent;
+  font: inherit;
+
+  &:focus {
+    border-color: transparent;
+    outline: 2px solid var(--highlight-color);
+    /* border-radius: calc(1rem + 2 * var(--padding-vertical)); => build custom select */
+  }
+}
