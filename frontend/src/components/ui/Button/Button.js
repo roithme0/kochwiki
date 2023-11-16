@@ -1,15 +1,15 @@
-import "./Button.css"
+import css from "./Button.module.css"
 
 export default function Button({
-  type,
+  type, // neutral, positive, negative -> css classes
   img,
   alternativeText = "",
-  clickHandler = null,
+  clickHandler = event => {},
 }) {
   return (
     <button
-      onClick={clickHandler ? event => clickHandler(event) : undefined}
-      className={"button " + type}
+      onClick={event => clickHandler(event)}
+      className={`${css.button} ${css[type]}`}
     >
       <img src={img} alt={alternativeText} />
     </button>

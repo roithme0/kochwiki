@@ -13,7 +13,7 @@
     border-radius: calc(1rem + 2 * var(--padding-vertical));
   }
 
-  & .search-field {
+  & .searchField {
     flex: 1;
     padding: 0;
     border: none;
@@ -22,10 +22,5 @@
     &:focus {
       outline: none;
     }
-  }
-
-  & .button {
-    flex: 0;
-    height: 1.5rem;
   }
 }

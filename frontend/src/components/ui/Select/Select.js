@@ -1,5 +1,4 @@
-import "../Input.css"
-import "./Select.css"
+import css from "./Select.module.css"
 
 import { useState } from "react"
 

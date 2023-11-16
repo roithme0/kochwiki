@@ -2,7 +2,6 @@ import "./Main.css"
 
 import Header from "../Header/Header"
 import Footer from "../Footer/Footer"
-
 import { useState } from "react"
 
 export default function Main({ Component }) {

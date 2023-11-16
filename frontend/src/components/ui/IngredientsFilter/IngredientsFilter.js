@@ -1,4 +1,4 @@
-import "./IngredientsFilter.css"
+import css from "./IngredientsFilter.module.css"
 
 import Select from "../Select/Select"
 

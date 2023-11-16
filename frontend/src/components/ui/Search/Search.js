@@ -1,4 +1,4 @@
-import "./Search.css"
+import css from "./Search.module.css"
 
 import magnify from "../../../assets/images/mdi/magnify.png"
 import Button from "../Button/Button"
@@ -11,11 +11,11 @@ export default function Search({ setSearch }) {
   }, [setSearch])
 
   return (
-    <div className="search">
+    <div className={css.search}>
       <input
         type="text"
         placeholder="Name oder Marke suchen ..."
-        className="search-field"
+        className={css.searchField}
         onChange={event => setSearch(event.target.value)}
       />
       <Button type="neutral" img={magnify} alternativeText="Lupe" />
