@@ -6,9 +6,24 @@
   & .header-field {
     --padding-horizontal: 0.5rem;
     --padding-vertical: 0.25rem;
-    margin: 0;
     padding: var(--padding-vertical) var(--padding-horizontal);
     background-color: var(--tertiary-background);
     border-radius: calc(1rem + 2 * var(--padding-vertical));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  & .column-name {
+    margin: 0;
+  }
+
+  & .sort {
+    object-fit: contain;
+    height: 1rem;
+  }
+
+  & .sort-placeholder {
+    visibility: hidden;
   }
 }

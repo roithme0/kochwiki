@@ -1,6 +1,8 @@
 import "./IngredientField.css"
 
 export default function IngredientsField({ ingredient, fieldName }) {
+  // render value of ingredient field
+
   if (fieldName === "id") {
     return null
   }
