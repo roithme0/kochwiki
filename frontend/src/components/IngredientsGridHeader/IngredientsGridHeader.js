@@ -16,7 +16,6 @@ export default function IngredientsGridHeader({
 
   useEffect(() => {
     // prevent id field from beeing displayed
-    console.warn("getting verboseNames ...")
     const verboseNamesCopy = { ...verboseNames }
     delete verboseNamesCopy["id"]
     setHeaderFields(Object.entries(verboseNamesCopy))
@@ -24,7 +23,6 @@ export default function IngredientsGridHeader({
 
   useEffect(() => {
     // set initial value for sort key
-    console.warn("setting initial sort key: ", headerFields[0][0])
     setSortKey(headerFields[0][0])
   }, [headerFields, setSortKey])
 
