@@ -34,13 +34,19 @@ export default function IngredientsGridHeader({
         <div
           key={fieldName}
           className="header-field"
-          onClick={() => setSortKey(fieldName)}
+          onClick={() => setSortKey(getUpdatedSortKey({ fieldName, sortKey }))}
         >
           <p className="column-name">{verboseName}</p>
           {sortKey === fieldName ? (
             <img
-              src={sortAscending}
+              src={sortDescending}
               alt="absteigend sortiert"
+              className="sort sort-descending"
+            />
+          ) : sortKey === `${fieldName}Reverse` ? (
+            <img
+              src={sortAscending}
+              alt="aufsteigend sortiert"
               className="sort sort-ascending"
             />
           ) : (
@@ -50,4 +56,12 @@ export default function IngredientsGridHeader({
       ))}
     </div>
   )
+}
+
+function getUpdatedSortKey({ fieldName, sortKey }) {
+  // return updated value of sort key
+  if (sortKey === fieldName) {
+    return `${fieldName}Reverse`
+  }
+  return fieldName
 }

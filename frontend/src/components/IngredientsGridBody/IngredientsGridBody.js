@@ -34,19 +34,22 @@ export default function IngredientsGridBody({ initialIngredients, sortKey }) {
 
 function sortIngredients({ ingredients, sortKey }) {
   // sort ingredients by sort key
-  if (!ingredients[0].verbose_names.hasOwnProperty(sortKey)) {
+  const sortField = sortKey.replace("Reverse", "")
+  if (!ingredients[0].verbose_names.hasOwnProperty(sortField)) {
     console.debug("invalid sort key: ", sortKey)
     return ingredients
   }
   console.debug("sorting ingredients: ", sortKey)
-  const sortedIngredients = [...ingredients]
-  return sortedIngredients.sort((a, b) => {
-    if (a[sortKey] < b[sortKey]) {
+  const sortedIngredients = [...ingredients].sort((a, b) => {
+    if (a[sortField] < b[sortField]) {
       return -1
     }
-    if (a[sortKey] > b[sortKey]) {
+    if (a[sortField] > b[sortField]) {
       return 1
     }
     return 0
   })
+  return sortKey.endsWith("Reverse")
+    ? sortedIngredients.reverse()
+    : sortedIngredients
 }
