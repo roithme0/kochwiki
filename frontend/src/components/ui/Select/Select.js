@@ -16,18 +16,14 @@ export default function InputSelect({
         name={name}
         required={required}
         value={value}
-        onChange={event => changeHandler(event)}
+        onChange={event => setValue(event.target.value)}
       >
-        {choices.map(choice => (
-          <option key={choice.value} value={choice.value}>
-            {choice.label}
+        {choices.map((choice, index) => (
+          <option key={index} value={choice}>
+            {choice}
           </option>
         ))}
       </select>
     </div>
   )
-
-  function changeHandler(event) {
-    setValue(event.target.value)
-  }
 }

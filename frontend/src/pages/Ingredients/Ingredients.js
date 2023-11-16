@@ -2,14 +2,12 @@ import "./Ingredients.css"
 
 import { useState, useEffect } from "react"
 import { getIngredients } from "../../services/api/Ingredient/Ingredient"
-import Search from "../../components/ui/Search/Search"
 import IngredientsGrid from "../../components/IngredientsGrid/IngredientsGrid"
 
 export default function Ingredients({ setHeadline, setBack }) {
   // fetch and render ingredients
 
   const [ingredients, setIngredients] = useState([])
-  const [search, setSearch] = useState("")
 
   useEffect(() => {
     setHeadline("Zutaten")
@@ -25,8 +23,7 @@ export default function Ingredients({ setHeadline, setBack }) {
     <main className="ingredients">
       {ingredients.length ? (
         <div className="ingredients">
-          <Search setSearch={setSearch} />
-          <IngredientsGrid ingredients={ingredients} search={search} />
+          <IngredientsGrid ingredients={ingredients} />
         </div>
       ) : (
         <p className="placeholder">Keine Zutaten gefunden.</p>
