@@ -61,7 +61,6 @@ export default function IngredientsGrid({ ingredients }) {
         sortKey={sortKey}
         setSortKey={setSortKey}
         columnsToRender={columnsToRender}
-        columnsOrder={columnsOrder}
       />
       <IngredientsGridBody
         initialIngredients={ingredients}
@@ -69,7 +68,6 @@ export default function IngredientsGrid({ ingredients }) {
         filter={filter}
         sortKey={sortKey}
         columnsToRender={columnsToRender}
-        columnsOrder={columnsOrder}
       />
     </div>
   )

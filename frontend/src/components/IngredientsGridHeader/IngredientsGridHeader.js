@@ -9,32 +9,36 @@ export default function IngredientsGridHeader({
   verboseNames,
   sortKey,
   setSortKey,
+  columnsToRender,
 }) {
   // render header of ingredients grid
 
-  const [headerFields, setHeaderFields] = useState(Object.entries(verboseNames))
+  const [headerFields, setHeaderFields] = useState({ ...verboseNames })
 
   useEffect(() => {
-    // prevent id field from beeing displayed
-    const verboseNamesCopy = { ...verboseNames }
-    delete verboseNamesCopy["id"]
-    setHeaderFields(Object.entries(verboseNamesCopy))
-  }, [verboseNames])
+    // update header fields when columns to render change
+    var newHeaderFields = {}
+    columnsToRender.forEach(column => {
+      newHeaderFields[column] = verboseNames[column]
+    })
+    console.debug("newHeaderFields: ", newHeaderFields)
+    setHeaderFields(newHeaderFields)
+  }, [columnsToRender])
 
   useEffect(() => {
     // set initial value for sort key
-    setSortKey(headerFields[0][0])
-  }, [headerFields, setSortKey])
+    setSortKey("name")
+  }, [])
 
   return (
     <div className={css.ingredientsGridHeader}>
-      {headerFields.map(([fieldName, verboseName]) => (
+      {Object.keys(headerFields).map(fieldName => (
         <div
           key={fieldName}
           className={css.headerField}
           onClick={() => setSortKey(getUpdatedSortKey({ fieldName, sortKey }))}
         >
-          <p className={css.columnName}>{verboseName}</p>
+          <p className={css.columnName}>{headerFields[fieldName]}</p>
           {sortKey === fieldName ? (
             <img
               src={sortDescending}
