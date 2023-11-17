@@ -19,7 +19,7 @@ export default function Header({ headline, back }) {
         <Button
           svg={mdiArrowLeft}
           clickHandler={() => (window.location.href = back.url)}
-          classes={css.button}
+          classes={`${css.button} ${css[back.visibility]}`}
         />
       </section>
     </header>
