@@ -1,6 +1,6 @@
 import css from "./Home.module.css"
 
-import accountStarOutline from "../../assets/images/mdi/account-star-outline.png"
+import { mdiAccountStarOutline } from "@mdi/js"
 import Recipes from "../../assets/images/recipes.png"
 import Ingredients from "../../assets/images/ingredients.png"
 import { Link } from "react-router-dom"
@@ -12,7 +12,13 @@ export default function Home({ setHeadline, setBack, setButtons }) {
   useEffect(() => {
     setHeadline("Startseite")
     setBack({ url: "/", visibility: "hidden" })
-    setButtons([{ img: accountStarOutline, clickHandler: () => {} }])
+    setButtons([
+      {
+        icon: mdiAccountStarOutline,
+        clickHandler: () =>
+          (window.location.href = "http://localhost:8000/admin/"),
+      },
+    ])
   }, [])
 
   return (

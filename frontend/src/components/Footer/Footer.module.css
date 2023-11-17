@@ -11,8 +11,8 @@
   width: var(--used-width);
   max-width: 100%;
   margin: 0 auto;
+}
 
-  & img {
-    height: var(--footer-font-size);
-  }
+.icon {
+  height: 3rem;
 }

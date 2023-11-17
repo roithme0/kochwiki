@@ -1,6 +1,6 @@
 import css from "./Search.module.css"
 
-import magnify from "../../../assets/images/mdi/magnify.png"
+import { mdiMagnify } from "@mdi/js"
 import Button from "../Button/Button"
 import { useEffect } from "react"
 
@@ -18,12 +18,7 @@ export default function Search({ setSearch }) {
         className={css.searchField}
         onChange={event => setSearch(event.target.value)}
       />
-      <Button
-        type="neutral"
-        img={magnify}
-        alternativeText="Lupe"
-        className={css.magnify}
-      />
+      <Button icon={mdiMagnify} classes={css.magnify} />
     </div>
   )
 }

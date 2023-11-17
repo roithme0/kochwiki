@@ -1,6 +1,6 @@
 import css from "./Ingredients.module.css"
 
-import plus from "../../assets/images/mdi/plus.png"
+import { mdiPlus } from "@mdi/js"
 import { useState, useEffect } from "react"
 import { getIngredients } from "../../services/api/Ingredient/Ingredient"
 import IngredientsGrid from "../../components/IngredientsGrid/IngredientsGrid"
@@ -13,7 +13,12 @@ export default function Ingredients({ setHeadline, setBack, setButtons }) {
   useEffect(() => {
     setHeadline("Zutaten")
     setBack({ url: "/", visibility: "" })
-    setButtons([{ img: plus, clickHandler: () => {} }])
+    setButtons([
+      {
+        icon: mdiPlus,
+        clickHandler: () => {},
+      },
+    ])
   }, [])
 
   useEffect(() => {
