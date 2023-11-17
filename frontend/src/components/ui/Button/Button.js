@@ -1,7 +1,7 @@
 import css from "./Button.module.css"
 
 export default function Button({
-  type, // neutral, positive, negative -> css classes
+  type = "neutral", // neutral, positive, negative -> css classes
   img,
   alternativeText = "",
   className = "",

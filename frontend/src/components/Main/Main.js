@@ -9,17 +9,17 @@ export default function Main({ Component }) {
 
   const [headline, setHeadline] = useState("")
   const [back, setBack] = useState({ url: "", visibility: "" })
-
-  const props = {
-    setHeadline: setHeadline,
-    setBack: setBack,
-  }
+  const [buttons, setButtons] = useState([])
 
   return (
     <>
       <Header headline={headline} back={back} />
-      <Component {...props} />
-      <Footer />
+      <Component
+        setHeadline={setHeadline}
+        setBack={setBack}
+        setButtons={setButtons}
+      />
+      <Footer buttons={buttons} />
     </>
   )
 }

@@ -1,17 +1,17 @@
 import css from "./Footer.module.css"
 
-import accountStarOutline from "../../assets/images/mdi/account-star-outline.png"
-import { Link } from "react-router-dom"
+import Button from "../ui/Button/Button"
 
-export default function Footer() {
+export default function Footer({ buttons }) {
   // render footer
+  // buttons: [{img: ?, clickHanlder: ?}, ...]
 
   return (
     <footer className={css.footer}>
       <section className={css.footerContent}>
-        <Link to="/admin">
-          <img src={accountStarOutline} alt="Admin" />
-        </Link>
+        {buttons.map(button => (
+          <Button img={button["img"]} clickHandler={button["clickHandler"]} />
+        ))}
       </section>
     </footer>
   )

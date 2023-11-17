@@ -1,10 +1,11 @@
 import css from "./Ingredients.module.css"
 
+import plus from "../../assets/images/mdi/plus.png"
 import { useState, useEffect } from "react"
 import { getIngredients } from "../../services/api/Ingredient/Ingredient"
 import IngredientsGrid from "../../components/IngredientsGrid/IngredientsGrid"
 
-export default function Ingredients({ setHeadline, setBack }) {
+export default function Ingredients({ setHeadline, setBack, setButtons }) {
   // fetch and render ingredients
 
   const [ingredients, setIngredients] = useState([])
@@ -12,6 +13,7 @@ export default function Ingredients({ setHeadline, setBack }) {
   useEffect(() => {
     setHeadline("Zutaten")
     setBack({ url: "/", visibility: "" })
+    setButtons([{ img: plus, clickHandler: () => {} }])
   }, [])
 
   useEffect(() => {
