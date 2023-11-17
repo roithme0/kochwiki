@@ -13,6 +13,6 @@
   margin: 0 auto;
 }
 
-.icon {
-  height: 3rem;
+.button {
+  height: var(--footer-font-size);
 }

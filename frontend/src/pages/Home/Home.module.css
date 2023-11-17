@@ -3,15 +3,13 @@
   gap: var(--gap);
 }
 
-.button {
-  flex: 1 0 0;
-
-  > img {
-    object-fit: contain;
-    padding: var(--gap);
-    width: 100%;
-    box-sizing: border-box;
-    background-color: var(--secondary-background);
-    border-radius: 2rem;
-  }
+.buttonWrapper {
+  flex: 1;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  background-color: var(--secondary-background);
+  border-radius: 2rem;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
 }
