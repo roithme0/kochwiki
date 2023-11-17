@@ -1,11 +1,7 @@
 import css from "./Recipes.module.css"
 
-import imageOffOutline from "../../assets/images/mdi/image-off-outline.png"
-
 import { fetchRecipes } from "../../services/api/Recipe/Recipe"
-
 import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
 
 export default function Recipes({ setHeadline, setBack }) {
   useEffect(() => {
@@ -21,18 +17,7 @@ export default function Recipes({ setHeadline, setBack }) {
 
   return (
     <main>
-      <article>
-        {recipes.map(recipe => (
-          <Link to="#" key={recipe.id}>
-            {recipe.image ? (
-              <img src={recipe.image} alt={recipe.name} />
-            ) : (
-              <img src={imageOffOutline} alt={recipe.name} />
-            )}
-            <span>{recipe.name}</span>
-          </Link>
-        ))}
-      </article>
+      <article></article>
     </main>
   )
 }

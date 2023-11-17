@@ -1,8 +1,7 @@
 import css from "./IngredientsGridHeader.module.css"
 
-import sort from "../../assets/images/mdi/sort.png"
-import sortDescending from "../../assets/images/mdi/sort-descending.png"
-import sortAscending from "../../assets/images/mdi/sort-ascending.png"
+import { mdiSort, mdiSortAscending, mdiSortDescending } from "@mdi/js"
+import Icon from "@mdi/react"
 import { useEffect, useState } from "react"
 
 export default function IngredientsGridHeader({
@@ -40,21 +39,13 @@ export default function IngredientsGridHeader({
         >
           <p className={css.columnName}>{headerFields[fieldName]}</p>
           {sortKey === fieldName ? (
-            <img
-              src={sortDescending}
-              alt="absteigend sortiert"
-              className={css.sort}
-            />
+            <Icon path={mdiSortDescending} size={1} className={css.sort} />
           ) : sortKey === `${fieldName}Reverse` ? (
-            <img
-              src={sortAscending}
-              alt="aufsteigend sortiert"
-              className={css.sort}
-            />
+            <Icon path={mdiSortAscending} size={1} className={css.sort} />
           ) : (
-            <img
-              src={sort}
-              alt="sortieren"
+            <Icon
+              path={mdiSort}
+              size={1}
               className={`${css.sort} ${css.sortPlaceholder}`}
             />
           )}
