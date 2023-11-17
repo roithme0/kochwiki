@@ -8,19 +8,12 @@ export default function IngredientsGridBody({
   filter,
   search,
   sortKey,
+  columnsToRender,
 }) {
   // render grid body
 
-  const [rowFields, setRowFields] = useState([])
   const [processedIngredients, setProcessedIngredients] =
     useState(initialIngredients)
-
-  useEffect(() => {
-    // prevent id field from beeing displayed
-    const { verbose_names: verboseNames } = initialIngredients[0]
-    delete verboseNames["id"]
-    setRowFields(Object.keys(verboseNames))
-  }, [initialIngredients])
 
   useEffect(() => {
     // sort and search ingredients
@@ -48,7 +41,7 @@ export default function IngredientsGridBody({
       {processedIngredients.map(ingredient => (
         <IngredientsGridRow
           ingredient={ingredient}
-          fields={rowFields}
+          fields={columnsToRender}
           key={ingredient.id}
         />
       ))}
