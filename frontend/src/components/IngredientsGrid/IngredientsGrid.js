@@ -4,7 +4,7 @@ import IngredientsGridHeader from "../IngredientsGridHeader/IngredientsGridHeade
 import IngredientsGridBody from "../IngredientsGridBody/IngredientsGridBody"
 import Search from "../../components/ui/Search/Search"
 import IngredientsFilter from "../../components/ui/IngredientsFilter/IngredientsFilter"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 
 export default function IngredientsGrid({ ingredients }) {
   // render header and grid of ingredients
@@ -20,6 +20,7 @@ export default function IngredientsGrid({ ingredients }) {
     "edit",
     "delete",
   ]
+  const ingredientsGrid = useRef()
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
   const [columnsToRender, setColumnsToRender] = useState([
@@ -50,8 +51,16 @@ export default function IngredientsGrid({ ingredients }) {
     setColumnsToRender(columns)
   }, [windowWidth])
 
+  useEffect(() => {
+    // update css variable --columns
+    ingredientsGrid.current.style.setProperty(
+      "--columns",
+      columnsToRender.length
+    )
+  }, [columnsToRender])
+
   return (
-    <div className={css.ingredientsGrid}>
+    <div className={css.ingredientsGrid} ref={ingredientsGrid}>
       <div className={css.gridControls}>
         <Search setSearch={setSearch} />
         <IngredientsFilter setFilter={setFilter} />
