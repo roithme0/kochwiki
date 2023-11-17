@@ -3,7 +3,7 @@ import css from "./Ingredients.module.css"
 import { mdiPlus } from "@mdi/js"
 import { useState, useEffect } from "react"
 import { getIngredients } from "../../services/api/Ingredient/Ingredient"
-import IngredientsGrid from "../../components/IngredientsGrid/IngredientsGrid"
+import IngredientsGrid from "../../components/Ingredients/IngredientsGrid/IngredientsGrid"
 import Popup from "../../components/popups/Popup/Popup"
 import IngredientAddPopup from "../../components/popups/IngredientAddPopup/IngredientAddPopup"
 

@@ -2,8 +2,8 @@ import css from "./IngredientsGrid.module.css"
 
 import IngredientsGridHeader from "../IngredientsGridHeader/IngredientsGridHeader"
 import IngredientsGridBody from "../IngredientsGridBody/IngredientsGridBody"
-import Search from "../../components/ui/Search/Search"
-import IngredientsFilter from "../../components/ui/IngredientsFilter/IngredientsFilter"
+import Search from "../../ui/Search/Search"
+import IngredientsFilter from "../../ui/IngredientsFilter/IngredientsFilter"
 import { useEffect, useState, useRef } from "react"
 
 export default function IngredientsGrid({ ingredients }) {
