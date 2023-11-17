@@ -18,6 +18,7 @@
   padding: 0;
   border: none;
   font: inherit;
+  min-width: 0;
 
   &:focus {
     outline: none;
