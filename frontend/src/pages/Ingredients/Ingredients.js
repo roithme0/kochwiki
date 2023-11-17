@@ -4,11 +4,14 @@ import { mdiPlus } from "@mdi/js"
 import { useState, useEffect } from "react"
 import { getIngredients } from "../../services/api/Ingredient/Ingredient"
 import IngredientsGrid from "../../components/IngredientsGrid/IngredientsGrid"
+import Popup from "../../components/popups/Popup/Popup"
+import IngredientAddPopup from "../../components/popups/IngredientAddPopup/IngredientAddPopup"
 
 export default function Ingredients({ setHeadline, setBack, setButtons }) {
   // fetch and render ingredients
 
   const [ingredients, setIngredients] = useState([])
+  const [ingredientAddPopup, setIngredientAddPopup] = useState(false)
 
   useEffect(() => {
     setHeadline("Zutaten")
@@ -16,7 +19,9 @@ export default function Ingredients({ setHeadline, setBack, setButtons }) {
     setButtons([
       {
         icon: mdiPlus,
-        clickHandler: () => {},
+        clickHandler: () => {
+          setIngredientAddPopup(true)
+        },
       },
     ])
   }, [])
@@ -27,12 +32,20 @@ export default function Ingredients({ setHeadline, setBack, setButtons }) {
   }, [])
 
   return (
-    <main className={css.ingredients}>
-      {ingredients.length ? (
-        <IngredientsGrid ingredients={ingredients} />
-      ) : (
-        <p className={css.placeholder}>Keine Zutaten gefunden.</p>
+    <>
+      <main className={css.ingredients}>
+        {ingredients.length ? (
+          <IngredientsGrid ingredients={ingredients} />
+        ) : (
+          <p className={css.placeholder}>Keine Zutaten gefunden.</p>
+        )}
+      </main>
+      {ingredientAddPopup && (
+        <Popup
+          Component={IngredientAddPopup}
+          closeHandler={() => setIngredientAddPopup(false)}
+        />
       )}
-    </main>
+    </>
   )
 }

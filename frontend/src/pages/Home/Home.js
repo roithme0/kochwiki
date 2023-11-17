@@ -27,14 +27,14 @@ export default function Home({ setHeadline, setBack, setButtons }) {
         <div className={css.buttonWrapper}>
           <Button
             png={recipes}
-            classes={css.button}
+            className={css.button}
             clickHandler={() => (window.location.href = "/recipes/")}
           />
         </div>
         <div className={css.buttonWrapper}>
           <Button
             png={ingredients}
-            classes={css.button}
+            className={css.button}
             clickHandler={() => (window.location.href = "/ingredients/")}
           />
         </div>

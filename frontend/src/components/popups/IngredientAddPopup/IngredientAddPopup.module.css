@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headline {
+  margin: 0;
+  font-size: var(--header-font-size);
+  font-weight: 600;
+}
+
+.close {
+  height: var(--header-font-size);
+}

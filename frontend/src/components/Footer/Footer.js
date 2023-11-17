@@ -12,7 +12,7 @@ export default function Footer({ buttons }) {
         {buttons.map((button, index) => (
           <Button
             svg={button.icon}
-            classes={css.button}
+            className={css.button}
             clickHandler={button.clickHandler}
             key={index}
           />

@@ -18,7 +18,7 @@ export default function Search({ setSearch }) {
         className={css.searchField}
         onChange={event => setSearch(event.target.value)}
       />
-      <Button svg={mdiMagnify} classes={css.magnify} />
+      <Button svg={mdiMagnify} className={css.magnify} />
     </div>
   )
 }

@@ -13,13 +13,13 @@ export default function Header({ headline, back }) {
         <Button
           png={logo}
           clickHandler={() => (window.location.href = "/")}
-          classes={css.button}
+          className={css.button}
         />
         <h1 className={css.h1}>{headline}</h1>
         <Button
           svg={mdiArrowLeft}
           clickHandler={() => (window.location.href = back.url)}
-          classes={`${css.button} ${css[back.visibility]}`}
+          className={`${css.button} ${css[back.visibility]}`}
         />
       </section>
     </header>
