@@ -8,7 +8,7 @@ export default function Search({ setSearch }) {
   useEffect(() => {
     // set initial search
     setSearch("")
-  }, [setSearch])
+  }, [])
 
   return (
     <div className={css.search}>

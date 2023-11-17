@@ -12,12 +12,12 @@ export default function Ingredients({ setHeadline, setBack }) {
   useEffect(() => {
     setHeadline("Zutaten")
     setBack({ url: "/", visibility: "" })
-  }, [setHeadline, setBack])
+  }, [])
 
   useEffect(() => {
     console.debug("fetching ingredients ...")
     getIngredients({ setFunction: setIngredients })
-  }, [setIngredients])
+  }, [])
 
   return (
     <main className={css.ingredients}>
