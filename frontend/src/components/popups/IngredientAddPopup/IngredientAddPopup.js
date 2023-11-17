@@ -2,6 +2,7 @@ import css from "./IngredientAddPopup.module.css"
 
 import { mdiClose } from "@mdi/js"
 import Button from "../../ui/Button/Button"
+import IngredientAddForm from "../../Ingredients/IngredientAddForm/IngredientAddForm"
 
 export default function IngredientAddPopup({ closeHandler }) {
   return (
@@ -14,7 +15,7 @@ export default function IngredientAddPopup({ closeHandler }) {
           clickHandler={closeHandler}
         />
       </header>
-      <form className={css.form}></form>
+      <IngredientAddForm />
     </>
   )
 }
