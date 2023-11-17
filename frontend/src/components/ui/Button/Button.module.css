@@ -3,7 +3,6 @@
   box-sizing: border-box;
   aspect-ratio: 1;
   border-radius: var(--border-radius);
-  /* border-radius: 0.5rem; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,7 +52,9 @@
     }
   }
 }
-.icon {
+
+.svg,
+.png {
   height: 100% !important;
   width: 100% !important;
   color: var(--primary-color);

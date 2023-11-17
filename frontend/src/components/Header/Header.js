@@ -1,9 +1,8 @@
 import css from "./Header.module.css"
 
 import logo from "../../assets/images/logo.png"
-import arrowLeft from "../../assets/images/mdi/arrow-left.png"
-
-import { Link } from "react-router-dom"
+import { mdiArrowLeft } from "@mdi/js"
+import Button from "../ui/Button/Button"
 
 export default function Header({ headline, back }) {
   // render header
@@ -11,13 +10,17 @@ export default function Header({ headline, back }) {
   return (
     <header className={css.header}>
       <section className={css.headerContent}>
-        <Link to="/">
-          <img src={logo} alt="Logo" />
-        </Link>
+        <Button
+          png={logo}
+          clickHandler={() => (window.location.href = "/")}
+          classes={css.button}
+        />
         <h1 className={css.h1}>{headline}</h1>
-        <Link to={back.url} className={css[back.visibility]}>
-          <img src={arrowLeft} alt="Zurück" />
-        </Link>
+        <Button
+          svg={mdiArrowLeft}
+          clickHandler={() => (window.location.href = back.url)}
+          classes={css.button}
+        />
       </section>
     </header>
   )

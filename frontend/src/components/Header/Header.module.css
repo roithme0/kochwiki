@@ -11,13 +11,13 @@
   margin: 0 auto;
   padding: calc(var(--gap) / 2);
   box-sizing: border-box;
-
-  & img {
-    height: var(--header-font-size);
-  }
 }
 
-& .hidden {
+.button {
+  height: var(--header-font-size);
+}
+
+.hidden {
   visibility: hidden;
 }
 

@@ -11,7 +11,7 @@ export default function Footer({ buttons }) {
       <section className={css.footerContent}>
         {buttons.map((button, index) => (
           <Button
-            icon={button.icon}
+            svg={button.icon}
             classes={css.icon}
             clickHandler={button.clickHandler}
             key={index}

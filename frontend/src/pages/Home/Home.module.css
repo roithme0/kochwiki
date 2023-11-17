@@ -3,8 +3,7 @@
   gap: var(--gap);
 }
 
-.recipesLink,
-.ingredientsLink {
+.button {
   flex: 1 0 0;
 
   > img {

@@ -3,8 +3,11 @@ import css from "./Button.module.css"
 import Icon from "@mdi/react"
 
 export default function Button({
+  // display a button with an svg or png
+
   type = "neutral", // neutral, positive, negative -> css classes
-  icon,
+  svg = null,
+  png = null,
   classes = "",
   clickHandler = event => {},
 }) {
@@ -13,7 +16,8 @@ export default function Button({
       onClick={event => clickHandler(event)}
       className={`${css.button} ${css[type]} ${classes}`}
     >
-      <Icon path={icon} size={1} className={css.icon} />
+      {svg && <Icon path={svg} size={1} className={css.svg} />}
+      {png && <img src={png} alt="" className={css.png} />}
     </button>
   )
 }
