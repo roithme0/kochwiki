@@ -6,6 +6,10 @@
   display: flex;
   align-items: flex-end;
 
+  &.active {
+    border-color: var(--highlight-color);
+  }
+
   &:hover,
   &:focus-within {
     border-color: transparent;
@@ -31,7 +35,12 @@
   }
 }
 
-.magnify {
+.magnify,
+.clear {
   object-fit: contain;
   height: 1rem;
+}
+
+.clear:hover {
+  color: red;
 }

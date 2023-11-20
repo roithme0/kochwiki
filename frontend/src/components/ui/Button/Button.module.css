@@ -57,5 +57,5 @@
 .png {
   height: 100% !important;
   width: 100% !important;
-  color: var(--primary-color);
+  color: inherit;
 }
