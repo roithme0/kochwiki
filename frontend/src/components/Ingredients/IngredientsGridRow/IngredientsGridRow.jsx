@@ -16,6 +16,7 @@ export default function IngredientsGridRow({ ingredient, fields }) {
               svg={mdiPencil}
               className={css.editButton}
               clickHandler={() => {}}
+              key={fieldName}
             />
           )
         } else if (fieldName === "delete") {
@@ -24,6 +25,7 @@ export default function IngredientsGridRow({ ingredient, fields }) {
               svg={mdiDeleteOutline}
               className={css.deleteButton}
               clickHandler={() => {}}
+              key={fieldName}
             />
           )
         } else {

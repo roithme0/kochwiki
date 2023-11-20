@@ -16,7 +16,7 @@ export default function IngredientAddForm() {
   }
 
   return (
-    <form className={css.form}>
+    <form className={css.form} onSubmit={() => {}}>
       <div className={css.fieldsWrapper}>
         {Object.keys(fields).map(fieldName => (
           <FormField
@@ -29,7 +29,12 @@ export default function IngredientAddForm() {
       </div>
       <div className={css.buttonsWrapper}>
         <Button type="positive" svg={mdiCheck} className={css.saveButton} />
-        <Button type="negative" svg={mdiCancel} className={css.cancelButton} />
+        <Button
+          type="negative"
+          svg={mdiCancel}
+          className={css.cancelButton}
+          clickHandler={event => event.preventDefault()}
+        />
       </div>
     </form>
   )
