@@ -31,26 +31,34 @@ export default function IngredientsGridHeader({
 
   return (
     <div className={css.ingredientsGridHeader}>
-      {Object.keys(headerFields).map(fieldName => (
-        <div
-          key={fieldName}
-          className={css.headerField}
-          onClick={() => setSortKey(getUpdatedSortKey({ fieldName, sortKey }))}
-        >
-          <p className={css.columnName}>{headerFields[fieldName]}</p>
-          {sortKey === fieldName ? (
-            <Icon path={mdiSortDescending} size={1} className={css.sort} />
-          ) : sortKey === `${fieldName}Reverse` ? (
-            <Icon path={mdiSortAscending} size={1} className={css.sort} />
-          ) : (
-            <Icon
-              path={mdiSort}
-              size={1}
-              className={`${css.sort} ${css.sortPlaceholder}`}
-            />
-          )}
-        </div>
-      ))}
+      {Object.keys(headerFields).map(fieldName => {
+        if (["edit", "delete"].includes(fieldName)) {
+          return null
+        } else {
+          return (
+            <div
+              key={fieldName}
+              className={css.headerField}
+              onClick={() =>
+                setSortKey(getUpdatedSortKey({ fieldName, sortKey }))
+              }
+            >
+              <p className={css.columnName}>{headerFields[fieldName]}</p>
+              {sortKey === fieldName ? (
+                <Icon path={mdiSortDescending} size={1} className={css.sort} />
+              ) : sortKey === `${fieldName}Reverse` ? (
+                <Icon path={mdiSortAscending} size={1} className={css.sort} />
+              ) : (
+                <Icon
+                  path={mdiSort}
+                  size={1}
+                  className={`${css.sort} ${css.sortPlaceholder}`}
+                />
+              )}
+            </div>
+          )
+        }
+      })}
     </div>
   )
 }
