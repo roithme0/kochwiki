@@ -4,7 +4,11 @@ import { mdiPencil, mdiDeleteOutline } from "@mdi/js"
 import IngredientField from "../IngredientField"
 import Button from "../../ui/Button"
 
-export default function IngredientsGridRow({ ingredient, fields }) {
+export default function IngredientsGridRow({
+  ingredient,
+  fields,
+  setIngredientEditPopup,
+}) {
   // render row of ingredients grid
 
   return (
@@ -15,7 +19,9 @@ export default function IngredientsGridRow({ ingredient, fields }) {
             <Button
               svg={mdiPencil}
               className={css.editButton}
-              clickHandler={() => {}}
+              clickHandler={() => {
+                setIngredientEditPopup(true)
+              }}
               key={fieldName}
             />
           )
