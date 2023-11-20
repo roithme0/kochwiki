@@ -1,6 +1,6 @@
 import css from "./Footer.module.css"
 
-import Button from "../ui/Button/Button"
+import Button from "../ui/Button"
 
 export default function Footer({ buttons }) {
   // render footer

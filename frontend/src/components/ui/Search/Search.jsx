@@ -1,7 +1,7 @@
 import css from "./Search.module.css"
 
 import { mdiMagnify } from "@mdi/js"
-import Button from "../Button/Button"
+import Button from "../Button"
 import { useEffect } from "react"
 
 export default function Search({ setSearch }) {

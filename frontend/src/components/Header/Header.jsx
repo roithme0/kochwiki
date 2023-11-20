@@ -2,7 +2,7 @@ import css from "./Header.module.css"
 
 import logo from "../../assets/images/logo.png"
 import { mdiArrowLeft } from "@mdi/js"
-import Button from "../ui/Button/Button"
+import Button from "../ui/Button"
 
 export default function Header({ headline, back }) {
   // render header

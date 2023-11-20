@@ -1,6 +1,6 @@
 import css from "./IngredientsGridBody.module.css"
 
-import IngredientsGridRow from "../IngredientsGridRow/IngredientsGridRow"
+import IngredientsGridRow from "../IngredientsGridRow"
 import { useEffect, useState } from "react"
 
 export default function IngredientsGridBody({

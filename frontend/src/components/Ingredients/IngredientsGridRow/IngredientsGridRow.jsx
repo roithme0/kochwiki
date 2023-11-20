@@ -1,6 +1,6 @@
 import css from "./IngredientsGridRow.module.css"
 
-import IngredientField from "../IngredientField/IngredientField"
+import IngredientField from "../IngredientField"
 
 export default function IngredientsGridRow({ ingredient, fields }) {
   // render row of ingredients grid

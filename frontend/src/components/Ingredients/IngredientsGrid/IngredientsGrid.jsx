@@ -1,9 +1,9 @@
 import css from "./IngredientsGrid.module.css"
 
-import IngredientsGridHeader from "../IngredientsGridHeader/IngredientsGridHeader"
-import IngredientsGridBody from "../IngredientsGridBody/IngredientsGridBody"
+import IngredientsGridHeader from "../IngredientsGridHeader"
+import IngredientsGridBody from "../IngredientsGridBody"
 import Search from "../../ui/Search/Search"
-import IngredientsFilter from "../../ui/IngredientsFilter/IngredientsFilter"
+import IngredientsFilter from "../../ui/IngredientsFilter"
 import { useEffect, useState, useRef } from "react"
 
 export default function IngredientsGrid({ ingredients }) {

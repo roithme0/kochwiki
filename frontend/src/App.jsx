@@ -1,8 +1,7 @@
-import Main from "./components/Main/Main"
-
-import Home from "./pages/Home/Home"
-import Ingredients from "./pages/Ingredients/Ingredients"
-import Recipes from "./pages/Recipes/Recipes"
+import Main from "./components/Main"
+import Home from "./pages/Home"
+import Ingredients from "./pages/Ingredients"
+import Recipes from "./pages/Recipes"
 
 import { Route, Routes } from "react-router-dom"
 

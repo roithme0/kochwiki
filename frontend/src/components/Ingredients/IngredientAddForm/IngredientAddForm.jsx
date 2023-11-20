@@ -1,8 +1,8 @@
 import css from "./IngredientAddForm.module.css"
 
 import { mdiContentSaveOutline, mdiCancel } from "@mdi/js"
-import FormField from "../../ui/FormField/FormField"
-import Button from "../../ui/Button/Button"
+import FormField from "../../ui/FormField"
+import Button from "../../ui/Button"
 
 export default function IngredientAddForm() {
   const fields = {

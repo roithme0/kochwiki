@@ -1,8 +1,8 @@
 import css from "./IngredientAddPopup.module.css"
 
 import { mdiClose } from "@mdi/js"
-import Button from "../../ui/Button/Button"
-import IngredientAddForm from "../../Ingredients/IngredientAddForm/IngredientAddForm"
+import Button from "../../ui/Button"
+import IngredientAddForm from "../../Ingredients/IngredientAddForm"
 
 export default function IngredientAddPopup({ closeHandler }) {
   return (
