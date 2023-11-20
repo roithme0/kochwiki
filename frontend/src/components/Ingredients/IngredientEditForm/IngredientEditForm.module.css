@@ -1,0 +1,59 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.fieldsWrapper {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  gap: 1rem;
+}
+
+.textInput,
+.selectUnitInput,
+.numberInput {
+  padding: 0.15rem 0.25rem;
+  border: none;
+  border-bottom: 2px solid var(--primary-color);
+  background-color: transparent;
+  font: inherit;
+
+  &:hover,
+  &:focus {
+    border-color: transparent;
+    outline: 2px solid var(--highlight-color);
+    border-radius: var(--border-radius);
+  }
+
+  &:focus {
+    background-color: var(--highlight-background);
+  }
+}
+
+.textInput {
+}
+
+.selectUnitInput {
+}
+
+.numberInput {
+  /* remove arrows */
+  -moz-appearance: textfield;
+  & input::-webkit-outer-spin-button,
+  & input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+.buttonsWrapper {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.saveButton,
+.cancelButton {
+  flex: 1;
+  height: 2rem;
+}

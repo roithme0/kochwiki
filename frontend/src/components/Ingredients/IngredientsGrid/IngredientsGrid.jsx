@@ -6,10 +6,7 @@ import Search from "../../ui/Search/Search"
 import IngredientsFilter from "../../ui/IngredientsFilter"
 import { useEffect, useState, useRef } from "react"
 
-export default function IngredientsGrid({
-  ingredients,
-  setIngredientEditPopup,
-}) {
+export default function IngredientsGrid({ ingredients, setEditedIngredient }) {
   // render header and grid of ingredients
 
   const columnsOrder = [
@@ -80,7 +77,7 @@ export default function IngredientsGrid({
         filter={filter}
         sortKey={sortKey}
         columnsToRender={columnsToRender}
-        setIngredientEditPopup={setIngredientEditPopup}
+        setEditedIngredient={setEditedIngredient}
       />
     </div>
   )

@@ -1,10 +1,20 @@
 import css from "./IngredientUnitSelect.module.css"
 
-export default function IngredientUnitSelect({ classNameSelect }) {
+import { useState } from "react"
+
+export default function IngredientUnitSelect({
+  classNameSelect,
+  initialValue,
+}) {
   const choices = ["g", "ml", "Stk."]
+  const [value, setValue] = useState(initialValue || choices[0])
 
   return (
-    <select className={classNameSelect}>
+    <select
+      className={classNameSelect}
+      value={value}
+      onChange={event => setValue(event.target.value)}
+    >
       {choices.map(choice => (
         <option key={choice}>{choice}</option>
       ))}

@@ -7,7 +7,7 @@ import Button from "../../ui/Button"
 export default function IngredientsGridRow({
   ingredient,
   fields,
-  setIngredientEditPopup,
+  setEditedIngredient,
 }) {
   // render row of ingredients grid
 
@@ -20,7 +20,7 @@ export default function IngredientsGridRow({
               svg={mdiPencil}
               className={css.editButton}
               clickHandler={() => {
-                setIngredientEditPopup(true)
+                setEditedIngredient(ingredient)
               }}
               key={fieldName}
             />

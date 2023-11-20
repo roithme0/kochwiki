@@ -13,7 +13,7 @@ export default function Ingredients({ setHeadline, setBack, setButtons }) {
 
   const [ingredients, setIngredients] = useState([])
   const [ingredientAddPopup, setIngredientAddPopup] = useState(false)
-  const [ingredientEditPopup, setIngredientEditPopup] = useState(false)
+  const [editedIngredient, setEditedIngredient] = useState(null)
 
   useEffect(() => {
     // configure header and footer
@@ -40,7 +40,7 @@ export default function Ingredients({ setHeadline, setBack, setButtons }) {
         {ingredients.length ? (
           <IngredientsGrid
             ingredients={ingredients}
-            setIngredientEditPopup={setIngredientEditPopup}
+            setEditedIngredient={setEditedIngredient}
           />
         ) : (
           <p className={css.placeholder}>Keine Zutaten gefunden.</p>
@@ -52,10 +52,11 @@ export default function Ingredients({ setHeadline, setBack, setButtons }) {
           closeHandler={() => setIngredientAddPopup(false)}
         />
       )}
-      {ingredientEditPopup && (
+      {editedIngredient && (
         <Popup
           Component={IngredientEditPopup}
-          closeHandler={() => setIngredientEditPopup(false)}
+          closeHandler={() => setEditedIngredient(null)}
+          ingredient={editedIngredient}
         />
       )}
     </>
