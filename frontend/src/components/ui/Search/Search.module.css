@@ -37,10 +37,12 @@
 
 .magnify,
 .clear {
-  object-fit: contain;
   height: 1rem;
 }
 
-.clear:hover {
-  color: red;
+.clear {
+  &:hover,
+  &:focus {
+    color: red;
+  }
 }
