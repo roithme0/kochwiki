@@ -3,17 +3,23 @@
   display: flex;
   align-items: center;
   gap: var(--gap);
+  border-bottom: 2px solid var(--primary-color);
 
+  &:hover,
   &:focus-within {
+    border-color: transparent;
     outline: 2px solid var(--highlight-color);
     border-radius: var(--border-radius);
+  }
+
+  &:focus-within {
+    background-color: var(--highlight-background);
   }
 }
 
 .selectUnit {
   padding: 0.15rem 0.25rem;
   border: none;
-  border-bottom: 2px solid var(--primary-color);
   background-color: transparent;
   cursor: pointer;
   font: inherit;

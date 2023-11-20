@@ -6,7 +6,7 @@ import IngredientAddForm from "../../Ingredients/IngredientAddForm"
 
 export default function IngredientAddPopup({ closeHandler }) {
   return (
-    <>
+    <div className={css.popupWrapper}>
       <header className={css.header}>
         <h2 className={css.headline}>Zutat erstellen</h2>
         <Button
@@ -16,6 +16,6 @@ export default function IngredientAddPopup({ closeHandler }) {
         />
       </header>
       <IngredientAddForm />
-    </>
+    </div>
   )
 }

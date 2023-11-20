@@ -6,23 +6,24 @@ import Button from "../../ui/Button"
 
 export default function IngredientAddForm() {
   const fields = {
-    name: ["Name", "text"],
-    brand: ["Marke", "text"],
-    unit: ["Einheit", "text"],
-    kcal: ["Kalorien", "number"],
-    carbs: ["Kohlenhydrate", "number"],
-    protein: ["Protein", "number"],
-    fat: ["Fett", "number"],
-  } // {name: [label, type], ...}
+    name: { verboseName: "Name", type: "text" },
+    brand: { verboseName: "Marke", type: "text" },
+    unit: { verboseName: "Einheit", type: "selectUnit" },
+    kcal: { verboseName: "Kalorien", type: "number" },
+    carbs: { verboseName: "Kohlenhydrate", type: "number" },
+    protein: { verboseName: "Protein", type: "number" },
+    fat: { verboseName: "Fett", type: "number" },
+  }
 
   return (
     <form className={css.form}>
       <div className={css.fieldsWrapper}>
         {Object.keys(fields).map(fieldName => (
           <FormField
-            label={fields[fieldName][0]}
-            type={fields[fieldName][1]}
+            label={fields[fieldName]["verboseName"]}
+            type={fields[fieldName]["type"]}
             key={fieldName}
+            classNameInput={css[fields[fieldName]["type"] + "Input"]}
           />
         ))}
       </div>

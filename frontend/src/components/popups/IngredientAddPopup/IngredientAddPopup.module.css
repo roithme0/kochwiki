@@ -1,3 +1,9 @@
+.popupWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: calc(2 * var(--gap));
+}
+
 .header {
   display: flex;
   justify-content: space-between;

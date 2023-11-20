@@ -1,10 +1,17 @@
 import css from "./FormField.module.css"
 
-export default function FormField({ label, type }) {
+import IngredientUnitSelect from "../IngredientUnitSelect"
+
+export default function FormField({ label, type, classNameInput }) {
   return (
     <>
       <label className={css.label}>{label}</label>
-      <input type={type} className={css.input} />
+      {type === "selectUnit" && (
+        <IngredientUnitSelect classNameSelect={classNameInput} />
+      )}
+      {type !== "selectUnit" && (
+        <input type={type} className={classNameInput} />
+      )}
     </>
   )
 }

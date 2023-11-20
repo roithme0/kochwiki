@@ -6,10 +6,15 @@
   display: flex;
   align-items: flex-end;
 
+  &:hover,
   &:focus-within {
     border-color: transparent;
     outline: 2px solid var(--highlight-color);
     border-radius: var(--border-radius);
+  }
+
+  &:focus-within {
+    background-color: var(--highlight-background);
   }
 }
 
@@ -17,6 +22,7 @@
   flex: 1;
   padding: 0;
   border: none;
+  background-color: transparent;
   font: inherit;
   min-width: 0;
 
