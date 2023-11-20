@@ -18,4 +18,9 @@
 
 .close {
   height: var(--header-font-size);
+
+  &:hover,
+  &:focus {
+    color: red;
+  }
 }
