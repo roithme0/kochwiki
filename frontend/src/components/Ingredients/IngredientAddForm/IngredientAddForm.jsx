@@ -1,6 +1,6 @@
 import css from "./IngredientAddForm.module.css"
 
-import { mdiContentSaveOutline, mdiCancel } from "@mdi/js"
+import { mdiCheck, mdiCancel } from "@mdi/js"
 import FormField from "../../ui/FormField"
 import Button from "../../ui/Button"
 
@@ -28,11 +28,7 @@ export default function IngredientAddForm() {
         ))}
       </div>
       <div className={css.buttonsWrapper}>
-        <Button
-          type="positive"
-          svg={mdiContentSaveOutline}
-          className={css.saveButton}
-        />
+        <Button type="positive" svg={mdiCheck} className={css.saveButton} />
         <Button type="negative" svg={mdiCancel} className={css.cancelButton} />
       </div>
     </form>
