@@ -1,0 +1,28 @@
+.buttonsWrapper {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.deleteButton,
+.cancelButton {
+  flex: 1;
+  height: 2rem;
+}
+
+.deleteButton {
+  color: var(--positive-color);
+
+  &:hover,
+  &:focus {
+    color: var(--positive-background);
+  }
+}
+
+.cancelButton {
+  color: var(--negative-color);
+
+  &:hover,
+  &:focus {
+    color: var(--negative-background);
+  }
+}

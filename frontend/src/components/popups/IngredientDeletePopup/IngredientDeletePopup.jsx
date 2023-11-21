@@ -12,7 +12,7 @@ export default function IngredientDeletePopup({ ingredient, closeHandler }) {
         <Button
           svg={mdiClose}
           className={css.close}
-          clickHandler={() => closeHandler({ deletedIngredient: null })}
+          clickHandler={() => closeHandler({ deletedIngredientID: null })}
         />
       </header>
       <IngredientDeleteForm
