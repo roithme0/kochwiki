@@ -57,7 +57,6 @@ export default function Ingredients({ setHeadline, setBack, setButtons }) {
             createdIngredient &&
               addIngredient({
                 createdIngredient,
-                ingredients,
                 setIngredients,
               })
             setIngredientAddPopup(false)
@@ -72,7 +71,6 @@ export default function Ingredients({ setHeadline, setBack, setButtons }) {
             changedIngredient &&
               updateIngredient({
                 changedIngredient,
-                ingredients,
                 setIngredients,
               })
             setEditingIngredient(null)
@@ -91,50 +89,36 @@ export default function Ingredients({ setHeadline, setBack, setButtons }) {
   )
 }
 
-async function addIngredient({
-  createdIngredient,
-  ingredients,
-  setIngredients,
-}) {
+function addIngredient({ createdIngredient, setIngredients }) {
   // add created ingredient to grid
   if (createdIngredient === null) {
     console.debug("no ingredient was created")
     return
   }
 
-  const result = await getIngredient({ id: createdIngredient.id })
-  if (result.success === false) {
-    console.error("could not fetch created ingredient: ", createdIngredient.id)
-    return
-  }
-
-  console.debug("adding created ingredient to grid: ", createdIngredient.id)
-  setIngredients([...ingredients, result.fetchedIngredient])
+  getIngredient({
+    id: createdIngredient.id,
+    callback: props =>
+      setIngredients(ingredients => [...ingredients, props.fetchedIngredient]),
+  })
 }
 
-async function updateIngredient({
-  changedIngredient,
-  ingredients,
-  setIngredients,
-}) {
+function updateIngredient({ changedIngredient, setIngredients }) {
   // update changed ingredient in grid
   if (changedIngredient === null) {
     console.debug("no changes were made to ingredient")
     return
   }
 
-  const result = await getIngredient({ id: changedIngredient.id })
-  if (result.success === false) {
-    console.error("could not fetch changed ingredient: ", changedIngredient.id)
-    return
-  }
-
-  console.debug("updating changed ingredient in grid: ", changedIngredient.id)
-  setIngredients(
-    ingredients.map(ingredient =>
-      ingredient.id === result.fetchedIngredient.id
-        ? result.fetchedIngredient
-        : ingredient
-    )
-  )
+  getIngredient({
+    id: changedIngredient.id,
+    callback: props =>
+      setIngredients(ingredients =>
+        ingredients.map(ingredient =>
+          ingredient.id === props.fetchedIngredient.id
+            ? props.fetchedIngredient
+            : ingredient
+        )
+      ),
+  })
 }
