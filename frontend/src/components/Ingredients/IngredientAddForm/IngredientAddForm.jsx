@@ -3,9 +3,10 @@ import css from "./IngredientAddForm.module.css"
 import { mdiCheck, mdiCancel } from "@mdi/js"
 import FormField from "../../ui/FormField"
 import Button from "../../ui/Button"
+import postIngredient from "../../../services/api/Ingredient/postIngredient"
 import { useState } from "react"
 
-export default function IngredientAddForm() {
+export default function IngredientAddForm({ closeHandler }) {
   const fields = {
     name: { verboseName: "Name", type: "text" },
     brand: { verboseName: "Marke", type: "text" },
@@ -15,6 +16,7 @@ export default function IngredientAddForm() {
     protein: { verboseName: "Protein", type: "number" },
     fat: { verboseName: "Fett", type: "number" },
   }
+  const fieldNames = Object.keys(fields)
   const [formData, setFormData] = useState({
     name: "",
     brand: "",
@@ -23,7 +25,7 @@ export default function IngredientAddForm() {
     carbs: "",
     protein: "",
     fat: "",
-    fieldErrors: Object.fromEntries(Object.keys(fields).map(key => [key, []])),
+    fieldErrors: Object.fromEntries(fieldNames.map(key => [key, []])),
     nonFieldErrors: [],
   })
 
@@ -31,11 +33,17 @@ export default function IngredientAddForm() {
     <form
       className={css.form}
       onSubmit={event => {
-        event.preventDefault()
+        submitHandler({
+          event,
+          formData,
+          callback: closeHandler,
+          errorCallback: updateErrors,
+          errorCallbackProps: { fieldNames, setFormData },
+        })
       }}
     >
       <div className={css.fieldsWrapper}>
-        {Object.keys(fields).map(fieldName => (
+        {fieldNames.map(fieldName => (
           <FormField
             label={fields[fieldName]["verboseName"]}
             type={fields[fieldName]["type"]}
@@ -55,9 +63,42 @@ export default function IngredientAddForm() {
           type="negative"
           svg={mdiCancel}
           className={css.cancelButton}
-          clickHandler={event => event.preventDefault()}
+          clickHandler={event => {
+            event.preventDefault()
+            closeHandler()
+          }}
         />
       </div>
     </form>
   )
+}
+
+function submitHandler({
+  event,
+  formData,
+  callback,
+  errorCallback,
+  errorCallbackProps,
+}) {
+  // submit form data to API
+  event.preventDefault()
+  console.debug("submitting form: ", formData)
+  postIngredient({
+    form: formData,
+    callback,
+    errorCallback,
+    errorCallbackProps,
+  })
+}
+
+function updateErrors({ errorResponse, fieldNames, setFormData }) {
+  // update form errors
+  console.debug("updating form errors: ", errorResponse.data)
+  const nonFieldErrors = errorResponse.data.non_field_errors || []
+  const fieldErrors = Object.fromEntries(
+    fieldNames.map(key => [key, errorResponse.data[key] || []])
+  )
+  console.warn("fieldErrors: ", fieldErrors)
+  console.warn("nonFieldErrors: ", nonFieldErrors)
+  setFormData(formData => ({ ...formData, fieldErrors, nonFieldErrors }))
 }

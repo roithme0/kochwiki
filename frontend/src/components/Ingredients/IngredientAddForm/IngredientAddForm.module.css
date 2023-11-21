@@ -57,3 +57,21 @@
   flex: 1;
   height: 2rem;
 }
+
+.saveButton {
+  color: var(--positive-color);
+
+  &:hover,
+  &:focus {
+    color: var(--positive-background);
+  }
+}
+
+.cancelButton {
+  color: var(--negative-color);
+
+  &:hover,
+  &:focus {
+    color: var(--negative-background);
+  }
+}

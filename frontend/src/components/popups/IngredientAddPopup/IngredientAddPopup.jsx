@@ -15,7 +15,7 @@ export default function IngredientAddPopup({ closeHandler }) {
           clickHandler={closeHandler}
         />
       </header>
-      <IngredientAddForm />
+      <IngredientAddForm closeHandler={closeHandler} />
     </div>
   )
 }

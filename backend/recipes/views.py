@@ -1,7 +1,7 @@
 from .models import Ingredient, Recipe
 from .serializers import (
     IngredientSerializer,
-    EditIngredientSerializer,
+    AddIngredientSerializer,
     EditIngredientSerializer,
     RecipeSerializer,
 )
@@ -20,16 +20,27 @@ import logging
 logger = logging.getLogger("django")
 
 
-class CreateRetrieveIngredientView(CreateAPIView):
-    serializer_class = EditIngredientSerializer
+class CreateIngredientView(CreateAPIView):
+    serializer_class = AddIngredientSerializer
+    
+    def post(self, request, *args, **kwargs):
+        logger.info("request data: \n%s" % request.data)
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            logger.info("create ingredient valid")
+            self.perform_create(serializer)
+            return Response(serializer.data, status=201)
+        else:
+            logger.warning("create ingredient invalid: \n%s" % serializer.errors)
+            return Response(serializer.errors, status=403)
 
 
-class RetrieveUpdateRetrieveIngredientView(RetrieveUpdateAPIView):
+class RetrieveUpdateIngredientView(RetrieveUpdateAPIView):
     queryset = Ingredient.objects.all()
     serializer_class = EditIngredientSerializer
 
     def put(self, request, *args, **kwargs):
-        logger.info(request.data)
+        logger.info("request data: \n%s" % request.data)
         instance = self.get_object()
         serializer = self.serializer_class(instance, data=request.data)
         if serializer.is_valid():
@@ -41,7 +52,7 @@ class RetrieveUpdateRetrieveIngredientView(RetrieveUpdateAPIView):
             return Response(serializer.errors, status=403)
 
 
-class DestroyRetrieveIngredientView(DestroyAPIView):
+class DestroyIngredientView(DestroyAPIView):
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
 

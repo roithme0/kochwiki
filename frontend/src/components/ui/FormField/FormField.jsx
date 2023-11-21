@@ -18,8 +18,6 @@ export default function FormField({
     if (inputRef.current) {
       if (errors.length > 0) {
         inputRef.current.classList.add(css.hasErrors)
-        inputRef.current.scrollIntoView({ behavior: "smooth" })
-        inputRef.current.focus()
       } else {
         inputRef.current.classList.remove(css.hasErrors)
       }
