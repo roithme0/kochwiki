@@ -5,7 +5,11 @@
 .fieldAndErrors {
   display: flex;
   flex-direction: column;
-  gap: var(--gap);
+  gap: 0.25rem;
+}
+
+.hasErrors {
+  color: var(--negative-color);
 }
 
 .error {

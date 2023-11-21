@@ -54,7 +54,9 @@ export default function IngredientEditForm({
             key={fieldName}
             classNameInput={css[fieldTypes[fieldName] + "Input"]}
             value={formData[fieldName]}
-            setValue={value => setFormData({ ...formData, [fieldName]: value })}
+            changeHandler={value =>
+              setFormData({ ...formData, [fieldName]: value })
+            }
             errors={formData.fieldErrors[fieldName]}
           />
         ))}

@@ -28,9 +28,6 @@ export default function IngredientsFilter({ setFilter }) {
           setFilterLocal(event.target.value)
         }}
       >
-        {/* <option disabled value="">
-          Einheit filtern ...
-        </option> */}
         <option value="">alle</option>
         {choices.map((choice, index) => (
           <option key={index} value={choice}>

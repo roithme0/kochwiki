@@ -4,17 +4,22 @@ import { useState } from "react"
 
 export default function IngredientUnitSelect({
   classNameSelect,
-  initialValue,
+  value = null,
+  changeHandler = () => {},
+  refValue = null,
 }) {
   const choices = ["g", "ml", "Stk."]
-  const [value, setValue] = useState(initialValue || choices[0])
 
   return (
     <select
       className={classNameSelect}
       value={value}
-      onChange={event => setValue(event.target.value)}
+      ref={refValue}
+      onChange={event => changeHandler(event.target.value)}
     >
+      <option disabled value="">
+        Einheit wählen ...
+      </option>
       {choices.map(choice => (
         <option key={choice}>{choice}</option>
       ))}
