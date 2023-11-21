@@ -15,7 +15,10 @@ export default function IngredientEditPopup({ closeHandler, ingredient }) {
           clickHandler={closeHandler}
         />
       </header>
-      <IngredientEditForm initialIngredient={ingredient} />
+      <IngredientEditForm
+        initialIngredient={ingredient}
+        closeHandler={closeHandler}
+      />
     </div>
   )
 }

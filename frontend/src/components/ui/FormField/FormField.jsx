@@ -7,10 +7,9 @@ export default function FormField({
   label,
   type,
   classNameInput,
-  initialValue = "",
+  value,
+  setValue,
 }) {
-  const [value, setValue] = useState(initialValue)
-
   return (
     <>
       <label className={css.label}>{label}</label>
@@ -20,7 +19,7 @@ export default function FormField({
         <input
           type={type}
           className={classNameInput}
-          value={value}
+          value={value || ""}
           onChange={event => setValue(event.target.value)}
         />
       )}
