@@ -55,9 +55,19 @@ export default function IngredientEditForm({
             classNameInput={css[fieldTypes[fieldName] + "Input"]}
             value={formData[fieldName]}
             setValue={value => setFormData({ ...formData, [fieldName]: value })}
+            errors={formData.fieldErrors[fieldName]}
           />
         ))}
       </div>
+      {formData.nonFieldErrors.length > 0 && (
+        <div className={css.nonFieldErrorsWrapper}>
+          {formData.nonFieldErrors.map(nonFieldError => (
+            <p key={nonFieldError} className={css.nonFieldError}>
+              {nonFieldError}
+            </p>
+          ))}
+        </div>
+      )}
       <div className={css.buttonsWrapper}>
         <Button type="positive" svg={mdiCheck} className={css.saveButton} />
         <Button
@@ -94,7 +104,7 @@ function updateErrors({ errorResponse, fieldNames, setFormData }) {
   const fieldErrors = Object.fromEntries(
     fieldNames.map(key => [key, errorResponse.data[key] || []])
   )
-  console.warning("fieldErrors: ", fieldErrors)
-  console.warning("nonFieldErrors: ", nonFieldErrors)
+  console.warn("fieldErrors: ", fieldErrors)
+  console.warn("nonFieldErrors: ", nonFieldErrors)
   setFormData(formData => ({ ...formData, fieldErrors, nonFieldErrors }))
 }

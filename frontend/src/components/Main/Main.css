@@ -1,7 +1,7 @@
 :root {
   --primary-color: black;
-  --positive-color: lightgreen;
-  --negative-color: rgb(255, 141, 141);
+  --positive-color: rgb(122, 224, 122);
+  --negative-color: rgb(246, 121, 121);
   --highlight-color: rgb(69, 173, 208);
   --header-font-size: 2rem;
   --footer-font-size: var(--header-font-size);
@@ -10,8 +10,8 @@
   --tertiary-background: rgb(193, 193, 193);
   --quartenary-backgroud: rgb(159, 159, 159);
   --highlight-background: rgb(215, 234, 241);
-  --positive-background: rgb(221, 255, 221);
-  --negative-background: rgb(255, 201, 201);
+  --positive-background: rgb(225, 252, 225);
+  --negative-background: rgb(252, 213, 213);
   --header-height: 2.2rem;
   --footer-height: var(--header-height);
   --used-width: 80rem;

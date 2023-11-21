@@ -31,11 +31,11 @@
   }
 }
 
-.textInput {
+/* .textInput {
 }
 
 .selectUnitInput {
-}
+} */
 
 .numberInput {
   /* remove arrows */
@@ -47,6 +47,22 @@
   }
 }
 
+.nonFieldErrorsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.nonFieldError {
+  margin: 0;
+  color: var(--negative-color);
+  font-weight: 600;
+  background-color: var(--negative-background);
+  padding: 0.25rem 0.5rem;
+  border: 2px solid var(--negative-color);
+  border-radius: var(--border-radius);
+}
+
 .buttonsWrapper {
   display: flex;
   gap: 0.5rem;
@@ -56,4 +72,22 @@
 .cancelButton {
   flex: 1;
   height: 2rem;
+}
+
+.saveButton {
+  color: var(--positive-color);
+
+  &:hover,
+  &:focus {
+    color: var(--positive-background);
+  }
+}
+
+.cancelButton {
+  color: var(--negative-color);
+
+  &:hover,
+  &:focus {
+    color: var(--negative-background);
+  }
 }
