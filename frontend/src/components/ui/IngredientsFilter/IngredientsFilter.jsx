@@ -1,25 +1,24 @@
 import css from "./IngredientsFilter.module.css"
 
-import Button from "../Button"
-import { mdiFilterOutline, mdiClose } from "@mdi/js"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 
 export default function IngredientsFilter({ setFilter }) {
   const choices = ["g", "ml", "Stk."]
   const [filterLocal, setFilterLocal] = useState("")
+  const labelRef = useRef(null)
 
   useEffect(() => {
     // update filter + look of filter field
     setFilter(filterLocal)
     if (filterLocal.length > 0) {
-      getLabelElement().classList.add(css.active)
+      labelRef.current.classList.add(css.active)
     } else {
-      getLabelElement().classList.remove(css.active)
+      labelRef.current.classList.remove(css.active)
     }
   }, [filterLocal])
 
   return (
-    <label className={css.label} id={css.label}>
+    <label className={css.label} ref={labelRef}>
       <select
         className={css.selectUnit}
         value={filterLocal}
@@ -37,8 +36,4 @@ export default function IngredientsFilter({ setFilter }) {
       </select>
     </label>
   )
-}
-
-function getLabelElement() {
-  return document.getElementById(`${css.label}`)
 }
