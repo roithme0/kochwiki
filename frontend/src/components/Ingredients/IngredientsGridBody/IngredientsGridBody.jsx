@@ -9,7 +9,8 @@ export default function IngredientsGridBody({
   search,
   sortKey,
   columnsToRender,
-  setEditedIngredient,
+  setEditingIngredient,
+  setDeletingIngredient,
 }) {
   // render grid body
 
@@ -43,7 +44,8 @@ export default function IngredientsGridBody({
         <IngredientsGridRow
           ingredient={ingredient}
           fields={columnsToRender}
-          setEditedIngredient={setEditedIngredient}
+          setEditingIngredient={setEditingIngredient}
+          setDeletingIngredient={setDeletingIngredient}
           key={ingredient.id}
         />
       ))}

@@ -8,13 +8,15 @@ import IngredientsGrid from "../../components/Ingredients/IngredientsGrid"
 import Popup from "../../components/popups/Popup"
 import IngredientAddPopup from "../../components/popups/IngredientAddPopup"
 import IngredientEditPopup from "../../components/popups/IngredientEditPopup"
+import IngredientDeletePopup from "../../components/popups/IngredientDeletePopup"
 
 export default function Ingredients({ setHeadline, setBack, setButtons }) {
   // fetch and render ingredients
 
   const [ingredients, setIngredients] = useState([])
   const [ingredientAddPopup, setIngredientAddPopup] = useState(false)
-  const [editedIngredient, setEditedIngredient] = useState(null)
+  const [editingIngredient, setEditingIngredient] = useState(null)
+  const [deletingIngredient, setDeletingIngredient] = useState(null)
 
   useEffect(() => {
     // configure header and footer
@@ -41,7 +43,8 @@ export default function Ingredients({ setHeadline, setBack, setButtons }) {
         {ingredients.length ? (
           <IngredientsGrid
             ingredients={ingredients}
-            setEditedIngredient={setEditedIngredient}
+            setEditingIngredient={setEditingIngredient}
+            setDeletingIngredient={setDeletingIngredient}
           />
         ) : (
           <p className={css.placeholder}>Keine Zutaten gefunden.</p>
@@ -61,7 +64,7 @@ export default function Ingredients({ setHeadline, setBack, setButtons }) {
           }}
         />
       )}
-      {editedIngredient && (
+      {editingIngredient && (
         <Popup
           Component={IngredientEditPopup}
           closeHandler={({ changedIngredient }) => {
@@ -72,9 +75,16 @@ export default function Ingredients({ setHeadline, setBack, setButtons }) {
                 ingredients,
                 setIngredients,
               })
-            setEditedIngredient(null)
+            setEditingIngredient(null)
           }}
-          ingredient={editedIngredient}
+          ingredient={editingIngredient}
+        />
+      )}
+      {deletingIngredient && (
+        <Popup
+          Component={IngredientDeletePopup}
+          closeHandler={() => setDeletingIngredient(null)}
+          ingredient={deletingIngredient}
         />
       )}
     </>
