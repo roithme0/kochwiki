@@ -5,8 +5,8 @@ export default async function getIngredient({
   setFunction = null,
   callback = null,
   callbackProps = {},
-  callbackError = null,
-  callbackErrorProps = {},
+  errorCallback = null,
+  errorCallbackProps = {},
 }) {
   try {
     const response = await axios.get(
@@ -19,8 +19,8 @@ export default async function getIngredient({
     return { fetchedIngredient: response.data, success: true }
   } catch (error) {
     console.error("ERROR: could not fetch ingredient", error.response)
-    callbackErrorProps.errorResponse = error.response
-    callbackError && callbackError(callbackErrorProps)
+    errorCallbackProps.errorResponse = error.response
+    errorCallback && errorCallback(errorCallbackProps)
     return { errorResponse: error.response, success: false }
   }
 }

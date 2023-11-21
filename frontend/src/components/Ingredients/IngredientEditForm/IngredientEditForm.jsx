@@ -66,7 +66,7 @@ export default function IngredientEditForm({
   )
 }
 
-function submitHandler({ event, formData, callback, callbackError }) {
+function submitHandler({ event, formData, callback, errorCallback }) {
   event.preventDefault()
   console.debug("submitting form: ", formData)
   putIngredient({ form: formData })
