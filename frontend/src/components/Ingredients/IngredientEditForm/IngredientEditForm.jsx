@@ -19,6 +19,7 @@ export default function IngredientEditForm({
     protein: "number",
     fat: "number",
   }
+  const fieldNames = Object.keys(fieldTypes)
   const [formData, setFormData] = useState({
     id: initialIngredient.id,
     name: initialIngredient.name,
@@ -28,18 +29,25 @@ export default function IngredientEditForm({
     carbs: initialIngredient.carbs,
     protein: initialIngredient.protein,
     fat: initialIngredient.fat,
+    fieldErrors: Object.fromEntries(fieldNames.map(key => [key, []])),
+    nonFieldErrors: [],
   })
 
   return (
     <form
       className={css.form}
       onSubmit={event => {
-        submitHandler({ event, formData })
-        closeHandler()
+        submitHandler({
+          event,
+          formData,
+          callback: closeHandler,
+          errorCallback: updateErrors,
+          errorCallbackProps: { fieldNames, setFormData },
+        })
       }}
     >
       <div className={css.fieldsWrapper}>
-        {Object.keys(fieldTypes).map(fieldName => (
+        {fieldNames.map(fieldName => (
           <FormField
             label={initialIngredient.verbose_names[fieldName]}
             type={fieldTypes[fieldName]}
@@ -66,8 +74,27 @@ export default function IngredientEditForm({
   )
 }
 
-function submitHandler({ event, formData, callback, errorCallback }) {
+function submitHandler({
+  event,
+  formData,
+  callback,
+  errorCallback,
+  errorCallbackProps,
+}) {
+  // submit form data to API
   event.preventDefault()
   console.debug("submitting form: ", formData)
-  putIngredient({ form: formData })
+  putIngredient({ form: formData, callback, errorCallback, errorCallbackProps })
+}
+
+function updateErrors({ errorResponse, fieldNames, setFormData }) {
+  // update form errors
+  console.debug("updating form errors: ", errorResponse.data)
+  const nonFieldErrors = errorResponse.data.non_field_errors || []
+  const fieldErrors = Object.fromEntries(
+    fieldNames.map(key => [key, errorResponse.data[key] || []])
+  )
+  console.warning("fieldErrors: ", fieldErrors)
+  console.warning("nonFieldErrors: ", nonFieldErrors)
+  setFormData(formData => ({ ...formData, fieldErrors, nonFieldErrors }))
 }
