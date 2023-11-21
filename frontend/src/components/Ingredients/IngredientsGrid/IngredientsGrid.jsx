@@ -43,10 +43,10 @@ export default function IngredientsGrid({ ingredients, setEditedIngredient }) {
 
   useEffect(() => {
     // update columns to render when window width changes
-    var columns = getColumnsToRender({ windowWidth: windowWidth })
+    var columns = getColumnsToRender({ windowWidth })
     columns = sortColumnsToRender({
       columnsToRender: columns,
-      columnsOrder: columnsOrder,
+      columnsOrder,
     })
     setColumnsToRender(columns)
   }, [windowWidth])

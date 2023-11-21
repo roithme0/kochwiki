@@ -20,16 +20,16 @@ export default function IngredientsGridBody({
     // sort and search ingredients
     var ingredients = [...initialIngredients]
     ingredients = sortIngredients({
-      ingredients: ingredients,
-      sortKey: sortKey,
+      ingredients,
+      sortKey,
     })
     ingredients = filterIngredients({
-      ingredients: ingredients,
-      filter: filter,
+      ingredients,
+      filter,
     })
     ingredients = searchIngredients({
-      ingredients: ingredients,
-      search: search,
+      ingredients,
+      search,
     })
     setProcessedIngredients(ingredients)
   }, [initialIngredients, search, filter, sortKey])
