@@ -65,7 +65,7 @@ export default function IngredientAddForm({ closeHandler }) {
           className={css.cancelButton}
           clickHandler={event => {
             event.preventDefault()
-            closeHandler()
+            closeHandler({ changedIngredient: null })
           }}
         />
       </div>
@@ -73,7 +73,7 @@ export default function IngredientAddForm({ closeHandler }) {
   )
 }
 
-function submitHandler({
+async function submitHandler({
   event,
   formData,
   callback,
@@ -83,12 +83,12 @@ function submitHandler({
   // submit form data to API
   event.preventDefault()
   console.debug("submitting form: ", formData)
-  postIngredient({
+  const result = await postIngredient({
     form: formData,
-    callback,
     errorCallback,
     errorCallbackProps,
   })
+  result.success && callback({ changedIngredient: result.createdIngredient })
 }
 
 function updateErrors({ errorResponse, fieldNames, setFormData }) {

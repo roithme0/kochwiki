@@ -49,16 +49,47 @@ export default function Ingredients({ setHeadline, setBack, setButtons }) {
       {ingredientAddPopup && (
         <Popup
           Component={IngredientAddPopup}
-          closeHandler={() => setIngredientAddPopup(false)}
+          closeHandler={({ changedIngredient }) => {
+            changedIngredient &&
+              updateIngredient({
+                changedIngredient,
+                ingredients,
+                setIngredients,
+              })
+            setIngredientAddPopup(false)
+          }}
         />
       )}
       {editedIngredient && (
         <Popup
           Component={IngredientEditPopup}
-          closeHandler={() => setEditedIngredient(null)}
+          closeHandler={({ changedIngredient }) => {
+            console.log("changedIngredient: ", changedIngredient)
+            changedIngredient &&
+              updateIngredient({
+                changedIngredient,
+                ingredients,
+                setIngredients,
+              })
+            setEditedIngredient(null)
+          }}
           ingredient={editedIngredient}
         />
       )}
     </>
   )
+}
+
+function updateIngredient({ changedIngredient, ingredients, setIngredients }) {
+  // update ingredient in ingredients array or add it if it doesn't exist yet
+  if (changedIngredient === null) {
+    console.debug("no changes were made")
+    return
+  }
+  console.debug("updating or adding ingredient: ", changedIngredient.id)
+  var updatedIngredients = ingredients.filter(
+    ingredient => ingredient.id !== changedIngredient.id
+  )
+  updatedIngredients = [...updatedIngredients, changedIngredient]
+  setIngredients(updatedIngredients)
 }
