@@ -31,11 +31,11 @@
   }
 }
 
-.textInput {
+/* .textInput {
 }
 
 .selectUnitInput {
-}
+} */
 
 .numberInput {
   /* remove arrows */
@@ -45,6 +45,22 @@
     -webkit-appearance: none;
     margin: 0;
   }
+}
+
+.nonFieldErrorsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.nonFieldError {
+  margin: 0;
+  color: var(--negative-color);
+  font-weight: 600;
+  background-color: var(--negative-background);
+  padding: 0.25rem 0.5rem;
+  border: 2px solid var(--negative-color);
+  border-radius: var(--border-radius);
 }
 
 .buttonsWrapper {

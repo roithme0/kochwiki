@@ -57,6 +57,15 @@ export default function IngredientAddForm({ closeHandler }) {
           />
         ))}
       </div>
+      {formData.nonFieldErrors.length > 0 && (
+        <div className={css.nonFieldErrorsWrapper}>
+          {formData.nonFieldErrors.map(nonFieldError => (
+            <p key={nonFieldError} className={css.nonFieldError}>
+              {nonFieldError}
+            </p>
+          ))}
+        </div>
+      )}
       <div className={css.buttonsWrapper}>
         <Button type="positive" svg={mdiCheck} className={css.saveButton} />
         <Button
