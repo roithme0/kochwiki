@@ -41,7 +41,7 @@ export default function FormField({
           <IngredientUnitSelect
             classNameSelect={classNameInput}
             value={value}
-            // changeHandler={value => changeHandler(value)}
+            changeHandler={value => changeHandler(value)}
             refValue={inputRef}
           />
         ) : (
