@@ -53,10 +53,10 @@ export default function Ingredients({ setHeadline, setBack, setButtons }) {
       {ingredientAddPopup && (
         <Popup
           Component={IngredientAddPopup}
-          closeHandler={({ changedIngredient }) => {
-            changedIngredient &&
-              updateIngredient({
-                changedIngredient,
+          closeHandler={({ createdIngredient }) => {
+            createdIngredient &&
+              addIngredient({
+                createdIngredient,
                 ingredients,
                 setIngredients,
               })
@@ -91,27 +91,50 @@ export default function Ingredients({ setHeadline, setBack, setButtons }) {
   )
 }
 
+async function addIngredient({
+  createdIngredient,
+  ingredients,
+  setIngredients,
+}) {
+  // add created ingredient to grid
+  if (createdIngredient === null) {
+    console.debug("no ingredient was created")
+    return
+  }
+
+  const result = await getIngredient({ id: createdIngredient.id })
+  if (result.success === false) {
+    console.error("could not fetch created ingredient: ", createdIngredient.id)
+    return
+  }
+
+  console.debug("adding created ingredient to grid: ", createdIngredient.id)
+  setIngredients([...ingredients, result.fetchedIngredient])
+}
+
 async function updateIngredient({
   changedIngredient,
   ingredients,
   setIngredients,
 }) {
-  // update ingredient in ingredients array or add it if it doesn't exist yet
+  // update changed ingredient in grid
   if (changedIngredient === null) {
-    console.debug("no changes were made")
+    console.debug("no changes were made to ingredient")
     return
   }
 
   const result = await getIngredient({ id: changedIngredient.id })
   if (result.success === false) {
-    console.error("could not update or add ingredient: ", changedIngredient.id)
+    console.error("could not fetch changed ingredient: ", changedIngredient.id)
     return
   }
 
-  console.debug("updating or adding ingredient: ", changedIngredient.id)
-  var updatedIngredients = ingredients.filter(
-    ingredient => ingredient.id !== changedIngredient.id
+  console.debug("updating changed ingredient in grid: ", changedIngredient.id)
+  setIngredients(
+    ingredients.map(ingredient =>
+      ingredient.id === result.fetchedIngredient.id
+        ? result.fetchedIngredient
+        : ingredient
+    )
   )
-  updatedIngredients.push(result.fetchedIngredient)
-  setIngredients(updatedIngredients)
 }
