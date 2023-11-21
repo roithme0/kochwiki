@@ -2,6 +2,7 @@ import css from "./IngredientDeletePopup.module.css"
 
 import { mdiClose } from "@mdi/js"
 import Button from "../../ui/Button"
+import IngredientDeleteForm from "../../Ingredients/IngredientDeleteForm"
 
 export default function IngredientDeletePopup({ ingredient, closeHandler }) {
   return (
@@ -11,9 +12,13 @@ export default function IngredientDeletePopup({ ingredient, closeHandler }) {
         <Button
           svg={mdiClose}
           className={css.close}
-          clickHandler={() => closeHandler({ changedIngredient: null })}
+          clickHandler={() => closeHandler({ deletedIngredient: null })}
         />
       </header>
+      <IngredientDeleteForm
+        ingredient={ingredient}
+        closeHandler={closeHandler}
+      />
     </div>
   )
 }
