@@ -1,10 +1,8 @@
 import css from "./IngredientUnitSelect.module.css"
 
-import { useState } from "react"
-
 export default function IngredientUnitSelect({
   classNameSelect,
-  value = null,
+  value = "",
   changeHandler = () => {},
   refValue = null,
 }) {

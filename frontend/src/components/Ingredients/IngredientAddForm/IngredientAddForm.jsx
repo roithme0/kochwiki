@@ -3,6 +3,7 @@ import css from "./IngredientAddForm.module.css"
 import { mdiCheck, mdiCancel } from "@mdi/js"
 import FormField from "../../ui/FormField"
 import Button from "../../ui/Button"
+import { useState } from "react"
 
 export default function IngredientAddForm() {
   const fields = {
@@ -14,9 +15,25 @@ export default function IngredientAddForm() {
     protein: { verboseName: "Protein", type: "number" },
     fat: { verboseName: "Fett", type: "number" },
   }
+  const [formData, setFormData] = useState({
+    name: "",
+    brand: "",
+    unit: "",
+    kcal: "",
+    carbs: "",
+    protein: "",
+    fat: "",
+    fieldErrors: Object.fromEntries(Object.keys(fields).map(key => [key, []])),
+    nonFieldErrors: [],
+  })
 
   return (
-    <form className={css.form} onSubmit={() => {}}>
+    <form
+      className={css.form}
+      onSubmit={event => {
+        event.preventDefault()
+      }}
+    >
       <div className={css.fieldsWrapper}>
         {Object.keys(fields).map(fieldName => (
           <FormField
@@ -24,6 +41,11 @@ export default function IngredientAddForm() {
             type={fields[fieldName]["type"]}
             key={fieldName}
             classNameInput={css[fields[fieldName]["type"] + "Input"]}
+            value={formData[fieldName]}
+            changeHandler={value =>
+              setFormData({ ...formData, [fieldName]: value })
+            }
+            errors={formData.fieldErrors[fieldName]}
           />
         ))}
       </div>
