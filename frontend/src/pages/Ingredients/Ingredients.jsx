@@ -54,11 +54,10 @@ export default function Ingredients({ setHeadline, setBack, setButtons }) {
         <Popup
           Component={IngredientAddPopup}
           closeHandler={({ createdIngredient }) => {
-            createdIngredient &&
-              addIngredient({
-                createdIngredient,
-                setIngredients,
-              })
+            addIngredient({
+              createdIngredient,
+              setIngredients,
+            })
             setIngredientAddPopup(false)
           }}
         />
@@ -67,12 +66,10 @@ export default function Ingredients({ setHeadline, setBack, setButtons }) {
         <Popup
           Component={IngredientEditPopup}
           closeHandler={({ updatedIngredient }) => {
-            console.log("updatedIngredient: ", updatedIngredient)
-            updatedIngredient &&
-              updateIngredient({
-                updatedIngredient,
-                setIngredients,
-              })
+            updateIngredient({
+              updatedIngredient,
+              setIngredients,
+            })
             setEditingIngredient(null)
           }}
           ingredient={editingIngredient}
@@ -81,7 +78,10 @@ export default function Ingredients({ setHeadline, setBack, setButtons }) {
       {deletingIngredient && (
         <Popup
           Component={IngredientDeletePopup}
-          closeHandler={() => setDeletingIngredient(null)}
+          closeHandler={({ deletedIngredientID }) => {
+            removeIngredient({ deletedIngredientID, setIngredients })
+            setDeletingIngredient(null)
+          }}
           ingredient={deletingIngredient}
         />
       )}
@@ -95,7 +95,6 @@ function addIngredient({ createdIngredient, setIngredients }) {
     console.debug("no ingredient was created")
     return
   }
-
   getIngredient({
     id: createdIngredient.id,
     callback: ({ fetchedIngredient }) =>
@@ -109,7 +108,6 @@ function updateIngredient({ updatedIngredient, setIngredients }) {
     console.debug("no changes were made to ingredient")
     return
   }
-
   getIngredient({
     id: updatedIngredient.id,
     callback: ({ fetchedIngredient }) =>
@@ -121,4 +119,15 @@ function updateIngredient({ updatedIngredient, setIngredients }) {
         )
       ),
   })
+}
+
+function removeIngredient({ deletedIngredientID, setIngredients }) {
+  // remove deleted ingredient from grid
+  if (deletedIngredientID === null) {
+    console.debug("no ingredient was deleted")
+    return
+  }
+  setIngredients(ingredients =>
+    ingredients.filter(ingredient => ingredient.id !== deletedIngredientID)
+  )
 }

@@ -79,7 +79,7 @@ export default function IngredientEditForm({
           className={css.cancelButton}
           clickHandler={event => {
             event.preventDefault()
-            closeHandler({ changedIngredient: null })
+            closeHandler({ updatedIngredient: null })
           }}
         />
       </div>
