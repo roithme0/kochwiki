@@ -8,6 +8,7 @@ import deleteIngredient from "../../../services/api/Ingredient/deleteIngredient"
 export default function IngredientDeleteForm({ ingredient, closeHandler }) {
   const [formData, setFormData] = useState({
     id: ingredient.id,
+    errorDetail: "",
   })
 
   return (
@@ -18,19 +19,15 @@ export default function IngredientDeleteForm({ ingredient, closeHandler }) {
           event,
           formData,
           callback: closeHandler,
+          errorCallback: ({ errorResponse }) =>
+            updateErrorDetail({ errorResponse, setFormData }),
         })
       }}
     >
       <input type="hidden" name="id" value={ingredient.id} />
-      {/* {formData.nonFieldErrors.length > 0 && (
-        <div className={css.nonFieldErrorsWrapper}>
-          {formData.nonFieldErrors.map(nonFieldError => (
-            <p key={nonFieldError} className={css.nonFieldError}>
-              {nonFieldError}
-            </p>
-          ))}
-        </div>
-      )} */}
+      {formData.errorDetail.length > 0 && (
+        <p className={css.errorDetail}>{formData.errorDetail}</p>
+      )}
       <div className={css.buttonsWrapper}>
         <Button type="positive" svg={mdiCheck} className={css.deleteButton} />
         <Button
@@ -51,17 +48,24 @@ async function submitHandler({
   event,
   formData,
   callback,
-  // errorCallback,
-  // errorCallbackProps,
+  errorCallback,
+  errorCallbackProps,
 }) {
   // submit form data to API
   event.preventDefault()
   console.debug("submitting form: ", formData)
   const result = await deleteIngredient({
     id: formData.id,
-    // errorCallback,
-    // errorCallbackProps,
+    errorCallback,
+    errorCallbackProps,
   })
   result.success &&
     callback({ deletedIngredientID: result.deletedIngredientID })
+}
+
+function updateErrorDetail({ errorResponse, setFormData }) {
+  // update error detail
+  console.debug("updating error details: ", errorResponse.data)
+  const errorDetail = errorResponse.data.detail || ""
+  setFormData(formData => ({ ...formData, errorDetail }))
 }
