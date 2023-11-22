@@ -40,9 +40,10 @@ export default function IngredientEditForm({
         submitHandler({
           event,
           formData,
-          callback: closeHandler,
-          errorCallback: updateErrors,
-          errorCallbackProps: { fieldNames, setFormData },
+          callback: ({ updatedIngredient }) =>
+            closeHandler({ updatedIngredient }),
+          errorCallback: ({ errorResponse }) =>
+            updateErrors({ errorResponse, fieldNames, setFormData }),
         })
       }}
     >
@@ -86,22 +87,15 @@ export default function IngredientEditForm({
   )
 }
 
-async function submitHandler({
-  event,
-  formData,
-  callback,
-  errorCallback,
-  errorCallbackProps,
-}) {
+function submitHandler({ event, formData, callback, errorCallback }) {
   // submit form data to API
   event.preventDefault()
   console.debug("submitting form: ", formData)
-  const result = await putIngredient({
+  putIngredient({
     form: formData,
+    callback,
     errorCallback,
-    errorCallbackProps,
   })
-  result.success && callback({ changedIngredient: result.updatedIngredient })
 }
 
 function updateErrors({ errorResponse, fieldNames, setFormData }) {

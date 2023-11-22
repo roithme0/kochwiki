@@ -12,7 +12,7 @@ export default function IngredientEditPopup({ closeHandler, ingredient }) {
         <Button
           svg={mdiClose}
           className={css.close}
-          clickHandler={() => closeHandler({ changedIngredient: null })}
+          clickHandler={() => closeHandler({ updatedIngredient: null })}
         />
       </header>
       <IngredientEditForm

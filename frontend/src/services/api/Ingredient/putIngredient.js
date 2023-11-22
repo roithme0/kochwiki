@@ -3,9 +3,7 @@ import axios from "axios"
 export default async function putIngredient({
   form,
   callback = null,
-  callbackProps = {},
   errorCallback = null,
-  errorCallbackProps = {},
 }) {
   try {
     const response = await axios.put(
@@ -14,13 +12,9 @@ export default async function putIngredient({
     )
     console.debug("updated ingredient: ", response)
     const updatedIngredient = response.data
-    callbackProps.updatedIngredient = updatedIngredient
-    callback && callback(callbackProps)
-    return { updatedIngredient: updatedIngredient, success: true }
+    callback && callback({ updatedIngredient })
   } catch (error) {
     console.error("ERROR: failed to update ingredient: ", error.response)
-    errorCallbackProps.errorResponse = error.response
-    errorCallback && errorCallback(errorCallbackProps)
-    return { errorResponse: error.response, success: false }
+    errorCallback && errorCallback({ errorResponse: error.response })
   }
 }

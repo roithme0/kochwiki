@@ -66,11 +66,11 @@ export default function Ingredients({ setHeadline, setBack, setButtons }) {
       {editingIngredient && (
         <Popup
           Component={IngredientEditPopup}
-          closeHandler={({ changedIngredient }) => {
-            console.log("changedIngredient: ", changedIngredient)
-            changedIngredient &&
+          closeHandler={({ updatedIngredient }) => {
+            console.log("updatedIngredient: ", updatedIngredient)
+            updatedIngredient &&
               updateIngredient({
-                changedIngredient,
+                updatedIngredient,
                 setIngredients,
               })
             setEditingIngredient(null)
@@ -103,15 +103,15 @@ function addIngredient({ createdIngredient, setIngredients }) {
   })
 }
 
-function updateIngredient({ changedIngredient, setIngredients }) {
+function updateIngredient({ updatedIngredient, setIngredients }) {
   // update changed ingredient in grid
-  if (changedIngredient === null) {
+  if (updatedIngredient === null) {
     console.debug("no changes were made to ingredient")
     return
   }
 
   getIngredient({
-    id: changedIngredient.id,
+    id: updatedIngredient.id,
     callback: props =>
       setIngredients(ingredients =>
         ingredients.map(ingredient =>
