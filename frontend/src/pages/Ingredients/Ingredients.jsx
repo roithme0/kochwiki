@@ -98,8 +98,8 @@ function addIngredient({ createdIngredient, setIngredients }) {
 
   getIngredient({
     id: createdIngredient.id,
-    callback: props =>
-      setIngredients(ingredients => [...ingredients, props.fetchedIngredient]),
+    callback: ({ fetchedIngredient }) =>
+      setIngredients(ingredients => [...ingredients, fetchedIngredient]),
   })
 }
 
@@ -112,11 +112,11 @@ function updateIngredient({ updatedIngredient, setIngredients }) {
 
   getIngredient({
     id: updatedIngredient.id,
-    callback: props =>
+    callback: ({ fetchedIngredient }) =>
       setIngredients(ingredients =>
         ingredients.map(ingredient =>
-          ingredient.id === props.fetchedIngredient.id
-            ? props.fetchedIngredient
+          ingredient.id === fetchedIngredient.id
+            ? fetchedIngredient
             : ingredient
         )
       ),
