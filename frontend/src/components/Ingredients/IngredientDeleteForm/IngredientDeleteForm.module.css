@@ -4,6 +4,31 @@
   gap: var(--gap);
 }
 
+.fieldsWrapper {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  gap: var(--gap);
+}
+
+.fieldLabel {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+.labelText,
+.fieldValue {
+  margin: 0;
+}
+
+.labelText {
+  font-weight: 600;
+
+  &::after {
+    content: ":";
+  }
+}
+
 .errorDetail {
   margin: 0;
   color: var(--negative-color);

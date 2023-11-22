@@ -6,6 +6,15 @@ import { useState } from "react"
 import deleteIngredient from "../../../services/api/Ingredient/deleteIngredient"
 
 export default function IngredientDeleteForm({ ingredient, closeHandler }) {
+  const fieldNames = [
+    "name",
+    "brand",
+    "kcal",
+    "carbs",
+    "protein",
+    "fat",
+    "unit",
+  ]
   const [formData, setFormData] = useState({
     id: ingredient.id,
     errorDetail: "",
@@ -26,6 +35,16 @@ export default function IngredientDeleteForm({ ingredient, closeHandler }) {
       }}
     >
       <input type="hidden" name="id" value={ingredient.id} />
+      <div className={css.fieldsWrapper}>
+        {fieldNames.map(fieldName => (
+          <label key={fieldName} className={css.fieldLabel}>
+            <p className={css.labelText}>
+              {ingredient.verbose_names[fieldName]}
+            </p>
+            <p className={css.fieldValue}>{ingredient[fieldName] || ""}</p>
+          </label>
+        ))}
+      </div>
       {formData.errorDetail.length > 0 && (
         <p className={css.errorDetail}>{formData.errorDetail}</p>
       )}
