@@ -18,7 +18,8 @@ export default function IngredientDeleteForm({ ingredient, closeHandler }) {
         submitHandler({
           event,
           formData,
-          callback: closeHandler,
+          callback: ({ deletedIngredientID }) =>
+            closeHandler({ deletedIngredientID }),
           errorCallback: ({ errorResponse }) =>
             updateErrorDetail({ errorResponse, setFormData }),
         })
@@ -44,23 +45,15 @@ export default function IngredientDeleteForm({ ingredient, closeHandler }) {
   )
 }
 
-async function submitHandler({
-  event,
-  formData,
-  callback,
-  errorCallback,
-  errorCallbackProps,
-}) {
+async function submitHandler({ event, formData, callback, errorCallback }) {
   // submit form data to API
   event.preventDefault()
   console.debug("submitting form: ", formData)
-  const result = await deleteIngredient({
+  deleteIngredient({
     id: formData.id,
+    callback,
     errorCallback,
-    errorCallbackProps,
   })
-  result.success &&
-    callback({ deletedIngredientID: result.deletedIngredientID })
 }
 
 function updateErrorDetail({ errorResponse, setFormData }) {
