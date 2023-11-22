@@ -2,19 +2,22 @@ import axios from "axios"
 
 export default async function postIngredient({
   form,
-  callback = null,
-  errorCallback = null,
+  setFunction = () => {},
+  callback = () => {},
+  errorCallback = () => {},
 }) {
   try {
     const response = await axios.post(
       `http://localhost:8000/recipes/ingredient/create/`,
       form
     )
-    console.debug("created ingredient: ", response)
     const createdIngredient = response.data
-    callback && callback({ createdIngredient })
+    console.debug("created ingredient: ", response)
+    setFunction(createdIngredient)
+    callback({ createdIngredient })
   } catch (error) {
-    console.error("ERROR: failed to create ingredient: ", error.response)
-    errorCallback && errorCallback({ errorResponse: error.response })
+    const errorResponse = error.response
+    console.error("ERROR: failed to create ingredient: ", errorResponse)
+    errorCallback({ errorResponse })
   }
 }

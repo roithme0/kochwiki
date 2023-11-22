@@ -2,17 +2,18 @@ import axios from "axios"
 
 export default async function deleteIngredient({
   id,
-  callback = null,
-  errorCallback = null,
+  callback = () => {},
+  errorCallback = () => {},
 }) {
   try {
     const response = await axios.delete(
       `http://localhost:8000/recipes/ingredient/delete/${id}/`
     )
     console.debug("deleted ingredient: ", response)
-    callback && callback({ deletedIngredientID: id })
+    callback({ deletedIngredientID: id })
   } catch (error) {
-    console.error("ERROR: failed to delete ingredient: ", error.response)
-    errorCallback && errorCallback({ errorResponse: error.response })
+    const errorResponse = error.response
+    console.error("ERROR: failed to delete ingredient: ", errorResponse)
+    errorCallback({ errorResponse: error.response })
   }
 }
