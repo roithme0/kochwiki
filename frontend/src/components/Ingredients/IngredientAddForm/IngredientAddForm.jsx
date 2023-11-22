@@ -36,9 +36,10 @@ export default function IngredientAddForm({ closeHandler }) {
         submitHandler({
           event,
           formData,
-          callback: closeHandler,
-          errorCallback: updateErrors,
-          errorCallbackProps: { fieldNames, setFormData },
+          callback: ({ createdIngredient }) =>
+            closeHandler({ createdIngredient }),
+          errorCallback: ({ errorResponse }) =>
+            updateErrors({ errorResponse, fieldNames, setFormData }),
         })
       }}
     >
@@ -82,22 +83,15 @@ export default function IngredientAddForm({ closeHandler }) {
   )
 }
 
-async function submitHandler({
-  event,
-  formData,
-  callback,
-  errorCallback,
-  errorCallbackProps,
-}) {
+function submitHandler({ event, formData, callback, errorCallback }) {
   // submit form data to API
   event.preventDefault()
   console.debug("submitting form: ", formData)
-  const result = await postIngredient({
+  postIngredient({
     form: formData,
+    callback,
     errorCallback,
-    errorCallbackProps,
   })
-  result.success && callback({ createdIngredient: result.createdIngredient })
 }
 
 function updateErrors({ errorResponse, fieldNames, setFormData }) {

@@ -45,8 +45,8 @@ export default function IngredientDeleteForm({ ingredient, closeHandler }) {
   )
 }
 
-async function submitHandler({ event, formData, callback, errorCallback }) {
-  // submit form data to API
+function submitHandler({ event, formData, callback, errorCallback }) {
+  // submit form data to api
   event.preventDefault()
   console.debug("submitting form: ", formData)
   deleteIngredient({
