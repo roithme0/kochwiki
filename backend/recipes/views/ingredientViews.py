@@ -1,9 +1,8 @@
-from .models import Ingredient, Recipe
-from .serializers import (
+from ..models import Ingredient
+from ..serializers.ingredientSerializers import (
     IngredientSerializer,
     AddIngredientSerializer,
     EditIngredientSerializer,
-    RecipeSerializer,
 )
 
 from rest_framework.response import Response
@@ -65,8 +64,3 @@ class RetrieveIngredientView(RetrieveAPIView):
 class ListIngredientsView(ListAPIView):
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
-
-
-class ListRecipesView(ListAPIView):
-    queryset = Recipe.objects.all()
-    serializer_class = RecipeSerializer

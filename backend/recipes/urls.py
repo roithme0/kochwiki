@@ -1,14 +1,15 @@
 from django.urls import path
 from django.urls.conf import include
 
-from .views import (
+from .views.ingredientViews import (
     CreateIngredientView,
     RetrieveUpdateIngredientView,
     DestroyIngredientView,
     RetrieveIngredientView,
     ListIngredientsView,
-    ListRecipesView,
 )
+
+from .views.recipeViews import ListRecipesView
 
 app_name = "recipes"
 

@@ -1,4 +1,4 @@
-from .models import Ingredient, Recipe
+from ..models import Ingredient
 
 from rest_framework import serializers
 import logging
@@ -109,12 +109,6 @@ class IngredientSerializer(serializers.ModelSerializer):
 
     def get_choices(self, obj):
         return get_choices(self.Meta.model, self.fields)
-
-
-class RecipeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Recipe
-        fields = "__all__"
 
 
 def get_choices(model, fields):
