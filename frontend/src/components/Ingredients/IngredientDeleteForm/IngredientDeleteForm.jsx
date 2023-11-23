@@ -41,7 +41,7 @@ export default function IngredientDeleteForm({ ingredient, closeHandler }) {
             <p className={css.labelText}>
               {ingredient.verbose_names[fieldName]}
             </p>
-            <p className={css.fieldValue}>{ingredient[fieldName] || ""}</p>
+            <p className={css.fieldValue}>{ingredient[fieldName] || "-"}</p>
           </label>
         ))}
       </div>
