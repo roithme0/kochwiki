@@ -1,5 +1,5 @@
-from ..models import Ingredient
-from ..serializers.ingredientSerializers import (
+from .models import Ingredient
+from .serializers import (
     IngredientSerializer,
     AddIngredientSerializer,
     EditIngredientSerializer,

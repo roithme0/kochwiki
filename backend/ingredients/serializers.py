@@ -1,4 +1,4 @@
-from ..models import Ingredient
+from .models import Ingredient
 
 from rest_framework import serializers
 import logging

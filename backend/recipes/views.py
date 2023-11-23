@@ -1,5 +1,5 @@
-from ..models import Recipe
-from ..serializers.recipeSerializers import (
+from .models import Recipe
+from .serializers import (
     RecipeSerializer,
 )
 
