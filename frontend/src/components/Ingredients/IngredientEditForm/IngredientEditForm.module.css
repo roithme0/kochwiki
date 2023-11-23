@@ -19,6 +19,10 @@
   background-color: transparent;
   font: inherit;
 
+  &.hasChanged {
+    border-color: var(--highlight-color);
+  }
+
   &:hover,
   &:focus {
     border-color: transparent;

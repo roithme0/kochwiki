@@ -4,7 +4,7 @@ import { mdiCheck, mdiCancel } from "@mdi/js"
 import FormField from "../../ui/FormField"
 import Button from "../../ui/Button"
 import putIngredient from "../../../services/api/Ingredient/putIngredient"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export default function IngredientEditForm({
   initialIngredient,
@@ -54,7 +54,9 @@ export default function IngredientEditForm({
             type={fieldTypes[fieldName]}
             key={fieldName}
             classNameInput={css[fieldTypes[fieldName] + "Input"]}
+            classNameInputHasChanged={css.hasChanged}
             value={formData[fieldName]}
+            initialValue={initialIngredient[fieldName]}
             changeHandler={value =>
               setFormData({ ...formData, [fieldName]: value })
             }

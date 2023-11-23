@@ -7,7 +7,9 @@ export default function FormField({
   label,
   type,
   classNameInput,
+  classNameInputHasChanged = null,
   value,
+  initialValue = value,
   changeHandler,
   errors = [],
 }) {
@@ -23,6 +25,17 @@ export default function FormField({
       }
     }
   }, [errors])
+
+  useEffect(() => {
+    // indicate if the fields value was changed
+    if (inputRef.current) {
+      if (value !== initialValue) {
+        inputRef.current.classList.add(classNameInputHasChanged)
+      } else {
+        inputRef.current.classList.remove(classNameInputHasChanged)
+      }
+    }
+  }, [initialValue, value])
 
   useEffect(() => {
     // remove error indication when value changes
