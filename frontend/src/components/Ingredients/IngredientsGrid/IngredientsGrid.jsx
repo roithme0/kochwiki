@@ -6,6 +6,19 @@ import Search from "../../ui/Search/Search"
 import IngredientsFilter from "../../ui/IngredientsFilter"
 import { useEffect, useState, useRef } from "react"
 
+const columnsOrder = [
+  // order of columns to render
+  "name",
+  "brand",
+  "kcal",
+  "carbs",
+  "protein",
+  "fat",
+  "unit",
+  "edit",
+  "delete",
+]
+
 export default function IngredientsGrid({
   ingredients, // :Array<Object> -> list of ingredients to display
   setEditingIngredient, // :Function -> set ingredient to edit
@@ -13,18 +26,6 @@ export default function IngredientsGrid({
 }) {
   // render header and body for a grid of ingredients
 
-  const columnsOrder = [
-    // order of columns to render
-    "name",
-    "brand",
-    "kcal",
-    "carbs",
-    "protein",
-    "fat",
-    "unit",
-    "edit",
-    "delete",
-  ]
   const ingredientsGrid = useRef()
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)

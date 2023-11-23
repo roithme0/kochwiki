@@ -4,7 +4,18 @@ import { mdiCheck, mdiCancel } from "@mdi/js"
 import FormField from "../../ui/FormField"
 import Button from "../../ui/Button"
 import putIngredient from "../../../services/api/Ingredient/putIngredient"
-import { useState, useEffect } from "react"
+import { useState } from "react"
+
+const fieldTypes = {
+  // fields to display in the form with their input types
+  name: "text",
+  brand: "text",
+  unit: "selectUnit",
+  kcal: "integer",
+  carbs: "float",
+  protein: "float",
+  fat: "float",
+}
 
 export default function IngredientEditForm({
   initialIngredient, // :Object -> ingredient to edit
@@ -12,16 +23,6 @@ export default function IngredientEditForm({
 }) {
   // render form to edit an existing ingredient
 
-  const fieldTypes = {
-    // fields to display in the form with their input types
-    name: "text",
-    brand: "text",
-    unit: "selectUnit",
-    kcal: "integer",
-    carbs: "float",
-    protein: "float",
-    fat: "float",
-  }
   const fieldNames = Object.keys(fieldTypes)
   const [formData, setFormData] = useState({
     id: initialIngredient.id,

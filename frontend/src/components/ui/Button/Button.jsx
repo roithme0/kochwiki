@@ -9,7 +9,7 @@ export default function Button({
   svg = null,
   png = null,
   className = "",
-  clickHandler = event => {},
+  clickHandler = () => {},
 }) {
   return (
     <button

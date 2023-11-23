@@ -6,21 +6,22 @@ import Button from "../../ui/Button"
 import postIngredient from "../../../services/api/Ingredient/postIngredient"
 import { useState } from "react"
 
+const fields = {
+  // fields to display in form with their verbose names and types
+  name: { verboseName: "Name", type: "text" },
+  brand: { verboseName: "Marke", type: "text" },
+  unit: { verboseName: "Einheit", type: "selectUnit" },
+  kcal: { verboseName: "Kalorien", type: "integer" },
+  carbs: { verboseName: "Kohlenhydrate", type: "float" },
+  protein: { verboseName: "Protein", type: "float" },
+  fat: { verboseName: "Fett", type: "float" },
+}
+
 export default function IngredientAddForm({
   closeHandler, // :Function -> close popup containing this form
 }) {
   // render form to add a new ingredient
 
-  const fields = {
-    // fields to display in form with their verbose names and types
-    name: { verboseName: "Name", type: "text" },
-    brand: { verboseName: "Marke", type: "text" },
-    unit: { verboseName: "Einheit", type: "selectUnit" },
-    kcal: { verboseName: "Kalorien", type: "integer" },
-    carbs: { verboseName: "Kohlenhydrate", type: "float" },
-    protein: { verboseName: "Protein", type: "float" },
-    fat: { verboseName: "Fett", type: "float" },
-  }
   const fieldNames = Object.keys(fields)
   const [formData, setFormData] = useState({
     name: "",

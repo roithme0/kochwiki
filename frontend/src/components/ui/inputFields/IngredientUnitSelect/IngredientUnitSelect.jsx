@@ -1,13 +1,13 @@
 import css from "./IngredientUnitSelect.module.css"
 
+const choices = ["g", "ml", "Stk."]
+
 export default function IngredientUnitSelect({
   className, // String -> css className of select field
   value = "", // String -> value of select field
   changeHandler = () => {}, // Function -> change handler of select field
   refValue = null, // Ref -> ref of select field
 }) {
-  const choices = ["g", "ml", "Stk."]
-
   return (
     <select
       className={className}

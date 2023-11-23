@@ -5,22 +5,23 @@ import Button from "../../ui/Button"
 import { useState } from "react"
 import deleteIngredient from "../../../services/api/Ingredient/deleteIngredient"
 
+const fieldNames = [
+  // fields to display in form
+  "name",
+  "brand",
+  "kcal",
+  "carbs",
+  "protein",
+  "fat",
+  "unit",
+]
+
 export default function IngredientDeleteForm({
   ingredient, // :Object -> ingredient to delete
   closeHandler, // :Function -> close popup containing this form
 }) {
   // render for to delete an ingredient
 
-  const fieldNames = [
-    // fields to display in form
-    "name",
-    "brand",
-    "kcal",
-    "carbs",
-    "protein",
-    "fat",
-    "unit",
-  ]
   const [formData, setFormData] = useState({
     id: ingredient.id,
     errorDetail: "",
