@@ -21,9 +21,9 @@ const columnsOrder = [
 ]
 
 export default function IngredientsGrid({
-  ingredients, // :Array<Object> -> list of ingredients to display
-  setEditingIngredient, // :Function -> set ingredient to edit
-  setDeletingIngredient, // :Function -> set ingredient to delete
+  ingredients, // Array<Object> -> list of ingredients to display
+  setEditingIngredient, // Function -> set ingredient to edit
+  setDeletingIngredient, // Function -> set ingredient to delete
 }) {
   // render header and body for a grid of ingredients
 

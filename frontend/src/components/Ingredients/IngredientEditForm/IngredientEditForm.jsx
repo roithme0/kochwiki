@@ -18,8 +18,8 @@ const fieldTypes = {
 }
 
 export default function IngredientEditForm({
-  initialIngredient, // :Object -> ingredient to edit
-  closeHandler, // :Function -> close popup containing this form
+  initialIngredient, // Object -> ingredient to edit
+  closeHandler, // Function -> close popup containing this form
 }) {
   // render form to edit an existing ingredient
 

@@ -18,7 +18,7 @@ const fields = {
 }
 
 export default function IngredientAddForm({
-  closeHandler, // :Function -> close popup containing this form
+  closeHandler, // Function -> close popup containing this form
 }) {
   // render form to add a new ingredient
 

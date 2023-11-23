@@ -17,8 +17,8 @@ const fieldNames = [
 ]
 
 export default function IngredientDeleteForm({
-  ingredient, // :Object -> ingredient to delete
-  closeHandler, // :Function -> close popup containing this form
+  ingredient, // Object -> ingredient to delete
+  closeHandler, // Function -> close popup containing this form
 }) {
   // render for to delete an ingredient
 

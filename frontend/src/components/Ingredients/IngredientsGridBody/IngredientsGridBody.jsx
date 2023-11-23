@@ -4,18 +4,18 @@ import IngredientsGridRow from "../IngredientsGridRow"
 import { useEffect, useState } from "react"
 
 export default function IngredientsGridBody({
-  initialIngredients, // :Array<Object> -> list of ingredients to display but unordered and unfiltered
-  filter, // :String -> unit to filter ingredients by
-  search, // :String -> string to search ingredients by
-  sortKey, // :String -> key to sort ingredients by
-  columnsToRender, // :Array<String> -> ordered columns to render
-  setEditingIngredient, // :Function -> set ingredient to edit
-  setDeletingIngredient, // :Function -> set ingredient to delete
+  initialIngredients, // Array<Object> -> list of ingredients to display but unordered and unfiltered
+  filter, // String -> unit to filter ingredients by
+  search, // String -> string to search ingredients by
+  sortKey, // String -> key to sort ingredients by
+  columnsToRender, // Array<String> -> ordered columns to render
+  setEditingIngredient, // Function -> set ingredient to edit
+  setDeletingIngredient, // Function -> set ingredient to delete
 }) {
   // render grid body
 
   const [processedIngredients, setProcessedIngredients] =
-    useState(initialIngredients) // :Array<Object> -> list of ingredients to display sorted and filtered
+    useState(initialIngredients) // Array<Object> -> list of ingredients to display sorted and filtered
 
   useEffect(() => {
     // sort, search and filter ingredients

@@ -3,7 +3,7 @@ import css from "./Footer.module.css"
 import Button from "../ui/Button"
 
 export default function Footer({
-  buttons, // :Array<Object> [{icon: ?, clickHanlder: ?}, ...]
+  buttons, // Array<Object> [{icon: ?, clickHanlder: ?}, ...]
 }) {
   // render footer with given buttons
 

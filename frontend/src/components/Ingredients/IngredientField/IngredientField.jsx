@@ -1,8 +1,8 @@
 import css from "./IngredientField.module.css"
 
 export default function IngredientField({
-  ingredient, // :Object -> ingredient to render
-  fieldName, // :String -> name of field to render
+  ingredient, // Object -> ingredient to render
+  fieldName, // String -> name of field to render
 }) {
   // render value of ingredient field
 
