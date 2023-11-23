@@ -1,19 +1,27 @@
 import css from "./FormField.module.css"
 
 import IngredientUnitSelect from "../inputFields/IngredientUnitSelect"
+import InputText from "../inputFields/InputText"
+import InputNumber from "../inputFields/InputNumber"
 import { useEffect, useRef } from "react"
 
 export default function FormField({
   label, // String -> label of field
   type, // String -> type of input field
   classNameInput, // String -> css className of input field
-  classNameInputHasChanged = null, // String -> css className of input field after value has changed
+  classNameInputHasChanged = css.dummy, // css.class -> css className of input field after value has changed
   value, // String -> value of input field
   initialValue = value, // String -> initial value of input field
   changeHandler, // Function -> change handler of input field
   errors = [], // Array<String> -> field errors of input field
 }) {
   const inputRef = useRef(null)
+  const fields = {
+    text: InputText,
+    number: InputNumber,
+    selectUnit: IngredientUnitSelect,
+  }
+  const Field = fields[type]
 
   useEffect(() => {
     // indicate if field has errors
@@ -48,22 +56,12 @@ export default function FormField({
     <>
       <label className={css.label}>{label}</label>
       <div className={css.fieldAndErrors}>
-        {type === "selectUnit" ? (
-          <IngredientUnitSelect
-            classNameSelect={classNameInput}
-            value={value || ""}
-            changeHandler={value => changeHandler(value)}
-            refValue={inputRef}
-          />
-        ) : (
-          <input
-            type={type}
-            className={classNameInput}
-            value={value || ""}
-            ref={inputRef}
-            onChange={event => changeHandler(event.target.value)}
-          />
-        )}
+        <Field
+          className={classNameInput}
+          value={value || ""}
+          changeHandler={value => changeHandler(value)}
+          refValue={inputRef}
+        />
         {errors.length > 0 &&
           errors.map((error, index) => (
             <p key={index} className={css.error}>

@@ -1,7 +1,7 @@
 import css from "./IngredientUnitSelect.module.css"
 
 export default function IngredientUnitSelect({
-  classNameSelect, // String -> css className of select field
+  className, // String -> css className of select field
   value = "", // String -> value of select field
   changeHandler = () => {}, // Function -> change handler of select field
   refValue = null, // Ref -> ref of select field
@@ -10,7 +10,7 @@ export default function IngredientUnitSelect({
 
   return (
     <select
-      className={classNameSelect}
+      className={className}
       value={value}
       ref={refValue}
       onChange={event => changeHandler(event.target.value)}
