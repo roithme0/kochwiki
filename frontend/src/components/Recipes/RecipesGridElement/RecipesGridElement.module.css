@@ -1,7 +1,35 @@
 .elementWrapper {
+  --padding: var(--gap);
+  padding: var(--padding);
+  background-color: var(--secondary-background);
+  border-radius: calc(var(--border-radius) + var(--padding));
+  text-decoration: none;
+  color: var(--primary-color);
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--secondary-background);
+  gap: var(--gap);
+
+  &:focus,
+  &:hover {
+    background-color: var(--highlight-background);
+  }
+}
+
+.image,
+.icon {
+  flex: 1;
+  aspect-ratio: 1;
+  height: 100% !important;
+  width: 100% !important;
+}
+
+.image {
   border-radius: var(--border-radius);
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.name {
+  margin: 0;
 }

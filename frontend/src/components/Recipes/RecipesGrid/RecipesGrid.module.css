@@ -5,7 +5,12 @@
 }
 
 .recipesWrapper {
+  --columns: 3;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(var(--columns), 1fr);
   gap: var(--gap);
+
+  @media (max-width: 600px) {
+    --columns: 2;
+  }
 }

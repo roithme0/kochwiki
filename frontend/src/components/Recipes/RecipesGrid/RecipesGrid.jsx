@@ -8,7 +8,7 @@ export default function RecipesGrid({ recipes }) {
       <div className={css.controls}>Controls</div>
       <div className={css.recipesWrapper}>
         {recipes.map(recipe => (
-          <RecipesGridElement recipe={recipe} />
+          <RecipesGridElement key={recipe.id} recipe={recipe} />
         ))}
       </div>
     </div>

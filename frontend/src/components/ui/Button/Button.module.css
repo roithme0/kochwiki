@@ -51,5 +51,12 @@
 .img {
   height: 100% !important;
   width: 100% !important;
+}
+
+.svg {
   color: inherit;
+}
+
+.img {
+  object-fit: cover;
 }

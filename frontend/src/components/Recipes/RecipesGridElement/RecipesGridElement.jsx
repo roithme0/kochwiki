@@ -1,17 +1,18 @@
 import css from "./RecipesGridElement.module.css"
 
-import Button from "../../ui/Button"
+import Icon from "@mdi/react"
 import { mdiImageOffOutline } from "@mdi/js"
+import { Link } from "react-router-dom"
 
 export default function RecipesGridElement({ recipe }) {
   return (
-    <div className={css.elementWrapper}>
+    <Link to="#" className={css.elementWrapper}>
       {recipe.image ? (
-        <Button img={recipe.image} className={css.image} />
+        <img src={recipe.image} className={css.image} />
       ) : (
-        <Button svg={mdiImageOffOutline} className={css.image} />
+        <Icon path={mdiImageOffOutline} size={1} className={css.icon} />
       )}
-      <p>{recipe.name}</p>
-    </div>
+      <p className={css.name}>{recipe.name}</p>
+    </Link>
   )
 }
