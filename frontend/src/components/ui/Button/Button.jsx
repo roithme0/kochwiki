@@ -7,7 +7,7 @@ export default function Button({
 
   type = "neutral", // neutral, positive, negative -> css className
   svg = null,
-  png = null,
+  img = null, // png or jpg
   className = "",
   clickHandler = () => {},
 }) {
@@ -17,7 +17,7 @@ export default function Button({
       className={`${css.button} ${css[type]} ${className}`}
     >
       {svg && <Icon path={svg} size={1} className={css.svg} />}
-      {png && <img src={png} alt="" className={css.png} />}
+      {img && <img src={img} alt="" className={css.img} />}
     </button>
   )
 }

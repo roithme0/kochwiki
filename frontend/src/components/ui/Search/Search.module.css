@@ -38,6 +38,12 @@
 .magnify,
 .clear {
   height: 1rem;
+
+  &:focus,
+  &:hover {
+    transform: scale(1.25);
+    transition: transform 0.25s ease-out;
+  }
 }
 
 .clear {

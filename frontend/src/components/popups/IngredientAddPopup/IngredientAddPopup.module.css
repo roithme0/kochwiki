@@ -23,5 +23,7 @@
   &:hover,
   &:focus {
     color: red;
+    transform: scale(1.15);
+    transition: transform 0.25s ease-out;
   }
 }

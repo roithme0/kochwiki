@@ -15,4 +15,10 @@
 
 .button {
   height: var(--footer-font-size);
+
+  &:focus,
+  &:hover {
+    transform: scale(1.15);
+    transition: transform 0.25s ease-out;
+  }
 }

@@ -17,17 +17,11 @@
     border: none;
     background-color: transparent;
 
-    &:focus,
+    /* &:focus,
     &:hover {
-      > * {
-        transform: scale(1.15);
-        transition: transform 0.25s ease-out;
-      }
-    }
-
-    > * {
-      padding: 0;
-    }
+      transform: scale(1.15);
+      transition: transform 0.25s ease-out;
+    } */
   }
 
   &.positive {
@@ -54,7 +48,7 @@
 }
 
 .svg,
-.png {
+.img {
   height: 100% !important;
   width: 100% !important;
   color: inherit;

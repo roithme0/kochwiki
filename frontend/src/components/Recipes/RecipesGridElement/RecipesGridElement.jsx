@@ -6,7 +6,11 @@ import { mdiImageOffOutline } from "@mdi/js"
 export default function RecipesGridElement({ recipe }) {
   return (
     <div className={css.elementWrapper}>
-      <Button svg={mdiImageOffOutline} className={css.image} />
+      {recipe.image ? (
+        <Button img={recipe.image} className={css.image} />
+      ) : (
+        <Button svg={mdiImageOffOutline} className={css.image} />
+      )}
       <p>{recipe.name}</p>
     </div>
   )

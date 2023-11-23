@@ -11,7 +11,7 @@ export default function Header({ headline, back }) {
     <header className={css.header}>
       <section className={css.headerContent}>
         <Button
-          png={logo}
+          img={logo}
           clickHandler={() => (window.location.href = "/")}
           className={css.button}
         />

@@ -20,8 +20,10 @@
 .close {
   height: var(--header-font-size);
 
-  &:hover,
-  &:focus {
+  &:focus,
+  &:hover {
     color: red;
+    transform: scale(1.15);
+    transition: transform 0.25s ease-out;
   }
 }

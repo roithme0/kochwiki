@@ -13,3 +13,11 @@
   display: grid;
   place-items: center;
 }
+
+.button {
+  &:focus,
+  &:hover {
+    transform: scale(1.05);
+    transition: transform 0.25s ease-out;
+  }
+}
