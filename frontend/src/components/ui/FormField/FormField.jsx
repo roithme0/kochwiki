@@ -2,7 +2,8 @@ import css from "./FormField.module.css"
 
 import IngredientUnitSelect from "../inputFields/IngredientUnitSelect"
 import InputText from "../inputFields/InputText"
-import InputNumber from "../inputFields/InputNumber"
+import InputInteger from "../inputFields/InputInteger"
+import InputFloat from "../inputFields/InputFloat"
 import { useEffect, useRef } from "react"
 
 export default function FormField({
@@ -18,7 +19,8 @@ export default function FormField({
   const inputRef = useRef(null)
   const fields = {
     text: InputText,
-    number: InputNumber,
+    integer: InputInteger,
+    float: InputFloat,
     selectUnit: IngredientUnitSelect,
   }
   const Field = fields[type]

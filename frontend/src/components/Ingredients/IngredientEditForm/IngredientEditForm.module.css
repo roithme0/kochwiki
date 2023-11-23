@@ -12,7 +12,8 @@
 
 .textInput,
 .selectUnitInput,
-.numberInput {
+.integerInput,
+.floatInput {
   padding: 0.15rem 0.25rem;
   border: none;
   border-bottom: 2px solid var(--primary-color);
@@ -35,13 +36,8 @@
   }
 }
 
-/* .textInput {
-}
-
-.selectUnitInput {
-} */
-
-.numberInput {
+.integerInput,
+.floatInput {
   /* remove arrows */
   -moz-appearance: textfield;
   & input::-webkit-outer-spin-button,

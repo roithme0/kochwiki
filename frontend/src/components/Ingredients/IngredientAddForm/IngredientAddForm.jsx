@@ -16,10 +16,10 @@ export default function IngredientAddForm({
     name: { verboseName: "Name", type: "text" },
     brand: { verboseName: "Marke", type: "text" },
     unit: { verboseName: "Einheit", type: "selectUnit" },
-    kcal: { verboseName: "Kalorien", type: "number" },
-    carbs: { verboseName: "Kohlenhydrate", type: "number" },
-    protein: { verboseName: "Protein", type: "number" },
-    fat: { verboseName: "Fett", type: "number" },
+    kcal: { verboseName: "Kalorien", type: "integer" },
+    carbs: { verboseName: "Kohlenhydrate", type: "float" },
+    protein: { verboseName: "Protein", type: "float" },
+    fat: { verboseName: "Fett", type: "float" },
   }
   const fieldNames = Object.keys(fields)
   const [formData, setFormData] = useState({

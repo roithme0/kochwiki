@@ -17,10 +17,10 @@ export default function IngredientEditForm({
     name: "text",
     brand: "text",
     unit: "selectUnit",
-    kcal: "number",
-    carbs: "number",
-    protein: "number",
-    fat: "number",
+    kcal: "integer",
+    carbs: "float",
+    protein: "float",
+    fat: "float",
   }
   const fieldNames = Object.keys(fieldTypes)
   const [formData, setFormData] = useState({

@@ -1,6 +1,6 @@
-import css from "./InputNumber.module.css"
+import css from "./InputInteger.module.css"
 
-export default function InputNumber({
+export default function InputInteger({
   className = css.dummy, // css.class -> css className of input field
   value = "", // String -> value of input field
   changeHandler = () => {}, // Function -> change handler of input field
