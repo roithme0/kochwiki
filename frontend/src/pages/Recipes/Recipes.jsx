@@ -1,5 +1,6 @@
 import css from "./Recipes.module.css"
 
+import RecipesGrid from "../../components/Recipes/RecipesGrid"
 import { useEffect } from "react"
 
 export default function Recipes({ setHeadline, setBack }) {
@@ -10,7 +11,7 @@ export default function Recipes({ setHeadline, setBack }) {
 
   return (
     <main>
-      <article></article>
+      <RecipesGrid />
     </main>
   )
 }
