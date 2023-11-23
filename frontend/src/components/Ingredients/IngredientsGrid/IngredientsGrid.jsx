@@ -4,6 +4,7 @@ import IngredientsGridHeader from "../IngredientsGridHeader"
 import IngredientsGridBody from "../IngredientsGridBody"
 import Search from "../../ui/Search/Search"
 import IngredientsFilter from "../../ui/IngredientsFilter"
+import useWindowWidth from "../../../services/hooks/useWindowWidth"
 import { useEffect, useState, useRef } from "react"
 
 const columnsOrder = [
@@ -27,8 +28,7 @@ export default function IngredientsGrid({
   // render header and body for a grid of ingredients
 
   const ingredientsGrid = useRef()
-
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+  const windowWidth = useWindowWidth()
   const [columnsToRender, setColumnsToRender] = useState([
     "name",
     "brand",
@@ -38,14 +38,6 @@ export default function IngredientsGrid({
   const [search, setSearch] = useState("")
   const [filter, setFilter] = useState("")
   const [sortKey, setSortKey] = useState("")
-
-  useEffect(() => {
-    // track window width
-    const handleResize = () => setWindowWidth(window.innerWidth)
-    window.addEventListener("resize", handleResize)
-    console.debug("windowWidth: ", windowWidth)
-    return () => window.removeEventListener("resize", handleResize)
-  })
 
   useEffect(() => {
     // update columns to render when window width changes
