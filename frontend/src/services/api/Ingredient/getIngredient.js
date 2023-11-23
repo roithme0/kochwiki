@@ -8,7 +8,7 @@ export default async function getIngredient({
 }) {
   try {
     const response = await axios.get(
-      `http://localhost:8000/recipes/ingredient/${id}/`
+      `http://localhost:8000/ingredients/ingredient/${id}/`
     )
     const fetchedIngredient = response.data
     console.debug("fetched ingredient: ", response)

@@ -7,7 +7,7 @@ export default async function deleteIngredient({
 }) {
   try {
     const response = await axios.delete(
-      `http://localhost:8000/recipes/ingredient/delete/${id}/`
+      `http://localhost:8000/ingredients/ingredient/delete/${id}/`
     )
     console.debug("deleted ingredient: ", response)
     callback({ deletedIngredientID: id })

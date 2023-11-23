@@ -8,7 +8,7 @@ export default async function postIngredient({
 }) {
   try {
     const response = await axios.post(
-      `http://localhost:8000/recipes/ingredient/create/`,
+      `http://localhost:8000/ingredients/ingredient/create/`,
       form
     )
     const createdIngredient = response.data

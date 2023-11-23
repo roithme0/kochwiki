@@ -6,9 +6,7 @@ export default async function getIngredients({
   errorCallback = () => {},
 }) {
   try {
-    const response = await axios.get(
-      "http://localhost:8000/recipes/ingredients/"
-    )
+    const response = await axios.get("http://localhost:8000/ingredients/")
     const fetchedIngredients = response.data
     console.debug("fetched ingredients: ", response)
     setFunction(fetchedIngredients)

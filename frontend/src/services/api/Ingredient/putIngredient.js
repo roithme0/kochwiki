@@ -8,7 +8,7 @@ export default async function putIngredient({
 }) {
   try {
     const response = await axios.put(
-      `http://localhost:8000/recipes/ingredient/update/${form.id}/`,
+      `http://localhost:8000/ingredients/ingredient/update/${form.id}/`,
       form
     )
     const updatedIngredient = response.data
