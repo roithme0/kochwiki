@@ -6,6 +6,8 @@ import Recipes from "./pages/Recipes"
 import { Route, Routes } from "react-router-dom"
 
 export default function App() {
+  // render page inside of main component depending on route
+
   return (
     <Routes>
       <Route path="/" element={<Main Component={Home} />} />

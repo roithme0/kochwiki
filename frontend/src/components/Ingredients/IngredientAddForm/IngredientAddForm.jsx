@@ -6,8 +6,13 @@ import Button from "../../ui/Button"
 import postIngredient from "../../../services/api/Ingredient/postIngredient"
 import { useState } from "react"
 
-export default function IngredientAddForm({ closeHandler }) {
+export default function IngredientAddForm({
+  closeHandler, // :Function -> close popup containing this form
+}) {
+  // render form to add a new ingredient
+
   const fields = {
+    // fields to display in form with their verbose names and types
     name: { verboseName: "Name", type: "text" },
     brand: { verboseName: "Marke", type: "text" },
     unit: { verboseName: "Einheit", type: "selectUnit" },
@@ -75,7 +80,7 @@ export default function IngredientAddForm({ closeHandler }) {
           className={css.cancelButton}
           clickHandler={event => {
             event.preventDefault()
-            closeHandler({ createdIngredient: null })
+            closeHandler({ createdIngredient: null }) // null indicates that no ingredient was created
           }}
         />
       </div>

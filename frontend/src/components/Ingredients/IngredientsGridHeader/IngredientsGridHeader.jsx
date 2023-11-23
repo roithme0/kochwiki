@@ -5,10 +5,10 @@ import Icon from "@mdi/react"
 import { useEffect, useState } from "react"
 
 export default function IngredientsGridHeader({
-  verboseNames,
-  sortKey,
-  setSortKey,
-  columnsToRender,
+  verboseNames, // Array<String> -> verbose names of fields to display regardless of the screen width
+  sortKey, // String -> key to sort ingredients by
+  setSortKey, // Function -> set key to sort ingredients by
+  columnsToRender, // Array<String> -> ordered columns to render
 }) {
   // render header of ingredients grid
 

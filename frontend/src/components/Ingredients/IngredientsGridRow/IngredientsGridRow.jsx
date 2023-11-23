@@ -5,10 +5,10 @@ import IngredientField from "../IngredientField"
 import Button from "../../ui/Button"
 
 export default function IngredientsGridRow({
-  ingredient,
-  fields,
-  setEditingIngredient,
-  setDeletingIngredient,
+  ingredient, // Object -> ingredient to render in row
+  fields, // Array<String> -> fields of ingredient to render
+  setEditingIngredient, // Function -> set ingredient to edit
+  setDeletingIngredient, // Function -> set ingredient to delete
 }) {
   // render row of ingredients grid
 

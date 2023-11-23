@@ -1,10 +1,10 @@
 import css from "./IngredientUnitSelect.module.css"
 
 export default function IngredientUnitSelect({
-  classNameSelect,
-  value = "",
-  changeHandler = () => {},
-  refValue = null,
+  classNameSelect, // String -> css className of select field
+  value = "", // String -> value of select field
+  changeHandler = () => {}, // Function -> change handler of select field
+  refValue = null, // Ref -> ref of select field
 }) {
   const choices = ["g", "ml", "Stk."]
 

@@ -4,7 +4,9 @@ import { mdiMagnify, mdiClose } from "@mdi/js"
 import Button from "../Button"
 import { useEffect, useState, useRef } from "react"
 
-export default function Search({ setSearch }) {
+export default function Search({
+  setSearch, // Function -> set search string
+}) {
   const [searchLocal, setSearchLocal] = useState("")
   const searchRef = useRef(null)
   const searchFieldRef = useRef(null)

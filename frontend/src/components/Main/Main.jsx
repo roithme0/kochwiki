@@ -4,8 +4,10 @@ import Header from "../Header"
 import Footer from "../Footer"
 import { useState } from "react"
 
-export default function Main({ Component }) {
-  // render component plus header and footer
+export default function Main({
+  Component, // page to render
+}) {
+  // render page plus header and footer
 
   const [headline, setHeadline] = useState("")
   const [back, setBack] = useState({ url: "", visibility: "" })

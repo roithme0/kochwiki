@@ -7,10 +7,13 @@ import putIngredient from "../../../services/api/Ingredient/putIngredient"
 import { useState, useEffect } from "react"
 
 export default function IngredientEditForm({
-  initialIngredient,
-  closeHandler,
+  initialIngredient, // :Object -> ingredient to edit
+  closeHandler, // :Function -> close popup containing this form
 }) {
+  // render form to edit an existing ingredient
+
   const fieldTypes = {
+    // fields to display in the form with their input types
     name: "text",
     brand: "text",
     unit: "selectUnit",
@@ -90,7 +93,7 @@ export default function IngredientEditForm({
 }
 
 function submitHandler({ event, formData, callback, errorCallback }) {
-  // submit form data to API
+  // submit form data to api
   event.preventDefault()
   console.debug("submitting form: ", formData)
   putIngredient({

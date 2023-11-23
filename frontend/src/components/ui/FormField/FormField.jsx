@@ -4,14 +4,14 @@ import IngredientUnitSelect from "../IngredientUnitSelect"
 import { useEffect, useRef } from "react"
 
 export default function FormField({
-  label,
-  type,
-  classNameInput,
-  classNameInputHasChanged = null,
-  value,
-  initialValue = value,
-  changeHandler,
-  errors = [],
+  label, // String -> label of field
+  type, // String -> type of input field
+  classNameInput, // String -> css className of input field
+  classNameInputHasChanged = null, // String -> css className of input field after value has changed
+  value, // String -> value of input field
+  initialValue = value, // String -> initial value of input field
+  changeHandler, // Function -> change handler of input field
+  errors = [], // Array<String> -> field errors of input field
 }) {
   const inputRef = useRef(null)
 

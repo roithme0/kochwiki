@@ -4,7 +4,10 @@ import { mdiClose } from "@mdi/js"
 import Button from "../../ui/Button"
 import IngredientDeleteForm from "../../Ingredients/IngredientDeleteForm"
 
-export default function IngredientDeletePopup({ ingredient, closeHandler }) {
+export default function IngredientDeletePopup({
+  ingredient, // Object -> ingredient to delete
+  closeHandler, // Function -> close popup
+}) {
   return (
     <div className={css.popupWrapper}>
       <header className={css.header}>

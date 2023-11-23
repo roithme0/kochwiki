@@ -7,13 +7,14 @@ import IngredientsFilter from "../../ui/IngredientsFilter"
 import { useEffect, useState, useRef } from "react"
 
 export default function IngredientsGrid({
-  ingredients,
-  setEditingIngredient,
-  setDeletingIngredient,
+  ingredients, // :Array<Object> -> list of ingredients to display
+  setEditingIngredient, // :Function -> set ingredient to edit
+  setDeletingIngredient, // :Function -> set ingredient to delete
 }) {
-  // render header and grid of ingredients
+  // render header and body for a grid of ingredients
 
   const columnsOrder = [
+    // order of columns to render
     "name",
     "brand",
     "kcal",
@@ -56,7 +57,7 @@ export default function IngredientsGrid({
   }, [windowWidth])
 
   useEffect(() => {
-    // update css variable --columns
+    // update css variable --columns to adjust grid to displayed columns
     ingredientsGrid.current.style.setProperty(
       "--columns",
       columnsToRender.length

@@ -2,7 +2,9 @@ import css from "./IngredientsFilter.module.css"
 
 import { useEffect, useState, useRef } from "react"
 
-export default function IngredientsFilter({ setFilter }) {
+export default function IngredientsFilter({
+  setFilter, // Function -> set filter value
+}) {
   const choices = ["g", "ml", "Stk."]
   const [filterLocal, setFilterLocal] = useState("")
   const labelRef = useRef(null)
