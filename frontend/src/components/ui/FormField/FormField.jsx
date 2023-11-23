@@ -1,6 +1,6 @@
 import css from "./FormField.module.css"
 
-import IngredientUnitSelect from "../IngredientUnitSelect"
+import IngredientUnitSelect from "../inputFields/IngredientUnitSelect"
 import { useEffect, useRef } from "react"
 
 export default function FormField({
