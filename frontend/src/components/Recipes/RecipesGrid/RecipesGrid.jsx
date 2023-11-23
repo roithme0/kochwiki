@@ -1,5 +1,5 @@
 import css from "./RecipesGrid.module.css"
 
-export default function RecipesGrid() {
+export default function RecipesGrid({ recipes }) {
   return <p>RecipesGrid</p>
 }
