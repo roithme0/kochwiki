@@ -7,7 +7,7 @@
 .fieldsWrapper {
   display: grid;
   grid-template-columns: min-content 1fr;
-  gap: var(--gap);
+  gap: var(--gap) 2rem;
 }
 
 .fieldLabel {

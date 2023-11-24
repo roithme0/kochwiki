@@ -1,4 +1,7 @@
 .popupWrapper {
+  min-width: fit-content;
+  width: 20rem;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   gap: calc(2 * var(--gap));
