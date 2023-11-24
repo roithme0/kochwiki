@@ -6,6 +6,7 @@ import getIngredients from "../../services/api/Ingredient/getIngredients"
 import getIngredient from "../../services/api/Ingredient/getIngredient"
 import IngredientsGrid from "../../components/Ingredients/IngredientsGrid"
 import Popup from "../../components/popups/Popup"
+import LoadingPopup from "../../components/popups/LoadingPopup"
 import IngredientAddPopup from "../../components/popups/IngredientAddPopup"
 import IngredientEditPopup from "../../components/popups/IngredientEditPopup"
 import IngredientDeletePopup from "../../components/popups/IngredientDeletePopup"
@@ -17,6 +18,7 @@ export default function Ingredients({ setHeadline, setBack, setButtons }) {
   const [ingredientAddPopup, setIngredientAddPopup] = useState(false)
   const [editingIngredient, setEditingIngredient] = useState(null)
   const [deletingIngredient, setDeletingIngredient] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     // configure header and footer
@@ -34,22 +36,35 @@ export default function Ingredients({ setHeadline, setBack, setButtons }) {
 
   useEffect(() => {
     console.debug("fetching ingredients ...")
-    getIngredients({ setFunction: setIngredients })
+    setLoading(true)
+    getIngredients({
+      setFunction: setIngredients,
+      callback: () => setLoading(false),
+      errorCallback: () => {},
+    })
   }, [])
 
   return (
     <>
       <main className={css.ingredients}>
-        {ingredients.length ? (
-          <IngredientsGrid
-            ingredients={ingredients}
-            setEditingIngredient={setEditingIngredient}
-            setDeletingIngredient={setDeletingIngredient}
-          />
-        ) : (
-          <p className={css.placeholder}>Keine Zutaten gefunden.</p>
-        )}
+        {!loading &&
+          (ingredients.length === 0 ? (
+            <p className={css.placeholder}>Keine Zutaten gefunden.</p>
+          ) : (
+            <IngredientsGrid
+              ingredients={ingredients}
+              setEditingIngredient={setEditingIngredient}
+              setDeletingIngredient={setDeletingIngredient}
+            />
+          ))}
       </main>
+      {loading && (
+        <Popup
+          Component={LoadingPopup}
+          text="Lade Zutaten ..."
+          closeHandler={() => setLoading(false)}
+        />
+      )}
       {ingredientAddPopup && (
         <Popup
           Component={IngredientAddPopup}

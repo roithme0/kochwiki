@@ -1,0 +1,25 @@
+.popupWrapper {
+  min-width: fit-content;
+  width: 20rem;
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: self-start;
+  gap: var(--gap);
+}
+
+.text {
+  margin: 0;
+}
+
+.close {
+  height: 1.25rem;
+  width: 1.25rem;
+
+  &:hover,
+  &:focus {
+    color: red;
+    transform: scale(1.25);
+    transition: transform 0.25s ease-in;
+  }
+}
