@@ -35,11 +35,10 @@ export default function IngredientsGridBody({
     setProcessedIngredients(ingredients)
   }, [initialIngredients, search, filter, sortKey])
 
-  return (
+  return processedIngredients.length === 0 ? (
+    <p className={css.placeholder}>Keine passenden Zutaten gefunden.</p>
+  ) : (
     <div className={css.ingredientsGridBody}>
-      {processedIngredients.length === 0 ? (
-        <p className={css.placeholder}>Keine passenden Zutaten gefunden.</p>
-      ) : null}
       {processedIngredients.map(ingredient => (
         <IngredientsGridRow
           ingredient={ingredient}

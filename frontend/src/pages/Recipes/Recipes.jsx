@@ -43,7 +43,7 @@ export default function Recipes({ setHeadline, setBack, setButtons }) {
           (recipes.length === 0 ? (
             <p className={css.placeholder}>Keine Rezepte gefunden.</p>
           ) : (
-            <RecipesGrid recipes={recipes} />
+            <RecipesGrid initialRecipes={recipes} />
           ))}
       </main>
       {loading && (

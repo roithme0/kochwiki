@@ -9,6 +9,13 @@
   margin-bottom: 0.75rem;
 }
 
+.placeholder {
+  margin: 0;
+  padding: 0.15rem 0.25rem;
+  background-color: var(--secondary-background);
+  border-radius: var(--border-radius);
+}
+
 .recipesWrapper {
   --columns: 3;
   display: grid;
