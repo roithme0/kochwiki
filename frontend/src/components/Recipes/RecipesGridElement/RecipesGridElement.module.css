@@ -30,6 +30,10 @@
   object-fit: cover;
 }
 
+.icon {
+  color: var(--primary-background);
+}
+
 .name {
   margin: 0;
 }
