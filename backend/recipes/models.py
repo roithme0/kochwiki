@@ -18,8 +18,6 @@ class Recipe(models.Model):
     )
     servings = models.PositiveSmallIntegerField(
         default=2,
-        blank=True,
-        null=True,
         validators=[
             MinValueValidator(1),
             MaxValueValidator(4),
