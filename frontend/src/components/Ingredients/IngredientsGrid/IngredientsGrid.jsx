@@ -58,7 +58,7 @@ export default function IngredientsGrid({
   }, [columnsToRender])
 
   return (
-    <div className={css.ingredientsGrid} ref={ingredientsGrid}>
+    <>
       <div className={css.gridControls}>
         <Search
           setSearch={setSearch}
@@ -66,22 +66,24 @@ export default function IngredientsGrid({
         />
         <IngredientsFilter setFilter={setFilter} />
       </div>
-      <IngredientsGridHeader
-        verboseNames={ingredients[0].verbose_names}
-        sortKey={sortKey}
-        setSortKey={setSortKey}
-        columnsToRender={columnsToRender}
-      />
-      <IngredientsGridBody
-        initialIngredients={ingredients}
-        search={search}
-        filter={filter}
-        sortKey={sortKey}
-        columnsToRender={columnsToRender}
-        setEditingIngredient={setEditingIngredient}
-        setDeletingIngredient={setDeletingIngredient}
-      />
-    </div>
+      <div className={css.gridWrapper} ref={ingredientsGrid}>
+        <IngredientsGridHeader
+          verboseNames={ingredients[0].verbose_names}
+          sortKey={sortKey}
+          setSortKey={setSortKey}
+          columnsToRender={columnsToRender}
+        />
+        <IngredientsGridBody
+          initialIngredients={ingredients}
+          search={search}
+          filter={filter}
+          sortKey={sortKey}
+          columnsToRender={columnsToRender}
+          setEditingIngredient={setEditingIngredient}
+          setDeletingIngredient={setDeletingIngredient}
+        />
+      </div>
+    </>
   )
 }
 
