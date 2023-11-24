@@ -60,7 +60,10 @@ export default function IngredientsGrid({
   return (
     <div className={css.ingredientsGrid} ref={ingredientsGrid}>
       <div className={css.gridControls}>
-        <Search setSearch={setSearch} />
+        <Search
+          setSearch={setSearch}
+          placeholder="Name oder Marke suchen ..."
+        />
         <IngredientsFilter setFilter={setFilter} />
       </div>
       <IngredientsGridHeader

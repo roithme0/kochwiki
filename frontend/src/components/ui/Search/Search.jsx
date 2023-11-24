@@ -6,6 +6,7 @@ import { useEffect, useState, useRef } from "react"
 
 export default function Search({
   setSearch, // Function -> set search string
+  placeholder = "Suchen ...", // String -> placeholder text
 }) {
   const [searchLocal, setSearchLocal] = useState("")
   const searchRef = useRef(null)
@@ -26,7 +27,7 @@ export default function Search({
       <input
         type="text"
         value={searchLocal}
-        placeholder="Name oder Marke suchen ..."
+        placeholder={placeholder}
         className={css.searchField}
         ref={searchFieldRef}
         onChange={event => setSearchLocal(event.target.value)}
