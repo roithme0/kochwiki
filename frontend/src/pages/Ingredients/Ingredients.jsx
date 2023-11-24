@@ -18,7 +18,8 @@ export default function Ingredients({ setHeadline, setBack, setButtons }) {
   const [ingredientAddPopup, setIngredientAddPopup] = useState(false)
   const [editingIngredient, setEditingIngredient] = useState(null)
   const [deletingIngredient, setDeletingIngredient] = useState(null)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     // configure header and footer
@@ -36,11 +37,13 @@ export default function Ingredients({ setHeadline, setBack, setButtons }) {
 
   useEffect(() => {
     console.debug("fetching ingredients ...")
-    setLoading(true)
     getIngredients({
       setFunction: setIngredients,
       callback: () => setLoading(false),
-      errorCallback: () => {},
+      errorCallback: () => {
+        setError(true)
+        setLoading(false)
+      },
     })
   }, [])
 
