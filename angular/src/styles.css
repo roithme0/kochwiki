@@ -1,1 +1,62 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --primary-color: black;
+  --positive-color: rgb(122, 224, 122);
+  --negative-color: rgb(246, 121, 121);
+  --highlight-color: rgb(69, 173, 208);
+  --header-font-size: 2rem;
+  --footer-font-size: var(--header-font-size);
+  --primary-background: white;
+  --secondary-background: rgb(228, 228, 228);
+  --tertiary-background: rgb(193, 193, 193);
+  --quartenary-backgroud: rgb(159, 159, 159);
+  --highlight-background: rgb(215, 234, 241);
+  --positive-background: rgb(225, 252, 225);
+  --negative-background: rgb(252, 213, 213);
+  --header-height: 2.2rem;
+  --footer-height: var(--header-height);
+  --used-width: 80rem;
+  --border-radius: 0.5rem;
+  --gap: 0.5rem;
+
+  @media (0px <= width < 700px) {
+    --header-font-size: 1.5rem;
+    --header-height: 1.7rem;
+  }
+}
+
+html {
+  font-family: "Untitled Sans", Arial, Helvetica, sans-serif;
+  color: var(--primary-color);
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  width: 100dvw;
+  background-color: var(--primary-background);
+}
+
+main {
+  flex: 1 0 0;
+  overflow-y: auto;
+  width: var(--used-width);
+  max-width: 100dvw;
+  margin: 0 auto;
+  padding: 0 calc(var(--gap) / 2);
+  box-sizing: border-box;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
