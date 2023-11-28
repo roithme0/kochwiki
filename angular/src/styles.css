@@ -29,10 +29,15 @@ html {
   color: var(--primary-color);
 }
 
-app-root {
-  display: flex;
-  flex-direction: column;
+body {
+  margin: 0;
   height: 100dvh;
   width: 100dvw;
   background-color: var(--primary-background);
+}
+
+app-root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
