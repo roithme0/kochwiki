@@ -1,20 +1,20 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { IngredientsListComponent } from './ingredients-list/ingredients-list.component';
-import { RecipesListComponent } from './recipes-list/recipes-list.component';
-import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
+import { IngredientsComponent } from './ingredients/ingredients.component';
+import { RecipesComponent } from './recipes/recipes.component';
+import { RecipeComponent } from './recipe/recipe.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, title: 'Home' },
   {
     path: 'ingredients',
-    component: IngredientsListComponent,
+    component: IngredientsComponent,
     title: 'Zutaten',
   },
-  { path: 'recipes', component: RecipesListComponent, title: 'Rezepte' },
+  { path: 'recipes', component: RecipesComponent, title: 'Rezepte' },
   {
     path: 'recipes/:id',
-    component: RecipeDetailsComponent,
+    component: RecipeComponent,
     title: 'Rezept Details',
   },
 ];
