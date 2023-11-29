@@ -18,6 +18,9 @@ import { IngredientsGridRowComponent } from '../ingredients-grid-row/ingredients
 })
 export class IngredientsGridComponent {
   ingredientService: IngredientService = inject(IngredientService);
+  ingredients: Ingredient[] = [];
 
-  ingredients: Ingredient[] = this.ingredientService.getAllIngredients();
+  constructor() {
+    this.ingredients = this.ingredientService.getAllIngredients();
+  }
 }

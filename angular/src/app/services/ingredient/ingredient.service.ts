@@ -41,10 +41,12 @@ export class IngredientService {
   constructor() {}
 
   getAllIngredients(): Ingredient[] {
+    console.debug('fetching all ingredients');
     return this.ingredients;
   }
 
   getIngredientById(id: Number): Ingredient | undefined {
+    console.debug('fetching ingredient by id: ' + id.toString());
     return this.ingredients.find((ingredient) => ingredient.id === id);
   }
 }
