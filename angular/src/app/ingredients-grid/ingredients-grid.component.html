@@ -1,4 +1,12 @@
-<div>Controls</div>
+<div>
+  <input type="text" placeholder="Name oder Marke suchen ..." />
+  <select name="unitFilter" id="unitFilter">
+    <option value="all">Alle</option>
+    <option value="g">g</option>
+    <option value="ml">ml</option>
+    <option value="Stk.">Stk.</option>
+  </select>
+</div>
 <section class="grid">
   <app-ingredients-grid-header></app-ingredients-grid-header>
   @for (ingredient of ingredients; track ingredient.id){
