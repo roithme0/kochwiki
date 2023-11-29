@@ -1,0 +1,13 @@
+.grid {
+  --columns: 7;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+}
+
+app-ingredients-grid-header,
+app-ingredients-grid-row {
+  grid-column: span var(--columns);
+  display: grid;
+  grid-template-columns: subgrid;
+}

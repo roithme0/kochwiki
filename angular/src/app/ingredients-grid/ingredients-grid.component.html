@@ -1,7 +1,11 @@
 <div>Controls</div>
-<app-ingredients-grid-header></app-ingredients-grid-header>
-@for (ingredient of ingredients; track ingredient.id){
-<app-ingredients-grid-row></app-ingredients-grid-row>
-}@empty {
-<div>Keine Zutaten gefunden</div>
-}
+<section class="grid">
+  <app-ingredients-grid-header></app-ingredients-grid-header>
+  @for (ingredient of ingredients; track ingredient.id){
+  <app-ingredients-grid-row
+    [ingredient]="ingredient"
+  ></app-ingredients-grid-row>
+  }@empty {
+  <div>Keine Zutaten gefunden</div>
+  }
+</section>
