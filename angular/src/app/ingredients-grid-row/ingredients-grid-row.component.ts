@@ -14,9 +14,11 @@ import { EditIngredientDialogComponent } from '../dialogs/edit-ingredient-dialog
 export class IngredientsGridRowComponent {
   @Input() ingredient!: Ingredient;
 
-  constructor(private dialogRef: MatDialog) {}
+  constructor(private dialog: MatDialog) {}
 
-  openEditIngredientDialog() {
-    this.dialogRef.open(EditIngredientDialogComponent);
+  openEditIngredientDialog(): void {
+    this.dialog.open(EditIngredientDialogComponent, {
+      data: { id: this.ingredient.id },
+    });
   }
 }

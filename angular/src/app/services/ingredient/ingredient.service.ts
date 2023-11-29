@@ -49,4 +49,12 @@ export class IngredientService {
     console.debug('fetching ingredient by id: ' + id.toString());
     return this.ingredients.find((ingredient) => ingredient.id === id);
   }
+
+  putIngredient(ingredient: Ingredient): void {
+    console.debug('putting ingredient: ', ingredient.name);
+    const index = this.ingredients.findIndex(
+      (existingIngredient) => existingIngredient.id === ingredient.id
+    );
+    this.ingredients[index] = ingredient;
+  }
 }
