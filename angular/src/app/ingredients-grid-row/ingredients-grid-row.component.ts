@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Ingredient } from '../interfaces/ingredient';
+import { MatDialog } from '@angular/material/dialog';
+import { EditIngredientDialogComponent } from '../dialogs/edit-ingredient-dialog/edit-ingredient-dialog.component';
 
 @Component({
   selector: 'app-ingredients-grid-row',
@@ -11,4 +13,10 @@ import { Ingredient } from '../interfaces/ingredient';
 })
 export class IngredientsGridRowComponent {
   @Input() ingredient!: Ingredient;
+
+  constructor(private dialogRef: MatDialog) {}
+
+  openEditIngredientDialog() {
+    this.dialogRef.open(EditIngredientDialogComponent);
+  }
 }
