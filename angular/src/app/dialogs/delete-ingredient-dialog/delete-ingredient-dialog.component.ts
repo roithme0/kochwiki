@@ -18,7 +18,15 @@ export class DeleteIngredientDialogComponent {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     this.ingredientService = inject(IngredientService);
-    this.ingredient = this.ingredientService.getIngredientById(data.id);
+    this.ingredientService.getIngredientById(data.id).subscribe({
+      next: (ingredient) => {
+        console.debug('ingredient fetched: ', ingredient);
+        this.ingredient = ingredient;
+      },
+      error: (error) => {
+        console.error('failed to fetch ingredient: ', error);
+      },
+    });
   }
 
   deleteIngredient(): void {

@@ -41,14 +41,17 @@ export class IngredientService {
 
   constructor() {}
 
-  getAllIngredients(): Ingredient[] {
+  getAllIngredients(): Observable<Ingredient[]> {
     console.debug('fetching all ingredients');
-    return this.ingredients;
+    return of(this.ingredients);
   }
 
-  getIngredientById(id: number): Ingredient | undefined {
+  getIngredientById(id: number): Observable<Ingredient> {
     console.debug('fetching ingredient by id: ' + id.toString());
-    return this.ingredients.find((ingredient) => ingredient.id === id);
+    const ingredient: Ingredient | undefined = this.ingredients.find(
+      (ingredient) => ingredient.id === id
+    );
+    return ingredient ? of(ingredient) : of({} as Ingredient);
   }
 
   putIngredient(ingredient: Ingredient): Observable<Ingredient> {

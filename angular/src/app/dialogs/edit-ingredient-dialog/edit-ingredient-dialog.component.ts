@@ -15,7 +15,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class EditIngredientDialogComponent {
   units = ['g', 'ml', 'Stk.'];
-  ingredient: Ingredient | undefined;
   ingredientService: IngredientService = inject(IngredientService);
   ingredientForm = new FormGroup({
     id: new FormControl(),
@@ -31,23 +30,26 @@ export class EditIngredientDialogComponent {
   });
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
-    this.ingredient = this.ingredientService.getIngredientById(data.id);
-    console.debug('ingredient: ', this.ingredient);
-
-    if (this.ingredient) {
-      this.ingredientForm.setValue({
-        id: this.ingredient.id,
-        name: this.ingredient.name,
-        brand: this.ingredient.brand,
-        unit: this.ingredient.unit,
-        kcal: this.ingredient.kcal,
-        makros: {
-          carbs: this.ingredient.carbs,
-          protein: this.ingredient.protein,
-          fat: this.ingredient.fat,
-        },
-      });
-    }
+    this.ingredientService.getIngredientById(data.id).subscribe({
+      next: (ingredient) => {
+        console.debug('ingredient fetched: ', ingredient);
+        this.ingredientForm.setValue({
+          id: ingredient.id,
+          name: ingredient.name,
+          brand: ingredient.brand,
+          unit: ingredient.unit,
+          kcal: ingredient.kcal,
+          makros: {
+            carbs: ingredient.carbs,
+            protein: ingredient.protein,
+            fat: ingredient.fat,
+          },
+        });
+      },
+      error: (error) => {
+        console.error('failed to fetch ingredient: ', error);
+      },
+    });
   }
 
   onSubmit(data: any): void {

@@ -21,6 +21,14 @@ export class IngredientsGridComponent {
   ingredients: Ingredient[] = [];
 
   constructor() {
-    this.ingredients = this.ingredientService.getAllIngredients();
+    this.ingredientService.getAllIngredients().subscribe({
+      next: (ingredients) => {
+        console.debug('ingredients fetched: ', ingredients);
+        this.ingredients = ingredients;
+      },
+      error: (error) => {
+        console.error('failed to fetch ingredients: ', error);
+      },
+    });
   }
 }
