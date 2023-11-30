@@ -63,6 +63,14 @@ export class IngredientService {
     );
   }
 
+  postIngredient(data: any): Observable<Ingredient> {
+    console.debug('posting ingredient: ', data.name);
+    return this.http.post<Ingredient>(
+      'http://localhost:8000/ingredients/create',
+      data
+    );
+  }
+
   deleteIngredient(id: number): Observable<number> {
     console.debug('deleting ingredient by id: ' + id.toString());
     return this.http.delete<number>(
