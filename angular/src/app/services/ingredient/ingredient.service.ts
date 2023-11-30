@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Ingredient } from '../../interfaces/ingredient';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -45,16 +46,25 @@ export class IngredientService {
     return this.ingredients;
   }
 
-  getIngredientById(id: Number): Ingredient | undefined {
+  getIngredientById(id: number): Ingredient | undefined {
     console.debug('fetching ingredient by id: ' + id.toString());
     return this.ingredients.find((ingredient) => ingredient.id === id);
   }
 
-  putIngredient(ingredient: Ingredient): void {
+  putIngredient(ingredient: Ingredient): Observable<Ingredient> {
     console.debug('putting ingredient: ', ingredient.name);
     const index = this.ingredients.findIndex(
       (existingIngredient) => existingIngredient.id === ingredient.id
     );
     this.ingredients[index] = ingredient;
+    return of(this.ingredients[index]);
+  }
+
+  deleteIngredient(id: number): Observable<number> {
+    console.debug('deleting ingredient by id: ' + id.toString());
+    this.ingredients = this.ingredients.filter(
+      (ingredient) => ingredient.id !== id
+    );
+    return of(id);
   }
 }
