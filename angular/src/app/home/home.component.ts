@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { PageHeaderService } from '../services/page-header/page-header.service';
 
 @Component({
   selector: 'app-home',
@@ -9,4 +10,13 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent {}
+export class HomeComponent {
+  pageHeaderService: PageHeaderService = inject(PageHeaderService);
+
+  constructor() {}
+
+  ngOnInit() {
+    this.pageHeaderService.setHeadline('Home');
+    this.pageHeaderService.setBack('');
+  }
+}

@@ -1,5 +1,9 @@
-<nav>
+<header class="page-header">
   <a routerLink="" routerLinkActive="active" ariaCurrentWhenActive="page"
     >Home</a
   >
-</nav>
+  <h1>{{ headline }}</h1>
+  <a [routerLink]="back" routerLinkActive="active" ariaCurrentWhenActive="page"
+    >Back</a
+  >
+</header>
