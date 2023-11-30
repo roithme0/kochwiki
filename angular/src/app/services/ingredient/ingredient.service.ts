@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Ingredient } from '../../interfaces/ingredient';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -39,11 +40,11 @@ export class IngredientService {
     },
   ];
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   getAllIngredients(): Observable<Ingredient[]> {
     console.debug('fetching all ingredients');
-    return of(this.ingredients);
+    return this.http.get<Ingredient[]>('http://localhost:8000/ingredients');
   }
 
   getIngredientById(id: number): Observable<Ingredient> {
@@ -51,23 +52,21 @@ export class IngredientService {
     const ingredient: Ingredient | undefined = this.ingredients.find(
       (ingredient) => ingredient.id === id
     );
-    return ingredient ? of(ingredient) : of({} as Ingredient);
+    return this.http.get<Ingredient>('http://localhost:8000/ingredients/' + id);
   }
 
   putIngredient(ingredient: Ingredient): Observable<Ingredient> {
     console.debug('putting ingredient: ', ingredient.name);
-    const index = this.ingredients.findIndex(
-      (existingIngredient) => existingIngredient.id === ingredient.id
+    return this.http.put<Ingredient>(
+      'http://localhost:8000/ingredients/update/' + ingredient.id,
+      ingredient
     );
-    this.ingredients[index] = ingredient;
-    return of(this.ingredients[index]);
   }
 
   deleteIngredient(id: number): Observable<number> {
     console.debug('deleting ingredient by id: ' + id.toString());
-    this.ingredients = this.ingredients.filter(
-      (ingredient) => ingredient.id !== id
+    return this.http.delete<number>(
+      'http://localhost:8000/ingredients/delete/' + id
     );
-    return of(id);
   }
 }

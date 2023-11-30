@@ -64,6 +64,13 @@ export class EditIngredientDialogComponent {
       protein: data.makros.protein,
       fat: data.makros.fat,
     };
-    this.ingredientService.putIngredient(ingredient);
+    this.ingredientService.putIngredient(ingredient).subscribe({
+      next: (ingredient) => {
+        console.debug('ingredient updated: ', ingredient);
+      },
+      error: (error) => {
+        console.error('failed to update ingredient: ', error);
+      },
+    });
   }
 }
