@@ -17,7 +17,7 @@ export class PageFooterComponent {
   constructor() {}
 
   ngOnInit() {
-    this.pageFooterService.buttons.subscribe((buttons) => {
+    this.pageFooterService.buttons$.subscribe((buttons) => {
       this.buttons = buttons;
     });
   }

@@ -7,8 +7,8 @@ import { BehaviorSubject } from 'rxjs';
 export class PageHeaderService {
   private headlineSubject = new BehaviorSubject<string>('');
   private backSubject = new BehaviorSubject<string>('');
-  headline = this.headlineSubject.asObservable();
-  back = this.backSubject.asObservable();
+  headline$ = this.headlineSubject.asObservable();
+  back$ = this.backSubject.asObservable();
 
   constructor() {}
 

@@ -40,6 +40,7 @@ export class CreateIngredientDialogComponent {
     this.ingredientService.postIngredient(postData).subscribe({
       next: (ingredient) => {
         console.debug('ingredient created: ', ingredient);
+        this.ingredientService.notifyIngredientsChanged();
       },
       error: (error) => {
         console.error('failed to create ingredient: ', error);

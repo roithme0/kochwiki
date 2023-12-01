@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class PageFooterService {
   private buttonsSubject = new BehaviorSubject<FooterButton[]>([]);
-  buttons = this.buttonsSubject.asObservable();
+  buttons$ = this.buttonsSubject.asObservable();
 
   constructor() {}
 

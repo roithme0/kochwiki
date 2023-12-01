@@ -18,10 +18,10 @@ export class PageHeaderComponent {
   constructor() {}
 
   ngOnInit() {
-    this.pageHeaderService.headline.subscribe((headline) => {
+    this.pageHeaderService.headline$.subscribe((headline) => {
       this.headline = headline;
     });
-    this.pageHeaderService.back.subscribe((back) => {
+    this.pageHeaderService.back$.subscribe((back) => {
       this.back = back;
       console.log('back: ' + back);
     });

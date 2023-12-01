@@ -16,20 +16,16 @@ import { CreateIngredientDialogComponent } from '../dialogs/create-ingredient-di
   styleUrl: './ingredients.component.css',
 })
 export class IngredientsComponent {
+  dialog: MatDialog = inject(MatDialog);
   pageHeaderService: PageHeaderService = inject(PageHeaderService);
   pageFooterService: PageFooterService = inject(PageFooterService);
   ingredientService: IngredientService = inject(IngredientService);
   ingredients: Ingredient[] = [];
 
-  constructor(private dialog: MatDialog) {
-    this.ingredientService.getAllIngredients().subscribe({
-      next: (ingredients) => {
-        console.debug('ingredients fetched: ', ingredients);
-        this.ingredients = ingredients;
-      },
-      error: (error) => {
-        console.error('failed to fetch ingredients: ', error);
-      },
+  constructor() {
+    this.fetchIngredients();
+    this.ingredientService.ingredients$.subscribe(() => {
+      this.fetchIngredients();
     });
   }
 
@@ -42,6 +38,18 @@ export class IngredientsComponent {
         action: () => this.openCreateIngredientDialog(),
       },
     ]);
+  }
+
+  fetchIngredients(): void {
+    this.ingredientService.getAllIngredients().subscribe({
+      next: (ingredients) => {
+        console.debug('ingredients fetched: ', ingredients);
+        this.ingredients = ingredients;
+      },
+      error: (error) => {
+        console.error('failed to fetch ingredients: ', error);
+      },
+    });
   }
 
   openCreateIngredientDialog(): void {

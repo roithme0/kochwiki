@@ -67,6 +67,7 @@ export class EditIngredientDialogComponent {
     this.ingredientService.putIngredient(ingredient).subscribe({
       next: (ingredient) => {
         console.debug('ingredient updated: ', ingredient);
+        this.ingredientService.notifyIngredientsChanged();
       },
       error: (error) => {
         console.error('failed to update ingredient: ', error);
