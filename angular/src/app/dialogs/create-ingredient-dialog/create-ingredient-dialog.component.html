@@ -16,6 +16,14 @@
     <option *ngFor="let unit of units" [value]="unit">{{ unit }}</option>
   </select>
 
+  <label for="kcal">Kalorien</label>
+  <input
+    type="number"
+    name="kcal"
+    placeholder="Kalorien"
+    formControlName="kcal"
+  />
+
   <label for="makros">Makros</label>
   <div name="makros" formGroupName="makros">
     <label for="carbs">Kohlenhydrate</label>
