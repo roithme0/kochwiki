@@ -1,13 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { IngredientsGridControlsService } from '../services/ingredients-grid-controls/ingredients-grid-controls.service';
 
 @Component({
   selector: 'app-ingredients-grid-control',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './ingredients-grid-control.component.html',
-  styleUrl: './ingredients-grid-control.component.css'
+  styleUrl: './ingredients-grid-control.component.css',
 })
 export class IngredientsGridControlComponent {
+  searchBy: string = '';
+  filterBy: string = 'all';
+  ingredientsGridControlsService: IngredientsGridControlsService = inject(
+    IngredientsGridControlsService
+  );
 
+  constructor() {}
 }

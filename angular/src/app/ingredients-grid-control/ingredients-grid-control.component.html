@@ -1,6 +1,10 @@
 <div>
-  <input type="text" placeholder="Name oder Marke suchen ..." />
-  <select name="unitFilter" id="unitFilter">
+  <input
+    type="text"
+    placeholder="Name oder Marke suchen ..."
+    [value]="searchBy"
+  />
+  <select name="unitFilter" id="unitFilter" [value]="filterBy">
     <option value="all">Alle</option>
     <option value="g">g</option>
     <option value="ml">ml</option>
