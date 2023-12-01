@@ -5,6 +5,8 @@ import { PageHeaderService } from '../services/page-header/page-header.service';
 import { PageFooterService } from '../services/page-footer/page-footer.service';
 import { IngredientService } from '../services/ingredient/ingredient.service';
 import { Ingredient } from '../interfaces/ingredient';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateIngredientDialogComponent } from '../dialogs/create-ingredient-dialog/create-ingredient-dialog.component';
 
 @Component({
   selector: 'app-ingredients',
@@ -19,7 +21,7 @@ export class IngredientsComponent {
   ingredientService: IngredientService = inject(IngredientService);
   ingredients: Ingredient[] = [];
 
-  constructor() {
+  constructor(private dialog: MatDialog) {
     this.ingredientService.getAllIngredients().subscribe({
       next: (ingredients) => {
         console.debug('ingredients fetched: ', ingredients);
@@ -37,8 +39,12 @@ export class IngredientsComponent {
     this.pageFooterService.setButtons([
       {
         text: 'Zutat hinzufügen',
-        action: () => {},
+        action: () => this.openCreateIngredientDialog(),
       },
     ]);
+  }
+
+  openCreateIngredientDialog(): void {
+    this.dialog.open(CreateIngredientDialogComponent);
   }
 }

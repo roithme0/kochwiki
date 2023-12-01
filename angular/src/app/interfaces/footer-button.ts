@@ -1,4 +1,4 @@
 export interface FooterButton {
   text: string;
-  action: () => void;
+  action: Function;
 }
