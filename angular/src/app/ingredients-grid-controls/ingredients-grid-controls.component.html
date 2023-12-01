@@ -3,8 +3,14 @@
     type="text"
     placeholder="Name oder Marke suchen ..."
     [value]="searchBy"
+    (input)="updateSearchBy($event)"
   />
-  <select name="unitFilter" id="unitFilter" [value]="filterBy">
+  <select
+    name="unitFilter"
+    id="unitFilter"
+    [value]="filterBy"
+    (change)="updateFilterBy($event)"
+  >
     <option value="all">Alle</option>
     <option value="g">g</option>
     <option value="ml">ml</option>

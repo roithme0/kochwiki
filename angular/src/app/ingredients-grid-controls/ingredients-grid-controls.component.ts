@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IngredientsGridControlsService } from '../services/ingredients-grid-controls/ingredients-grid-controls.service';
 
@@ -17,4 +17,19 @@ export class IngredientsGridControlsComponent {
   );
 
   constructor() {}
+
+  ngOnInit(): void {
+    this.ingredientsGridControlsService.setSearchBy(this.searchBy);
+    this.ingredientsGridControlsService.setFilterBy(this.filterBy);
+  }
+
+  updateSearchBy(event: any) {
+    this.searchBy = event.target.value;
+    this.ingredientsGridControlsService.setSearchBy(this.searchBy);
+  }
+
+  updateFilterBy(event: any) {
+    this.filterBy = event.target.value;
+    this.ingredientsGridControlsService.setFilterBy(this.filterBy);
+  }
 }

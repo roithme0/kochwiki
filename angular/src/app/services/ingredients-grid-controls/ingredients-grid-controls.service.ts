@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class IngredientsGridControlsService {
-  searchBySubject: Subject<string> = new Subject<string>();
-  filterBySubject: Subject<string> = new Subject<string>();
+  searchBySubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  filterBySubject: BehaviorSubject<string> = new BehaviorSubject<string>('all');
   searchBy$: Observable<string> = this.searchBySubject.asObservable();
   filterBy$: Observable<string> = this.filterBySubject.asObservable();
 
@@ -21,5 +21,13 @@ export class IngredientsGridControlsService {
 
   setFilterBy(filterBy: string): void {
     this.filterBySubject.next(filterBy);
+  }
+
+  getSearchBy(): string {
+    return this.searchBySubject.getValue();
+  }
+
+  getFilterBy(): string {
+    return this.filterBySubject.getValue();
   }
 }
