@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Ingredient } from '../interfaces/ingredient';
 import { IngredientService } from '../services/ingredient/ingredient.service';
+import { IngredientsGridControlComponent } from '../ingredients-grid-control/ingredients-grid-control.component';
 import { IngredientsGridHeaderComponent } from '../ingredients-grid-header/ingredients-grid-header.component';
 import { IngredientsGridRowComponent } from '../ingredients-grid-row/ingredients-grid-row.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -12,6 +13,7 @@ import { CreateIngredientDialogComponent } from '../dialogs/create-ingredient-di
   standalone: true,
   imports: [
     CommonModule,
+    IngredientsGridControlComponent,
     IngredientsGridHeaderComponent,
     IngredientsGridRowComponent,
   ],
