@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IngredientService } from '../../services/ingredient/ingredient.service';
 import { Ingredient } from '../../interfaces/ingredient';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-delete-ingredient-dialog',
@@ -12,6 +13,9 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrl: './delete-ingredient-dialog.component.css',
 })
 export class DeleteIngredientDialogComponent {
+  dialog: MatDialogRef<DeleteIngredientDialogComponent> = inject(
+    MatDialogRef<DeleteIngredientDialogComponent>
+  );
   ingredientService: IngredientService;
   ingredient: Ingredient | undefined;
 
@@ -34,6 +38,7 @@ export class DeleteIngredientDialogComponent {
           next: (id) => {
             console.debug('ingredient deleted: ', id);
             this.ingredientService.notifyIngredientsChanged();
+            this.dialog.close();
           },
           error: (error) => {
             console.error('failed to delete ingredienet: ', error);

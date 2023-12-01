@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup } from '@angular/forms';
 import { IngredientService } from '../../services/ingredient/ingredient.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-create-ingredient-dialog',
@@ -13,6 +14,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class CreateIngredientDialogComponent {
   units = ['g', 'ml', 'Stk.'];
+  dialog: MatDialogRef<CreateIngredientDialogComponent> = inject(
+    MatDialogRef<CreateIngredientDialogComponent>
+  );
   ingredientService: IngredientService = inject(IngredientService);
   ingredientForm = new FormGroup({
     name: new FormControl(),
@@ -41,6 +45,7 @@ export class CreateIngredientDialogComponent {
       next: (ingredient) => {
         console.debug('ingredient created: ', ingredient);
         this.ingredientService.notifyIngredientsChanged();
+        this.dialog.close();
       },
       error: (error) => {
         console.error('failed to create ingredient: ', error);

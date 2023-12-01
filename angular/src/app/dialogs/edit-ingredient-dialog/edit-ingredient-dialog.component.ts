@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Ingredient } from '../../interfaces/ingredient';
 import { IngredientService } from '../../services/ingredient/ingredient.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edit-ingredient-dialog',
@@ -15,6 +16,9 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class EditIngredientDialogComponent {
   units = ['g', 'ml', 'Stk.'];
+  dialog: MatDialogRef<EditIngredientDialogComponent> = inject(
+    MatDialogRef<EditIngredientDialogComponent>
+  );
   ingredientService: IngredientService = inject(IngredientService);
   ingredientForm = new FormGroup({
     id: new FormControl(),
@@ -68,6 +72,7 @@ export class EditIngredientDialogComponent {
       next: (ingredient) => {
         console.debug('ingredient updated: ', ingredient);
         this.ingredientService.notifyIngredientsChanged();
+        this.dialog.close();
       },
       error: (error) => {
         console.error('failed to update ingredient: ', error);
