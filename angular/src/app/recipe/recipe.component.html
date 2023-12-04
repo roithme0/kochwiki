@@ -1,1 +1,8 @@
-<p>recipe works!</p>
+@if(recipe !== null){
+<!-- replace check for existence of recipe with loading -->
+@if(recipe.image){
+<img [src]="recipe.image" class="image" />} @else {
+<img src="../../assets/icons/hide_image.svg" class="no-image" />
+} }
+<app-amounts-grid />
+<app-steps-grid />

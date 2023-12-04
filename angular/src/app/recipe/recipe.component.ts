@@ -4,11 +4,13 @@ import { Recipe } from '../interfaces/recipe';
 import { RecipeService } from '../services/recipe/recipe.service';
 import { ActivatedRoute } from '@angular/router';
 import { PageHeaderService } from '../services/page-header/page-header.service';
+import { AmountsGridComponent } from '../amounts-grid/amounts-grid.component';
+import { StepsGridComponent } from '../steps-grid/steps-grid.component';
 
 @Component({
   selector: 'app-recipe',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AmountsGridComponent, StepsGridComponent],
   templateUrl: './recipe.component.html',
   styleUrl: './recipe.component.css',
 })
