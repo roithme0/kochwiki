@@ -22,7 +22,6 @@ export class PageHeaderComponent {
     });
     this.pageHeaderService.back$.subscribe((back) => {
       this.back = back;
-      console.log('back: ' + back);
     });
   }
 }
