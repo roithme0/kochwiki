@@ -11,11 +11,11 @@ export class IngredientService {
   private ingredientsSubject = new Subject<void>();
   ingredients$ = this.ingredientsSubject.asObservable();
 
+  constructor() {}
+
   notifyIngredientsChanged() {
     this.ingredientsSubject.next();
   }
-
-  constructor() {}
 
   getAllIngredients(): Observable<Ingredient[]> {
     console.debug('fetching all ingredients');
