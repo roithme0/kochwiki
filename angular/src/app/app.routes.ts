@@ -13,7 +13,7 @@ export const routes: Routes = [
   },
   { path: 'recipes', component: RecipesComponent, title: 'Rezepte' },
   {
-    path: 'recipe/:id',
+    path: 'recipes/:id',
     component: RecipeComponent,
     title: 'Rezept Details',
   },

@@ -27,7 +27,7 @@ export class RecipeService {
   }
 
   putRecipe(recipe: Recipe): Observable<Recipe> {
-    console.debug('putting recipe: ', recipe.name);
+    console.debug('putting recipe: ', recipe);
     return this.http.put<Recipe>(
       'http://localhost:8000/recipes/update/' + recipe.id,
       recipe
@@ -35,7 +35,7 @@ export class RecipeService {
   }
 
   postRecipe(data: any): Observable<Recipe> {
-    console.debug('posting recipe: ', data.name);
+    console.debug('posting recipe: ', data);
     return this.http.post<Recipe>('http://localhost:8000/recipes/create', data);
   }
 

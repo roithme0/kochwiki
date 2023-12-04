@@ -27,7 +27,7 @@ export class IngredientService {
   }
 
   putIngredient(ingredient: Ingredient): Observable<Ingredient> {
-    console.debug('putting ingredient: ', ingredient.name);
+    console.debug('putting ingredient: ', ingredient);
     return this.http.put<Ingredient>(
       'http://localhost:8000/ingredients/update/' + ingredient.id,
       ingredient
@@ -35,7 +35,7 @@ export class IngredientService {
   }
 
   postIngredient(data: any): Observable<Ingredient> {
-    console.debug('posting ingredient: ', data.name);
+    console.debug('posting ingredient: ', data);
     return this.http.post<Ingredient>(
       'http://localhost:8000/ingredients/create',
       data
