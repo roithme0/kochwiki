@@ -1,3 +1,5 @@
+import { Amount } from './amount';
+
 export interface Ingredient {
   id: number;
   name: string;
@@ -7,4 +9,5 @@ export interface Ingredient {
   carbs: number | null;
   protein: number | null;
   fat: number | null;
+  // amounts: Amount[];
 }

@@ -1,3 +1,6 @@
+import { Amount } from './amount';
+import { Step } from './step';
+
 export interface Recipe {
   id: number;
   name: string;
@@ -7,4 +10,6 @@ export interface Recipe {
   originUrl: string | null;
   original: string | null;
   image: string | null;
+  amounts: Amount[];
+  steps: Step[];
 }
