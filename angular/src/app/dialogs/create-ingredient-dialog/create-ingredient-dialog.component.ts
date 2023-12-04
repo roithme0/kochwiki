@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup } from '@angular/forms';
 import { IngredientService } from '../../services/ingredient/ingredient.service';
@@ -14,10 +14,6 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class CreateIngredientDialogComponent {
   units = ['g', 'ml', 'Stk.'];
-  dialog: MatDialogRef<CreateIngredientDialogComponent> = inject(
-    MatDialogRef<CreateIngredientDialogComponent>
-  );
-  ingredientService: IngredientService = inject(IngredientService);
   ingredientForm = new FormGroup({
     name: new FormControl(),
     brand: new FormControl(),
@@ -29,6 +25,11 @@ export class CreateIngredientDialogComponent {
       fat: new FormControl(),
     }),
   });
+
+  constructor(
+    private dialog: MatDialogRef<CreateIngredientDialogComponent>,
+    private ingredientService: IngredientService
+  ) {}
 
   onSubmit(data: any): void {
     console.debug('submitting create ingredient form: ', data);

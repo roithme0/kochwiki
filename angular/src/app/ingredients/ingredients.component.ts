@@ -1,8 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IngredientsGridComponent } from '../ingredients-grid/ingredients-grid.component';
 import { PageHeaderService } from '../services/page-header/page-header.service';
-import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-ingredients',
@@ -12,8 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrl: './ingredients.component.css',
 })
 export class IngredientsComponent {
-  dialog: MatDialog = inject(MatDialog);
-  pageHeaderService: PageHeaderService = inject(PageHeaderService);
+  constructor(private pageHeaderService: PageHeaderService) {}
 
   ngOnInit() {
     this.pageHeaderService.setHeadline('Zutaten');

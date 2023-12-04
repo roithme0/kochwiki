@@ -1,4 +1,4 @@
-import { Component, inject, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IngredientService } from '../../services/ingredient/ingredient.service';
 import { Ingredient } from '../../interfaces/ingredient';
@@ -13,14 +13,13 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrl: './delete-ingredient-dialog.component.css',
 })
 export class DeleteIngredientDialogComponent {
-  dialog: MatDialogRef<DeleteIngredientDialogComponent> = inject(
-    MatDialogRef<DeleteIngredientDialogComponent>
-  );
-  ingredientService: IngredientService;
   ingredient: Ingredient | undefined;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
-    this.ingredientService = inject(IngredientService);
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialog: MatDialogRef<DeleteIngredientDialogComponent>,
+    private ingredientService: IngredientService
+  ) {
     this.ingredientService.getIngredientById(data.id).subscribe({
       next: (ingredient) => {
         console.debug('ingredient fetched: ', ingredient);

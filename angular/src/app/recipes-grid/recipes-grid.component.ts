@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RecipesGridControlsComponent } from '../recipes-grid-controls/recipes-grid-controls.component';
 import { RecipesGridElementComponent } from '../recipes-grid-element/recipes-grid-element.component';
@@ -18,9 +18,8 @@ import { RecipeService } from '../services/recipe/recipe.service';
 })
 export class RecipesGridComponent {
   recipes: Recipe[] = [];
-  recipeService: RecipeService = inject(RecipeService);
 
-  constructor() {
+  constructor(private recipeService: RecipeService) {
     this.recipeService.recipes$.subscribe(() => {
       this.fetchRecipes();
     });

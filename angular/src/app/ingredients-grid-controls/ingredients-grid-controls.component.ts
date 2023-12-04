@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IngredientsGridControlsService } from '../services/ingredients-grid-controls/ingredients-grid-controls.service';
 
@@ -12,11 +12,10 @@ import { IngredientsGridControlsService } from '../services/ingredients-grid-con
 export class IngredientsGridControlsComponent {
   searchBy: string = '';
   filterBy: string = 'all';
-  ingredientsGridControlsService: IngredientsGridControlsService = inject(
-    IngredientsGridControlsService
-  );
 
-  constructor() {}
+  constructor(
+    private ingredientsGridControlsService: IngredientsGridControlsService
+  ) {}
 
   ngOnInit(): void {
     this.ingredientsGridControlsService.setSearchBy(this.searchBy);

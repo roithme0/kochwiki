@@ -3,7 +3,6 @@ import {
   Signal,
   WritableSignal,
   computed,
-  inject,
   signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -29,11 +28,6 @@ import { IngredientsGridControlsService } from '../services/ingredients-grid-con
   styleUrl: './ingredients-grid.component.css',
 })
 export class IngredientsGridComponent {
-  dialog: MatDialog = inject(MatDialog);
-  ingredientService: IngredientService = inject(IngredientService);
-  ingredientsGridControlsService: IngredientsGridControlsService = inject(
-    IngredientsGridControlsService
-  );
   ingredients: WritableSignal<Ingredient[]> = signal([]);
   displayedIngredients: Signal<Ingredient[]> = computed(() =>
     this.getDisplayedIngredients()
@@ -41,7 +35,11 @@ export class IngredientsGridComponent {
   searchBy: WritableSignal<string> = signal('');
   filterBy: WritableSignal<string> = signal('all');
 
-  constructor() {
+  constructor(
+    private dialog: MatDialog,
+    private ingredientService: IngredientService,
+    private ingredientsGridControlsService: IngredientsGridControlsService
+  ) {
     this.ingredientService.ingredients$.subscribe(() => {
       this.fetchIngredients();
     });

@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Ingredient } from '../interfaces/ingredient';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,9 +14,8 @@ import { DeleteIngredientDialogComponent } from '../dialogs/delete-ingredient-di
 })
 export class IngredientsGridRowComponent {
   @Input() ingredient!: Ingredient;
-  dialog: MatDialog = inject(MatDialog);
 
-  constructor() {}
+  constructor(private dialog: MatDialog) {}
 
   openEditIngredientDialog(): void {
     this.dialog.open(EditIngredientDialogComponent, {

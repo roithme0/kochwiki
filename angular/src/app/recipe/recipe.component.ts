@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Recipe } from '../interfaces/recipe';
 import { RecipeService } from '../services/recipe/recipe.service';

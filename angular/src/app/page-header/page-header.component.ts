@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, RouterLink, RouterLinkActive } from '@angular/router';
 import { PageHeaderService } from '../services/page-header/page-header.service';
@@ -11,11 +11,10 @@ import { PageHeaderService } from '../services/page-header/page-header.service';
   styleUrl: './page-header.component.css',
 })
 export class PageHeaderComponent {
-  pageHeaderService: PageHeaderService = inject(PageHeaderService);
   headline!: string;
   back!: string;
 
-  constructor() {}
+  constructor(private pageHeaderService: PageHeaderService) {}
 
   ngOnInit() {
     this.pageHeaderService.headline$.subscribe((headline) => {

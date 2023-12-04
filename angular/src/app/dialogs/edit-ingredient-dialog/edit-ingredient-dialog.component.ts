@@ -16,10 +16,6 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class EditIngredientDialogComponent {
   units = ['g', 'ml', 'Stk.'];
-  dialog: MatDialogRef<EditIngredientDialogComponent> = inject(
-    MatDialogRef<EditIngredientDialogComponent>
-  );
-  ingredientService: IngredientService = inject(IngredientService);
   ingredientForm = new FormGroup({
     id: new FormControl(),
     name: new FormControl(),
@@ -33,7 +29,11 @@ export class EditIngredientDialogComponent {
     }),
   });
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialog: MatDialogRef<EditIngredientDialogComponent>,
+    private ingredientService: IngredientService
+  ) {
     this.ingredientService.getIngredientById(data.id).subscribe({
       next: (ingredient) => {
         console.debug('ingredient fetched: ', ingredient);

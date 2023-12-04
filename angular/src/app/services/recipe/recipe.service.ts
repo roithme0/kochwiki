@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Recipe } from '../../interfaces/recipe';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -7,11 +7,10 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class RecipeService {
-  http: HttpClient = inject(HttpClient);
   private recipesSubject = new Subject<void>();
   recipes$ = this.recipesSubject.asObservable();
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   notifyRecipesChanged() {
     this.recipesSubject.next();
