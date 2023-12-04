@@ -24,12 +24,6 @@ export class RecipeComponent {
     console.debug('id: ', id);
 
     this.getRecipe(id);
-
-    if (this.recipe === null) {
-      this.pageHeaderService.setHeadline('Rezept nicht gefunden');
-    } else {
-      this.pageHeaderService.setHeadline(this.recipe.name);
-    }
     this.pageHeaderService.setBack('recipes');
   }
 
@@ -38,9 +32,11 @@ export class RecipeComponent {
       next: (recipe: Recipe) => {
         console.debug('fetched recipe: ', recipe);
         this.recipe = recipe;
+        this.pageHeaderService.setHeadline(this.recipe.name);
       },
       error: (error: any) => {
         console.error('failed to fetch recipe: ', error);
+        this.pageHeaderService.setHeadline('Rezept nicht gefunden');
       },
     });
   }

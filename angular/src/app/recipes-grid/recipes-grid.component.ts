@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { RecipesGridControlsComponent } from '../recipes-grid-controls/recipes-grid-controls.component';
 import { RecipesGridElementComponent } from '../recipes-grid-element/recipes-grid-element.component';
 import { Recipe } from '../interfaces/recipe';
@@ -19,7 +20,7 @@ import { RecipeService } from '../services/recipe/recipe.service';
 export class RecipesGridComponent {
   recipes: Recipe[] = [];
 
-  constructor(private recipeService: RecipeService) {
+  constructor(private recipeService: RecipeService, public router: Router) {
     this.recipeService.recipes$.subscribe(() => {
       this.fetchRecipes();
     });
@@ -39,9 +40,5 @@ export class RecipesGridComponent {
         console.error('failed to fetch recipes: ', err);
       },
     });
-  }
-
-  showDetails(id: number): void {
-    window.location.href = 'http://localhost:4200/recipes/' + id;
   }
 }

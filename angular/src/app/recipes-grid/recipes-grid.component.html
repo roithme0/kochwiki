@@ -3,7 +3,7 @@
   @for(recipe of recipes; track recipe.id){
   <app-recipes-grid-element
     [recipe]="recipe"
-    (click)="showDetails(recipe.id)"
+    (click)="router.navigate(['recipe', recipe.id])"
   />} @empty {
   <p>Keine Rezepte gefunden</p>
   }
