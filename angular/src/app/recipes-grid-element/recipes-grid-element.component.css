@@ -1,0 +1,15 @@
+:host {
+  min-width: 0;
+  background-color: var(--secondary-background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.image,
+.no-image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}

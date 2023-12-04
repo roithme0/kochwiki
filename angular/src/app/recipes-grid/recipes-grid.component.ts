@@ -41,4 +41,8 @@ export class RecipesGridComponent {
       },
     });
   }
+
+  showDetails(id: number): void {
+    window.location.href = 'http://localhost:4200/recipes/' + id;
+  }
 }

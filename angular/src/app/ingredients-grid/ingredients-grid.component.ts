@@ -96,7 +96,7 @@ export class IngredientsGridComponent {
     return ingredients.filter((ingredient) => {
       return (
         ingredient.name.toLowerCase().includes(searchBy.toLowerCase()) ||
-        ingredient.brand.toLowerCase().includes(searchBy.toLowerCase())
+        ingredient.brand?.toLowerCase().includes(searchBy.toLowerCase())
       );
     });
   }

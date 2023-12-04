@@ -1,10 +1,10 @@
 export interface Recipe {
-  id: Number;
-  name: String;
-  // servings: Number;
-  // preptime: Number;
-  // originName: String;
-  // originUrl: String;
-  // original: String;
-  // image: String;
+  id: number;
+  name: string;
+  servings: number;
+  preptime: number | null;
+  originName: string | null;
+  originUrl: string | null;
+  original: string | null;
+  image: string | null;
 }

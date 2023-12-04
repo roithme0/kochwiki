@@ -1,6 +1,10 @@
 <app-recipes-grid-controls />
-@for(recipe of recipes; track recipe.id){
-<app-recipes-grid-element [recipe]="recipe" />} @empty {
-<p>Keine Rezepte gefunden</p>
-}
-<app-recipes-grid-element />
+<section class="recipes-grid">
+  @for(recipe of recipes; track recipe.id){
+  <app-recipes-grid-element
+    [recipe]="recipe"
+    (click)="showDetails(recipe.id)"
+  />} @empty {
+  <p>Keine Rezepte gefunden</p>
+  }
+</section>

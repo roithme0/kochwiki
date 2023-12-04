@@ -1,10 +1,10 @@
 export interface Ingredient {
   id: number;
   name: string;
-  brand: string;
+  brand: string | null;
   unit: string;
-  kcal: number;
-  carbs: number;
-  protein: number;
-  fat: number;
+  kcal: number | null;
+  carbs: number | null;
+  protein: number | null;
+  fat: number | null;
 }
