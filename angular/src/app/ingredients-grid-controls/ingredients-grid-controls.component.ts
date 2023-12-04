@@ -14,21 +14,11 @@ export class IngredientsGridControlsComponent {
   filterBy: string = 'all';
 
   constructor(
-    private ingredientsGridControlsService: IngredientsGridControlsService
+    public ingredientsGridControlsService: IngredientsGridControlsService
   ) {}
 
   ngOnInit(): void {
     this.ingredientsGridControlsService.setSearchBy(this.searchBy);
-    this.ingredientsGridControlsService.setFilterBy(this.filterBy);
-  }
-
-  updateSearchBy(event: any) {
-    this.searchBy = event.target.value;
-    this.ingredientsGridControlsService.setSearchBy(this.searchBy);
-  }
-
-  updateFilterBy(event: any) {
-    this.filterBy = event.target.value;
     this.ingredientsGridControlsService.setFilterBy(this.filterBy);
   }
 }
