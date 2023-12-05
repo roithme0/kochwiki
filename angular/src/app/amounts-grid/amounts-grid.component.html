@@ -1,1 +1,5 @@
-<p>amounts-grid works!</p>
+@for(amount of amounts; track amount.index){
+<p>{{ amount.amount }}</p>
+}@empty {
+<p class="no-amounts">Keine Zutaten gefunden</p>
+}
