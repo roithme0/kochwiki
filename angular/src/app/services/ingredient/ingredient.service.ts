@@ -28,13 +28,6 @@ export class IngredientService {
     return this.http.get<Ingredient>(backendUrl + '/ingredients/' + id);
   }
 
-  getIngredientsByIds(ids: number[]): Observable<Ingredient[]> {
-    console.debug('fetching ingredients by ids: ' + ids);
-    return this.http.get<Ingredient[]>(
-      backendUrl + '/ingredients/' + ids.join(',')
-    );
-  }
-
   putIngredient(ingredient: Ingredient): Observable<Ingredient> {
     console.debug('putting ingredient: ', ingredient);
     return this.http.put<Ingredient>(

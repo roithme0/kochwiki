@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Recipe } from '../../interfaces/recipe';
-import { Amount } from '../../interfaces/amount';
-import { Ingredient } from '../../interfaces/ingredient';
-import { IngredientService } from '../ingredient/ingredient.service';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -15,10 +12,7 @@ export class RecipeService {
   private recipesSubject = new Subject<void>();
   recipes$ = this.recipesSubject.asObservable();
 
-  constructor(
-    private http: HttpClient,
-    private ingredientService: IngredientService
-  ) {}
+  constructor(private http: HttpClient) {}
 
   notifyRecipesChanged() {
     this.recipesSubject.next();
@@ -50,12 +44,5 @@ export class RecipeService {
   deleteRecipe(id: number): Observable<number> {
     console.debug('deleting recipe by id: ' + id.toString());
     return this.http.delete<number>(backendUrl + '/recipes/delete/' + id);
-  }
-
-  getIngredients(recipe: Recipe): Observable<Ingredient[]> {
-    console.debug('fetching ingredients');
-    return this.ingredientService.getIngredientsByIds(
-      recipe.amounts.map((amount: Amount) => amount.ingredient_id)
-    );
   }
 }

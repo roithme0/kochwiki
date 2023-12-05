@@ -1,7 +1,8 @@
+import { Ingredient } from './ingredient';
+
 export interface Amount {
   id: number;
   index: number;
-  ingredient_id: number;
+  ingredient: Ingredient;
   amount: number;
-  recipe_id: number;
 }
