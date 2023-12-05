@@ -1,1 +1,10 @@
-<p>steps-grid works!</p>
+@if(steps.length > 0){
+<div class="grid">
+  @for(step of steps; track step.index){
+  <p>{{ step.index }}</p>
+  <p>{{ step.description }}</p>
+  }
+</div>
+}@else{
+<p>Keine Schritte gefunden</p>
+}
