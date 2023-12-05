@@ -42,7 +42,7 @@ export class RecipeComponent {
       },
       error: (error: any) => {
         console.error('failed to fetch recipe: ', error);
-        this.pageHeaderService.setHeadline('Rezept nicht gefunden');
+        this.pageHeaderService.setHeadline('Fehler');
       },
     });
   }

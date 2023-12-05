@@ -8,4 +8,6 @@
 <app-steps-grid [steps]="recipe.steps" />
 <button (click)="openEditRecipeDialog()">Rezept Bearbeiten</button>
 <button (click)="openDeleteRecipeDialog()">Rezept löschen</button>
+}@else {
+<p>Rezept nicht gefunden</p>
 }
