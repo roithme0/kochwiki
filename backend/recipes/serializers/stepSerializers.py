@@ -5,3 +5,9 @@ import logging
 
 
 logger = logging.getLogger("django")
+
+
+class StepSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Step
+        fields = "__all__"

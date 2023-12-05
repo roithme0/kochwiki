@@ -1,4 +1,6 @@
 from ..models.recipeModel import Recipe
+from ..serializers.amountSerializers import AmountSerializer
+from ..serializers.stepSerializers import StepSerializer
 
 from rest_framework import serializers
 import logging
@@ -67,12 +69,13 @@ class EditRecipeSerializer(serializers.ModelSerializer):
 
 
 class RecipeSerializer(serializers.ModelSerializer):
+    amounts = AmountSerializer(many=True)
+    steps = StepSerializer(many=True)
+    
     verbose_names = serializers.SerializerMethodField()
     blank_fields = serializers.SerializerMethodField()
     max_length = serializers.SerializerMethodField()
     choices = serializers.SerializerMethodField()
-    amounts = serializers.SerializerMethodField()
-    steps = serializers.SerializerMethodField()
 
     class Meta:
         model = Recipe
@@ -89,12 +92,6 @@ class RecipeSerializer(serializers.ModelSerializer):
 
     def get_choices(self, obj):
         return get_choices(self.Meta.model)
-    
-    def get_amounts(self, obj):
-        return obj.amounts.values()
-    
-    def get_steps(self, obj):
-        return obj.steps.values()
     
     
 def get_choices(model):
