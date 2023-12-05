@@ -6,6 +6,9 @@ import { ActivatedRoute } from '@angular/router';
 import { PageHeaderService } from '../services/page-header/page-header.service';
 import { AmountsGridComponent } from '../amounts-grid/amounts-grid.component';
 import { StepsGridComponent } from '../steps-grid/steps-grid.component';
+import { MatDialog } from '@angular/material/dialog';
+import { EditRecipeDialogComponent } from '../dialogs/edit-recipe-dialog/edit-recipe-dialog.component';
+import { DeleteRecipeDialogComponent } from '../dialogs/delete-recipe-dialog/delete-recipe-dialog.component';
 
 @Component({
   selector: 'app-recipe',
@@ -20,7 +23,8 @@ export class RecipeComponent {
   constructor(
     private route: ActivatedRoute,
     private pageHeaderService: PageHeaderService,
-    private recipeService: RecipeService
+    private recipeService: RecipeService,
+    private dialog: MatDialog
   ) {
     const id: number | null = Number(this.route.snapshot.paramMap.get('id'));
     console.debug('id: ', id);
@@ -41,5 +45,13 @@ export class RecipeComponent {
         this.pageHeaderService.setHeadline('Rezept nicht gefunden');
       },
     });
+  }
+
+  openEditRecipeDialog(): void {
+    this.dialog.open(EditRecipeDialogComponent);
+  }
+
+  openDeleteRecipeDialog(): void {
+    this.dialog.open(DeleteRecipeDialogComponent);
   }
 }

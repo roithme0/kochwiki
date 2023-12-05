@@ -5,6 +5,8 @@ import { RecipesGridControlsComponent } from '../recipes-grid-controls/recipes-g
 import { RecipesGridElementComponent } from '../recipes-grid-element/recipes-grid-element.component';
 import { Recipe } from '../interfaces/recipe';
 import { RecipeService } from '../services/recipe/recipe.service';
+import { CreateRecipeDialogComponent } from '../dialogs/create-recipe-dialog/create-recipe-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-recipes-grid',
@@ -13,6 +15,7 @@ import { RecipeService } from '../services/recipe/recipe.service';
     CommonModule,
     RecipesGridControlsComponent,
     RecipesGridElementComponent,
+    CreateRecipeDialogComponent,
   ],
   templateUrl: './recipes-grid.component.html',
   styleUrl: './recipes-grid.component.css',
@@ -20,7 +23,11 @@ import { RecipeService } from '../services/recipe/recipe.service';
 export class RecipesGridComponent {
   recipes: Recipe[] = [];
 
-  constructor(private recipeService: RecipeService, public router: Router) {
+  constructor(
+    private recipeService: RecipeService,
+    public router: Router,
+    private dialog: MatDialog
+  ) {
     this.recipeService.recipes$.subscribe(() => {
       this.fetchRecipes();
     });
@@ -40,5 +47,9 @@ export class RecipesGridComponent {
         console.error('failed to fetch recipes: ', err);
       },
     });
+  }
+
+  openCreateRecipeDialog(): void {
+    this.dialog.open(CreateRecipeDialogComponent);
   }
 }
