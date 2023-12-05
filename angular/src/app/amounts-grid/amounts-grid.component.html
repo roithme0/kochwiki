@@ -1,5 +1,15 @@
-@for(amount of amounts; track amount.index){
-<p>{{ amount.amount }}</p>
-}@empty {
+<header>
+  <h2>Zutaten</h2>
+  <p>{{ recipe.servings }} Portionen</p>
+</header>
+@if(recipe.amounts.length > 0){
+<div class="grid">
+  @for(amount of recipe.amounts; track amount.index){
+  <p>{{ amount.ingredient.name }}</p>
+  <p>{{ amount.amount }}</p>
+  <p>{{ amount.ingredient.unit }}</p>
+  }
+</div>
+}@else {
 <p class="no-amounts">Keine Zutaten gefunden</p>
 }

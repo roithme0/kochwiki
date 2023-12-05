@@ -1,8 +1,6 @@
-import { Component, Input, computed, Signal } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Amount } from '../interfaces/amount';
-import { Ingredient } from '../interfaces/ingredient';
-import { IngredientService } from '../services/ingredient/ingredient.service';
+import { Recipe } from '../interfaces/recipe';
 
 @Component({
   selector: 'app-amounts-grid',
@@ -12,10 +10,5 @@ import { IngredientService } from '../services/ingredient/ingredient.service';
   styleUrl: './amounts-grid.component.css',
 })
 export class AmountsGridComponent {
-  @Input() amounts!: Amount[];
-  // ingredients: Signal<(Ingredient | null)[]> = computed(() =>
-  //   this.fetchIngredients()
-  // );
-
-  constructor(private ingredientService: IngredientService) {}
+  @Input() recipe!: Recipe;
 }
