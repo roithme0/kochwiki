@@ -1,9 +1,5 @@
-from .models import Recipe
-from .serializers import (
-    RecipeSerializer,
-    AddRecipeSerializer,
-    EditRecipeSerializer,
-)
+from ..models.recipeModel import Recipe
+from ..serializers.recipeSerializers import RecipeSerializer, AddRecipeSerializer, EditRecipeSerializer
 
 from rest_framework.response import Response
 from rest_framework.generics import (

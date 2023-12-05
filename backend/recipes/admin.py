@@ -2,27 +2,9 @@ from django.contrib import admin
 
 from simple_history.admin import SimpleHistoryAdmin
 
-from .models import Ingredient, Amount, Step, Recipe
-
-
-class IngredientAdmin(SimpleHistoryAdmin):
-    fieldsets = [
-        (
-            "Details",
-            {
-                "fields": ["name", "brand", "unit"],
-            },
-        ),
-        (
-            "Nährwerte",
-            {
-                "fields": ["kcal", "carbs", "protein", "fat"],
-            },
-        ),
-    ]
-    ordering = ["name"]
-    search_fields = ["name"]
-    search_help_text = "Namen suchen ..."
+from .models.recipeModel import Recipe
+from .models.stepModel import  Step
+from .models.amountModel import Amount
 
 
 class AmountAdmin(SimpleHistoryAdmin):
@@ -73,7 +55,6 @@ class RecipeAdmin(SimpleHistoryAdmin):
     search_help_text = "Name, Zutaten oder Ersteller*in suchen ..."
 
 
-admin.site.register(Ingredient, IngredientAdmin)
 admin.site.register(Amount, AmountAdmin)
 admin.site.register(Step, StepAdmin)
 admin.site.register(Recipe, RecipeAdmin)

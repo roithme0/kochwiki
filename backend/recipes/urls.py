@@ -1,7 +1,7 @@
 from django.urls import path
 from django.urls.conf import include
 
-from .views import (
+from .views.recipeViews import (
     CreateRecipeView, 
     RetrieveUpdateRecipeView, 
     DestroyRecipeView, 
