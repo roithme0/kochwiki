@@ -64,22 +64,15 @@ class EditRecipeSerializer(serializers.ModelSerializer):
         else:
             return []
 
-class RecipeSerializer(serializers.ModelSerializer):
-    amounts = AmountSerializer(many=True)
-    steps = StepSerializer(many=True)
-    
+class RecipeMetaSerializer(serializers.Serializer):
     verbose_names = serializers.SerializerMethodField()
     blank_fields = serializers.SerializerMethodField()
     max_length = serializers.SerializerMethodField()
     choices = serializers.SerializerMethodField()
-
-    class Meta:
-        model = Recipe
-        fields = "__all__"
-     
+    
     def get_choices(self, obj):
         choices = {}
-        for field in self.Meta.model._meta.get_fields():
+        for field in Recipe._meta.get_fields():
             if not field.get_internal_type() == "CharField":
                 choices[field.name] = None  
                 continue
@@ -98,7 +91,7 @@ class RecipeSerializer(serializers.ModelSerializer):
 
     def get_verbose_names(self, obj):
         verbose_names = {}
-        for field in self.Meta.model._meta.get_fields():
+        for field in Recipe._meta.get_fields():
             if field.get_internal_type() in ["ForeignKey", "ManyToManyField"]:
                 verbose_names[field.name] = None
                 continue
@@ -108,7 +101,7 @@ class RecipeSerializer(serializers.ModelSerializer):
 
     def get_blank_fields(self, obj):
         blank_fields = {}
-        for field in self.Meta.model._meta.get_fields():
+        for field in Recipe._meta.get_fields():
             if field.get_internal_type() in ["ForeignKey", "ManyToManyField"]:
                 blank_fields[field.name] = None
                 continue
@@ -118,10 +111,22 @@ class RecipeSerializer(serializers.ModelSerializer):
 
     def get_max_length(self, obj):
         max_length = {}
-        for field in self.Meta.model._meta.get_fields():
+        for field in Recipe._meta.get_fields():
             if not field.get_internal_type() == "CharField":
                 max_length[field.name] = None
                 continue
             max_length[field.name] = field.max_length     
         logger.debug(max_length)
         return max_length
+
+class RecipeSerializer(serializers.ModelSerializer):
+    amounts = AmountSerializer(many=True)
+    steps = StepSerializer(many=True)
+    meta_data = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = Recipe
+        fields = "__all__"
+        
+    def get_meta_data(self, obj):
+        return RecipeMetaSerializer(obj).data

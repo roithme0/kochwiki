@@ -7,6 +7,7 @@ from .views.recipeViews import (
     DestroyRecipeView, 
     RetrieveRecipeView,
     ListRecipesView, 
+    RecipeMetaView,
 )
 
 app_name = "recipes"
@@ -28,5 +29,6 @@ urlpatterns = [
         name="recipe-delete",
     ),
     path("<int:pk>", RetrieveRecipeView.as_view(), name="recipe"),
+    path('meta', RecipeMetaView.as_view(), name="recipe-meta"),
     path("", ListRecipesView.as_view(), name="recipes"),
 ]

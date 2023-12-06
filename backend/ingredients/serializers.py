@@ -146,5 +146,4 @@ class IngredientSerializer(serializers.ModelSerializer):
         fields = "__all__"
         
     def get_meta_data(self, obj):
-        meta_data = IngredientMetaSerializer(obj).data
-        return meta_data
+        return IngredientMetaSerializer(obj).data

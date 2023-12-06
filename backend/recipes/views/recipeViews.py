@@ -1,5 +1,5 @@
 from ..models.recipeModel import Recipe
-from ..serializers.recipeSerializers import RecipeSerializer, AddRecipeSerializer, EditRecipeSerializer
+from ..serializers.recipeSerializers import RecipeSerializer, AddRecipeSerializer, EditRecipeSerializer, RecipeMetaSerializer
 
 from rest_framework.response import Response
 from rest_framework.generics import (
@@ -9,11 +9,10 @@ from rest_framework.generics import (
     RetrieveAPIView,
     ListAPIView,
 )
+from rest_framework.views import APIView
 import logging
 
-
 logger = logging.getLogger("django")
-
 
 class CreateRecipeView(CreateAPIView):
     serializer_class = AddRecipeSerializer
@@ -28,7 +27,6 @@ class CreateRecipeView(CreateAPIView):
         else:
             logger.warning("create recipe invalid: \n%s" % serializer.errors)
             return Response(serializer.errors, status=403)
-        
         
 class RetrieveUpdateRecipeView(RetrieveUpdateAPIView):
     queryset = Recipe.objects.all()
@@ -46,17 +44,20 @@ class RetrieveUpdateRecipeView(RetrieveUpdateAPIView):
             logger.warning("update recipe invalid: \n%s" % serializer.errors)
             return Response(serializer.errors, status=403)
         
-    
 class DestroyRecipeView(DestroyAPIView):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
-
 
 class RetrieveRecipeView(RetrieveAPIView):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
 
-
 class ListRecipesView(ListAPIView):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
+    
+class RecipeMetaView(APIView):
+    def get(self, request, format=None):
+        serializer = RecipeMetaSerializer(data={})
+        serializer.is_valid(raise_exception=True)
+        return Response(serializer.data)
