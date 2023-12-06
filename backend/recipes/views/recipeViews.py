@@ -1,5 +1,6 @@
 from ..models.recipeModel import Recipe
-from ..serializers.recipeSerializers import RecipeSerializer, AddRecipeSerializer, EditRecipeSerializer, RecipeMetaSerializer
+from ..serializers.recipeSerializers import RecipeSerializer, AddRecipeSerializer, EditRecipeSerializer
+from backend.serializers import MetaSerializer
 
 from rest_framework.response import Response
 from rest_framework.generics import (
@@ -58,6 +59,5 @@ class ListRecipesView(ListAPIView):
     
 class RecipeMetaView(APIView):
     def get(self, request, format=None):
-        serializer = RecipeMetaSerializer(data={})
-        serializer.is_valid(raise_exception=True)
+        serializer = MetaSerializer(Recipe())
         return Response(serializer.data)

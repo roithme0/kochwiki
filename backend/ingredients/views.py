@@ -3,8 +3,8 @@ from .serializers import (
     IngredientSerializer,
     AddIngredientSerializer,
     EditIngredientSerializer,
-    IngredientMetaSerializer,
 )
+from backend.serializers import MetaSerializer
 from rest_framework.response import Response
 from rest_framework.generics import (
     CreateAPIView,
@@ -62,6 +62,5 @@ class ListIngredientsView(ListAPIView):
 
 class IngredientMetaView(APIView):
     def get(self, request, format=None):
-        serializer = IngredientMetaSerializer(data={})
-        serializer.is_valid(raise_exception=True)
+        serializer = MetaSerializer(Ingredient())
         return Response(serializer.data)
