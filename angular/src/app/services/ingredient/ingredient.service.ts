@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Ingredient } from '../../interfaces/ingredient';
+import { IngredientMetaData } from '../../interfaces/ingredient-meta-data';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -46,7 +47,7 @@ export class IngredientService {
     return this.http.delete<number>(backendUrl + '/ingredients/delete/' + id);
   }
 
-  fetchMetaData(): Observable<any> {
+  fetchMetaData(): Observable<IngredientMetaData> {
     console.debug('fetching ingredient meta data');
     return this.http.get<any>(backendUrl + '/ingredients/empty');
   }

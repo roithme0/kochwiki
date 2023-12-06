@@ -1,9 +1,5 @@
-<p>Name</p>
-<p>Marke</p>
-<p>Kalorien</p>
-<p>Kohlenhydrate</p>
-<p>Proteine</p>
-<p>Fett</p>
-<p>Einheit</p>
+@if(metaData !== null){ @for(field of fieldsToDisplay; track field){
+<p>{{ metaData.verbose_names[field] }}</p>
+} }
 <p class="placeholder"></p>
 <p class="placeholder"></p>

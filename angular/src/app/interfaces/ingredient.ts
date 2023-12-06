@@ -1,7 +1,8 @@
 import { Amount } from './amount';
+import { IngredientMetaData } from './ingredient-meta-data';
 
 export interface Ingredient {
-  id: number;
+  id?: number;
   name: string;
   brand: string | null;
   unit: string;
@@ -9,5 +10,6 @@ export interface Ingredient {
   carbs: number | null;
   protein: number | null;
   fat: number | null;
-  // amounts: Amount[];
+  amounts?: Amount[];
+  metaData?: IngredientMetaData;
 }

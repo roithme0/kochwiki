@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { IngredientService } from '../../services/ingredient/ingredient.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { IngredientMetaData } from '../../interfaces/ingredient-meta-data';
 
 @Component({
   selector: 'app-create-ingredient-dialog',
@@ -13,7 +14,7 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrl: './create-ingredient-dialog.component.css',
 })
 export class CreateIngredientDialogComponent {
-  unitChoices: string[] = [];
+  metaData: IngredientMetaData | null = null;
   ingredientForm = new FormGroup({
     name: new FormControl(),
     brand: new FormControl(),
@@ -60,9 +61,9 @@ export class CreateIngredientDialogComponent {
 
   fetchMetaData(): void {
     this.ingredientService.fetchMetaData().subscribe({
-      next: (data) => {
-        console.debug('fetched ingredient meta data: ', data);
-        this.unitChoices = data.choices.unit;
+      next: (metaData) => {
+        console.debug('fetched ingredient meta data: ', metaData);
+        this.metaData = metaData;
       },
       error: (error) => {
         console.error('failed to fetch ingredient meta data: ', error);

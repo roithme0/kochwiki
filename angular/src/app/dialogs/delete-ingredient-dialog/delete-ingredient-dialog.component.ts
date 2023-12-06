@@ -32,7 +32,7 @@ export class DeleteIngredientDialogComponent {
   }
 
   deleteIngredient(): void {
-    this.ingredient
+    this.ingredient?.id
       ? this.ingredientService.deleteIngredient(this.ingredient.id).subscribe({
           next: (id) => {
             console.debug('ingredient deleted: ', id);
