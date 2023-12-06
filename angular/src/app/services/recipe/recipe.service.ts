@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Recipe } from '../../interfaces/recipe';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { RecipeMetaData } from '../../interfaces/recipe-meta-data';
 
 const backendUrl: string = 'http://localhost:8000';
 
@@ -44,5 +45,10 @@ export class RecipeService {
   deleteRecipe(id: number): Observable<number> {
     console.debug('deleting recipe by id: ' + id.toString());
     return this.http.delete<number>(backendUrl + '/recipes/delete/' + id);
+  }
+
+  fetchMetaData(): Observable<RecipeMetaData> {
+    console.debug('fetching recipe meta data');
+    return this.http.get<any>(backendUrl + '/recipes/meta');
   }
 }
