@@ -49,6 +49,6 @@ export class IngredientService {
 
   fetchMetaData(): Observable<IngredientMetaData> {
     console.debug('fetching ingredient meta data');
-    return this.http.get<any>(backendUrl + '/ingredients/empty');
+    return this.http.get<any>(backendUrl + '/ingredients/meta');
   }
 }

@@ -83,91 +83,68 @@ class EditIngredientSerializer(serializers.ModelSerializer):
         else:
             return []
 
-class IngredientSerializer(serializers.ModelSerializer):
+class IngredientMetaSerializer(serializers.Serializer):
     verbose_names = serializers.SerializerMethodField()
     blank_fields = serializers.SerializerMethodField()
     max_length = serializers.SerializerMethodField()
     choices = serializers.SerializerMethodField()
+
+    def get_verbose_names(self, obj):
+        verbose_names = {}
+        for field in Ingredient._meta.get_fields():
+            if field.get_internal_type() in ["ForeignKey", "ManyToManyField"]:
+                verbose_names[field.name] = None
+                continue
+            verbose_names[field.name] = field.verbose_name
+        logger.debug(verbose_names)
+        return verbose_names
+
+    def get_choices(self, obj):
+        choices = {}
+        for field in Ingredient._meta.get_fields():
+            if not field.get_internal_type() == "CharField":
+                choices[field.name] = None  
+                continue
+            if not field.choices:
+                choices[field.name] = None
+                continue
+            choices[field.name] = [
+                {
+                    "value": choice[0],
+                    "label": choice[1],
+                }
+                for choice in field.choices
+            ]      
+        logger.debug(choices)
+        return choices
+
+    def get_blank_fields(self, obj):
+        blank_fields = {}
+        for field in Ingredient._meta.get_fields():
+            if field.get_internal_type() in ["ForeignKey", "ManyToManyField"]:
+                blank_fields[field.name] = None
+                continue
+            blank_fields[field.name] = field.blank
+        logger.debug(blank_fields)
+        return blank_fields
+
+    def get_max_length(self, obj):
+        max_length = {}
+        for field in Ingredient._meta.get_fields():
+            if not field.get_internal_type() == "CharField":
+                max_length[field.name] = None
+                continue
+            max_length[field.name] = field.max_length     
+        logger.debug(max_length)
+        return max_length
+
+class IngredientSerializer(serializers.ModelSerializer):
+    meta_data = serializers.SerializerMethodField()
 
     class Meta:
         model = Ingredient
         fields = "__all__"
-
-    def get_verbose_names(self, obj):
-        return get_verbose_names(self.Meta.model)
-
-    def get_blank_fields(self, obj):
-        return get_blank_fields(self.Meta.model)
-
-    def get_max_length(self, obj):
-        return get_max_length(self.Meta.model)
-
-    def get_choices(self, obj):
-        return get_choices(self.Meta.model)
-
-class EmptyIngredientSerializer(serializers.Serializer):
-    verbose_names = serializers.SerializerMethodField()
-    blank_fields = serializers.SerializerMethodField()
-    max_length = serializers.SerializerMethodField()
-    choices = serializers.SerializerMethodField()
-
-    def get_verbose_names(self, obj):
-        return get_verbose_names(Ingredient)
-
-    def get_blank_fields(self, obj):
-        return get_blank_fields(Ingredient)
-
-    def get_max_length(self, obj):
-        return get_max_length(Ingredient)
-
-    def get_choices(self, obj):
-        return get_choices(Ingredient)
-
-def get_choices(model):
-    choices = {}
-    for field in model._meta.get_fields():
-        if not field.get_internal_type() == "CharField":
-            choices[field.name] = None  
-            continue
-        if not field.choices:
-            choices[field.name] = None
-            continue
-        choices[field.name] = [
-            {
-                "value": choice[0],
-                "label": choice[1],
-            }
-            for choice in field.choices
-        ]      
-    logger.debug(choices)
-    return choices
-
-def get_verbose_names(model):
-    verbose_names = {}
-    for field in model._meta.get_fields():
-        if field.get_internal_type() in ["ForeignKey", "ManyToManyField"]:
-            verbose_names[field.name] = None
-            continue
-        verbose_names[field.name] = field.verbose_name
-    logger.debug(verbose_names)
-    return verbose_names
-
-def get_blank_fields(model):
-    blank_fields = {}
-    for field in model._meta.get_fields():
-        if field.get_internal_type() in ["ForeignKey", "ManyToManyField"]:
-            blank_fields[field.name] = None
-            continue
-        blank_fields[field.name] = field.blank
-    logger.debug(blank_fields)
-    return blank_fields
-
-def get_max_length(model):
-    max_length = {}
-    for field in model._meta.get_fields():
-        if not field.get_internal_type() == "CharField":
-            max_length[field.name] = None
-            continue
-        max_length[field.name] = field.max_length     
-    logger.debug(max_length)
-    return max_length
+        
+    def get_meta_data(self, obj):
+        meta_data = IngredientMetaSerializer(obj).data
+        return meta_data

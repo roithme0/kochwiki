@@ -7,7 +7,7 @@ from .views import (
     DestroyIngredientView,
     RetrieveIngredientView,
     ListIngredientsView,
-    EmptyIngredientView,
+    IngredientMetaView,
 )
 
 app_name = "ingredients"
@@ -29,6 +29,6 @@ urlpatterns = [
         name="ingredient-delete",
     ),
     path("<int:pk>", RetrieveIngredientView.as_view(), name="ingredient"),
-    path('empty', EmptyIngredientView.as_view(), name='empty-ingredient'),
+    path('meta', IngredientMetaView.as_view(), name='ingredient-meta'),
     path("", ListIngredientsView.as_view(), name="ingredients"),
 ]
