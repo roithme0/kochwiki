@@ -13,7 +13,7 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrl: './create-ingredient-dialog.component.css',
 })
 export class CreateIngredientDialogComponent {
-  units = ['g', 'ml', 'Stk.'];
+  unitChoices: string[] = [];
   ingredientForm = new FormGroup({
     name: new FormControl(),
     brand: new FormControl(),
@@ -30,6 +30,10 @@ export class CreateIngredientDialogComponent {
     private dialog: MatDialogRef<CreateIngredientDialogComponent>,
     private ingredientService: IngredientService
   ) {}
+
+  ngOnInit(): void {
+    this.fetchMetaData();
+  }
 
   onSubmit(data: any): void {
     console.debug('submitting create ingredient form: ', data);
@@ -50,6 +54,18 @@ export class CreateIngredientDialogComponent {
       },
       error: (error) => {
         console.error('failed to create ingredient: ', error);
+      },
+    });
+  }
+
+  fetchMetaData(): void {
+    this.ingredientService.fetchMetaData().subscribe({
+      next: (data) => {
+        console.debug('fetched ingredient meta data: ', data);
+        this.unitChoices = data.choices.unit;
+      },
+      error: (error) => {
+        console.error('failed to fetch ingredient meta data: ', error);
       },
     });
   }

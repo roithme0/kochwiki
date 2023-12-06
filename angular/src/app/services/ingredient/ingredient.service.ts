@@ -45,4 +45,9 @@ export class IngredientService {
     console.debug('deleting ingredient by id: ' + id);
     return this.http.delete<number>(backendUrl + '/ingredients/delete/' + id);
   }
+
+  fetchMetaData(): Observable<any> {
+    console.debug('fetching ingredient meta data');
+    return this.http.get<any>(backendUrl + '/ingredients/empty');
+  }
 }

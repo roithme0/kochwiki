@@ -13,7 +13,7 @@
 
   <label for="unit">Einheit</label>
   <select name="unit" formControlName="unit">
-    <option *ngFor="let unit of units" [value]="unit">{{ unit }}</option>
+    <option *ngFor="let unit of unitChoices" [value]="unit">{{ unit }}</option>
   </select>
 
   <label for="kcal">Kalorien</label>
