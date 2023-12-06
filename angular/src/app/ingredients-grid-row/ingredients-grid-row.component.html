@@ -1,9 +1,5 @@
-<p>{{ ingredient.name }}</p>
-<p>{{ ingredient.brand }}</p>
-<p>{{ ingredient.kcal }}</p>
-<p>{{ ingredient.carbs }}</p>
-<p>{{ ingredient.protein }}</p>
-<p>{{ ingredient.fat }}</p>
-<p>{{ ingredient.unit }}</p>
+@for(field of fieldsToDisplay; track field){
+<p>{{ ingredient[field] }}</p>
+}
 <button (click)="openEditIngredientDialog()">Bearbeiten</button>
 <button (click)="openDeleteIngredientDialog()">Löschen</button>

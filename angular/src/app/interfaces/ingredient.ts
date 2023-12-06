@@ -2,6 +2,7 @@ import { Amount } from './amount';
 import { IngredientMetaData } from './ingredient-meta-data';
 
 export interface Ingredient {
+  [key: string]: any;
   id?: number;
   name: string;
   brand: string | null;
