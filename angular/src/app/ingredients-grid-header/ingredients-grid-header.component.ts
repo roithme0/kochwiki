@@ -1,4 +1,4 @@
-import { Component, computed } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IngredientService } from '../services/ingredient/ingredient.service';
 import { IngredientMetaData } from '../interfaces/ingredient-meta-data';
@@ -12,15 +12,7 @@ import { IngredientMetaData } from '../interfaces/ingredient-meta-data';
 })
 export class IngredientsGridHeaderComponent {
   metaData: IngredientMetaData | null = null;
-  fieldsToDisplay: string[] = [
-    'name',
-    'brand',
-    'unit',
-    'kcal',
-    'carbs',
-    'protein',
-    'fat',
-  ];
+  @Input() fieldsToDisplay!: string[];
 
   constructor(private ingredientService: IngredientService) {}
 

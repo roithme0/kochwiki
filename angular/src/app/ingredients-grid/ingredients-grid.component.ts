@@ -34,6 +34,15 @@ export class IngredientsGridComponent {
   );
   searchBy: WritableSignal<string> = signal('');
   filterBy: WritableSignal<string> = signal('all');
+  fieldsToDisplay: string[] = [
+    'name',
+    'brand',
+    'unit',
+    'kcal',
+    'carbs',
+    'protein',
+    'fat',
+  ];
 
   constructor(
     private dialog: MatDialog,

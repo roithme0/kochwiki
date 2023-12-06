@@ -14,15 +14,7 @@ import { DeleteIngredientDialogComponent } from '../dialogs/delete-ingredient-di
 })
 export class IngredientsGridRowComponent {
   @Input() ingredient!: Ingredient;
-  fieldsToDisplay: string[] = [
-    'name',
-    'brand',
-    'unit',
-    'kcal',
-    'carbs',
-    'protein',
-    'fat',
-  ];
+  @Input() fieldsToDisplay!: string[];
 
   constructor(private dialog: MatDialog) {}
 
