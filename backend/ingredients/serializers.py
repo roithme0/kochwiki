@@ -1,11 +1,8 @@
 from .models import Ingredient
-
 from rest_framework import serializers
 import logging
 
-
 logger = logging.getLogger("django")
-
 
 class AddIngredientSerializer(serializers.ModelSerializer):
     field_errors = serializers.SerializerMethodField()
@@ -45,7 +42,6 @@ class AddIngredientSerializer(serializers.ModelSerializer):
             return obj.non_field_errors
         else:
             return []
-
 
 class EditIngredientSerializer(serializers.ModelSerializer):
     field_errors = serializers.SerializerMethodField()
@@ -87,7 +83,6 @@ class EditIngredientSerializer(serializers.ModelSerializer):
         else:
             return []
 
-
 class IngredientSerializer(serializers.ModelSerializer):
     verbose_names = serializers.SerializerMethodField()
     blank_fields = serializers.SerializerMethodField()
@@ -110,6 +105,23 @@ class IngredientSerializer(serializers.ModelSerializer):
     def get_choices(self, obj):
         return get_choices(self.Meta.model)
 
+class EmptyIngredientSerializer(serializers.Serializer):
+    verbose_names = serializers.SerializerMethodField()
+    blank_fields = serializers.SerializerMethodField()
+    max_length = serializers.SerializerMethodField()
+    choices = serializers.SerializerMethodField()
+
+    def get_verbose_names(self, obj):
+        return get_verbose_names(Ingredient)
+
+    def get_blank_fields(self, obj):
+        return get_blank_fields(Ingredient)
+
+    def get_max_length(self, obj):
+        return get_max_length(Ingredient)
+
+    def get_choices(self, obj):
+        return get_choices(Ingredient)
 
 def get_choices(model):
     choices = {}
@@ -130,7 +142,6 @@ def get_choices(model):
     logger.debug(choices)
     return choices
 
-
 def get_verbose_names(model):
     verbose_names = {}
     for field in model._meta.get_fields():
@@ -141,7 +152,6 @@ def get_verbose_names(model):
     logger.debug(verbose_names)
     return verbose_names
 
-
 def get_blank_fields(model):
     blank_fields = {}
     for field in model._meta.get_fields():
@@ -151,7 +161,6 @@ def get_blank_fields(model):
         blank_fields[field.name] = field.blank
     logger.debug(blank_fields)
     return blank_fields
-
 
 def get_max_length(model):
     max_length = {}

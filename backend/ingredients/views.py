@@ -3,21 +3,20 @@ from .serializers import (
     IngredientSerializer,
     AddIngredientSerializer,
     EditIngredientSerializer,
+    EmptyIngredientSerializer,
 )
-
 from rest_framework.response import Response
 from rest_framework.generics import (
     CreateAPIView,
     RetrieveUpdateAPIView,
     DestroyAPIView,
     RetrieveAPIView,
-    ListAPIView,
+    ListAPIView,   
 )
+from rest_framework.views import APIView
 import logging
 
-
 logger = logging.getLogger("django")
-
 
 class CreateIngredientView(CreateAPIView):
     serializer_class = AddIngredientSerializer
@@ -32,7 +31,6 @@ class CreateIngredientView(CreateAPIView):
         else:
             logger.warning("create ingredient invalid: \n%s" % serializer.errors)
             return Response(serializer.errors, status=403)
-
 
 class RetrieveUpdateIngredientView(RetrieveUpdateAPIView):
     queryset = Ingredient.objects.all()
@@ -50,17 +48,20 @@ class RetrieveUpdateIngredientView(RetrieveUpdateAPIView):
             logger.warning("update ingredient invalid: \n%s" % serializer.errors)
             return Response(serializer.errors, status=403)
 
-
 class DestroyIngredientView(DestroyAPIView):
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
-
 
 class RetrieveIngredientView(RetrieveAPIView):
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
 
-
 class ListIngredientsView(ListAPIView):
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
+
+class EmptyIngredientView(APIView):
+    def get(self, request, format=None):
+        serializer = EmptyIngredientSerializer(data={})
+        serializer.is_valid(raise_exception=True)
+        return Response(serializer.data)
