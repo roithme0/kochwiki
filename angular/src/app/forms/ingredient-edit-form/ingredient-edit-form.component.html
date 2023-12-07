@@ -4,13 +4,23 @@
   [formGroup]="ingredientForm"
   (ngSubmit)="onSubmit(ingredientForm.value)"
 >
-  <label for="name">Name</label>
-  <input type="text" name="name" placeholder="Name" formControlName="name" />
+  <label for="name">{{ metaData?.verbose_names?.name }}</label>
+  <input
+    type="text"
+    name="name"
+    placeholder="{{ metaData?.verbose_names?.name }}"
+    formControlName="name"
+  />
 
-  <label for="brand">Marke</label>
-  <input type="text" name="brand" placeholder="Marke" formControlName="brand" />
+  <label for="brand">{{ metaData?.verbose_names?.brand }}</label>
+  <input
+    type="text"
+    name="brand"
+    placeholder="{{ metaData?.verbose_names?.brand }}"
+    formControlName="brand"
+  />
 
-  <label for="unit">Einheit</label>
+  <label for="unit">{{ metaData?.verbose_names?.unit }}</label>
   <select name="unit" formControlName="unit">
     @if(metaData !== null){ @for(choice of metaData.choices.unit; track
     choice.value){
@@ -18,7 +28,7 @@
     }}
   </select>
 
-  <label for="kcal">Kalorien</label>
+  <label for="kcal">{{ metaData?.verbose_names?.kcal }}</label>
   <input
     type="number"
     name="kcal"
@@ -28,24 +38,29 @@
 
   <label for="makros">Makros</label>
   <div name="makros" formGroupName="makros">
-    <label for="carbs">Kohlenhydrate</label>
+    <label for="carbs">{{ metaData?.verbose_names?.carbs }}</label>
     <input
       type="number"
       name="carbs"
-      placeholder="Kohlenhydrate"
+      placeholder="{{ metaData?.verbose_names?.carbs }}"
       formControlName="carbs"
     />
 
-    <label for="protein">Protein</label>
+    <label for="protein">{{ metaData?.verbose_names?.protein }}</label>
     <input
       type="number"
       name="protein"
-      placeholder="Protein"
+      placeholder="{{ metaData?.verbose_names?.protein }}"
       formControlName="protein"
     />
 
-    <label for="fat">Fett</label>
-    <input type="number" name="fat" placeholder="Fett" formControlName="fat" />
+    <label for="fat">{{ metaData?.verbose_names?.fat }}</label>
+    <input
+      type="number"
+      name="fat"
+      placeholder="{{ metaData?.verbose_names?.fat }}"
+      formControlName="fat"
+    />
   </div>
   <button type="submit" [disabled]="!ingredientForm.valid">Submit</button>
 </form>
