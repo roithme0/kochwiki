@@ -1,0 +1,10 @@
+.fields-wrapper {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  gap: 1rem;
+}
+
+header {
+  display: flex;
+  gap: 1rem;
+}
