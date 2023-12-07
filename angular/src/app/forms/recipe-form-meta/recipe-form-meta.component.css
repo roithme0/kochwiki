@@ -1,5 +1,0 @@
-:host {
-  display: grid;
-  grid-template-columns: min-content 1fr;
-  gap: 1rem;
-}

@@ -1,3 +1,49 @@
-<app-recipe-form-meta />
-<app-recipe-form-amounts />
-<app-recipe-form-steps />
+<form action="POST" class="form">
+  <section class="meta-fields-wrapper">
+    <label for="">Name</label>
+    <input type="text" name="" id="" />
+    <label for="">Bild</label>
+    <input type="text" name="" id="" />
+    <label for="">Original</label>
+    <input type="text" name="" id="" />
+    <label for="">URL</label>
+    <input type="text" name="" id="" />
+    <label for="">Ersteller*in</label>
+    <input type="text" name="" id="" />
+  </section>
+
+  <section>
+    <header>
+      <h2>Zutaten</h2>
+      <input type="number" />
+      <p>Portionen</p>
+    </header>
+    <div class="amount-fields-wrapper">
+      <button>Löschen</button>
+      <select name="" id=""></select>
+      <input type="number" name="" id="" />
+      <button>Löschen</button>
+      <select name="" id=""></select>
+      <input type="number" name="" id="" />
+      <button>Löschen</button>
+      <select name="" id=""></select>
+      <input type="number" name="" id="" />
+    </div>
+  </section>
+
+  <section>
+    <header>
+      <h2>Zubereitung</h2>
+      <input type="number" />
+      <p>min</p>
+    </header>
+    <div class="step-fields-wrapper">
+      <button>Löschen</button>
+      <input type="text" name="" id="" />
+      <button>Löschen</button>
+      <input type="text" name="" id="" />
+      <button>Löschen</button>
+      <input type="text" name="" id="" />
+    </div>
+  </section>
+</form>

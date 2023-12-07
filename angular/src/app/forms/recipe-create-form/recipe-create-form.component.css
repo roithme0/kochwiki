@@ -1,5 +1,29 @@
-:host {
+.form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.meta-fields-wrapper {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+}
+
+.amount-fields-wrapper {
+  display: grid;
+  grid-template-columns: min-content 1fr min-content;
+}
+
+.step-fields-wrapper {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+}
+
+header {
+  display: flex;
+}
+
+h2,
+p {
+  margin: 0;
 }
