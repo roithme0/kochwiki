@@ -41,7 +41,7 @@ export class CreateIngredientDialogComponent {
     console.debug('submitting create ingredient form: ', data);
     const postData: Ingredient = {
       name: data.name,
-      brand: data.brand,
+      brand: data.brand || '',
       unit: data.unit,
       kcal: data.kcal,
       carbs: data.makros.carbs,
