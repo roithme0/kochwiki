@@ -1,1 +1,51 @@
-<p>ingredient-edit-form works!</p>
+<form
+  action="PUT"
+  class="ingredient-form"
+  [formGroup]="ingredientForm"
+  (ngSubmit)="onSubmit(ingredientForm.value)"
+>
+  <label for="name">Name</label>
+  <input type="text" name="name" placeholder="Name" formControlName="name" />
+
+  <label for="brand">Marke</label>
+  <input type="text" name="brand" placeholder="Marke" formControlName="brand" />
+
+  <label for="unit">Einheit</label>
+  <select name="unit" formControlName="unit">
+    @if(metaData !== null){ @for(choice of metaData.choices.unit; track
+    choice.value){
+    <option value="{{ choice.value }}">{{ choice.label }}</option>
+    }}
+  </select>
+
+  <label for="kcal">Kalorien</label>
+  <input
+    type="number"
+    name="kcal"
+    placeholder="Kalorien"
+    formControlName="kcal"
+  />
+
+  <label for="makros">Makros</label>
+  <div name="makros" formGroupName="makros">
+    <label for="carbs">Kohlenhydrate</label>
+    <input
+      type="number"
+      name="carbs"
+      placeholder="Kohlenhydrate"
+      formControlName="carbs"
+    />
+
+    <label for="protein">Protein</label>
+    <input
+      type="number"
+      name="protein"
+      placeholder="Protein"
+      formControlName="protein"
+    />
+
+    <label for="fat">Fett</label>
+    <input type="number" name="fat" placeholder="Fett" formControlName="fat" />
+  </div>
+  <button type="submit" [disabled]="!ingredientForm.valid">Submit</button>
+</form>
