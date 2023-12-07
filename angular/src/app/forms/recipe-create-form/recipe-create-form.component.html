@@ -1,15 +1,20 @@
-<form action="POST" class="form">
+<form
+  action="POST"
+  class="form"
+  [formGroup]="recipeForm"
+  (onSubmit)="onSubmit(recipeForm.value)"
+>
   <section class="meta-fields-wrapper">
     <label for="">Name</label>
-    <input type="text" name="" id="" />
+    <input type="text" name="" id="" formControlName="name" />
     <label for="">Bild</label>
-    <input type="text" name="" id="" />
+    <input type="text" name="" id="" formControlName="image" />
     <label for="">Original</label>
-    <input type="text" name="" id="" />
+    <input type="text" name="" id="" formControlName="original" />
     <label for="">URL</label>
-    <input type="text" name="" id="" />
+    <input type="text" name="" id="" formControlName="origin_url" />
     <label for="">Ersteller*in</label>
-    <input type="text" name="" id="" />
+    <input type="text" name="" id="" formControlName="origin_name" />
   </section>
 
   <section>
@@ -18,17 +23,12 @@
       <input type="number" />
       <p>Portionen</p>
     </header>
-    <div class="amount-fields-wrapper">
-      <button>Löschen</button>
-      <select name="" id=""></select>
-      <input type="number" name="" id="" />
-      <button>Löschen</button>
-      <select name="" id=""></select>
-      <input type="number" name="" id="" />
-      <button>Löschen</button>
-      <select name="" id=""></select>
-      <input type="number" name="" id="" />
-    </div>
+    <!-- @for(amount of recipeForm.amounts.controls; track amount){
+    <button>Löschen</button>
+    <select name="" id="" formControlName="ingredient"></select>
+    <input type="number" name="" id="" formControlName="amount" />
+    } -->
+    <button>Hinzufügen</button>
   </section>
 
   <section>
@@ -37,13 +37,11 @@
       <input type="number" />
       <p>min</p>
     </header>
-    <div class="step-fields-wrapper">
+    <!-- <div class="step-fields-wrapper" formArrayName="steps">
       <button>Löschen</button>
-      <input type="text" name="" id="" />
-      <button>Löschen</button>
-      <input type="text" name="" id="" />
-      <button>Löschen</button>
-      <input type="text" name="" id="" />
-    </div>
+      <input type="text" name="" id="" formControlName="description" />
+    </div> -->
+    <button>Hinzufügen</button>
   </section>
+  <button type="submit" [disabled]="!recipeForm.valid">Submit</button>
 </form>
