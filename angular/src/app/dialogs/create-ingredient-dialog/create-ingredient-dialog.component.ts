@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Ingredient } from '../../interfaces/ingredient';
 import { IngredientService } from '../../services/ingredient/ingredient.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -38,7 +39,7 @@ export class CreateIngredientDialogComponent {
 
   onSubmit(data: any): void {
     console.debug('submitting create ingredient form: ', data);
-    const postData: any = {
+    const postData: Ingredient = {
       name: data.name,
       brand: data.brand,
       unit: data.unit,

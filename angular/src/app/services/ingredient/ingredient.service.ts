@@ -37,9 +37,12 @@ export class IngredientService {
     );
   }
 
-  postIngredient(data: any): Observable<Ingredient> {
-    console.debug('posting ingredient: ', data);
-    return this.http.post<Ingredient>(backendUrl + '/ingredients/create', data);
+  postIngredient(ingredient: Ingredient): Observable<Ingredient> {
+    console.debug('posting ingredient: ', ingredient);
+    return this.http.post<Ingredient>(
+      backendUrl + '/ingredients/create',
+      ingredient
+    );
   }
 
   deleteIngredient(id: number): Observable<number> {
