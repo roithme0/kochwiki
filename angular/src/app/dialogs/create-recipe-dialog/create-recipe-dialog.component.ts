@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RecipeService } from '../../services/recipe/recipe.service';
-import { RecipeFormComponent } from '../../recipe-form/recipe-form.component';
+import { RecipeFormComponent } from '../../forms/recipe-form/recipe-form.component';
 
 @Component({
   selector: 'app-create-recipe-dialog',
