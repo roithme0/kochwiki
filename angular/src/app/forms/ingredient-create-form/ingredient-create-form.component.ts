@@ -7,13 +7,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { IngredientMetaData } from '../../interfaces/ingredient-meta-data';
 
 @Component({
-  selector: 'app-ingredient-form',
+  selector: 'app-ingredient-create-form',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './ingredient-form.component.html',
-  styleUrl: './ingredient-form.component.css',
+  templateUrl: './ingredient-create-form.component.html',
+  styleUrl: './ingredient-create-form.component.css',
 })
-export class IngredientFormComponent {
+export class IngredientCreateFormComponent {
   @Output() success: EventEmitter<void> = new EventEmitter();
   metaData: IngredientMetaData | null = null;
   ingredientForm = new FormGroup({
