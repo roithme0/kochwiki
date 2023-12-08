@@ -3,7 +3,7 @@ import { IngredientMetaData } from './ingredient-meta-data';
 
 export interface Ingredient {
   [key: string]: any;
-  id?: number;
+  id: number | null;
   name: string;
   brand: string | null;
   unit: string;

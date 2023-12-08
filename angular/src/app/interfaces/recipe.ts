@@ -3,15 +3,15 @@ import { Step } from './step';
 import { RecipeMetaData } from './recipe-meta-data';
 
 export interface Recipe {
-  id: number;
+  id: number | null;
   name: string;
-  servings: number;
-  preptime: number | null;
-  originName: string | null;
-  originUrl: string | null;
-  original: string | null;
   image: string | null;
+  origin_name: string | null;
+  origin_url: string | null;
+  original: string | null;
+  servings: number;
   amounts: Amount[];
+  preptime: number | null;
   steps: Step[];
-  meta_data: RecipeMetaData;
+  meta_data?: RecipeMetaData;
 }

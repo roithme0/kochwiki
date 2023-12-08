@@ -5,30 +5,54 @@
   (onSubmit)="onSubmit(recipeForm.value)"
 >
   <section class="meta-fields-wrapper">
-    <label for="">Name</label>
-    <input type="text" name="" id="" formControlName="name" />
-    <label for="">Bild</label>
-    <input type="text" name="" id="" formControlName="image" />
-    <label for="">Original</label>
-    <input type="text" name="" id="" formControlName="original" />
-    <label for="">URL</label>
-    <input type="text" name="" id="" formControlName="origin_url" />
-    <label for="">Ersteller*in</label>
-    <input type="text" name="" id="" formControlName="origin_name" />
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" formControlName="name" />
+    <label for="image">Bild</label>
+    <input type="text" name="image" id="image" formControlName="image" />
+    <label for="original">Original</label>
+    <input
+      type="text"
+      name="original"
+      id="original"
+      formControlName="original"
+    />
+    <label for="origin_url">URL</label>
+    <input
+      type="text"
+      name="origin_url"
+      id="origin_url"
+      formControlName="origin_url"
+    />
+    <label for="origin_name">Ersteller*in</label>
+    <input
+      type="text"
+      name="origin_name"
+      id="origin_name"
+      formControlName="origin_name"
+    />
   </section>
 
   <section>
     <header>
       <h2>Zutaten</h2>
-      <input type="number" />
+      <input type="number" formControlName="servings" />
       <p>Portionen</p>
     </header>
     <div formArrayName="amounts">
       @for(amount of amounts.controls; track amount){
       <div formGroupName="{{ $index }}">
         <button (click)="removeAmount($index)">Löschen</button>
-        <select formControlName="ingredient"></select>
-        <input type="number" formControlName="amount" />
+        <select
+          name="ingredient"
+          id="ingredient"
+          formControlName="ingredient"
+        ></select>
+        <input
+          type="number"
+          name="amount"
+          id="amount"
+          formControlName="amount"
+        />
       </div>
       }
       <button (click)="addAmount()">Hinzufügen</button>
@@ -45,7 +69,12 @@
       @for(step of steps.controls; track step){
       <div formGroupName="{{ $index }}">
         <button (click)="removeStep($index)">Löschen</button>
-        <input type="text" formControlName="description" />
+        <input
+          type="text"
+          name="step"
+          id="step"
+          formControlName="description"
+        />
       </div>
       }
       <button (click)="addStep()">Hinzufügen</button>

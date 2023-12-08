@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RecipeService } from '../../services/recipe/recipe.service';
+import { Recipe } from '../../interfaces/recipe';
 
 @Component({
   selector: 'app-recipe-create-form',
@@ -17,13 +19,13 @@ export class RecipeCreateFormComponent {
     origin_name: [''],
     origin_url: [''],
     original: [''],
-    servings: [<number | null>null],
+    servings: [<number | null>null, Validators.required],
     amounts: this.fb.array([]),
     preptime: [<number | null>null],
     steps: this.fb.array([]),
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private recipeService: RecipeService) {}
 
   get amounts() {
     return this.recipeForm.get('amounts') as FormArray;
@@ -60,7 +62,17 @@ export class RecipeCreateFormComponent {
     this.steps.removeAt(index);
   }
 
-  onSubmit(data: any): void {
-    console.debug('submitting create recipe form: ', data);
+  onSubmit(formData: any): void {
+    console.debug('submitting create recipe form: ', formData);
+    const postData: Recipe = formData as Recipe;
+    this.recipeService.postRecipe(postData).subscribe({
+      next: (recipe) => {
+        console.debug('recipe created: ', recipe);
+        // close form
+      },
+      error: (error) => {
+        console.error('failed to create recipe: ', error);
+      },
+    });
   }
 }
