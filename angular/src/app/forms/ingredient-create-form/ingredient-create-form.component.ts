@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Ingredient } from '../../interfaces/ingredient';
 import { IngredientService } from '../../services/ingredient/ingredient.service';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -16,19 +16,22 @@ import { IngredientMetaData } from '../../interfaces/ingredient-meta-data';
 export class IngredientCreateFormComponent {
   @Output() success: EventEmitter<void> = new EventEmitter();
   metaData: IngredientMetaData | null = null;
-  ingredientForm = new FormGroup({
-    name: new FormControl(),
-    brand: new FormControl(),
-    unit: new FormControl(),
-    kcal: new FormControl(),
-    makros: new FormGroup({
-      carbs: new FormControl(),
-      protein: new FormControl(),
-      fat: new FormControl(),
+  ingredientForm = this.fb.group({
+    name: ['', Validators.required],
+    brand: [''],
+    unit: [, Validators.required],
+    kcal: [],
+    makros: this.fb.group({
+      carbs: [],
+      protein: [],
+      fat: [],
     }),
   });
 
-  constructor(private ingredientService: IngredientService) {}
+  constructor(
+    private ingredientService: IngredientService,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.fetchMetaData();

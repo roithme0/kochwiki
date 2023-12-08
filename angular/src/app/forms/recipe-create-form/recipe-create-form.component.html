@@ -23,25 +23,39 @@
       <input type="number" />
       <p>Portionen</p>
     </header>
-    <!-- @for(amount of recipeForm.amounts.controls; track amount){
-    <button>Löschen</button>
-    <select name="" id="" formControlName="ingredient"></select>
-    <input type="number" name="" id="" formControlName="amount" />
-    } -->
-    <button>Hinzufügen</button>
+    <div formArrayName="amounts">
+      @for(amount of amounts.controls; track amount){
+      <div formGroupName="{{ $index }}">
+        <button (click)="removeAmount($index)">Löschen</button>
+        <select formControlName="ingredient"></select>
+        <input type="number" formControlName="amount" />
+      </div>
+      }
+      <button (click)="addAmount()">Hinzufügen</button>
+    </div>
   </section>
 
   <section>
     <header>
       <h2>Zubereitung</h2>
-      <input type="number" />
+      <input type="number" formControlName="preptime" />
       <p>min</p>
     </header>
-    <!-- <div class="step-fields-wrapper" formArrayName="steps">
-      <button>Löschen</button>
-      <input type="text" name="" id="" formControlName="description" />
-    </div> -->
-    <button>Hinzufügen</button>
+    <div formArrayName="steps">
+      @for(step of steps.controls; track step){
+      <div formGroupName="{{ $index }}">
+        <button (click)="removeStep($index)">Löschen</button>
+        <input type="text" formControlName="description" />
+      </div>
+      }
+      <button (click)="addStep()">Hinzufügen</button>
+    </div>
   </section>
-  <button type="submit" [disabled]="!recipeForm.valid">Submit</button>
+  <button
+    type="submit"
+    [disabled]="!recipeForm.valid"
+    (click)="onSubmit(recipeForm.value)"
+  >
+    Submit
+  </button>
 </form>

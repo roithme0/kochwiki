@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Ingredient } from '../../interfaces/ingredient';
 import { IngredientService } from '../../services/ingredient/ingredient.service';
@@ -17,20 +17,23 @@ export class IngredientEditFormComponent {
   @Input() id!: number;
   @Output() success: EventEmitter<void> = new EventEmitter();
   metaData: IngredientMetaData | null = null;
-  ingredientForm = new FormGroup({
-    id: new FormControl(),
-    name: new FormControl(),
-    brand: new FormControl(),
-    unit: new FormControl(),
-    kcal: new FormControl(),
-    makros: new FormGroup({
-      carbs: new FormControl(),
-      protein: new FormControl(),
-      fat: new FormControl(),
+  ingredientForm = this.fb.group({
+    id: [0],
+    name: ['', Validators.required],
+    brand: [''],
+    unit: ['', Validators.required],
+    kcal: [0],
+    makros: this.fb.group({
+      carbs: [0],
+      protein: [0],
+      fat: [0],
     }),
   });
 
-  constructor(private ingredientService: IngredientService) {}
+  constructor(
+    private ingredientService: IngredientService,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.fetchMetaData();
@@ -39,7 +42,7 @@ export class IngredientEditFormComponent {
       next: (ingredient) => {
         console.debug('ingredient fetched: ', ingredient);
         this.ingredientForm.setValue({
-          id: ingredient.id,
+          id: ingredient.id || null,
           name: ingredient.name,
           brand: ingredient.brand,
           unit: ingredient.unit,

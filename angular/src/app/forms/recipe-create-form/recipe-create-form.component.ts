@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormArray } from '@angular/forms';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -11,26 +11,54 @@ import { ReactiveFormsModule } from '@angular/forms';
   styleUrl: './recipe-create-form.component.css',
 })
 export class RecipeCreateFormComponent {
-  recipeForm = new FormGroup({
-    name: new FormControl(),
-    image: new FormControl(),
-    origin_name: new FormControl(),
-    origin_url: new FormControl(),
-    original: new FormControl(),
-    amounts: new FormArray([
-      new FormGroup({
-        index: new FormControl(),
-        ingredient: new FormControl(),
-        amount: new FormControl(),
-      }),
-    ]),
-    steps: new FormArray([
-      new FormGroup({
-        index: new FormControl(),
-        description: new FormControl(),
-      }),
-    ]),
+  recipeForm = this.fb.group({
+    name: ['', Validators.required],
+    image: [''],
+    origin_name: [''],
+    origin_url: [''],
+    original: [''],
+    servings: [],
+    amounts: this.fb.array([]),
+    preptime: [],
+    steps: this.fb.array([]),
   });
+
+  constructor(private fb: FormBuilder) {}
+
+  get amounts() {
+    return this.recipeForm.get('amounts') as FormArray;
+  }
+
+  addAmount() {
+    this.amounts.push(
+      this.fb.group({
+        // index: [],
+        ingredient: [],
+        amount: [],
+      })
+    );
+  }
+
+  removeAmount(index: number) {
+    this.amounts.removeAt(index);
+  }
+
+  get steps() {
+    return this.recipeForm.get('steps') as FormArray;
+  }
+
+  addStep() {
+    this.steps.push(
+      this.fb.group({
+        // index: [],
+        description: [''],
+      })
+    );
+  }
+
+  removeStep(index: number) {
+    this.steps.removeAt(index);
+  }
 
   onSubmit(data: any): void {
     console.debug('submitting create recipe form: ', data);
