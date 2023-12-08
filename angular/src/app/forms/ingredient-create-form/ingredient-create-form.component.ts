@@ -19,12 +19,12 @@ export class IngredientCreateFormComponent {
   ingredientForm = this.fb.group({
     name: ['', Validators.required],
     brand: [''],
-    unit: [, Validators.required],
-    kcal: [],
+    unit: ['', Validators.required],
+    kcal: [<number | null>null],
     makros: this.fb.group({
-      carbs: [],
-      protein: [],
-      fat: [],
+      carbs: [<number | null>null],
+      protein: [<number | null>null],
+      fat: [<number | null>null],
     }),
   });
 

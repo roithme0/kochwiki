@@ -17,9 +17,9 @@ export class RecipeCreateFormComponent {
     origin_name: [''],
     origin_url: [''],
     original: [''],
-    servings: [],
+    servings: [<number | null>null],
     amounts: this.fb.array([]),
-    preptime: [],
+    preptime: [<number | null>null],
     steps: this.fb.array([]),
   });
 
@@ -33,8 +33,8 @@ export class RecipeCreateFormComponent {
     this.amounts.push(
       this.fb.group({
         // index: [],
-        ingredient: [],
-        amount: [],
+        ingredient: [<number | null>null, Validators.required],
+        amount: [<number | null>null, Validators.required],
       })
     );
   }
@@ -51,7 +51,7 @@ export class RecipeCreateFormComponent {
     this.steps.push(
       this.fb.group({
         // index: [],
-        description: [''],
+        description: ['', Validators.required],
       })
     );
   }

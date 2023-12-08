@@ -18,15 +18,15 @@ export class IngredientEditFormComponent {
   @Output() success: EventEmitter<void> = new EventEmitter();
   metaData: IngredientMetaData | null = null;
   ingredientForm = this.fb.group({
-    id: [0],
+    id: [<number | null>null],
     name: ['', Validators.required],
     brand: [''],
     unit: ['', Validators.required],
-    kcal: [0],
+    kcal: [<number | null>null],
     makros: this.fb.group({
-      carbs: [0],
-      protein: [0],
-      fat: [0],
+      carbs: [<number | null>null],
+      protein: [<number | null>null],
+      fat: [<number | null>null],
     }),
   });
 
