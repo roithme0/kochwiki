@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RecipeService } from '../../services/recipe/recipe.service';
 import { RecipeCreateFormComponent } from '../../forms/recipe-create-form/recipe-create-form.component';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-create-recipe-dialog',
@@ -11,5 +12,8 @@ import { RecipeCreateFormComponent } from '../../forms/recipe-create-form/recipe
   styleUrl: './create-recipe-dialog.component.css',
 })
 export class CreateRecipeDialogComponent {
-  constructor(private recipeService: RecipeService) {}
+  constructor(
+    private recipeService: RecipeService,
+    public dialog: MatDialogRef<CreateRecipeDialogComponent>
+  ) {}
 }

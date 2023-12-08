@@ -37,9 +37,9 @@ export class RecipeService {
     );
   }
 
-  postRecipe(data: any): Observable<Recipe> {
-    console.debug('posting recipe: ', data);
-    return this.http.post<Recipe>(backendUrl + '/recipes/create', data);
+  postRecipe(formData: FormData): Observable<Recipe> {
+    console.debug('posting recipe: ', formData);
+    return this.http.post<Recipe>(backendUrl + '/recipes/create', formData);
   }
 
   deleteRecipe(id: number): Observable<number> {

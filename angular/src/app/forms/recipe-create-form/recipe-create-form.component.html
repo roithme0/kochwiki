@@ -2,19 +2,24 @@
   action="POST"
   class="form"
   [formGroup]="recipeForm"
-  (onSubmit)="onSubmit(recipeForm.value)"
+  (onSubmit)="onSubmit()"
 >
   <section class="meta-fields-wrapper">
     <label for="name">Name</label>
     <input type="text" name="name" id="name" formControlName="name" />
     <label for="image">Bild</label>
-    <input type="text" name="image" id="image" formControlName="image" />
+    <input
+      type="file"
+      name="image"
+      id="image"
+      (change)="onUpload($event, 'image')"
+    />
     <label for="original">Original</label>
     <input
-      type="text"
+      type="file"
       name="original"
       id="original"
-      formControlName="original"
+      (change)="onUpload($event, 'original')"
     />
     <label for="origin_url">URL</label>
     <input
@@ -80,11 +85,7 @@
       <button (click)="addStep()">Hinzufügen</button>
     </div>
   </section>
-  <button
-    type="submit"
-    [disabled]="!recipeForm.valid"
-    (click)="onSubmit(recipeForm.value)"
-  >
+  <button type="submit" [disabled]="!recipeForm.valid" (click)="onSubmit()">
     Submit
   </button>
 </form>
