@@ -36,31 +36,28 @@
     formControlName="kcal"
   />
 
-  <label for="makros">Makros</label>
-  <div name="makros" formGroupName="makros">
-    <label for="carbs">{{ metaData?.verbose_names?.carbs }}</label>
-    <input
-      type="number"
-      name="carbs"
-      placeholder="{{ metaData?.verbose_names?.carbs }}"
-      formControlName="carbs"
-    />
+  <label for="carbs">{{ metaData?.verbose_names?.carbs }}</label>
+  <input
+    type="number"
+    name="carbs"
+    placeholder="{{ metaData?.verbose_names?.carbs }}"
+    formControlName="carbs"
+  />
 
-    <label for="protein">{{ metaData?.verbose_names?.protein }}</label>
-    <input
-      type="number"
-      name="protein"
-      placeholder="{{ metaData?.verbose_names?.protein }}"
-      formControlName="protein"
-    />
+  <label for="protein">{{ metaData?.verbose_names?.protein }}</label>
+  <input
+    type="number"
+    name="protein"
+    placeholder="{{ metaData?.verbose_names?.protein }}"
+    formControlName="protein"
+  />
 
-    <label for="fat">{{ metaData?.verbose_names?.fat }}</label>
-    <input
-      type="number"
-      name="fat"
-      placeholder="{{ metaData?.verbose_names?.fat }}"
-      formControlName="fat"
-    />
-  </div>
+  <label for="fat">{{ metaData?.verbose_names?.fat }}</label>
+  <input
+    type="number"
+    name="fat"
+    placeholder="{{ metaData?.verbose_names?.fat }}"
+    formControlName="fat"
+  />
   <button type="submit" [disabled]="!ingredientForm.valid">Submit</button>
 </form>

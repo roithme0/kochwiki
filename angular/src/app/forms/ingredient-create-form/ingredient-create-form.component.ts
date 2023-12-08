@@ -21,11 +21,9 @@ export class IngredientCreateFormComponent {
     brand: [''],
     unit: ['', Validators.required],
     kcal: [<number | null>null],
-    makros: this.fb.group({
-      carbs: [<number | null>null],
-      protein: [<number | null>null],
-      fat: [<number | null>null],
-    }),
+    carbs: [<number | null>null],
+    protein: [<number | null>null],
+    fat: [<number | null>null],
   });
 
   constructor(
@@ -37,17 +35,9 @@ export class IngredientCreateFormComponent {
     this.fetchMetaData();
   }
 
-  onSubmit(data: any): void {
-    console.debug('submitting create ingredient form: ', data);
-    const postData: Ingredient = {
-      name: data.name,
-      brand: data.brand || '',
-      unit: data.unit,
-      kcal: data.kcal,
-      carbs: data.makros.carbs,
-      protein: data.makros.protein,
-      fat: data.makros.fat,
-    };
+  onSubmit(formData: any): void {
+    console.debug('submitting create ingredient form: ', formData);
+    const postData: Ingredient = formData as Ingredient;
     this.ingredientService.postIngredient(postData).subscribe({
       next: (ingredient) => {
         console.debug('ingredient created: ', ingredient);

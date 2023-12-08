@@ -23,11 +23,9 @@ export class IngredientEditFormComponent {
     brand: [''],
     unit: ['', Validators.required],
     kcal: [<number | null>null],
-    makros: this.fb.group({
-      carbs: [<number | null>null],
-      protein: [<number | null>null],
-      fat: [<number | null>null],
-    }),
+    carbs: [<number | null>null],
+    protein: [<number | null>null],
+    fat: [<number | null>null],
   });
 
   constructor(
@@ -41,18 +39,7 @@ export class IngredientEditFormComponent {
     this.ingredientService.getIngredientById(this.id).subscribe({
       next: (ingredient) => {
         console.debug('ingredient fetched: ', ingredient);
-        this.ingredientForm.setValue({
-          id: ingredient.id || null,
-          name: ingredient.name,
-          brand: ingredient.brand,
-          unit: ingredient.unit,
-          kcal: ingredient.kcal,
-          makros: {
-            carbs: ingredient.carbs,
-            protein: ingredient.protein,
-            fat: ingredient.fat,
-          },
-        });
+        this.ingredientForm.patchValue(ingredient);
       },
       error: (error) => {
         console.error('failed to fetch ingredient: ', error);
@@ -60,18 +47,9 @@ export class IngredientEditFormComponent {
     });
   }
 
-  onSubmit(data: any): void {
-    console.debug('submitting edit ingredient form: ', data);
-    const ingredient: Ingredient = {
-      id: data.id,
-      name: data.name,
-      brand: data.brand,
-      unit: data.unit,
-      kcal: data.kcal,
-      carbs: data.makros.carbs,
-      protein: data.makros.protein,
-      fat: data.makros.fat,
-    };
+  onSubmit(formData: any): void {
+    console.debug('submitting edit ingredient form: ', formData);
+    const ingredient: Ingredient = formData as Ingredient;
     this.ingredientService.putIngredient(ingredient).subscribe({
       next: (ingredient) => {
         console.debug('ingredient updated: ', ingredient);
