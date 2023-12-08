@@ -1,9 +1,18 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Output,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RecipeService } from '../../services/recipe/recipe.service';
 import { MatDialog } from '@angular/material/dialog';
+import { Ingredient } from '../../interfaces/ingredient';
+import { IngredientService } from '../../services/ingredient/ingredient.service';
+import { CreateIngredientDialogComponent } from '../../dialogs/create-ingredient-dialog/create-ingredient-dialog.component';
 
 @Component({
   selector: 'app-recipe-create-form',
@@ -14,6 +23,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class RecipeCreateFormComponent {
   @Output() success: EventEmitter<void> = new EventEmitter();
+  ingredients: WritableSignal<Ingredient[]> = signal([]);
   recipeForm = this.fb.group({
     name: ['', Validators.required],
     image: [<File | null>null],
@@ -29,8 +39,17 @@ export class RecipeCreateFormComponent {
   constructor(
     private fb: FormBuilder,
     private recipeService: RecipeService,
+    private ingredientService: IngredientService,
     private dialog: MatDialog
-  ) {}
+  ) {
+    ingredientService.ingredients$.subscribe(() => {
+      this.fetchIngredients();
+    });
+  }
+
+  ngOnInit(): void {
+    this.fetchIngredients();
+  }
 
   get amounts(): FormArray {
     return this.recipeForm.get('amounts') as FormArray;
@@ -67,6 +86,18 @@ export class RecipeCreateFormComponent {
     this.steps.removeAt(index);
   }
 
+  fetchIngredients(): void {
+    this.ingredientService.getAllIngredients().subscribe({
+      next: (ingredients) => {
+        console.debug('fetched ingredients: ', ingredients);
+        this.ingredients.set(ingredients);
+      },
+      error: (error) => {
+        console.error('failed to fetch ingredients: ', error);
+      },
+    });
+  }
+
   onUpload(event: any, field: string): void {
     console.debug(`uploading ${field}: `, event);
     const file = event.target.files[0];
@@ -101,5 +132,9 @@ export class RecipeCreateFormComponent {
         console.error('failed to create recipe: ', error);
       },
     });
+  }
+
+  openCreateIngredientDialog(): void {
+    this.dialog.open(CreateIngredientDialogComponent);
   }
 }
