@@ -1,9 +1,22 @@
 <header class="page-header">
-  <a routerLink="" routerLinkActive="active" ariaCurrentWhenActive="page"
-    >Home</a
+  <a
+    routerLink=""
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page"
+    class="link"
   >
+    <img src="../../assets/logo.png" alt="Home" class="logo"
+  /></a>
   <h1>{{ headline }}</h1>
-  <a [routerLink]="back" routerLinkActive="active" ariaCurrentWhenActive="page"
-    >Back</a
-  >
+  <a
+    [routerLink]="back"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page"
+    class="link"
+    ><mat-icon
+      aria-hidden="false"
+      aria-label="back icon"
+      fontIcon="arrow_back_ios"
+    ></mat-icon>
+  </a>
 </header>
