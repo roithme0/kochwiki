@@ -1,13 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RecipeEditFormComponent } from '../../forms/recipe-edit-form/recipe-edit-form.component';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edit-recipe-dialog',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RecipeEditFormComponent],
   templateUrl: './edit-recipe-dialog.component.html',
-  styleUrl: './edit-recipe-dialog.component.css'
+  styleUrl: './edit-recipe-dialog.component.css',
 })
 export class EditRecipeDialogComponent {
-
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialog: MatDialogRef<EditRecipeDialogComponent>
+  ) {}
 }

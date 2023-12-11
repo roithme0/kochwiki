@@ -1,0 +1,93 @@
+<form
+  action="PUT"
+  class="form"
+  [formGroup]="recipeForm"
+  (onSubmit)="onSubmit()"
+>
+  <section class="meta-fields-wrapper">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" formControlName="name" />
+    <label for="image">Bild</label>
+    <input
+      type="file"
+      name="image"
+      id="image"
+      (change)="onUpload($event, 'image')"
+    />
+    <label for="original">Original</label>
+    <input
+      type="file"
+      name="original"
+      id="original"
+      (change)="onUpload($event, 'original')"
+    />
+    <label for="origin_url">URL</label>
+    <input
+      type="text"
+      name="origin_url"
+      id="origin_url"
+      formControlName="origin_url"
+    />
+    <label for="origin_name">Ersteller*in</label>
+    <input
+      type="text"
+      name="origin_name"
+      id="origin_name"
+      formControlName="origin_name"
+    />
+  </section>
+
+  <section>
+    <header>
+      <h2>Zutaten</h2>
+      <input type="number" formControlName="servings" />
+      <p>Portionen</p>
+    </header>
+    <div formArrayName="amounts">
+      @for(amount of amounts.controls; track amount){
+      <div formGroupName="{{ $index }}">
+        <button (click)="removeAmount($index)">Löschen</button>
+        <select name="ingredient" id="ingredient" formControlName="ingredient">
+          @for(ingredient of ingredients(); track ingredient.id){
+          <option value="{{ ingredient.id }}">{{ ingredient.name }}</option>
+          }
+        </select>
+        <input
+          type="number"
+          name="amount"
+          id="amount"
+          formControlName="amount"
+        />
+        <p>unit</p>
+      </div>
+      }
+      <button (click)="addAmount()">Hinzufügen</button>
+      <button (click)="openCreateIngredientDialog()">Zutat erstellen</button>
+    </div>
+  </section>
+
+  <section>
+    <header>
+      <h2>Zubereitung</h2>
+      <input type="number" formControlName="preptime" />
+      <p>min</p>
+    </header>
+    <div formArrayName="steps">
+      @for(step of steps.controls; track step){
+      <div formGroupName="{{ $index }}">
+        <button (click)="removeStep($index)">Löschen</button>
+        <input
+          type="text"
+          name="step"
+          id="step"
+          formControlName="description"
+        />
+      </div>
+      }
+      <button (click)="addStep()">Hinzufügen</button>
+    </div>
+  </section>
+  <button type="submit" [disabled]="!recipeForm.valid" (click)="onSubmit()">
+    Submit
+  </button>
+</form>

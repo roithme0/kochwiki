@@ -4,7 +4,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { IngredientEditFormComponent } from '../../forms/ingredient-edit-form/ingredient-edit-form.component';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { IngredientService } from '../../services/ingredient/ingredient.service';
 
 @Component({
   selector: 'app-edit-ingredient-dialog',
