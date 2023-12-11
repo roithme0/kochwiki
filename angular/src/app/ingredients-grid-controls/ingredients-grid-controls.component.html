@@ -18,8 +18,8 @@
   }
 </mat-form-field>
 
-<mat-form-field>
-  <mat-label>Favorite food</mat-label>
+<mat-form-field class="filter-field">
+  <mat-label>Einheit filtern</mat-label>
   <mat-select
     [(value)]="filterBy"
     (selectionChange)="ingredientsGridControlsService.setFilterBy($event.value)"
