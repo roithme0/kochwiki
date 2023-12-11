@@ -1,6 +1,7 @@
 import {
   Component,
   EventEmitter,
+  Input,
   Output,
   signal,
   WritableSignal,
@@ -22,6 +23,7 @@ import { CreateIngredientDialogComponent } from '../../dialogs/create-ingredient
   styleUrl: './recipe-edit-form.component.css',
 })
 export class RecipeEditFormComponent {
+  @Input() id!: number;
   @Output() success: EventEmitter<void> = new EventEmitter();
   ingredients: WritableSignal<Ingredient[]> = signal([]);
   recipeForm = this.fb.group({
@@ -49,6 +51,7 @@ export class RecipeEditFormComponent {
 
   ngOnInit(): void {
     this.fetchIngredients();
+    this.fetchRecipe();
   }
 
   get amounts(): FormArray {
@@ -98,6 +101,18 @@ export class RecipeEditFormComponent {
     });
   }
 
+  fetchRecipe(): void {
+    this.recipeService.getRecipeById(this.id).subscribe({
+      next: (recipe) => {
+        console.debug('fetched recipe: ', recipe);
+        this.recipeForm.patchValue(recipe);
+      },
+      error: (error) => {
+        console.error('failed to fetch recipe: ', error);
+      },
+    });
+  }
+
   onUpload(event: any, field: string): void {
     console.debug(`uploading ${field}: `, event);
     const file = event.target.files[0];
@@ -107,15 +122,15 @@ export class RecipeEditFormComponent {
   }
 
   onSubmit(): void {
-    console.debug('submitting create recipe form: ', this.recipeForm.value);
+    console.debug('submitting edit recipe form: ', this.recipeForm.value);
     const formData = new FormData();
 
     Object.keys(this.recipeForm.value).forEach((key) => {
-      if (key in ['image', 'original']) {
+      if (['image', 'original'].includes(key)) {
         // handle files seperately
         const control = this.recipeForm.get(key);
-        const file = control?.value.files[0];
-        formData.append(key, file, file.name);
+        const file = control?.value;
+        file ? formData.append(key, file, file.name) : formData.append(key, '');
       } else {
         // handle all other form data
         const value = this.recipeForm.get(key)?.value;
@@ -123,13 +138,14 @@ export class RecipeEditFormComponent {
       }
     });
 
-    this.recipeService.postRecipe(formData).subscribe({
+    this.recipeService.putRecipe(formData, this.id).subscribe({
       next: (recipe) => {
-        console.debug('recipe created: ', recipe);
+        console.debug('recipe updated: ', recipe);
         this.success.emit();
+        this.recipeService.notifyRecipesChanged();
       },
       error: (error) => {
-        console.error('failed to create recipe: ', error);
+        console.error('failed to update recipe: ', error);
       },
     });
   }

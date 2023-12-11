@@ -29,11 +29,15 @@ export class RecipeComponent {
     const id: number | null = Number(this.route.snapshot.paramMap.get('id'));
     console.debug('id: ', id);
 
-    this.getRecipe(id);
-    this.pageHeaderService.setBack('recipes');
+    recipeService.recipes$.subscribe(() => {
+      this.fetchRecipe(id);
+    });
+    this.fetchRecipe(id);
+
+    pageHeaderService.setBack('recipes');
   }
 
-  getRecipe(id: number): void {
+  fetchRecipe(id: number): void {
     this.recipeService.getRecipeById(id).subscribe({
       next: (recipe: Recipe) => {
         console.debug('fetched recipe: ', recipe);
@@ -48,7 +52,9 @@ export class RecipeComponent {
   }
 
   openEditRecipeDialog(): void {
-    this.dialog.open(EditRecipeDialogComponent);
+    this.dialog.open(EditRecipeDialogComponent, {
+      data: { id: this.recipe?.id },
+    });
   }
 
   openDeleteRecipeDialog(): void {

@@ -111,11 +111,11 @@ export class RecipeCreateFormComponent {
     const formData = new FormData();
 
     Object.keys(this.recipeForm.value).forEach((key) => {
-      if (key in ['image', 'original']) {
+      if (['image', 'original'].includes(key)) {
         // handle files seperately
         const control = this.recipeForm.get(key);
-        const file = control?.value.files[0];
-        formData.append(key, file, file.name);
+        const file = control?.value;
+        file ? formData.append(key, file, file.name) : formData.append(key, '');
       } else {
         // handle all other form data
         const value = this.recipeForm.get(key)?.value;
@@ -127,6 +127,7 @@ export class RecipeCreateFormComponent {
       next: (recipe) => {
         console.debug('recipe created: ', recipe);
         this.success.emit();
+        this.recipeService.notifyRecipesChanged();
       },
       error: (error) => {
         console.error('failed to create recipe: ', error);
