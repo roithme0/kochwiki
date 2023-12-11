@@ -51,6 +51,12 @@ class RetrieveUpdateIngredientView(RetrieveUpdateAPIView):
 class DestroyIngredientView(DestroyAPIView):
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
+    
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        id = instance.id
+        self.perform_destroy(instance)
+        return Response(id)
 
 class RetrieveIngredientView(RetrieveAPIView):
     queryset = Ingredient.objects.all()

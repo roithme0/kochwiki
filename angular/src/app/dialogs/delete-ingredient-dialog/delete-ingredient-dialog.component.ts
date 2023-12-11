@@ -17,7 +17,7 @@ export class DeleteIngredientDialogComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialog: MatDialogRef<DeleteIngredientDialogComponent>,
+    public dialogRef: MatDialogRef<DeleteIngredientDialogComponent>,
     private ingredientService: IngredientService
   ) {
     this.ingredientService.getIngredientById(data.id).subscribe({
@@ -37,7 +37,7 @@ export class DeleteIngredientDialogComponent {
           next: (id) => {
             console.debug('ingredient deleted: ', id);
             this.ingredientService.notifyIngredientsChanged();
-            this.dialog.close();
+            this.dialogRef.close();
           },
           error: (error) => {
             console.error('failed to delete ingredienet: ', error);

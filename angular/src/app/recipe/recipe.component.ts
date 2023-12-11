@@ -58,6 +58,8 @@ export class RecipeComponent {
   }
 
   openDeleteRecipeDialog(): void {
-    this.dialog.open(DeleteRecipeDialogComponent);
+    this.dialog.open(DeleteRecipeDialogComponent, {
+      data: { id: this.recipe?.id },
+    });
   }
 }
