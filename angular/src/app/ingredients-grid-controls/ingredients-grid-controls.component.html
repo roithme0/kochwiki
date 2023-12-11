@@ -1,23 +1,23 @@
-<div>
-  <input
-    type="text"
-    placeholder="Name oder Marke suchen ..."
-    [value]="searchBy"
-    (input)="
-      ingredientsGridControlsService.setSearchBy($any($event.target).value)
-    "
-  />
-  <select
-    name="unitFilter"
-    id="unitFilter"
-    [value]="filterBy"
-    (change)="
-      ingredientsGridControlsService.setFilterBy($any($event.target).value)
-    "
-  >
-    <option value="all">Alle</option>
-    <option value="g">g</option>
-    <option value="ml">ml</option>
-    <option value="Stk.">Stk.</option>
-  </select>
-</div>
+<input
+  type="text"
+  placeholder="Name oder Marke suchen ..."
+  class="search"
+  [value]="searchBy"
+  (input)="
+    ingredientsGridControlsService.setSearchBy($any($event.target).value)
+  "
+/>
+<select
+  name="unitFilter"
+  class="unit-filter"
+  id="unitFilter"
+  [value]="filterBy"
+  (change)="
+    ingredientsGridControlsService.setFilterBy($any($event.target).value)
+  "
+>
+  <option value="all">Alle</option>
+  <option value="g">g</option>
+  <option value="ml">ml</option>
+  <option value="Stk.">Stk.</option>
+</select>

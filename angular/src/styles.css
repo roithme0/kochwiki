@@ -38,8 +38,12 @@ body {
 }
 
 app-root {
-  margin: 0 0.5rem;
+  max-width: var(--used-width);
+  margin: auto;
+  padding: 0.5rem;
   height: 100%;
+  width: 100%;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
 }
