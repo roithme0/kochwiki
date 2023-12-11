@@ -1,23 +1,32 @@
-<input
-  type="text"
-  placeholder="Name oder Marke suchen ..."
-  class="search"
-  [value]="searchBy"
-  (input)="
-    ingredientsGridControlsService.setSearchBy($any($event.target).value)
-  "
-/>
-<select
-  name="unitFilter"
-  class="unit-filter"
-  id="unitFilter"
-  [value]="filterBy"
-  (change)="
-    ingredientsGridControlsService.setFilterBy($any($event.target).value)
-  "
->
-  <option value="all">Alle</option>
-  <option value="g">g</option>
-  <option value="ml">ml</option>
-  <option value="Stk.">Stk.</option>
-</select>
+<mat-form-field class="search-field">
+  <mat-label>Name oder Marke suchen ...</mat-label>
+  <input
+    matInput
+    type="text"
+    [(ngModel)]="searchBy"
+    (ngModelChange)="ingredientsGridControlsService.setSearchBy($event)"
+  />
+  @if (searchBy) {
+  <button
+    matSuffix
+    mat-icon-button
+    aria-label="Clear"
+    (click)="searchBy = ''; ingredientsGridControlsService.setSearchBy('')"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+  }
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>Favorite food</mat-label>
+  <mat-select
+    [(value)]="filterBy"
+    (selectionChange)="ingredientsGridControlsService.setFilterBy($event.value)"
+  >
+    <mat-option value="all">Alle</mat-option>
+    @for (unit of metaData?.choices?.unit; track unit) {
+    <mat-option [value]="unit.value">{{ unit.label }}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
