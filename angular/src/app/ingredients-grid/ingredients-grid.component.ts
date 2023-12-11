@@ -14,6 +14,7 @@ import { IngredientsGridRowComponent } from '../ingredients-grid-row/ingredients
 import { MatDialog } from '@angular/material/dialog';
 import { CreateIngredientDialogComponent } from '../dialogs/create-ingredient-dialog/create-ingredient-dialog.component';
 import { IngredientsGridControlsService } from '../services/ingredients-grid-controls/ingredients-grid-controls.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-ingredients-grid',
@@ -23,6 +24,7 @@ import { IngredientsGridControlsService } from '../services/ingredients-grid-con
     IngredientsGridControlsComponent,
     IngredientsGridHeaderComponent,
     IngredientsGridRowComponent,
+    MatIconModule,
   ],
   templateUrl: './ingredients-grid.component.html',
   styleUrl: './ingredients-grid.component.css',

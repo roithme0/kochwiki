@@ -28,8 +28,3 @@ mat-icon {
 h1 {
   margin: 0;
 }
-
-mat-icon {
-  height: fit-content;
-  width: fit-content;
-}

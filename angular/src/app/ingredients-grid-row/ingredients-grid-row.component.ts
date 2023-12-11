@@ -4,11 +4,12 @@ import { Ingredient } from '../interfaces/ingredient';
 import { MatDialog } from '@angular/material/dialog';
 import { EditIngredientDialogComponent } from '../dialogs/edit-ingredient-dialog/edit-ingredient-dialog.component';
 import { DeleteIngredientDialogComponent } from '../dialogs/delete-ingredient-dialog/delete-ingredient-dialog.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-ingredients-grid-row',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatIconModule],
   templateUrl: './ingredients-grid-row.component.html',
   styleUrl: './ingredients-grid-row.component.css',
 })

@@ -1,5 +1,17 @@
 @for(field of fieldsToDisplay; track field){
 <p>{{ ingredient[field] }}</p>
 }
-<button (click)="openEditIngredientDialog()">Bearbeiten</button>
-<button (click)="openDeleteIngredientDialog()">Löschen</button>
+<mat-icon
+  aria-hidden="false"
+  aria-label="edit icon"
+  fontIcon="edit"
+  class="button edit"
+  (click)="openEditIngredientDialog()"
+></mat-icon>
+<mat-icon
+  aria-hidden="false"
+  aria-label="delete icon"
+  fontIcon="delete"
+  class="button delete"
+  (click)="openDeleteIngredientDialog()"
+></mat-icon>
