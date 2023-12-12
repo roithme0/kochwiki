@@ -21,7 +21,8 @@ export class IngredientService {
 
   getAllIngredients(): Observable<Ingredient[]> {
     console.debug('fetching all ingredients');
-    return this.http.get<Ingredient[]>(backendUrl + '/ingredients');
+    return this.http.get<Ingredient[]>('http://localhost:8080/ingredients');
+    // return this.http.get<Ingredient[]>(backendUrl + '/ingredients');
   }
 
   getIngredientById(id: number): Observable<Ingredient> {

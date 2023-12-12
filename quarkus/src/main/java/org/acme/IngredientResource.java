@@ -4,25 +4,25 @@ import java.util.List;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+
+import org.jboss.logging.Logger;
 
 @Path("/ingredients")
 public class IngredientResource {
-
-    // @GET
-    // @Path("")
-    // @Produces(MediaType.TEXT_PLAIN)
-    // public String getAll() {
-    //     List<Ingredient> ingredients = List.of(new Ingredient("Rezept 1"), new Ingredient("Rezept 2"));
-    //     // List<Ingredient> ingredients = Ingredient.listAll();
-    //     String names = ingredients.stream().map(ingredient-> ingredient.name)
-    //     .collect(Collectors.joining (", "));
-    //     return names;
-    // }
+    private static final Logger LOG = Logger.getLogger(IngredientResource.class);
 
     @GET
     @Path("")
     public List<Ingredient> getAll() {
+        LOG.info("getting all ingredients");
         return Ingredient.listAll();
-        // return List.of(new Ingredient("Rezept 1"), new Ingredient("Rezept 2"));
+    }
+
+    @GET
+    @Path("/{id}")
+    public Ingredient getIngredient(@PathParam("id") Long id) {
+        LOG.info("getting ingredient with id " + id);
+        return Ingredient.findById(id);
     }
 }
