@@ -3,6 +3,7 @@ package org.acme;
 import java.util.List;
 
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
@@ -18,14 +19,14 @@ public class IngredientResource {
     @GET
     @Path("")
     public List<Ingredient> getAll() {
-        LOG.info("getting all ingredients");
+        LOG.info("GET: getting all ingredients");
         return Ingredient.listAll();
     }
 
     @GET
     @Path("/{id}")
     public Ingredient getById(@PathParam("id") Long id) {
-        LOG.info("getting ingredient with id: " + id);
+        LOG.info("GET: getting ingredient with id: " + id);
         return Ingredient.findById(id);
     }
 
@@ -33,7 +34,7 @@ public class IngredientResource {
     @Path("")
     @Transactional
     public Ingredient add(Ingredient ingredient) {
-        LOG.info("adding ingredient: " + ingredient.getName());
+        LOG.info("POST: adding ingredient: " + ingredient.getName());
         ingredient.persist();
         return ingredient;
     }
@@ -42,7 +43,7 @@ public class IngredientResource {
     @Path("/{id}")
     @Transactional
     public Ingredient update(@PathParam("id") Long id, Ingredient ingredient) {
-        LOG.info("updating ingredient with id: " + id);
+        LOG.info("PUT: updating ingredient with id: " + id);
         Ingredient entity = Ingredient.findById(id);
         entity.setName(ingredient.getName());
         entity.setBrand(ingredient.getBrand());
@@ -52,5 +53,14 @@ public class IngredientResource {
         entity.setProtein(ingredient.getProtein());
         entity.setFat(ingredient.getFat());
         return entity;
+    }
+
+    @DELETE
+    @Path("/{id}")
+    @Transactional
+    public void delete(@PathParam("id") Long id) {
+        LOG.info("DELETE: deleting ingredient with id: " + id);
+        Ingredient entity = Ingredient.findById(id);
+        entity.delete();
     }
 }

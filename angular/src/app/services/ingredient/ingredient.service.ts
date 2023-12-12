@@ -46,9 +46,7 @@ export class IngredientService {
 
   deleteIngredient(id: number): Observable<number> {
     console.debug('deleting ingredient by id: ' + id);
-    return this.http.delete<number>(
-      backendUrlDjango + '/ingredients/delete/' + id
-    );
+    return this.http.delete<number>(backendUrl + '/ingredients/' + id);
   }
 
   fetchMetaData(): Observable<IngredientMetaData> {
