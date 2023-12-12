@@ -2,7 +2,9 @@ package org.acme;
 
 import java.util.List;
 
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 
@@ -21,8 +23,17 @@ public class IngredientResource {
 
     @GET
     @Path("/{id}")
-    public Ingredient getIngredient(@PathParam("id") Long id) {
-        LOG.info("getting ingredient with id " + id);
+    public Ingredient getById(@PathParam("id") Long id) {
+        LOG.info("getting ingredient with id: " + id);
         return Ingredient.findById(id);
+    }
+
+    @POST
+    @Path("")
+    @Transactional
+    public Ingredient add(Ingredient ingredient) {
+        LOG.info("adding ingredient: " + ingredient.getName());
+        ingredient.persist();
+        return ingredient;
     }
 }

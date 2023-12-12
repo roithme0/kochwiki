@@ -4,7 +4,8 @@ import { IngredientMetaData } from '../../interfaces/ingredient-meta-data';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-const backendUrl: string = 'http://localhost:8000';
+const backendUrlDjango: string = 'http://localhost:8000';
+const backendUrl: string = 'http://localhost:8080';
 
 @Injectable({
   providedIn: 'root',
@@ -21,38 +22,37 @@ export class IngredientService {
 
   getAllIngredients(): Observable<Ingredient[]> {
     console.debug('fetching all ingredients');
-    return this.http.get<Ingredient[]>('http://localhost:8080/ingredients');
-    // return this.http.get<Ingredient[]>(backendUrl + '/ingredients');
+    return this.http.get<Ingredient[]>(backendUrl + '/ingredients');
+    // return this.http.get<Ingredient[]>(backendUrlDjango + '/ingredients');
   }
 
   getIngredientById(id: number): Observable<Ingredient> {
     console.debug('fetching ingredient by id: ' + id);
-    return this.http.get<Ingredient>(backendUrl + '/ingredients/' + id);
+    return this.http.get<Ingredient>(backendUrlDjango + '/ingredients/' + id);
   }
 
   putIngredient(ingredient: Ingredient): Observable<Ingredient> {
     console.debug('putting ingredient: ', ingredient);
     return this.http.put<Ingredient>(
-      backendUrl + '/ingredients/update/' + ingredient.id,
+      backendUrlDjango + '/ingredients/update/' + ingredient.id,
       ingredient
     );
   }
 
   postIngredient(ingredient: Ingredient): Observable<Ingredient> {
     console.debug('posting ingredient: ', ingredient);
-    return this.http.post<Ingredient>(
-      backendUrl + '/ingredients/create',
-      ingredient
-    );
+    return this.http.post<Ingredient>(backendUrl + '/ingredients', ingredient);
   }
 
   deleteIngredient(id: number): Observable<number> {
     console.debug('deleting ingredient by id: ' + id);
-    return this.http.delete<number>(backendUrl + '/ingredients/delete/' + id);
+    return this.http.delete<number>(
+      backendUrlDjango + '/ingredients/delete/' + id
+    );
   }
 
   fetchMetaData(): Observable<IngredientMetaData> {
     console.debug('fetching ingredient meta data');
-    return this.http.get<any>(backendUrl + '/ingredients/meta');
+    return this.http.get<any>(backendUrlDjango + '/ingredients/meta');
   }
 }

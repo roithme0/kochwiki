@@ -96,7 +96,7 @@ public class Ingredient extends PanacheEntity {
     }
 
     public Ingredient(
-        String name ,
+        String name,
         String brand, 
         String unit, 
         Integer kcal, 
