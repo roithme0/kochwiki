@@ -1,23 +1,33 @@
 package org.acme;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 
 @Entity
 public class Ingredient extends PanacheEntity {
-    private Long id;
+    
+    @Column(nullable = false, unique = true, length = 50)
     private String name;
+
+    @Column(nullable = true, unique = false, length = 100)
     private String brand;
+
+    @Column(nullable = false, unique = false, length = 4)
     private String unit;
+
+    @Column(nullable = true, unique = false, length = 3)
     private Integer kcal;
+
+    @Column(nullable = true, unique = false, length = 3)
     private Integer carbs;
+
+    @Column(nullable = true, unique = false, length = 3)
     private Integer protein;
+
+    @Column(nullable = true, unique = false, length = 3)
     private Integer fat;
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
