@@ -28,13 +28,13 @@ export class IngredientService {
 
   getIngredientById(id: number): Observable<Ingredient> {
     console.debug('fetching ingredient by id: ' + id);
-    return this.http.get<Ingredient>(backendUrlDjango + '/ingredients/' + id);
+    return this.http.get<Ingredient>(backendUrl + '/ingredients/' + id);
   }
 
   putIngredient(ingredient: Ingredient): Observable<Ingredient> {
     console.debug('putting ingredient: ', ingredient);
     return this.http.put<Ingredient>(
-      backendUrlDjango + '/ingredients/update/' + ingredient.id,
+      backendUrl + '/ingredients/' + ingredient.id,
       ingredient
     );
   }

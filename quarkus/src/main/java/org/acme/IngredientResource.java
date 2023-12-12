@@ -5,6 +5,7 @@ import java.util.List;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 
@@ -35,5 +36,21 @@ public class IngredientResource {
         LOG.info("adding ingredient: " + ingredient.getName());
         ingredient.persist();
         return ingredient;
+    }
+
+    @PUT
+    @Path("/{id}")
+    @Transactional
+    public Ingredient update(@PathParam("id") Long id, Ingredient ingredient) {
+        LOG.info("updating ingredient with id: " + id);
+        Ingredient entity = Ingredient.findById(id);
+        entity.setName(ingredient.getName());
+        entity.setBrand(ingredient.getBrand());
+        entity.setUnit(ingredient.getUnit());
+        entity.setKcal(ingredient.getKcal());
+        entity.setCarbs(ingredient.getCarbs());
+        entity.setProtein(ingredient.getProtein());
+        entity.setFat(ingredient.getFat());
+        return entity;
     }
 }
