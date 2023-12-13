@@ -4,31 +4,36 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.Table;
 import jakarta.persistence.EnumType;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
+@Table(uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"name", "brand"})
+})
 public class Ingredient extends PanacheEntity {
     
-    @Column(nullable = false, unique = true, length = 50)
+    @Column(nullable = false, length = 50)
     private String name;
 
-    @Column(nullable = true, unique = false, length = 100)
+    @Column(nullable = true, length = 100)
     private String brand;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, unique = false, length = 4)
+    @Column(nullable = false, length = 4)
     private UnitEnum unit;
 
-    @Column(nullable = true, unique = false, length = 3)
+    @Column(nullable = true, length = 3)
     private Integer kcal;
 
-    @Column(nullable = true, unique = false, length = 3)
+    @Column(nullable = true, length = 3)
     private Integer carbs;
 
-    @Column(nullable = true, unique = false, length = 3)
+    @Column(nullable = true, length = 3)
     private Integer protein;
 
-    @Column(nullable = true, unique = false, length = 3)
+    @Column(nullable = true, length = 3)
     private Integer fat;
 
     public Long getId() {
