@@ -1,6 +1,7 @@
 package org.acme;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
@@ -13,7 +14,6 @@ import jakarta.persistence.UniqueConstraint;
     @UniqueConstraint(columnNames = {"name", "brand"})
 })
 public class Ingredient extends PanacheEntity {
-    
     @Column(nullable = false, length = 50)
     private String name;
 
@@ -21,7 +21,7 @@ public class Ingredient extends PanacheEntity {
     private String brand;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 4)
+    @Column(nullable = false, length = 5)
     private UnitEnum unit;
 
     @Column(nullable = true, length = 3)
@@ -33,7 +33,7 @@ public class Ingredient extends PanacheEntity {
     @Column(nullable = true, length = 3)
     private Integer protein;
 
-    @Column(nullable = true, length = 3)
+    @Column(nullable = true, length = 3)    
     private Integer fat;
 
     public Long getId() {
@@ -50,6 +50,10 @@ public class Ingredient extends PanacheEntity {
 
     public String getUnit() {
         return unit.getUnit();
+    }
+
+    public String getUnitName() {
+        return unit.name();
     }
 
     public Integer getKcal() {
@@ -84,24 +88,34 @@ public class Ingredient extends PanacheEntity {
         try {
             this.unit = UnitEnum.valueOf(unit);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Invalid unit value: " + unit);
+            throw new IllegalArgumentException("Einheit muss 'g', 'ml' oder 'Stk.' sein.");
         }
     }
 
     public void setKcal(Integer kcal) {
+        this.checkInteger(kcal);
         this.kcal = kcal;
     }
 
     public void setCarbs(Integer carbs) {
+        this.checkInteger(carbs);
         this.carbs = carbs;
     }
 
     public void setProtein(Integer protein) {
+        this.checkInteger(protein);
         this.protein = protein;
     }
 
     public void setFat(Integer fat) {
+        this.checkInteger(fat);
         this.fat = fat;
+    }
+
+    private void checkInteger(Integer value) {
+        if (value < 0 || value > 999){
+            throw new IllegalArgumentException("Wert muss zwischen 0 und 999 liegen.");
+        }
     }
 
     public Ingredient() {

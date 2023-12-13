@@ -10,11 +10,11 @@ import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 
-import org.jboss.logging.Logger;
+import java.util.logging.Logger;
 
 @Path("/ingredients")
 public class IngredientResource {
-    private static final Logger LOG = Logger.getLogger(IngredientResource.class);
+    private static final Logger LOG = Logger.getLogger(IngredientResource.class.getName());
 
     @GET
     @Path("")
@@ -47,7 +47,7 @@ public class IngredientResource {
         Ingredient entity = Ingredient.findById(id);
         entity.setName(ingredient.getName());
         entity.setBrand(ingredient.getBrand());
-        entity.setUnit(ingredient.getUnit());
+        entity.setUnit(ingredient.getUnitName());
         entity.setKcal(ingredient.getKcal());
         entity.setCarbs(ingredient.getCarbs());
         entity.setProtein(ingredient.getProtein());
