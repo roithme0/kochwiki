@@ -9,11 +9,15 @@ import jakarta.persistence.Table;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.UniqueConstraint;
 
+import java.util.logging.Logger;
+
 @Entity
 @Table(uniqueConstraints = {
     @UniqueConstraint(columnNames = {"name", "brand"})
 })
 public class Ingredient extends PanacheEntity {
+    private static final Logger LOG = Logger.getLogger(Ingredient.class.getName());
+
     @Column(nullable = false, length = 50)
     private String name;
 
@@ -93,23 +97,39 @@ public class Ingredient extends PanacheEntity {
     }
 
     public void setKcal(Integer kcal) {
-        this.checkInteger(kcal);
-        this.kcal = kcal;
+        if (kcal == null) {
+            this.kcal = null;
+        } else {
+            this.checkInteger(kcal);
+            this.kcal = kcal;
+        }
     }
 
     public void setCarbs(Integer carbs) {
-        this.checkInteger(carbs);
-        this.carbs = carbs;
+        if (carbs == null) {
+            this.carbs = null;
+        } else {
+            this.checkInteger(carbs);
+            this.carbs = carbs;
+        }
     }
 
     public void setProtein(Integer protein) {
-        this.checkInteger(protein);
-        this.protein = protein;
+        if (protein == null) {
+            this.protein = null;
+        } else {
+            this.checkInteger(protein);
+            this.protein = protein;
+        }
     }
 
     public void setFat(Integer fat) {
-        this.checkInteger(fat);
-        this.fat = fat;
+        if (fat == null) {
+            this.fat = null;
+        } else {
+            this.checkInteger(fat);
+            this.fat = fat;
+        }
     }
 
     private void checkInteger(Integer value) {

@@ -23,7 +23,6 @@ export class IngredientService {
   getAllIngredients(): Observable<Ingredient[]> {
     console.debug('fetching all ingredients');
     return this.http.get<Ingredient[]>(backendUrl + '/ingredients');
-    // return this.http.get<Ingredient[]>(backendUrlDjango + '/ingredients');
   }
 
   getIngredientById(id: number): Observable<Ingredient> {
