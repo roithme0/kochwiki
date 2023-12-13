@@ -9,9 +9,9 @@ logger = logging.getLogger("django")
 
 
 UNITS = [
-    ("g", "g"),
-    ("ml", "ml"),
-    ("Stk.", "Stk."),
+    ("G", "g"),
+    ("ML", "ml"),
+    ("PIECE", "Stk."),
 ]
 
 
@@ -26,7 +26,7 @@ class Ingredient(models.Model):
         verbose_name="Marke",
     )
     unit = models.CharField(
-        max_length=4, choices=UNITS, default="g", verbose_name="Einheit"
+        max_length=5, choices=UNITS, default="G", verbose_name="Einheit"
     )
     kcal = models.PositiveSmallIntegerField(
         blank=True,
