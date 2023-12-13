@@ -99,6 +99,7 @@ export class IngredientsGridComponent {
     ingredients: Ingredient[],
     searchBy: string
   ): Ingredient[] {
+    console.debug('searching ingredients by: ' + searchBy);
     if (searchBy === '') {
       return ingredients;
     }
@@ -114,6 +115,7 @@ export class IngredientsGridComponent {
     ingredients: Ingredient[],
     filterBy: string
   ): Ingredient[] {
+    console.debug('filtering ingredients by: ' + filterBy);
     if (filterBy === 'all') {
       return ingredients;
     }

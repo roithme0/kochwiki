@@ -26,7 +26,7 @@
   >
     <mat-option value="all">Alle</mat-option>
     @for (unit of metaData?.choices?.unit; track unit) {
-    <mat-option [value]="unit.value">{{ unit.label }}</mat-option>
+    <mat-option [value]="unit.label">{{ unit.label }}</mat-option>
     }
   </mat-select>
 </mat-form-field>
