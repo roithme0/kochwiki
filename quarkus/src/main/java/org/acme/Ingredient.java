@@ -3,6 +3,8 @@ package org.acme;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
 
 @Entity
 public class Ingredient extends PanacheEntity {
@@ -13,8 +15,9 @@ public class Ingredient extends PanacheEntity {
     @Column(nullable = true, unique = false, length = 100)
     private String brand;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false, unique = false, length = 4)
-    private String unit;
+    private UnitEnum unit;
 
     @Column(nullable = true, unique = false, length = 3)
     private Integer kcal;
@@ -41,7 +44,7 @@ public class Ingredient extends PanacheEntity {
     }
 
     public String getUnit() {
-        return unit;
+        return unit.getUnit();
     }
 
     public Integer getKcal() {
@@ -73,7 +76,11 @@ public class Ingredient extends PanacheEntity {
     }
 
     public void setUnit(String unit) {
-        this.unit = unit;
+        try {
+            this.unit = UnitEnum.valueOf(unit);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Invalid unit value: " + unit);
+        }
     }
 
     public void setKcal(Integer kcal) {
@@ -104,12 +111,12 @@ public class Ingredient extends PanacheEntity {
         Integer protein,
         Integer fat
         ) {
-        this.name = name;
-        this.brand = brand;
-        this.unit = unit;
-        this.kcal = kcal;
-        this.carbs = carbs;
-        this.protein = protein;
-        this.fat = fat;
+        this.setName(name);
+        this.setBrand(brand);
+        this.setUnit(unit);
+        this.setKcal(kcal);
+        this.setCarbs(carbs);
+        this.setProtein(protein);
+        this.setFat(fat);
     }
 }
