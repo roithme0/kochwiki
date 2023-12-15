@@ -2,7 +2,7 @@
   action="POST"
   class="ingredient-form"
   [formGroup]="ingredientForm"
-  (ngSubmit)="onSubmit(ingredientForm.value)"
+  (ngSubmit)="onSubmit()"
 >
   <label for="name">{{ metaData?.verbose_names?.name }}</label>
   <input

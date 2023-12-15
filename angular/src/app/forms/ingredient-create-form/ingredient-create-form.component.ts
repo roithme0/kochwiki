@@ -35,9 +35,13 @@ export class IngredientCreateFormComponent {
     this.fetchMetaData();
   }
 
-  onSubmit(formData: any): void {
-    console.debug('submitting create ingredient form: ', formData);
-    const postData: Ingredient = formData as Ingredient;
+  onSubmit(): void {
+    console.debug(
+      'submitting create ingredient form: ',
+      this.ingredientForm.value
+    );
+    const postData: Ingredient = this.ingredientForm.value as Ingredient;
+
     this.ingredientService.postIngredient(postData).subscribe({
       next: (ingredient) => {
         console.debug('ingredient created: ', ingredient);
