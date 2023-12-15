@@ -7,7 +7,7 @@
   <section class="meta-fields-wrapper">
     <label for="name">Name</label>
     <input type="text" name="name" id="name" formControlName="name" />
-    <label for="image">Bild</label>
+    <!-- <label for="image">Bild</label> -->
     <!-- <input
       type="file"
       name="image"
@@ -37,13 +37,13 @@
     />
   </section>
 
-  <!-- <section>
+  <section>
     <header>
       <h2>Zutaten</h2>
       <input type="number" formControlName="servings" />
       <p>Portionen</p>
     </header>
-    <div formArrayName="amounts">
+    <!-- <div formArrayName="amounts">
       @for(amount of amounts.controls; track amount){
       <div formGroupName="{{ $index }}">
         <button (click)="removeAmount($index)">Löschen</button>
@@ -63,16 +63,16 @@
       }
       <button (click)="addAmount()">Hinzufügen</button>
       <button (click)="openCreateIngredientDialog()">Zutat erstellen</button>
-    </div>
-  </section> -->
+    </div> -->
+  </section>
 
-  <!-- <section>
+  <section>
     <header>
       <h2>Zubereitung</h2>
       <input type="number" formControlName="preptime" />
       <p>min</p>
     </header>
-    <div formArrayName="steps">
+    <!-- <div formArrayName="steps">
       @for(step of steps.controls; track step){
       <div formGroupName="{{ $index }}">
         <button (click)="removeStep($index)">Löschen</button>
@@ -85,8 +85,8 @@
       </div>
       }
       <button (click)="addStep()">Hinzufügen</button>
-    </div>
-  </section> -->
+    </div> -->
+  </section>
 
   <button type="submit" [disabled]="!recipeForm.valid" (click)="onSubmit()">
     Submit

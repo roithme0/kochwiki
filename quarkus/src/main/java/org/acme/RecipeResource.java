@@ -27,4 +27,12 @@ public class RecipeResource {
         LOG.info("GET: getting recipe by id: " + id);
         return Recipe.findById(id);
     }    
+
+    @POST
+    @Transactional
+    public Recipe create(Recipe recipe){
+        LOG.info("POST: creating recipe: " + recipe);
+        recipe.persist();
+        return recipe;
+    }
 }

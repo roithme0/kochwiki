@@ -30,8 +30,8 @@ public class IngredientResource {
 
     @POST
     @Transactional
-    public Ingredient add(Ingredient ingredient) {
-        LOG.info("POST: adding ingredient: " + ingredient.getName());
+    public Ingredient create(Ingredient ingredient) {
+        LOG.info("POST: creating ingredient: " + ingredient.getName());
         ingredient.persist();
         return ingredient;
     }
