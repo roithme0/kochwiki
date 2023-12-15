@@ -12,3 +12,8 @@ INSERT INTO Amount(id, index, amount)
 VALUES (nextval('Amount_SEQ'), 1, 100);
 INSERT INTO Amount(id, index, amount)
 VALUES (nextval('Amount_SEQ'), 2, 1.5);
+
+INSERT INTO Recipe(id, name, servings, preptime, originName, originUrl)
+VALUES (nextval('Recipe_SEQ'), 'Rezept 1', 2, 30, 'Herkunft 1', 'https://www.google.de');
+INSERT INTO Recipe(id, name, servings, preptime, originName, originUrl)
+VALUES (nextval('Recipe_SEQ'), 'Rezept 2', 4, 60, 'Herkunft 2', 'https://www.google.de');
