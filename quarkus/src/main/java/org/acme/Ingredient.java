@@ -5,6 +5,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.UniqueConstraint;
@@ -40,6 +41,10 @@ public class Ingredient extends PanacheEntity {
     @Column(nullable = true, length = 3)    
     private Integer fat;
 
+    @OneToMany(mappedBy = "ingredient")
+    @Column(nullable = true)
+    private Amount[] amounts;
+
     public Long getId() {
         return id;
     }
@@ -74,6 +79,10 @@ public class Ingredient extends PanacheEntity {
 
     public Integer getFat() {
         return fat;
+    }
+
+    public Amount[] getAmounts() {
+        return amounts;
     }
 
     public void setId(Long id) {

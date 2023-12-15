@@ -3,6 +3,7 @@ package org.acme;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Recipe extends PanacheEntity {
@@ -27,6 +28,14 @@ public class Recipe extends PanacheEntity {
 
     // @Column(nullable = true)
     // private File image;
+
+    @OneToMany(mappedBy = "recipe")
+    @Column(nullable = true)
+    private Amount[] amounts;
+
+    @OneToMany(mappedBy = "recipe")
+    @Column(nullable = true)
+    private Step[] steps;
 
     public String getName() {
         return name;
@@ -55,6 +64,14 @@ public class Recipe extends PanacheEntity {
     // public File getImage(){
 
     // }
+
+    public Amount[] getAmounts(){
+        return amounts;
+    }
+
+    public Step[] getSteps(){
+        return steps;
+    }
 
     public void setName(String name){
         this.name = name;
@@ -89,6 +106,14 @@ public class Recipe extends PanacheEntity {
     // public void setImage(File image){
 
     // }
+
+    public void setAmounts(Amount[] amounts){
+        this.amounts = amounts;
+    }
+
+    public void setSteps(Step[] steps){
+        this.steps = steps;
+    }
 
     public Recipe(){
     }

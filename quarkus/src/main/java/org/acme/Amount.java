@@ -3,6 +3,8 @@ package org.acme;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Column;
 
 @Entity
@@ -14,12 +16,28 @@ public class Amount extends PanacheEntity {
     @Column(nullable = false, length = 3)
     private Float amount;
 
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Ingredient ingredient;
+
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Recipe recipe;
+
     public Integer getIndex() {
         return index;
     }
 
     public Float getAmount() {
         return amount;
+    }
+
+    public Ingredient getIngredient() {
+        return ingredient;
+    }
+
+    public Recipe getRecipe() {
+        return recipe;
     }
 
     public void setIndex(Integer index) {
@@ -36,11 +54,16 @@ public class Amount extends PanacheEntity {
         this.amount = amount;
     }
 
+    public void setIngredient(Ingredient ingredient) {
+        this.ingredient = ingredient;
+    }
+
     public Amount() {
     }
 
-    public Amount(Integer index, Float amount) {
+    public Amount(Integer index, Float amount, Ingredient ingredient) {
         this.setIndex(index);
         this.setAmount(amount);
+        this.setIngredient(ingredient);
     }
 }
