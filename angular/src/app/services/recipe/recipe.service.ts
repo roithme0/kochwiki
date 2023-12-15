@@ -4,7 +4,8 @@ import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { RecipeMetaData } from '../../interfaces/recipe-meta-data';
 
-const backendUrl: string = 'http://localhost:8000';
+const backendUrlDjango: string = 'http://localhost:8000';
+const backendUrl: string = 'http://localhost:8080';
 
 @Injectable({
   providedIn: 'root',
@@ -32,23 +33,26 @@ export class RecipeService {
   putRecipe(formData: FormData, id: number): Observable<Recipe> {
     console.debug('putting recipe: ', formData);
     return this.http.put<Recipe>(
-      backendUrl + '/recipes/update/' + id,
+      backendUrlDjango + '/recipes/update/' + id,
       formData
     );
   }
 
   postRecipe(formData: FormData): Observable<Recipe> {
     console.debug('posting recipe: ', formData);
-    return this.http.post<Recipe>(backendUrl + '/recipes/create', formData);
+    return this.http.post<Recipe>(
+      backendUrlDjango + '/recipes/create',
+      formData
+    );
   }
 
   deleteRecipe(id: number): Observable<number> {
     console.debug('deleting recipe by id: ' + id.toString());
-    return this.http.delete<number>(backendUrl + '/recipes/delete/' + id);
+    return this.http.delete<number>(backendUrlDjango + '/recipes/delete/' + id);
   }
 
   fetchMetaData(): Observable<RecipeMetaData> {
     console.debug('fetching recipe meta data');
-    return this.http.get<any>(backendUrl + '/recipes/meta');
+    return this.http.get<any>(backendUrlDjango + '/recipes/meta');
   }
 }

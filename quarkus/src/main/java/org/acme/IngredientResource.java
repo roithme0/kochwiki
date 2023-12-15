@@ -16,7 +16,6 @@ public class IngredientResource {
     private static final Logger LOG = Logger.getLogger(IngredientResource.class.getName());
 
     @GET
-    @Path("")
     public List<Ingredient> getAll() {
         LOG.info("GET: getting all ingredients");
         return Ingredient.listAll();
@@ -30,7 +29,6 @@ public class IngredientResource {
     }
 
     @POST
-    @Path("")
     @Transactional
     public Ingredient add(Ingredient ingredient) {
         LOG.info("POST: adding ingredient: " + ingredient.getName());

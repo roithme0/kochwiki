@@ -20,4 +20,11 @@ public class RecipeResource {
         LOG.info("GET: getting all recipes");
         return Recipe.listAll();
     }    
+
+    @GET
+    @Path("/{id}")
+    public Recipe getById(@PathParam("id") Long id){
+        LOG.info("GET: getting recipe by id: " + id);
+        return Recipe.findById(id);
+    }    
 }
