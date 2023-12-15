@@ -20,9 +20,9 @@ public class Amount extends PanacheEntity {
     @JoinColumn(nullable = false)
     private Ingredient ingredient;
 
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    private Recipe recipe;
+    // @ManyToOne
+    // @JoinColumn(nullable = false)
+    // private Recipe recipe;
 
     public Integer getIndex() {
         return index;
@@ -36,9 +36,9 @@ public class Amount extends PanacheEntity {
         return ingredient;
     }
 
-    public Recipe getRecipe() {
-        return recipe;
-    }
+    // public Recipe getRecipe() {
+    //     return recipe;
+    // }
 
     public void setIndex(Integer index) {
         if (index < 0 || index > 99){
@@ -61,7 +61,11 @@ public class Amount extends PanacheEntity {
     public Amount() {
     }
 
-    public Amount(Integer index, Float amount, Ingredient ingredient) {
+    public Amount(
+        Integer index, 
+        Float amount, 
+        Ingredient ingredient
+        ) {
         this.setIndex(index);
         this.setAmount(amount);
         this.setIngredient(ingredient);

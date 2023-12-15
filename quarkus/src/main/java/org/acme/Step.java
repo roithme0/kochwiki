@@ -15,9 +15,9 @@ public class Step extends PanacheEntity {
     @Column(nullable = false, length = 200)
     private String description;
 
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    private Recipe recipe;
+    // @ManyToOne
+    // @JoinColumn(nullable = false)
+    // private Recipe recipe;
 
     public Integer getIndex() {
         return index;
@@ -27,9 +27,9 @@ public class Step extends PanacheEntity {
         return description;
     }
 
-    public Recipe getRecipe() {
-        return recipe;
-    }
+    // public Recipe getRecipe() {
+    //     return recipe;
+    // }
 
     public void setIndex(Integer index) {
         if (index < 0 || index > 99){
@@ -45,7 +45,10 @@ public class Step extends PanacheEntity {
     public Step() {
     }
 
-    public Step(Integer index, String description) {
+    public Step(
+        Integer index, 
+        String description
+        ) {
         this.setIndex(index);
         this.setDescription(description);
     }

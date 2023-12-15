@@ -38,12 +38,17 @@ export class RecipeService {
     );
   }
 
-  postRecipe(formData: FormData): Observable<Recipe> {
-    console.debug('posting recipe: ', formData);
-    return this.http.post<Recipe>(
-      backendUrlDjango + '/recipes/create',
-      formData
-    );
+  // postRecipe(formData: FormData): Observable<Recipe> {
+  //   console.debug('posting recipe: ', formData);
+  //   return this.http.post<Recipe>(
+  //     backendUrlDjango + '/recipes/create',
+  //     formData
+  //   );
+  // }
+
+  postRecipe(recipe: Recipe): Observable<Recipe> {
+    console.debug('posting recipe: ', recipe);
+    return this.http.post<Recipe>(backendUrl + '/recipes', recipe);
   }
 
   deleteRecipe(id: number): Observable<number> {

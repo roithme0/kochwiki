@@ -8,7 +8,7 @@
     <label for="name">Name</label>
     <input type="text" name="name" id="name" formControlName="name" />
     <label for="image">Bild</label>
-    <input
+    <!-- <input
       type="file"
       name="image"
       id="image"
@@ -20,7 +20,7 @@
       name="original"
       id="original"
       (change)="onUpload($event, 'original')"
-    />
+    /> -->
     <label for="origin_url">URL</label>
     <input
       type="text"
@@ -37,7 +37,7 @@
     />
   </section>
 
-  <section>
+  <!-- <section>
     <header>
       <h2>Zutaten</h2>
       <input type="number" formControlName="servings" />
@@ -64,9 +64,9 @@
       <button (click)="addAmount()">Hinzufügen</button>
       <button (click)="openCreateIngredientDialog()">Zutat erstellen</button>
     </div>
-  </section>
+  </section> -->
 
-  <section>
+  <!-- <section>
     <header>
       <h2>Zubereitung</h2>
       <input type="number" formControlName="preptime" />
@@ -86,7 +86,8 @@
       }
       <button (click)="addStep()">Hinzufügen</button>
     </div>
-  </section>
+  </section> -->
+
   <button type="submit" [disabled]="!recipeForm.valid" (click)="onSubmit()">
     Submit
   </button>

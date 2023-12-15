@@ -29,13 +29,13 @@ public class Recipe extends PanacheEntity {
     // @Column(nullable = true)
     // private File image;
 
-    @OneToMany(mappedBy = "recipe")
-    @Column(nullable = true)
-    private Amount[] amounts;
+    // @OneToMany(mappedBy = "recipe")
+    // @Column(nullable = true)
+    // private Amount[] amounts;
 
-    @OneToMany(mappedBy = "recipe")
-    @Column(nullable = true)
-    private Step[] steps;
+    // @OneToMany(mappedBy = "recipe")
+    // @Column(nullable = true)
+    // private Step[] steps;
 
     public String getName() {
         return name;
@@ -65,13 +65,13 @@ public class Recipe extends PanacheEntity {
 
     // }
 
-    public Amount[] getAmounts(){
-        return amounts;
-    }
+    // public Amount[] getAmounts(){
+    //     return amounts;
+    // }
 
-    public Step[] getSteps(){
-        return steps;
-    }
+    // public Step[] getSteps(){
+    //     return steps;
+    // }
 
     public void setName(String name){
         this.name = name;
@@ -107,18 +107,24 @@ public class Recipe extends PanacheEntity {
 
     // }
 
-    public void setAmounts(Amount[] amounts){
-        this.amounts = amounts;
-    }
+    // public void setAmounts(Amount[] amounts){
+    //     this.amounts = amounts;
+    // }
 
-    public void setSteps(Step[] steps){
-        this.steps = steps;
-    }
+    // public void setSteps(Step[] steps){
+    //     this.steps = steps;
+    // }
 
     public Recipe(){
     }
 
-    public Recipe(String name, Integer servings, Integer preptime, String originName, String originUrl){
+    public Recipe(
+        String name, 
+        Integer servings, 
+        Integer preptime, 
+        String originName, 
+        String originUrl
+        ){
         this.setName(name);
         this.setServings(servings);
         this.setPreptime(preptime);
@@ -126,5 +132,7 @@ public class Recipe extends PanacheEntity {
         this.setOriginUrl(originUrl);
         // this.setOriginal(original);
         // this.setImage(image);
+        // this.setAmounts(amounts);
+        // this.setSteps(steps);
     }
 }

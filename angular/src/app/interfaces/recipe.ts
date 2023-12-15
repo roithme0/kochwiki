@@ -5,13 +5,13 @@ import { RecipeMetaData } from './recipe-meta-data';
 export interface Recipe {
   id: number | null;
   name: string;
-  image: File | null;
+  // image: File | null;
   origin_name: string | null;
   origin_url: string | null;
-  original: File | null;
+  // original: File | null;
   servings: number;
-  amounts: Amount[];
+  // amounts: Amount[];
   preptime: number | null;
-  steps: Step[];
+  // steps: Step[];
   meta_data?: RecipeMetaData;
 }

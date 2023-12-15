@@ -40,9 +40,9 @@ export class IngredientCreateFormComponent {
       'submitting create ingredient form: ',
       this.ingredientForm.value
     );
-    const postData: Ingredient = this.ingredientForm.value as Ingredient;
+    const ingredient: Ingredient = this.ingredientForm.value as Ingredient;
 
-    this.ingredientService.postIngredient(postData).subscribe({
+    this.ingredientService.postIngredient(ingredient).subscribe({
       next: (ingredient) => {
         console.debug('ingredient created: ', ingredient);
         this.ingredientService.notifyIngredientsChanged();
