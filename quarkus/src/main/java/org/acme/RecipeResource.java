@@ -17,7 +17,7 @@ public class RecipeResource {
 
     @GET
     public List<Recipe> getAll(){
-        LOG.info("GET: getting all recipes");
+        LOG.info("GET: getting all recipes ...");
         return Recipe.listAll();
     }    
 
@@ -31,7 +31,7 @@ public class RecipeResource {
     @POST
     @Transactional
     public Recipe create(Recipe recipe){
-        LOG.info("POST: creating recipe: " + recipe);
+        LOG.info("POST: creating recipe: " + recipe.getName());
         recipe.persist();
         return recipe;
     }

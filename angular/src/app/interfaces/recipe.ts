@@ -12,6 +12,6 @@ export interface Recipe {
   servings: number;
   // amounts: Amount[];
   preptime: number | null;
-  // steps: Step[];
+  steps: Step[];
   meta_data?: RecipeMetaData;
 }

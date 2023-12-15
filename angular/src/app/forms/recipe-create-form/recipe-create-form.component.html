@@ -72,20 +72,21 @@
       <input type="number" formControlName="preptime" />
       <p>min</p>
     </header>
-    <!-- <div formArrayName="steps">
+    <div formArrayName="steps">
       @for(step of steps.controls; track step){
       <div formGroupName="{{ $index }}">
         <button (click)="removeStep($index)">Löschen</button>
+        <input type="number" name="index" id="index" formControlName="index" />
         <input
           type="text"
-          name="step"
-          id="step"
+          name="description"
+          id="description"
           formControlName="description"
         />
       </div>
       }
       <button (click)="addStep()">Hinzufügen</button>
-    </div> -->
+    </div>
   </section>
 
   <button type="submit" [disabled]="!recipeForm.valid" (click)="onSubmit()">

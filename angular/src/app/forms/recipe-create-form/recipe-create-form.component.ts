@@ -34,7 +34,7 @@ export class RecipeCreateFormComponent {
     servings: [<number | null>null, Validators.required],
     // amounts: this.fb.array([]),
     preptime: [<number | null>null],
-    // steps: this.fb.array([]),
+    steps: this.fb.array([]),
   });
 
   constructor(
@@ -70,22 +70,22 @@ export class RecipeCreateFormComponent {
   //   this.amounts.removeAt(index);
   // }
 
-  // get steps(): FormArray {
-  //   return this.recipeForm.get('steps') as FormArray;
-  // }
+  get steps(): FormArray {
+    return this.recipeForm.get('steps') as FormArray;
+  }
 
-  // addStep(): void {
-  //   this.steps.push(
-  //     this.fb.group({
-  //       // index: [],
-  //       description: ['', Validators.required],
-  //     })
-  //   );
-  // }
+  addStep(): void {
+    this.steps.push(
+      this.fb.group({
+        index: [<number | null>null, Validators.required],
+        description: ['', Validators.required],
+      })
+    );
+  }
 
-  // removeStep(index: number): void {
-  //   this.steps.removeAt(index);
-  // }
+  removeStep(index: number): void {
+    this.steps.removeAt(index);
+  }
 
   fetchIngredients(): void {
     this.ingredientService.getAllIngredients().subscribe({

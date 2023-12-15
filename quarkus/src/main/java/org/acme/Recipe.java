@@ -1,12 +1,18 @@
 package org.acme;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+
 @Entity
 public class Recipe extends PanacheEntity {
+    private static final Logger LOG = Logger.getLogger(Recipe.class.getName()); 
 
     @Column(unique = true, nullable = false, length = 200)
     private String name;
@@ -31,11 +37,11 @@ public class Recipe extends PanacheEntity {
 
     // @OneToMany(mappedBy = "recipe")
     // @Column(nullable = true)
-    // private Amount[] amounts;
+    // private List<Amount> amounts;
 
-    // @OneToMany(mappedBy = "recipe")
-    // @Column(nullable = true)
-    // private Step[] steps;
+    @OneToMany(mappedBy = "recipe")
+    @Column(nullable = true)
+    private List<Step> steps;
 
     public String getName() {
         return name;
@@ -69,9 +75,9 @@ public class Recipe extends PanacheEntity {
     //     return amounts;
     // }
 
-    // public Step[] getSteps(){
-    //     return steps;
-    // }
+    public List<Step> getSteps(){
+        return steps;
+    }
 
     public void setName(String name){
         this.name = name;
@@ -107,13 +113,21 @@ public class Recipe extends PanacheEntity {
 
     // }
 
-    // public void setAmounts(Amount[] amounts){
+    // public void setAmounts(List<Amount> amounts){
     //     this.amounts = amounts;
     // }
 
-    // public void setSteps(Step[] steps){
-    //     this.steps = steps;
-    // }
+    public void setSteps(List<Step> steps){
+        this.steps = new ArrayList<>();
+        for(Step step : steps){
+            this.addStep(step);
+        }
+    }
+
+    public void addStep(Step step){
+        steps.add(step);
+        step.setRecipe(this);
+    }
 
     public Recipe(){
     }
@@ -123,7 +137,8 @@ public class Recipe extends PanacheEntity {
         Integer servings, 
         Integer preptime, 
         String originName, 
-        String originUrl
+        String originUrl,
+        List<Step> steps
         ){
         this.setName(name);
         this.setServings(servings);
@@ -133,6 +148,6 @@ public class Recipe extends PanacheEntity {
         // this.setOriginal(original);
         // this.setImage(image);
         // this.setAmounts(amounts);
-        // this.setSteps(steps);
+        this.setSteps(steps);
     }
 }
