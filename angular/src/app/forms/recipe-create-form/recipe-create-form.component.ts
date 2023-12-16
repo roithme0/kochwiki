@@ -32,7 +32,7 @@ export class RecipeCreateFormComponent {
     origin_url: [''],
     // original: [<File | null>null],
     servings: [<number | null>null, Validators.required],
-    // amounts: this.fb.array([]),
+    amounts: this.fb.array([]),
     preptime: [<number | null>null],
     steps: this.fb.array([]),
   });
@@ -52,23 +52,23 @@ export class RecipeCreateFormComponent {
     this.fetchIngredients();
   }
 
-  // get amounts(): FormArray {
-  //   return this.recipeForm.get('amounts') as FormArray;
-  // }
+  get amounts(): FormArray {
+    return this.recipeForm.get('amounts') as FormArray;
+  }
 
-  // addAmount(): void {
-  //   this.amounts.push(
-  //     this.fb.group({
-  //       // index: [],
-  //       ingredient: [<number | null>null, Validators.required],
-  //       amount: [<number | null>null, Validators.required],
-  //     })
-  //   );
-  // }
+  addAmount(): void {
+    this.amounts.push(
+      this.fb.group({
+        index: [<number | null>null, Validators.required],
+        ingredient: [<number | null>null, Validators.required],
+        amount: [<number | null>null, Validators.required],
+      })
+    );
+  }
 
-  // removeAmount(index: number): void {
-  //   this.amounts.removeAt(index);
-  // }
+  removeAmount(index: number): void {
+    this.amounts.removeAt(index);
+  }
 
   get steps(): FormArray {
     return this.recipeForm.get('steps') as FormArray;
@@ -95,6 +95,21 @@ export class RecipeCreateFormComponent {
       },
       error: (error) => {
         console.error('failed to fetch ingredients: ', error);
+      },
+    });
+  }
+
+  onIngredientSelect(event: any, index: number): void {
+    console.debug('ingredient selected: ', event);
+    this.ingredientService.getIngredientById(event.target.value).subscribe({
+      next: (ingredient) => {
+        console.debug('fetched ingredient: ', ingredient);
+        this.amounts.controls[index].patchValue({
+          ingredient: ingredient,
+        });
+      },
+      error: (error) => {
+        console.error('failed to fetch ingredient: ', error);
       },
     });
   }

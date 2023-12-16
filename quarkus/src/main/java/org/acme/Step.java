@@ -23,7 +23,7 @@ public class Step extends PanacheEntity {
 
     @ManyToOne
     @JoinColumn(nullable = false)
-    @JsonBackReference
+    @JsonBackReference("recipe-steps")
     private Recipe recipe;
 
     public Integer getIndex() {

@@ -24,6 +24,7 @@ export class IngredientCreateFormComponent {
     carbs: [<number | null>null],
     protein: [<number | null>null],
     fat: [<number | null>null],
+    amounts: this.fb.array([]),
   });
 
   constructor(

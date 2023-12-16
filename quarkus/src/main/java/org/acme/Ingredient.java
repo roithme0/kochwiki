@@ -11,6 +11,10 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.UniqueConstraint;
 
 import java.util.logging.Logger;
+import java.util.List;
+import java.util.ArrayList;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(uniqueConstraints = {
@@ -43,7 +47,8 @@ public class Ingredient extends PanacheEntity {
 
     @OneToMany(mappedBy = "ingredient")
     @Column(nullable = true)
-    private Amount[] amounts;
+    @JsonManagedReference("amount-ingredient")
+    private List<Amount> amounts = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -81,7 +86,7 @@ public class Ingredient extends PanacheEntity {
         return fat;
     }
 
-    public Amount[] getAmounts() {
+    public List<Amount> getAmounts() {
         return amounts;
     }
 
@@ -145,6 +150,10 @@ public class Ingredient extends PanacheEntity {
         if (value < 0 || value > 999){
             throw new IllegalArgumentException("Wert muss zwischen 0 und 999 liegen.");
         }
+    }
+
+    public void addAmount(Amount amount) {
+        this.amounts.add(amount);
     }
 
     public Ingredient() {

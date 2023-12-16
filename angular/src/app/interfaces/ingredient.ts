@@ -11,6 +11,6 @@ export interface Ingredient {
   carbs: number | null;
   protein: number | null;
   fat: number | null;
-  amounts?: Amount[];
+  amounts: Amount[];
   metaData?: IngredientMetaData;
 }

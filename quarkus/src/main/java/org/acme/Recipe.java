@@ -38,13 +38,14 @@ public class Recipe extends PanacheEntity {
     // @Column(nullable = true)
     // private File image;
 
-    // @OneToMany(mappedBy = "recipe")
-    // @Column(nullable = true)
-    // private List<Amount> amounts;
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Column(nullable = true)
+    @JsonManagedReference("recipe-amounts")
+    private List<Amount> amounts = new ArrayList<>();
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
     @Column(nullable = true)
-    @JsonManagedReference
+    @JsonManagedReference("recipe-steps")
     private List<Step> steps = new ArrayList<>();
 
     public String getName() {
@@ -75,9 +76,9 @@ public class Recipe extends PanacheEntity {
 
     // }
 
-    // public Amount[] getAmounts(){
-    //     return amounts;
-    // }
+    public List<Amount> getAmounts(){
+        return amounts;
+    }
 
     public List<Step> getSteps(){
         return steps;
@@ -117,9 +118,17 @@ public class Recipe extends PanacheEntity {
 
     // }
 
-    // public void setAmounts(List<Amount> amounts){
-    //     this.amounts = amounts;
-    // }
+    public void setAmounts(List<Amount> newAmounts){
+        amounts = new ArrayList<>();
+        for(Amount amount : newAmounts){
+            this.addAmount(amount);
+        }
+    }
+
+    public void addAmount(Amount amount){
+        amounts.add(amount);
+        amount.setRecipe(this);
+    }
 
     public void setSteps(List<Step> newSteps){
         steps = new ArrayList<>();
@@ -142,6 +151,9 @@ public class Recipe extends PanacheEntity {
         Integer preptime, 
         String origin_name, 
         String origin_url,
+        // File original,
+        // File image,
+        List<Amount> amounts,
         List<Step> steps
         ){
         this.setName(name);
@@ -151,7 +163,7 @@ public class Recipe extends PanacheEntity {
         this.setOriginUrl(origin_url);
         // this.setOriginal(original);
         // this.setImage(image);
-        // this.setAmounts(amounts);
+        this.setAmounts(amounts);
         this.setSteps(steps);
     }
 }

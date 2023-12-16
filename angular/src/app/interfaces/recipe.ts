@@ -10,7 +10,7 @@ export interface Recipe {
   origin_url: string | null;
   // original: File | null;
   servings: number;
-  // amounts: Amount[];
+  amounts: Amount[];
   preptime: number | null;
   steps: Step[];
   meta_data?: RecipeMetaData;

@@ -43,11 +43,17 @@
       <input type="number" formControlName="servings" />
       <p>Portionen</p>
     </header>
-    <!-- <div formArrayName="amounts">
+    <div formArrayName="amounts">
       @for(amount of amounts.controls; track amount){
-      <div formGroupName="{{ $index }}">
+      <div class="amount-fields-wrapper" formGroupName="{{ $index }}">
         <button (click)="removeAmount($index)">Löschen</button>
-        <select name="ingredient" id="ingredient" formControlName="ingredient">
+        <input type="number" name="index" id="index" formControlName="index" />
+        <select
+          name="ingredient"
+          id="ingredient"
+          (change)="onIngredientSelect($event, $index)"
+        >
+          <option disabled selected></option>
           @for(ingredient of ingredients(); track ingredient.id){
           <option value="{{ ingredient.id }}">{{ ingredient.name }}</option>
           }
@@ -63,7 +69,7 @@
       }
       <button (click)="addAmount()">Hinzufügen</button>
       <button (click)="openCreateIngredientDialog()">Zutat erstellen</button>
-    </div> -->
+    </div>
   </section>
 
   <section>
@@ -74,7 +80,7 @@
     </header>
     <div formArrayName="steps">
       @for(step of steps.controls; track step){
-      <div formGroupName="{{ $index }}">
+      <div formGroupName="{{ $index }}" class="step-fields-wrapper">
         <button (click)="removeStep($index)">Löschen</button>
         <input type="number" name="index" id="index" formControlName="index" />
         <input

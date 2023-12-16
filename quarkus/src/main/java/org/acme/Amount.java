@@ -1,5 +1,7 @@
 package org.acme;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import jakarta.persistence.Entity;
@@ -18,11 +20,13 @@ public class Amount extends PanacheEntity {
 
     @ManyToOne
     @JoinColumn(nullable = false)
+    @JsonBackReference("amount-ingredient")
     private Ingredient ingredient;
 
-    // @ManyToOne
-    // @JoinColumn(nullable = false)
-    // private Recipe recipe;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    @JsonBackReference("recipe-amounts")
+    private Recipe recipe;
 
     public Integer getIndex() {
         return index;
@@ -36,9 +40,9 @@ public class Amount extends PanacheEntity {
         return ingredient;
     }
 
-    // public Recipe getRecipe() {
-    //     return recipe;
-    // }
+    public Recipe getRecipe() {
+        return recipe;
+    }
 
     public void setIndex(Integer index) {
         if (index < 0 || index > 99){
@@ -56,6 +60,11 @@ public class Amount extends PanacheEntity {
 
     public void setIngredient(Ingredient ingredient) {
         this.ingredient = ingredient;
+        ingredient.addAmount(this);
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
     }
 
     public Amount() {
