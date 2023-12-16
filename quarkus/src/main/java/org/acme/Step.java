@@ -9,6 +9,8 @@ import jakarta.persistence.ManyToOne;
 
 import java.util.logging.Logger;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Step extends PanacheEntity {
     private static final Logger LOG = Logger.getLogger(Step.class.getName()); 
@@ -21,6 +23,7 @@ public class Step extends PanacheEntity {
 
     @ManyToOne
     @JoinColumn(nullable = false)
+    @JsonBackReference
     private Recipe recipe;
 
     public Integer getIndex() {

@@ -5,10 +5,13 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.CascadeType;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Recipe extends PanacheEntity {
@@ -24,10 +27,10 @@ public class Recipe extends PanacheEntity {
     private Integer preptime;
 
     @Column(nullable = true, length = 200)
-    private String originName;
+    private String origin_name;
 
     @Column(nullable = true, length = 200)
-    private String originUrl;
+    private String origin_url;
 
     // @Column(nullable = true)
     // private File original;
@@ -39,9 +42,10 @@ public class Recipe extends PanacheEntity {
     // @Column(nullable = true)
     // private List<Amount> amounts;
 
-    @OneToMany(mappedBy = "recipe")
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
     @Column(nullable = true)
-    private List<Step> steps;
+    @JsonManagedReference
+    private List<Step> steps = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -56,11 +60,11 @@ public class Recipe extends PanacheEntity {
     }
 
     public String getOriginName(){
-        return originName;
+        return origin_name;
     }
 
     public String getOriginUrl(){
-        return originUrl;
+        return origin_url;
     }
 
     // public File getOriginal(){
@@ -97,12 +101,12 @@ public class Recipe extends PanacheEntity {
         this.preptime = preptime;
     }
 
-    public void setOriginName(String originName){
-        this.originName = originName;
+    public void setOriginName(String origin_name){
+        this.origin_name = origin_name;
     }
 
-    public void setOriginUrl(String originUrl){
-        this.originUrl = originUrl;
+    public void setOriginUrl(String origin_url){
+        this.origin_url = origin_url;
     }
 
     // public void setOriginal(File original){
@@ -117,9 +121,9 @@ public class Recipe extends PanacheEntity {
     //     this.amounts = amounts;
     // }
 
-    public void setSteps(List<Step> steps){
-        this.steps = new ArrayList<>();
-        for(Step step : steps){
+    public void setSteps(List<Step> newSteps){
+        steps = new ArrayList<>();
+        for(Step step : newSteps){
             this.addStep(step);
         }
     }
@@ -136,15 +140,15 @@ public class Recipe extends PanacheEntity {
         String name, 
         Integer servings, 
         Integer preptime, 
-        String originName, 
-        String originUrl,
+        String origin_name, 
+        String origin_url,
         List<Step> steps
         ){
         this.setName(name);
         this.setServings(servings);
         this.setPreptime(preptime);
-        this.setOriginName(originName);
-        this.setOriginUrl(originUrl);
+        this.setOriginName(origin_name);
+        this.setOriginUrl(origin_url);
         // this.setOriginal(original);
         // this.setImage(image);
         // this.setAmounts(amounts);
