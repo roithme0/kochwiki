@@ -85,6 +85,7 @@ public class Recipe extends PanacheEntity {
     }
 
     public void setName(String name){
+        LOG.info("Recipe: setting name ...");
         this.name = name;
     }
 
@@ -119,8 +120,10 @@ public class Recipe extends PanacheEntity {
     // }
 
     public void setAmounts(List<Amount> newAmounts){
+        LOG.info("Recipe: adding amounts ...");
         amounts = new ArrayList<>();
         for(Amount amount : newAmounts){
+            LOG.info(amount.getIndex().toString());
             this.addAmount(amount);
         }
     }

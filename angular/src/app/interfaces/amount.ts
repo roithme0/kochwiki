@@ -6,5 +6,5 @@ export interface Amount {
   index: number;
   ingredient: Ingredient;
   amount: number;
-  recipe?: Recipe;
+  recipe: Recipe;
 }

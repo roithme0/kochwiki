@@ -3,14 +3,17 @@ package org.acme;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
-
+import io.quarkus.logging.Log;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Column;
 
+import java.util.logging.Logger;
+
 @Entity
 public class Amount extends PanacheEntity {
+    private static final Logger LOG = Logger.getLogger(Amount.class.getName()); 
     
     @Column(nullable = false, length = 2)
     private Integer index;
@@ -45,6 +48,7 @@ public class Amount extends PanacheEntity {
     }
 
     public void setIndex(Integer index) {
+        LOG.info("Amount: setting index ...");
         if (index < 0 || index > 99){
             throw new IllegalArgumentException("Wert muss zwischen 0 und 99 liegen.");
         }
@@ -59,6 +63,7 @@ public class Amount extends PanacheEntity {
     }
 
     public void setIngredient(Ingredient ingredient) {
+        LOG.info("Amount: setting ingredient ...");
         this.ingredient = ingredient;
         ingredient.addAmount(this);
     }
