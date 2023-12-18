@@ -35,4 +35,22 @@ public class RecipeResource {
         recipe.persist();
         return recipe;
     }
+
+    @PUT
+    @Transactional
+    @Path("/{id}")
+    public Recipe update(@PathParam("id") Long id, Recipe recipe){
+        log.info("PUT: updating recipe '" + recipe.getName() + "' ...");
+        Recipe entity = Recipe.findById(id);
+        entity.setName(recipe.getName());
+        entity.setServings(recipe.getServings());
+        entity.setPreptime(recipe.getPreptime());
+        entity.setOriginName(recipe.getOriginName());
+        entity.setOriginUrl(recipe.getOriginUrl());
+        // entity.setOriginal(recipe.getOriginal());
+        // entity.setImage(recipe.getImage());
+        entity.setAmounts(recipe.getAmounts());
+        entity.setSteps(recipe.getSteps());
+        return entity;
+    }
 }

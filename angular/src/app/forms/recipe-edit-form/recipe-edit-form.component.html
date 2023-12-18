@@ -7,7 +7,7 @@
   <section class="meta-fields-wrapper">
     <label for="name">Name</label>
     <input type="text" name="name" id="name" formControlName="name" />
-    <label for="image">Bild</label>
+    <!-- <label for="image">Bild</label>
     <input
       type="file"
       name="image"
@@ -20,7 +20,7 @@
       name="original"
       id="original"
       (change)="onUpload($event, 'original')"
-    />
+    /> -->
     <label for="origin_url">URL</label>
     <input
       type="text"
@@ -45,9 +45,15 @@
     </header>
     <div formArrayName="amounts">
       @for(amount of amounts.controls; track amount){
-      <div formGroupName="{{ $index }}">
+      <div class="amount-fields-wrapper" formGroupName="{{ $index }}">
         <button (click)="removeAmount($index)">Löschen</button>
-        <select name="ingredient" id="ingredient" formControlName="ingredient">
+        <input type="number" name="index" id="index" formControlName="index" />
+        <select
+          name="ingredient"
+          id="ingredient"
+          (change)="onIngredientSelect($event, $index)"
+        >
+          <option disabled selected></option>
           @for(ingredient of ingredients(); track ingredient.id){
           <option value="{{ ingredient.id }}">{{ ingredient.name }}</option>
           }

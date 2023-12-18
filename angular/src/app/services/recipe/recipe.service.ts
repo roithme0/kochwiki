@@ -21,21 +21,26 @@ export class RecipeService {
   }
 
   getAllRecipes(): Observable<Recipe[]> {
-    console.debug('fetching all recipes');
+    console.debug('GET: fetching all recipes');
     return this.http.get<Recipe[]>(backendUrl + '/recipes');
   }
 
   getRecipeById(id: number): Observable<Recipe> {
-    console.debug('fetching recipe by id: ' + id.toString());
+    console.debug('GET: fetching recipe by id: ' + id.toString());
     return this.http.get<Recipe>(backendUrl + '/recipes/' + id);
   }
 
-  putRecipe(formData: FormData, id: number): Observable<Recipe> {
-    console.debug('putting recipe: ', formData);
-    return this.http.put<Recipe>(
-      backendUrlDjango + '/recipes/update/' + id,
-      formData
-    );
+  // putRecipe(formData: FormData, id: number): Observable<Recipe> {
+  //   console.debug('putting recipe: ', formData);
+  //   return this.http.put<Recipe>(
+  //     backendUrlDjango + '/recipes/update/' + id,
+  //     formData
+  //   );
+  // }
+
+  putRecipe(recipe: Recipe): Observable<Recipe> {
+    console.debug('PUT: putting recipe: ', recipe);
+    return this.http.put<Recipe>(backendUrl + '/recipes/' + recipe.id, recipe);
   }
 
   // postRecipe(formData: FormData): Observable<Recipe> {
@@ -47,17 +52,17 @@ export class RecipeService {
   // }
 
   postRecipe(recipe: Recipe): Observable<Recipe> {
-    console.debug('posting recipe: ', recipe);
+    console.debug('POST: posting recipe: ', recipe);
     return this.http.post<Recipe>(backendUrl + '/recipes', recipe);
   }
 
   deleteRecipe(id: number): Observable<number> {
-    console.debug('deleting recipe by id: ' + id.toString());
+    console.debug('DELETE: deleting recipe by id: ' + id.toString());
     return this.http.delete<number>(backendUrlDjango + '/recipes/delete/' + id);
   }
 
   fetchMetaData(): Observable<RecipeMetaData> {
-    console.debug('fetching recipe meta data');
+    console.debug('GET: fetching recipe meta data');
     return this.http.get<any>(backendUrlDjango + '/recipes/meta');
   }
 }

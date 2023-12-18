@@ -14,6 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Ingredient } from '../../interfaces/ingredient';
 import { IngredientService } from '../../services/ingredient/ingredient.service';
 import { CreateIngredientDialogComponent } from '../../dialogs/create-ingredient-dialog/create-ingredient-dialog.component';
+import { Recipe } from '../../interfaces/recipe';
 
 @Component({
   selector: 'app-recipe-edit-form',
@@ -27,11 +28,12 @@ export class RecipeEditFormComponent {
   @Output() success: EventEmitter<void> = new EventEmitter();
   ingredients: WritableSignal<Ingredient[]> = signal([]);
   recipeForm = this.fb.group({
+    id: [<number | null>null],
     name: ['', Validators.required],
-    image: [<File | null>null],
+    // image: [<File | null>null],
     origin_name: [''],
     origin_url: [''],
-    original: [<File | null>null],
+    // original: [<File | null>null],
     servings: [<number | null>null, Validators.required],
     amounts: this.fb.array([]),
     preptime: [<number | null>null],
@@ -61,9 +63,10 @@ export class RecipeEditFormComponent {
   addAmount(): void {
     this.amounts.push(
       this.fb.group({
-        // index: [],
+        index: [<number | null>null, Validators.required],
         ingredient: [<number | null>null, Validators.required],
         amount: [<number | null>null, Validators.required],
+        recipe: [null],
       })
     );
   }
@@ -79,8 +82,9 @@ export class RecipeEditFormComponent {
   addStep(): void {
     this.steps.push(
       this.fb.group({
-        // index: [],
+        index: [<number | null>null, Validators.required],
         description: ['', Validators.required],
+        recipe: [null],
       })
     );
   }
@@ -113,32 +117,63 @@ export class RecipeEditFormComponent {
     });
   }
 
-  onUpload(event: any, field: string): void {
-    console.debug(`uploading ${field}: `, event);
-    const file = event.target.files[0];
-    this.recipeForm.patchValue({
-      [field]: file,
+  onIngredientSelect(event: any, index: number): void {
+    console.debug('ingredient selected: ', event);
+    this.ingredientService.getIngredientById(event.target.value).subscribe({
+      next: (ingredient) => {
+        console.debug('fetched ingredient: ', ingredient);
+        this.amounts.controls[index].patchValue({
+          ingredient: ingredient,
+        });
+      },
+      error: (error) => {
+        console.error('failed to fetch ingredient: ', error);
+      },
     });
   }
 
+  // onUpload(event: any, field: string): void {
+  //   console.debug(`uploading ${field}: `, event);
+  //   const file = event.target.files[0];
+  //   this.recipeForm.patchValue({
+  //     [field]: file,
+  //   });
+  // }
+
+  // onSubmit(): void {
+  //   console.debug('submitting edit recipe form: ', this.recipeForm.value);
+  //   const formData = new FormData();
+
+  //   Object.keys(this.recipeForm.value).forEach((key) => {
+  //     if (['image', 'original'].includes(key)) {
+  //       // handle files seperately
+  //       const control = this.recipeForm.get(key);
+  //       const file = control?.value;
+  //       file ? formData.append(key, file, file.name) : formData.append(key, '');
+  //     } else {
+  //       // handle all other form data
+  //       const value = this.recipeForm.get(key)?.value;
+  //       formData.append(key, value || '');
+  //     }
+  //   });
+
+  //   this.recipeService.putRecipe(formData, this.id).subscribe({
+  //     next: (recipe) => {
+  //       console.debug('recipe updated: ', recipe);
+  //       this.success.emit();
+  //       this.recipeService.notifyRecipesChanged();
+  //     },
+  //     error: (error) => {
+  //       console.error('failed to update recipe: ', error);
+  //     },
+  //   });
+  // }
+
   onSubmit(): void {
     console.debug('submitting edit recipe form: ', this.recipeForm.value);
-    const formData = new FormData();
+    const recipe = this.recipeForm.value as Recipe;
 
-    Object.keys(this.recipeForm.value).forEach((key) => {
-      if (['image', 'original'].includes(key)) {
-        // handle files seperately
-        const control = this.recipeForm.get(key);
-        const file = control?.value;
-        file ? formData.append(key, file, file.name) : formData.append(key, '');
-      } else {
-        // handle all other form data
-        const value = this.recipeForm.get(key)?.value;
-        formData.append(key, value || '');
-      }
-    });
-
-    this.recipeService.putRecipe(formData, this.id).subscribe({
+    this.recipeService.putRecipe(recipe).subscribe({
       next: (recipe) => {
         console.debug('recipe updated: ', recipe);
         this.success.emit();
