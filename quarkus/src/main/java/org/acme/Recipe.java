@@ -84,38 +84,38 @@ public class Recipe extends PanacheEntity {
         return steps;
     }
 
-    public void setName(String name){
+    public void setName(String newName){
         LOG.info("Recipe: setting name ...");
-        this.name = name;
+        name = newName;
     }
 
-    public void setServings(Integer servings){
-        if(servings < 0 || servings > 99){
+    public void setServings(Integer newServings){
+        if(newServings < 0 || newServings > 99){
             throw new IllegalArgumentException("Wert muss zwischen 0 und 99 liegen.");
         }
-        this.servings = servings;
+        servings = newServings;
     }
 
-    public void setPreptime(Integer preptime){
-        if(preptime < 0 || preptime > 999){
+    public void setPreptime(Integer newPreptime){
+        if(newPreptime < 0 || newPreptime > 999){
             throw new IllegalArgumentException("Wert muss zwischen 0 und 999 liegen.");
         }
-        this.preptime = preptime;
+        preptime = newPreptime;
     }
 
-    public void setOriginName(String origin_name){
-        this.origin_name = origin_name;
+    public void setOriginName(String newOriginName){
+        origin_name = newOriginName;
     }
 
-    public void setOriginUrl(String origin_url){
-        this.origin_url = origin_url;
+    public void setOriginUrl(String newOriginUrl){
+        origin_url = newOriginUrl;
     }
 
-    // public void setOriginal(File original){
+    // public void setOriginal(File newOriginal){
 
     // }
 
-    // public void setImage(File image){
+    // public void setImage(File newImage){
 
     // }
 
@@ -124,13 +124,13 @@ public class Recipe extends PanacheEntity {
         amounts = new ArrayList<>();
         for(Amount amount : newAmounts){
             LOG.info(amount.getIndex().toString());
-            this.addAmount(amount);
+            addAmount(amount);
         }
     }
 
-    public void addAmount(Amount amount){
-        amounts.add(amount);
-        amount.setRecipe(this);
+    public void addAmount(Amount newAmount){
+        amounts.add(newAmount);
+        newAmount.setRecipe(this);
     }
 
     public void setSteps(List<Step> newSteps){
@@ -140,9 +140,9 @@ public class Recipe extends PanacheEntity {
         }
     }
 
-    public void addStep(Step step){
-        steps.add(step);
-        step.setRecipe(this);
+    public void addStep(Step newStep){
+        steps.add(newStep);
+        newStep.setRecipe(this);
     }
 
     public Recipe(){

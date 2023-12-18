@@ -87,56 +87,56 @@ public class Ingredient extends PanacheEntity {
         return amounts;
     }
 
-    public void setName(String name) {
+    public void setName(String newName) {
         LOG.info("Ingredient: setting name ...");
-        this.name = name;
+        name = newName;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public void setBrand(String newBrand) {
+        brand = newBrand;
     }
 
-    public void setUnit(String unit) {
+    public void setUnit(String newUnit) {
         try {
-            this.unit = UnitEnum.valueOf(unit);
+            unit = UnitEnum.valueOf(newUnit);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Einheit muss 'g', 'ml' oder 'Stk.' sein.");
         }
     }
 
-    public void setKcal(Integer kcal) {
-        if (kcal == null) {
-            this.kcal = null;
+    public void setKcal(Integer newKcal) {
+        if (newKcal == null) {
+            kcal = null;
         } else {
-            this.checkInteger(kcal);
-            this.kcal = kcal;
+            this.checkInteger(newKcal);
+            kcal = newKcal;
         }
     }
 
-    public void setCarbs(Integer carbs) {
-        if (carbs == null) {
-            this.carbs = null;
+    public void setCarbs(Integer newCarbs) {
+        if (newCarbs == null) {
+            carbs = null;
         } else {
-            this.checkInteger(carbs);
-            this.carbs = carbs;
+            this.checkInteger(newCarbs);
+            carbs = newCarbs;
         }
     }
 
-    public void setProtein(Integer protein) {
-        if (protein == null) {
-            this.protein = null;
+    public void setProtein(Integer newProtein) {
+        if (newProtein == null) {
+            protein = null;
         } else {
-            this.checkInteger(protein);
-            this.protein = protein;
+            this.checkInteger(newProtein);
+            protein = newProtein;
         }
     }
 
-    public void setFat(Integer fat) {
-        if (fat == null) {
-            this.fat = null;
+    public void setFat(Integer newFat) {
+        if (newFat == null) {
+            fat = null;
         } else {
-            this.checkInteger(fat);
-            this.fat = fat;
+            this.checkInteger(newFat);
+            fat = newFat;
         }
     }
 
@@ -146,8 +146,8 @@ public class Ingredient extends PanacheEntity {
         }
     }
 
-    public void addAmount(Amount amount) {
-        this.amounts.add(amount);
+    public void addAmount(Amount newAmount) {
+        amounts.add(newAmount);
     }
 
     public Ingredient() {

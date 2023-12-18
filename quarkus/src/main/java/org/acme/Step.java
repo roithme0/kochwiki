@@ -38,19 +38,19 @@ public class Step extends PanacheEntity {
         return recipe;
     }
 
-    public void setIndex(Integer index) {
-        if (index < 0 || index > 99){
+    public void setIndex(Integer newIndex) {
+        if (newIndex < 0 || newIndex > 99){
             throw new IllegalArgumentException("Wert muss zwischen 0 und 99 liegen.");
         }
-        this.index = index;
+        index = newIndex;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescription(String newDescription) {
+        description = newDescription;
     }
 
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
+    public void setRecipe(Recipe newRecipe) {
+        recipe = newRecipe;
     }
 
     public Step() {

@@ -7,11 +7,11 @@ public enum UnitEnum {
     
     private final String unit;
 
-    private UnitEnum(String unit) {
-        this.unit = unit;
+    private UnitEnum(String newUnit) {
+        unit = newUnit;
     }
 
     public String getUnit() {
-        return this.unit;
+        return unit;
     }
 }

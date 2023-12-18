@@ -46,29 +46,29 @@ public class Amount extends PanacheEntity {
         return recipe;
     }
 
-    public void setIndex(Integer index) {
+    public void setIndex(Integer newIndex) {
         LOG.info("Amount: setting index ...");
-        if (index < 0 || index > 99){
+        if (newIndex < 0 || newIndex > 99){
             throw new IllegalArgumentException("Wert muss zwischen 0 und 99 liegen.");
         }
-        this.index = index;
+        index = newIndex;
     }
 
-    public void setAmount(Float amount) {
-        if (amount < 0 || amount > 999){
+    public void setAmount(Float newAmount) {
+        if (newAmount < 0 || newAmount > 999){
             throw new IllegalArgumentException("Wert muss zwischen 0 und 999 liegen.");
         }
-        this.amount = amount;
+        amount = newAmount;
     }
 
-    public void setIngredient(Ingredient ingredient) {
+    public void setIngredient(Ingredient newIngredient) {
         LOG.info("Amount: setting ingredient ...");
-        this.ingredient = ingredient;
+        ingredient = newIngredient;
         ingredient.addAmount(this);
     }
 
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
+    public void setRecipe(Recipe newRecipe) {
+        recipe = newRecipe;
     }
 
     public Amount() {
