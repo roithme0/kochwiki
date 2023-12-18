@@ -88,7 +88,6 @@ public class Ingredient extends PanacheEntity {
     }
 
     public void setName(String newName) {
-        log.debug("Ingredient: setting name '" + newName + "' ...");
         name = newName;
     }
 
@@ -97,7 +96,6 @@ public class Ingredient extends PanacheEntity {
     }
 
     public void setUnit(String newUnit) {
-        log.debug("Ingredient: setting unit '" + newUnit + "' ...");
         try {
             unit = UnitEnum.valueOf(newUnit);
         } catch (IllegalArgumentException e) {

@@ -17,7 +17,7 @@ public class AmountResource {
 
     @GET
     public List<Amount> getAll(){
-        log.info("GET: getting all amounts");
+        log.info("GET: getting all amounts ...");
         return Amount.listAll();
     }    
 }

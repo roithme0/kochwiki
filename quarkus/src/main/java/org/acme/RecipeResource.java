@@ -24,14 +24,14 @@ public class RecipeResource {
     @GET
     @Path("/{id}")
     public Recipe getById(@PathParam("id") Long id){
-        log.info("GET: getting recipe by id: " + id);
+        log.info("GET: getting recipe by id '" + id + "' ...");
         return Recipe.findById(id);
     }    
 
     @POST
     @Transactional
     public Recipe create(Recipe recipe){
-        log.info("POST: creating recipe: " + recipe.getName());
+        log.info("POST: creating recipe '" + recipe.getName() + "' ...");
         recipe.persist();
         return recipe;
     }

@@ -17,7 +17,7 @@ public class StepResource {
 
     @GET
     public List<Step> getAll(){
-        log.info("GET: getting all steps");
+        log.info("GET: getting all steps ...");
         return Step.listAll();
     }    
 }
