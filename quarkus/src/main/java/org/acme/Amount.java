@@ -62,7 +62,7 @@ public class Amount extends PanacheEntity {
     }
 
     public void setIngredient(Ingredient newIngredient) {
-        logdebug("Amount: setting ingredient ...");
+        log.debug("Amount: setting ingredient ...");
         ingredient = newIngredient;
         ingredient.addAmount(this);
     }
