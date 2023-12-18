@@ -1,7 +1,7 @@
 package org.acme;
 
 import java.util.List;
-import java.util.logging.Logger;
+import org.jboss.logging.Logger;
 
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.DELETE;
@@ -13,8 +13,7 @@ import jakarta.ws.rs.PathParam;
 
 @Path("/ingredients")
 public class IngredientResource {
-    private static final Logger LOG = Logger.getLogger(IngredientResource.class.getName());
-
+    private static final Logger LOG = Logger.getLogger(IngredientResource.class);
     @GET
     public List<Ingredient> getAll() {
         LOG.info("GET: getting all ingredients");

@@ -9,13 +9,13 @@ import jakarta.persistence.CascadeType;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+import org.jboss.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Recipe extends PanacheEntity {
-    private static final Logger LOG = Logger.getLogger(Recipe.class.getName()); 
+    private static final Logger LOG = Logger.getLogger(Recipe.class);
 
     @Column(unique = true, nullable = false, length = 200)
     private String name;

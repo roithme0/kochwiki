@@ -10,7 +10,8 @@ import jakarta.persistence.Table;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.UniqueConstraint;
 
-import java.util.logging.Logger;
+import org.jboss.logging.Logger;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -21,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
     @UniqueConstraint(columnNames = {"name", "brand"})
 })
 public class Ingredient extends PanacheEntity {
-    private static final Logger LOG = Logger.getLogger(Ingredient.class.getName());
+    private static final Logger LOG = Logger.getLogger(Ingredient.class);
 
     @Column(nullable = false, length = 50)
     private String name;

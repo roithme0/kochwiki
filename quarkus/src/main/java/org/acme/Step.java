@@ -7,13 +7,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-import java.util.logging.Logger;
+import org.jboss.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Step extends PanacheEntity {
-    private static final Logger LOG = Logger.getLogger(Step.class.getName()); 
+    private static final Logger LOG = Logger.getLogger(Step.class);
 
     @Column(nullable = false, length = 2)
     private Integer index;

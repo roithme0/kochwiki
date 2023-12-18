@@ -3,17 +3,16 @@ package org.acme;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
-import io.quarkus.logging.Log;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Column;
 
-import java.util.logging.Logger;
+import org.jboss.logging.Logger;
 
 @Entity
 public class Amount extends PanacheEntity {
-    private static final Logger LOG = Logger.getLogger(Amount.class.getName()); 
+    private static final Logger LOG = Logger.getLogger(Amount.class);
     
     @Column(nullable = false, length = 2)
     private Integer index;
