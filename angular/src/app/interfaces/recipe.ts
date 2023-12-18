@@ -6,8 +6,8 @@ export interface Recipe {
   id: number | null;
   name: string;
   // image: File | null;
-  origin_name: string | null;
-  origin_url: string | null;
+  originName: string | null;
+  originUrl: string | null;
   // original: File | null;
   servings: number;
   amounts: Amount[];

@@ -28,8 +28,8 @@ export class RecipeCreateFormComponent {
   recipeForm = this.fb.group({
     name: ['', Validators.required],
     // image: [<File | null>null],
-    origin_name: [''],
-    origin_url: [''],
+    originName: [''],
+    originUrl: [''],
     // original: [<File | null>null],
     servings: [<number | null>null, Validators.required],
     amounts: this.fb.array([]),

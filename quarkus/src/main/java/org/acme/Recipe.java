@@ -27,10 +27,10 @@ public class Recipe extends PanacheEntity {
     private Integer preptime;
 
     @Column(nullable = true, length = 200)
-    private String origin_name;
+    private String originName;
 
     @Column(nullable = true, length = 200)
-    private String origin_url;
+    private String originUrl;
 
     // @Column(nullable = true)
     // private File original;
@@ -61,11 +61,11 @@ public class Recipe extends PanacheEntity {
     }
 
     public String getOriginName(){
-        return origin_name;
+        return originName;
     }
 
     public String getOriginUrl(){
-        return origin_url;
+        return originUrl;
     }
 
     // public File getOriginal(){
@@ -103,11 +103,11 @@ public class Recipe extends PanacheEntity {
     }
 
     public void setOriginName(String newOriginName){
-        origin_name = newOriginName;
+        originName = newOriginName;
     }
 
     public void setOriginUrl(String newOriginUrl){
-        origin_url = newOriginUrl;
+        originUrl = newOriginUrl;
     }
 
     // public void setOriginal(File newOriginal){
@@ -149,8 +149,8 @@ public class Recipe extends PanacheEntity {
         String name, 
         Integer servings, 
         Integer preptime, 
-        String origin_name, 
-        String origin_url,
+        String originName, 
+        String originUrl,
         // File original,
         // File image,
         List<Amount> amounts,
@@ -159,8 +159,8 @@ public class Recipe extends PanacheEntity {
         this.setName(name);
         this.setServings(servings);
         this.setPreptime(preptime);
-        this.setOriginName(origin_name);
-        this.setOriginUrl(origin_url);
+        this.setOriginName(originName);
+        this.setOriginUrl(originUrl);
         // this.setOriginal(original);
         // this.setImage(image);
         this.setAmounts(amounts);
