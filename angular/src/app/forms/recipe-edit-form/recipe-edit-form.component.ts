@@ -58,6 +58,36 @@ export class RecipeEditFormComponent {
     this.fetchRecipe();
   }
 
+  fetchIngredients(): void {
+    this.ingredientService.getAllIngredients().subscribe({
+      next: (ingredients) => {
+        console.debug('fetched ingredients: ', ingredients);
+        this.ingredients.set(ingredients);
+      },
+      error: (error) => {
+        console.error('failed to fetch ingredients: ', error);
+      },
+    });
+  }
+
+  fetchRecipe(): void {
+    this.recipeService.getRecipeById(this.id).subscribe({
+      next: (recipe) => {
+        console.debug('fetched recipe: ', recipe);
+        this.recipeForm.patchValue(recipe);
+        recipe.amounts.forEach((amount) => {
+          this.addAmount(amount);
+        });
+        recipe.steps.forEach((step) => {
+          this.addStep(step);
+        });
+      },
+      error: (error) => {
+        console.error('failed to fetch recipe: ', error);
+      },
+    });
+  }
+
   get amounts(): FormArray {
     return this.recipeForm.get('amounts') as FormArray;
   }
@@ -95,36 +125,6 @@ export class RecipeEditFormComponent {
 
   removeStep(index: number): void {
     this.steps.removeAt(index);
-  }
-
-  fetchIngredients(): void {
-    this.ingredientService.getAllIngredients().subscribe({
-      next: (ingredients) => {
-        console.debug('fetched ingredients: ', ingredients);
-        this.ingredients.set(ingredients);
-      },
-      error: (error) => {
-        console.error('failed to fetch ingredients: ', error);
-      },
-    });
-  }
-
-  fetchRecipe(): void {
-    this.recipeService.getRecipeById(this.id).subscribe({
-      next: (recipe) => {
-        console.debug('fetched recipe: ', recipe);
-        this.recipeForm.patchValue(recipe);
-        recipe.amounts.forEach((amount) => {
-          this.addAmount(amount);
-        });
-        recipe.steps.forEach((step) => {
-          this.addStep(step);
-        });
-      },
-      error: (error) => {
-        console.error('failed to fetch recipe: ', error);
-      },
-    });
   }
 
   onIngredientSelect(event: any, index: number): void {
