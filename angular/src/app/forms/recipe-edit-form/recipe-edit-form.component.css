@@ -11,12 +11,12 @@
 
 .amount-fields-wrapper {
   display: grid;
-  grid-template-columns: min-content 1fr min-content min-content;
+  grid-template-columns: min-content min-content 1fr min-content min-content;
 }
 
 .step-fields-wrapper {
   display: grid;
-  grid-template-columns: min-content 1fr;
+  grid-template-columns: min-content min-content 1fr;
 }
 
 header {

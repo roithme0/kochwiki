@@ -15,6 +15,8 @@ import { Ingredient } from '../../interfaces/ingredient';
 import { IngredientService } from '../../services/ingredient/ingredient.service';
 import { CreateIngredientDialogComponent } from '../../dialogs/create-ingredient-dialog/create-ingredient-dialog.component';
 import { Recipe } from '../../interfaces/recipe';
+import { Step } from '../../interfaces/step';
+import { Amount } from '../../interfaces/amount';
 
 @Component({
   selector: 'app-recipe-edit-form',
@@ -60,12 +62,13 @@ export class RecipeEditFormComponent {
     return this.recipeForm.get('amounts') as FormArray;
   }
 
-  addAmount(): void {
+  addAmount(amount?: Amount): void {
+    // add either empty or existing amount to form
     this.amounts.push(
       this.fb.group({
-        index: [<number | null>null, Validators.required],
-        ingredient: [<number | null>null, Validators.required],
-        amount: [<number | null>null, Validators.required],
+        index: [amount?.index ?? null, Validators.required],
+        ingredient: [amount?.ingredient ?? null, Validators.required],
+        amount: [amount?.amount ?? null, Validators.required],
         recipe: [null],
       })
     );
@@ -79,11 +82,12 @@ export class RecipeEditFormComponent {
     return this.recipeForm.get('steps') as FormArray;
   }
 
-  addStep(): void {
+  addStep(step?: Step): void {
+    // add either empty or existing step to form
     this.steps.push(
       this.fb.group({
-        index: [<number | null>null, Validators.required],
-        description: ['', Validators.required],
+        index: [step?.index ?? null, Validators.required],
+        description: [step?.description ?? '', Validators.required],
         recipe: [null],
       })
     );
@@ -110,6 +114,12 @@ export class RecipeEditFormComponent {
       next: (recipe) => {
         console.debug('fetched recipe: ', recipe);
         this.recipeForm.patchValue(recipe);
+        recipe.amounts.forEach((amount) => {
+          this.addAmount(amount);
+        });
+        recipe.steps.forEach((step) => {
+          this.addStep(step);
+        });
       },
       error: (error) => {
         console.error('failed to fetch recipe: ', error);
