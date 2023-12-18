@@ -88,7 +88,7 @@ public class Ingredient extends PanacheEntity {
     }
 
     public void setName(String newName) {
-        log.info("Ingredient: setting name ...");
+        logdebug("Ingredient: setting name ...");
         name = newName;
     }
 

@@ -47,7 +47,7 @@ public class Amount extends PanacheEntity {
     }
 
     public void setIndex(Integer newIndex) {
-        log.info("Amount: setting index ...");
+        log.debug("Amount: setting index ...");
         if (newIndex < 0 || newIndex > 99){
             throw new IllegalArgumentException("Wert muss zwischen 0 und 99 liegen.");
         }
@@ -62,7 +62,7 @@ public class Amount extends PanacheEntity {
     }
 
     public void setIngredient(Ingredient newIngredient) {
-        log.info("Amount: setting ingredient ...");
+        logdebug("Amount: setting ingredient ...");
         ingredient = newIngredient;
         ingredient.addAmount(this);
     }
