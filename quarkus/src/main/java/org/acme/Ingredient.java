@@ -60,11 +60,11 @@ public class Ingredient extends PanacheEntity {
     }
 
     public String getUnit() {
-        return unit.getUnit();
+        return unit.name();
     }
 
-    public String getUnitName() {
-        return unit.name();
+    public String getUnitVerbose() {
+        return unit.getUnitVerbose();
     }
 
     public Integer getKcal() {
@@ -88,7 +88,7 @@ public class Ingredient extends PanacheEntity {
     }
 
     public void setName(String newName) {
-        log.debug("Ingredient: setting name ...");
+        log.debug("Ingredient: setting name '" + newName + "' ...");
         name = newName;
     }
 
@@ -97,6 +97,7 @@ public class Ingredient extends PanacheEntity {
     }
 
     public void setUnit(String newUnit) {
+        log.debug("Ingredient: setting unit '" + newUnit + "' ...");
         try {
             unit = UnitEnum.valueOf(newUnit);
         } catch (IllegalArgumentException e) {

@@ -11,7 +11,7 @@ public enum UnitEnum {
         unit = newUnit;
     }
 
-    public String getUnit() {
+    public String getUnitVerbose() {
         return unit;
     }
 }

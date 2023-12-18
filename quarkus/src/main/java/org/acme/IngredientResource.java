@@ -43,7 +43,7 @@ public class IngredientResource {
         Ingredient entity = Ingredient.findById(id);
         entity.setName(ingredient.getName());
         entity.setBrand(ingredient.getBrand());
-        entity.setUnit(ingredient.getUnitName());
+        entity.setUnit(ingredient.getUnit());
         entity.setKcal(ingredient.getKcal());
         entity.setCarbs(ingredient.getCarbs());
         entity.setProtein(ingredient.getProtein());
