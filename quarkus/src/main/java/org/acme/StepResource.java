@@ -13,11 +13,11 @@ import jakarta.ws.rs.PathParam;
 
 @Path("/steps")
 public class StepResource {
-    private static final Logger LOG = Logger.getLogger(StepResource.class);
+    private static final Logger log = Logger.getLogger(StepResource.class);
 
     @GET
     public List<Step> getAll(){
-        LOG.info("GET: getting all steps");
+        log.info("GET: getting all steps");
         return Step.listAll();
     }    
 }

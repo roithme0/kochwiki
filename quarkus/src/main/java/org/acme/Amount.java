@@ -12,7 +12,7 @@ import org.jboss.logging.Logger;
 
 @Entity
 public class Amount extends PanacheEntity {
-    private static final Logger LOG = Logger.getLogger(Amount.class);
+    private static final Logger log = Logger.getLogger(Amount.class);
     
     @Column(nullable = false, length = 2)
     private Integer index;
@@ -47,7 +47,7 @@ public class Amount extends PanacheEntity {
     }
 
     public void setIndex(Integer newIndex) {
-        LOG.info("Amount: setting index ...");
+        log.info("Amount: setting index ...");
         if (newIndex < 0 || newIndex > 99){
             throw new IllegalArgumentException("Wert muss zwischen 0 und 99 liegen.");
         }
@@ -62,7 +62,7 @@ public class Amount extends PanacheEntity {
     }
 
     public void setIngredient(Ingredient newIngredient) {
-        LOG.info("Amount: setting ingredient ...");
+        log.info("Amount: setting ingredient ...");
         ingredient = newIngredient;
         ingredient.addAmount(this);
     }

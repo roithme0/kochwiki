@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Recipe extends PanacheEntity {
-    private static final Logger LOG = Logger.getLogger(Recipe.class);
+    private static final Logger log = Logger.getLogger(Recipe.class);
 
     @Column(unique = true, nullable = false, length = 200)
     private String name;
@@ -85,7 +85,7 @@ public class Recipe extends PanacheEntity {
     }
 
     public void setName(String newName){
-        LOG.info("Recipe: setting name ...");
+        log.info("Recipe: setting name ...");
         name = newName;
     }
 
@@ -120,10 +120,10 @@ public class Recipe extends PanacheEntity {
     // }
 
     public void setAmounts(List<Amount> newAmounts){
-        LOG.info("Recipe: adding amounts ...");
+        log.info("Recipe: adding amounts ...");
         amounts = new ArrayList<>();
         for(Amount amount : newAmounts){
-            LOG.info(amount.getIndex().toString());
+            log.info(amount.getIndex().toString());
             addAmount(amount);
         }
     }

@@ -13,25 +13,25 @@ import jakarta.ws.rs.PathParam;
 
 @Path("/recipes")
 public class RecipeResource {
-    private static final Logger LOG = Logger.getLogger(RecipeResource.class);
+    private static final Logger log = Logger.getLogger(RecipeResource.class);
 
     @GET
     public List<Recipe> getAll(){
-        LOG.info("GET: getting all recipes ...");
+        log.info("GET: getting all recipes ...");
         return Recipe.listAll();
     }    
 
     @GET
     @Path("/{id}")
     public Recipe getById(@PathParam("id") Long id){
-        LOG.info("GET: getting recipe by id: " + id);
+        log.info("GET: getting recipe by id: " + id);
         return Recipe.findById(id);
     }    
 
     @POST
     @Transactional
     public Recipe create(Recipe recipe){
-        LOG.info("POST: creating recipe: " + recipe.getName());
+        log.info("POST: creating recipe: " + recipe.getName());
         recipe.persist();
         return recipe;
     }

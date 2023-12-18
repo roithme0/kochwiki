@@ -13,11 +13,11 @@ import jakarta.ws.rs.PathParam;
 
 @Path("/amounts")
 public class AmountResource {
-    private static final Logger LOG = Logger.getLogger(AmountResource.class);
+    private static final Logger log = Logger.getLogger(AmountResource.class);
 
     @GET
     public List<Amount> getAll(){
-        LOG.info("GET: getting all amounts");
+        log.info("GET: getting all amounts");
         return Amount.listAll();
     }    
 }

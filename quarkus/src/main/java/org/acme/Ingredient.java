@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
     @UniqueConstraint(columnNames = {"name", "brand"})
 })
 public class Ingredient extends PanacheEntity {
-    private static final Logger LOG = Logger.getLogger(Ingredient.class);
+    private static final Logger log = Logger.getLogger(Ingredient.class);
 
     @Column(nullable = false, length = 50)
     private String name;
@@ -88,7 +88,7 @@ public class Ingredient extends PanacheEntity {
     }
 
     public void setName(String newName) {
-        LOG.info("Ingredient: setting name ...");
+        log.info("Ingredient: setting name ...");
         name = newName;
     }
 
