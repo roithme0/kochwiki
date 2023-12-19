@@ -1,6 +1,7 @@
 @for(field of fieldsToDisplay; track field){
 <p>{{ ingredient[field] }}</p>
 }
+
 <mat-icon
   aria-hidden="false"
   aria-label="edit icon"
@@ -8,6 +9,7 @@
   class="button edit"
   (click)="openEditIngredientDialog()"
 ></mat-icon>
+
 <mat-icon
   aria-hidden="false"
   aria-label="delete icon"

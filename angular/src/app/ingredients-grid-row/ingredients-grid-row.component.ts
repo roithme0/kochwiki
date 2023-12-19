@@ -1,10 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Ingredient } from '../interfaces/ingredient';
 import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+
+import { Ingredient } from '../interfaces/ingredient';
+
 import { EditIngredientDialogComponent } from '../dialogs/edit-ingredient-dialog/edit-ingredient-dialog.component';
 import { DeleteIngredientDialogComponent } from '../dialogs/delete-ingredient-dialog/delete-ingredient-dialog.component';
-import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-ingredients-grid-row',
@@ -14,6 +16,8 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './ingredients-grid-row.component.css',
 })
 export class IngredientsGridRowComponent {
+  // render ingredient data
+  // render ingredient actions
   @Input() ingredient!: Ingredient;
   @Input() fieldsToDisplay!: string[];
 

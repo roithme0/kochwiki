@@ -45,7 +45,7 @@ export class IngredientsGridComponent {
   fieldsToDisplay: string[] = [
     'name',
     'brand',
-    'unit',
+    'unitVerbose',
     'kcal',
     'carbs',
     'protein',
