@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+
 import { PageHeaderService } from '../services/page-header/page-header.service';
 
 @Component({
@@ -11,9 +12,12 @@ import { PageHeaderService } from '../services/page-header/page-header.service';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
+  // set header values
+  // render navigation
   constructor(private pageHeaderService: PageHeaderService) {}
 
   ngOnInit() {
+    // set header values
     this.pageHeaderService.setHeadline('Home');
     this.pageHeaderService.setBack('');
   }
