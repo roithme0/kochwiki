@@ -1,6 +1,7 @@
 <app-recipes-grid-controls />
+
 <section class="recipes-grid">
-  @for(recipe of recipes; track recipe.id){
+  @for(recipe of displayedRecipes(); track recipe.id){
   <app-recipes-grid-element
     [recipe]="recipe"
     (click)="router.navigate(['recipes', recipe.id])"
@@ -8,4 +9,5 @@
   <p>Keine Rezepte gefunden</p>
   }
 </section>
+
 <button (click)="openCreateRecipeDialog()">Rezept erstellen</button>
