@@ -38,6 +38,10 @@ public class Step extends PanacheEntity {
         return recipe;
     }
 
+    public Long getRecipeId() {
+        return recipe.getId();
+    }
+
     public void setIndex(Integer newIndex) {
         if (newIndex < 0 || newIndex > 99){
             throw new IllegalArgumentException("Wert muss zwischen 0 und 99 liegen.");

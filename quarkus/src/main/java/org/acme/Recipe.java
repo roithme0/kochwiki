@@ -48,6 +48,10 @@ public class Recipe extends PanacheEntity {
     @JsonManagedReference("recipe-steps")
     private List<Step> steps = new ArrayList<>();
 
+    public Long getId(){
+        return id;
+    }
+
     public String getName() {
         return name;
     }

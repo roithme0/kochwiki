@@ -26,7 +26,7 @@ public class Amount extends PanacheEntity {
     private Ingredient ingredient;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn
     @JsonBackReference("recipe-amounts")
     private Recipe recipe;
 
@@ -42,8 +42,16 @@ public class Amount extends PanacheEntity {
         return ingredient;
     }
 
+    public Long getIngredientId() {
+        return ingredient.getId();
+    }
+
     public Recipe getRecipe() {
         return recipe;
+    }
+
+    public Long getRecipeId() {
+        return recipe.getId();
     }
 
     public void setIndex(Integer newIndex) {

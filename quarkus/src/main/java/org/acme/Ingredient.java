@@ -51,6 +51,10 @@ public class Ingredient extends PanacheEntity {
     @JsonManagedReference("amount-ingredient")
     private List<Amount> amounts = new ArrayList<>();
 
+    public Long getId(){
+        return id;
+    }
+
     public String getName() {
         return name;
     }
