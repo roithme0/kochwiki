@@ -149,6 +149,25 @@ public class Recipe extends PanacheEntity {
     public Recipe(){
     }
 
+    // for import.sql
+    public Recipe(
+        String name, 
+        Integer servings, 
+        Integer preptime, 
+        String originName, 
+        String originUrl
+        // File original,
+        // File image,
+        ){
+        this.setName(name);
+        this.setServings(servings);
+        this.setPreptime(preptime);
+        this.setOriginName(originName);
+        this.setOriginUrl(originUrl);
+        // this.setOriginal(original);
+        // this.setImage(image);
+    }
+
     public Recipe(
         String name, 
         Integer servings, 
