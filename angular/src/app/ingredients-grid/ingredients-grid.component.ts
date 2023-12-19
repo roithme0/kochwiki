@@ -45,13 +45,12 @@ export class IngredientsGridComponent {
   windowInnerWidth: WritableSignal<number> = signal(window.innerWidth);
   displayedFields: Signal<string[]> = computed(() => {
     // adjust displayed fields based on window with
-    console.debug('Ingredients-Grid: window width: ' + this.windowInnerWidth());
     var displayedFields: string[] = ['name', 'brand'];
     if (this.windowInnerWidth() > 600) {
       displayedFields.push('kcal');
     }
     if (this.windowInnerWidth() > 700) {
-      displayedFields.push('unit');
+      displayedFields.push('unitVerbose');
     }
     if (this.windowInnerWidth() > 1200) {
       displayedFields.push('carbs', 'protein', 'fat');
