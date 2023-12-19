@@ -62,7 +62,6 @@ export class RecipeCreateFormComponent {
         index: [<number | null>null, Validators.required],
         ingredient: [<number | null>null, Validators.required],
         amount: [<number | null>null, Validators.required],
-        recipe: [null],
       })
     );
   }
@@ -80,7 +79,6 @@ export class RecipeCreateFormComponent {
       this.fb.group({
         index: [<number | null>null, Validators.required],
         description: ['', Validators.required],
-        recipe: [null],
       })
     );
   }
