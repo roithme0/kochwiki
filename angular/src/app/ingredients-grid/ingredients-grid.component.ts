@@ -6,15 +6,18 @@ import {
   signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+
 import { Ingredient } from '../interfaces/ingredient';
+
 import { IngredientService } from '../services/ingredient/ingredient.service';
+import { IngredientsGridControlsService } from '../services/ingredients-grid-controls/ingredients-grid-controls.service';
+
 import { IngredientsGridControlsComponent } from '../ingredients-grid-controls/ingredients-grid-controls.component';
 import { IngredientsGridHeaderComponent } from '../ingredients-grid-header/ingredients-grid-header.component';
 import { IngredientsGridRowComponent } from '../ingredients-grid-row/ingredients-grid-row.component';
-import { MatDialog } from '@angular/material/dialog';
 import { CreateIngredientDialogComponent } from '../dialogs/create-ingredient-dialog/create-ingredient-dialog.component';
-import { IngredientsGridControlsService } from '../services/ingredients-grid-controls/ingredients-grid-controls.service';
-import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-ingredients-grid',
@@ -30,6 +33,9 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './ingredients-grid.component.css',
 })
 export class IngredientsGridComponent {
+  // fetch all ingredients
+  // render ingredients-grid-controls component
+  // render ingredients as grid
   ingredients: WritableSignal<Ingredient[]> = signal([]);
   displayedIngredients: Signal<Ingredient[]> = computed(() =>
     this.getDisplayedIngredients()
@@ -51,6 +57,9 @@ export class IngredientsGridComponent {
     private ingredientService: IngredientService,
     private ingredientsGridControlsService: IngredientsGridControlsService
   ) {
+    // track changes to ingredients
+    // track changes to searchBy
+    // track changes to filterBy
     this.ingredientService.ingredients$.subscribe(() => {
       this.fetchIngredients();
     });
@@ -63,64 +72,61 @@ export class IngredientsGridComponent {
   }
 
   ngOnInit(): void {
+    // fetch all ingredients
     this.fetchIngredients();
   }
 
   fetchIngredients(): void {
+    // fetch all ingredients
     this.ingredientService.getAllIngredients().subscribe({
       next: (ingredients) => {
-        console.debug('ingredients fetched: ', ingredients);
+        console.debug('Ingredients-Grid: ingredients fetched: ', ingredients);
         this.ingredients.set(ingredients);
       },
       error: (error) => {
-        console.error('failed to fetch ingredients: ', error);
+        console.error('Ingredients-Grid: failed to fetch ingredients: ', error);
       },
     });
   }
 
-  openCreateIngredientDialog(): void {
-    this.dialog.open(CreateIngredientDialogComponent);
-  }
-
   getDisplayedIngredients(): Ingredient[] {
+    // apply search and filter functions to ingredients
     var displayedIngredients = this.ingredients();
-    displayedIngredients = this.searchIngredientsByNameOrBrand(
-      displayedIngredients,
-      this.searchBy()
-    );
-    displayedIngredients = this.filterIngredientsByUnit(
-      displayedIngredients,
-      this.filterBy()
-    );
+    displayedIngredients =
+      this.searchIngredientsByNameOrBrand(displayedIngredients);
+    displayedIngredients = this.filterIngredientsByUnit(displayedIngredients);
     return displayedIngredients;
   }
 
-  searchIngredientsByNameOrBrand(
-    ingredients: Ingredient[],
-    searchBy: string
-  ): Ingredient[] {
-    console.debug('searching ingredients by: ' + searchBy);
-    if (searchBy === '') {
+  searchIngredientsByNameOrBrand(ingredients: Ingredient[]): Ingredient[] {
+    console.debug(
+      'Ingredients-Grid: searching ingredients by: ' + this.searchBy()
+    );
+    if (this.searchBy() === '') {
       return ingredients;
     }
     return ingredients.filter((ingredient) => {
       return (
-        ingredient.name.toLowerCase().includes(searchBy.toLowerCase()) ||
-        ingredient.brand?.toLowerCase().includes(searchBy.toLowerCase())
+        ingredient.name.toLowerCase().includes(this.searchBy().toLowerCase()) ||
+        ingredient.brand?.toLowerCase().includes(this.searchBy().toLowerCase())
       );
     });
   }
 
-  filterIngredientsByUnit(
-    ingredients: Ingredient[],
-    filterBy: string
-  ): Ingredient[] {
-    console.debug('filtering ingredients by: ' + filterBy);
-    if (filterBy === 'all') {
+  filterIngredientsByUnit(ingredients: Ingredient[]): Ingredient[] {
+    console.debug(
+      'Ingredients-Grid: filtering ingredients by: ' + this.filterBy()
+    );
+    if (this.filterBy() === 'all') {
       return ingredients;
     }
     return ingredients.filter((ingredient) => {
-      return ingredient.unit === filterBy;
+      return ingredient.unit === this.filterBy();
     });
+  }
+
+  openCreateIngredientDialog(): void {
+    // open dialog to create new ingredient
+    this.dialog.open(CreateIngredientDialogComponent);
   }
 }

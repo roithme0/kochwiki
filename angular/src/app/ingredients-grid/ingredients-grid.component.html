@@ -1,15 +1,18 @@
 <app-ingredients-grid-controls />
+
 <section class="grid">
   <app-ingredients-grid-header [fieldsToDisplay]="fieldsToDisplay" />
+
   @for (ingredient of displayedIngredients(); track ingredient.id){
   <app-ingredients-grid-row
     [ingredient]="ingredient"
     [fieldsToDisplay]="fieldsToDisplay"
   />
   }@empty {
-  <div>Keine Zutaten gefunden</div>
+  <p>Keine Zutaten gefunden</p>
   }
 </section>
+
 <div class="button-wrapper">
   <mat-icon
     aria-hidden="false"
