@@ -65,7 +65,7 @@ public class IngredientResource {
     @GET
     @Path("/verbose-names")
     public Map<String, String> getMetadata() {
-        log.info("GET: getting ingredient metadata ...");
+        log.info("GET: getting ingredient verbose names ...");
         return IngredientMetaData.getVerboseNames();
     }
 }
