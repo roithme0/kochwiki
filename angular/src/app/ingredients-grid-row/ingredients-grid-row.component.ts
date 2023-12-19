@@ -19,7 +19,7 @@ export class IngredientsGridRowComponent {
   // render ingredient data
   // render ingredient actions
   @Input() ingredient!: Ingredient;
-  @Input() fieldsToDisplay!: string[];
+  @Input() displayedFields!: string[];
 
   constructor(private dialog: MatDialog) {}
 

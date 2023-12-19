@@ -42,15 +42,25 @@ export class IngredientsGridComponent {
   );
   searchBy: WritableSignal<string> = signal('');
   filterBy: WritableSignal<string> = signal('all');
-  fieldsToDisplay: string[] = [
-    'name',
-    'brand',
-    'unitVerbose',
-    'kcal',
-    'carbs',
-    'protein',
-    'fat',
-  ];
+  windowInnerWidth: WritableSignal<number> = signal(window.innerWidth);
+  displayedFields: Signal<string[]> = computed(() => {
+    // adjust displayed fields based on window with
+    console.log(
+      'Ingredients-Grid: window inner width: ',
+      this.windowInnerWidth()
+    );
+    var displayedFields: string[] = ['name', 'brand'];
+    if (window.innerWidth > 600) {
+      displayedFields.push('kcal');
+    }
+    if (window.innerWidth > 700) {
+      displayedFields.push('unit');
+    }
+    if (window.innerWidth > 1200) {
+      displayedFields.push('carbs', 'protein', 'fat');
+    }
+    return displayedFields;
+  });
 
   constructor(
     private dialog: MatDialog,
@@ -69,11 +79,16 @@ export class IngredientsGridComponent {
     this.ingredientsGridControlsService.filterBy$.subscribe((filterBy) => {
       this.filterBy.set(filterBy);
     });
+    window.addEventListener('resize', this.windowEventListener);
   }
 
   ngOnInit(): void {
     // fetch all ingredients
     this.fetchIngredients();
+  }
+
+  ngOnDestroy(): void {
+    window.removeEventListener('resize', this.windowEventListener);
   }
 
   fetchIngredients(): void {
@@ -96,6 +111,10 @@ export class IngredientsGridComponent {
       this.searchIngredientsByNameOrBrand(displayedIngredients);
     displayedIngredients = this.filterIngredientsByUnit(displayedIngredients);
     return displayedIngredients;
+  }
+
+  windowEventListener(): void {
+    this.windowInnerWidth.set(window.innerWidth);
   }
 
   searchIngredientsByNameOrBrand(ingredients: Ingredient[]): Ingredient[] {
