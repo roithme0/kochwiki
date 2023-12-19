@@ -1,6 +1,11 @@
-@if(steps.length > 0){
+<header>
+  <h2>Zubereitung</h2>
+  <p>{{ recipe.servings }} Portionen</p>
+</header>
+
+@if(recipe.steps.length > 0){
 <div class="grid">
-  @for(step of steps; track step.index){
+  @for(step of recipe.steps; track step.index){
   <p>{{ step.index }}</p>
   <p>{{ step.description }}</p>
   }

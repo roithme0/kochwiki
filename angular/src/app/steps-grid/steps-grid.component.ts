@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Step } from '../interfaces/step';
+
+import { Recipe } from '../interfaces/recipe';
 
 @Component({
   selector: 'app-steps-grid',
@@ -10,5 +11,6 @@ import { Step } from '../interfaces/step';
   styleUrl: './steps-grid.component.css',
 })
 export class StepsGridComponent {
-  @Input() steps!: Step[];
+  // render steps as grid
+  @Input() recipe!: Recipe;
 }

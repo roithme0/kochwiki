@@ -6,9 +6,9 @@
 @if(recipe.amounts.length > 0){
 <div class="grid">
   @for(amount of recipe.amounts; track amount.index){
-  <!-- <p>{{ amount.ingredient.name }}</p> -->
+  <p>{{ amount.ingredient?.name }}</p>
   <p>{{ amount.amount }}</p>
-  <!-- <p>{{ amount.ingredient.unit }}</p> -->
+  <p>{{ amount.ingredient?.unit }}</p>
   }
 </div>
 }@else {

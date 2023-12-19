@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Recipe } from '../interfaces/recipe';
-import { RecipeService } from '../services/recipe/recipe.service';
 import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+
+import { Recipe } from '../interfaces/recipe';
+
+import { RecipeService } from '../services/recipe/recipe.service';
 import { PageHeaderService } from '../services/page-header/page-header.service';
+
 import { AmountsGridComponent } from '../amounts-grid/amounts-grid.component';
 import { StepsGridComponent } from '../steps-grid/steps-grid.component';
-import { MatDialog } from '@angular/material/dialog';
 import { EditRecipeDialogComponent } from '../dialogs/edit-recipe-dialog/edit-recipe-dialog.component';
 import { DeleteRecipeDialogComponent } from '../dialogs/delete-recipe-dialog/delete-recipe-dialog.component';
 
@@ -18,6 +21,10 @@ import { DeleteRecipeDialogComponent } from '../dialogs/delete-recipe-dialog/del
   styleUrl: './recipe.component.css',
 })
 export class RecipeComponent {
+  // set header values
+  // fetch recipe
+  // render recipe details
+  id!: number;
   recipe: Recipe | null = null;
 
   constructor(
@@ -26,15 +33,20 @@ export class RecipeComponent {
     private recipeService: RecipeService,
     private dialog: MatDialog
   ) {
-    const id: number | null = Number(this.route.snapshot.paramMap.get('id'));
-    console.debug('id: ', id);
+    // fetch recipe id from route
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    console.debug('id: ', this.id);
+  }
 
-    recipeService.recipes$.subscribe(() => {
-      this.fetchRecipe(id);
+  ngOnInit() {
+    // set headline
+    // track recipe changes
+    this.pageHeaderService.setBack('recipes');
+
+    this.recipeService.recipes$.subscribe(() => {
+      this.fetchRecipe(this.id);
     });
-    this.fetchRecipe(id);
-
-    pageHeaderService.setBack('recipes');
+    this.fetchRecipe(this.id);
   }
 
   fetchRecipe(id: number): void {
