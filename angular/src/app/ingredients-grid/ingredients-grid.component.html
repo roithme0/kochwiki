@@ -1,6 +1,6 @@
 <app-ingredients-grid-controls />
 
-<section class="grid">
+<section class="grid" [style.--fields]="displayedFields().length">
   <app-ingredients-grid-header [displayedFields]="displayedFields()" />
 
   @for (ingredient of displayedIngredients(); track ingredient.id){

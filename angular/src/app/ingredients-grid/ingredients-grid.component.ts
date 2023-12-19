@@ -45,18 +45,15 @@ export class IngredientsGridComponent {
   windowInnerWidth: WritableSignal<number> = signal(window.innerWidth);
   displayedFields: Signal<string[]> = computed(() => {
     // adjust displayed fields based on window with
-    console.log(
-      'Ingredients-Grid: window inner width: ',
-      this.windowInnerWidth()
-    );
+    console.debug('Ingredients-Grid: window width: ' + this.windowInnerWidth());
     var displayedFields: string[] = ['name', 'brand'];
-    if (window.innerWidth > 600) {
+    if (this.windowInnerWidth() > 600) {
       displayedFields.push('kcal');
     }
-    if (window.innerWidth > 700) {
+    if (this.windowInnerWidth() > 700) {
       displayedFields.push('unit');
     }
-    if (window.innerWidth > 1200) {
+    if (this.windowInnerWidth() > 1200) {
       displayedFields.push('carbs', 'protein', 'fat');
     }
     return displayedFields;
@@ -79,12 +76,13 @@ export class IngredientsGridComponent {
     this.ingredientsGridControlsService.filterBy$.subscribe((filterBy) => {
       this.filterBy.set(filterBy);
     });
-    window.addEventListener('resize', this.windowEventListener);
   }
 
   ngOnInit(): void {
     // fetch all ingredients
+    // track changes to window width
     this.fetchIngredients();
+    window.addEventListener('resize', this.windowEventListener);
   }
 
   ngOnDestroy(): void {
@@ -113,9 +111,9 @@ export class IngredientsGridComponent {
     return displayedIngredients;
   }
 
-  windowEventListener(): void {
+  windowEventListener = (): void => {
     this.windowInnerWidth.set(window.innerWidth);
-  }
+  };
 
   searchIngredientsByNameOrBrand(ingredients: Ingredient[]): Ingredient[] {
     console.debug(

@@ -6,9 +6,10 @@
 }
 
 .grid {
-  --columns: 9;
+  --fields: 2;
+  --columns: calc(var(--fields) + 2);
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(var(--fields), auto) min-content min-content;
   gap: 0.5rem;
 }
 
