@@ -1,5 +1,4 @@
 import { Amount } from './amount';
-import { IngredientMetaData } from './ingredient-meta-data';
 
 export interface Ingredient {
   [key: string]: any;
@@ -12,5 +11,4 @@ export interface Ingredient {
   protein: number | null;
   fat: number | null;
   amounts: Amount[];
-  metaData?: IngredientMetaData;
 }

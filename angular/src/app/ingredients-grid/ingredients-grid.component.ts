@@ -80,7 +80,7 @@ export class IngredientsGridComponent {
     // fetch all ingredients
     this.ingredientService.getAllIngredients().subscribe({
       next: (ingredients) => {
-        console.debug('Ingredients-Grid: ingredients fetched: ', ingredients);
+        console.debug('Ingredients-Grid: fetched ingredients: ', ingredients);
         this.ingredients.set(ingredients);
       },
       error: (error) => {

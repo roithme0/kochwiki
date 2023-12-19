@@ -1,6 +1,8 @@
 package org.acme;
 
 import java.util.List;
+import java.util.Map;
+
 import org.jboss.logging.Logger;
 
 import jakarta.transaction.Transactional;
@@ -58,5 +60,12 @@ public class IngredientResource {
         log.info("DELETE: deleting ingredient with id '" + id + "' ...");
         Ingredient entity = Ingredient.findById(id);
         entity.delete();
+    }
+
+    @GET
+    @Path("/verbose-names")
+    public Map<String, String> getMetadata() {
+        log.info("GET: getting ingredient metadata ...");
+        return IngredientMetaData.getVerboseNames();
     }
 }

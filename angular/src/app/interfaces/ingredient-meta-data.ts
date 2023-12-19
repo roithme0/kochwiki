@@ -1,3 +1,4 @@
+// deprecated
 export interface IngredientMetaData {
   verbose_names: VerboseNames;
   blank_fields: BlankFields;

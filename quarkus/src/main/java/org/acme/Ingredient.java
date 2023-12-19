@@ -1,5 +1,6 @@
 package org.acme;
 
+
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import jakarta.persistence.Column;
@@ -153,8 +154,7 @@ public class Ingredient extends PanacheEntity {
         amounts.add(newAmount);
     }
 
-    public Ingredient() {
-    }
+    public Ingredient() {}
 
     public Ingredient(
         String name,

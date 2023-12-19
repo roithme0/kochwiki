@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { IngredientService } from '../services/ingredient/ingredient.service';
-import { IngredientMetaData } from '../interfaces/ingredient-meta-data';
+import { VerboseNames } from '../interfaces/ingredient-meta-data';
 
 @Component({
   selector: 'app-ingredients-grid-header',
@@ -11,23 +12,31 @@ import { IngredientMetaData } from '../interfaces/ingredient-meta-data';
   styleUrl: './ingredients-grid-header.component.css',
 })
 export class IngredientsGridHeaderComponent {
-  metaData: IngredientMetaData | null = null;
+  // fetch ingredient verbose names
+  // render ingredient verbose names
   @Input() fieldsToDisplay!: string[];
+  verboseNames: VerboseNames | null = null;
 
   constructor(private ingredientService: IngredientService) {}
 
   ngOnInit(): void {
-    this.fetchMetaData();
+    this.fetchVerboseNames();
   }
 
-  fetchMetaData(): void {
-    this.ingredientService.fetchMetaData().subscribe({
-      next: (data) => {
-        console.debug('fetched ingredient meta data: ', data);
-        this.metaData = data;
+  fetchVerboseNames(): void {
+    this.ingredientService.fetchVerboseNames().subscribe({
+      next: (verboseNames) => {
+        console.debug(
+          'Ingredients-grid-header: fetched ingredient verbose names: ',
+          verboseNames
+        );
+        this.verboseNames = verboseNames;
       },
       error: (error) => {
-        console.error('failed to fetch ingredient meta data: ', error);
+        console.error(
+          'Ingredients-grid-header: failed to fetch ingredient verbose names: ',
+          error
+        );
       },
     });
   }
