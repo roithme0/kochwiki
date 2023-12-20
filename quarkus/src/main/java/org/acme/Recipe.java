@@ -5,12 +5,12 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
 import jakarta.persistence.CascadeType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.net.URL;
+
 import org.jboss.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -32,7 +32,7 @@ public class Recipe extends PanacheEntity {
     private String originName;
 
     @Column(nullable = true, length = 200)
-    private String originUrl;
+    private URL originUrl;
 
     // @Column(nullable = true)
     // private File original;
@@ -70,7 +70,7 @@ public class Recipe extends PanacheEntity {
         return originName;
     }
 
-    public String getOriginUrl(){
+    public URL getOriginUrl(){
         return originUrl;
     }
 
@@ -115,7 +115,7 @@ public class Recipe extends PanacheEntity {
         originName = newOriginName;
     }
 
-    public void setOriginUrl(String newOriginUrl){
+    public void setOriginUrl(URL newOriginUrl){
         originUrl = newOriginUrl;
     }
 
@@ -160,7 +160,7 @@ public class Recipe extends PanacheEntity {
         Integer servings, 
         Integer preptime, 
         String originName, 
-        String originUrl
+        URL originUrl
         // File original,
         // File image,
         ){
@@ -178,7 +178,7 @@ public class Recipe extends PanacheEntity {
         Integer servings, 
         Integer preptime, 
         String originName, 
-        String originUrl,
+        URL originUrl,
         // File original,
         // File image,
         List<Amount> amounts,
