@@ -184,6 +184,7 @@ export class RecipeEditFormComponent {
       this.fb.group({
         index: [amount?.index ?? null, Validators.required],
         ingredient: [amount?.ingredient ?? null, Validators.required],
+        ingredientId: [amount?.ingredientId ?? null, Validators.required],
         amount: [amount?.amount ?? null, Validators.required],
       })
     );
