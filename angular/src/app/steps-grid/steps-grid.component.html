@@ -1,6 +1,8 @@
 <header>
   <h2>Zubereitung</h2>
-  <p>{{ recipe.servings }} Portionen</p>
+  @if(recipe.preptime){
+  <p>{{ recipe.preptime }} min</p>
+  }
 </header>
 
 @if(recipe.steps.length > 0){
