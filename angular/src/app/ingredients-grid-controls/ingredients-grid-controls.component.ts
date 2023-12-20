@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IngredientsGridControlsService } from '../services/ingredients-grid-controls/ingredients-grid-controls.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+
+import { IngredientsGridControlsService } from '../services/ingredients-grid-controls/ingredients-grid-controls.service';
 import { IngredientService } from '../services/ingredient/ingredient.service';
-import { IngredientMetaData } from '../interfaces/ingredient-meta-data';
+
+import { UnitChoices } from '../interfaces/ingredient-meta-data';
 
 @Component({
   selector: 'app-ingredients-grid-controls',
@@ -26,7 +28,7 @@ import { IngredientMetaData } from '../interfaces/ingredient-meta-data';
   styleUrl: './ingredients-grid-controls.component.css',
 })
 export class IngredientsGridControlsComponent {
-  metaData: IngredientMetaData | null = null;
+  unitChoices: UnitChoices | null = null;
   searchBy: string = '';
   filterBy: string = 'all';
 
@@ -36,17 +38,27 @@ export class IngredientsGridControlsComponent {
   ) {}
 
   ngOnInit(): void {
-    this.ingredientService.fetchMetaData().subscribe({
-      next: (metaData) => {
-        console.debug('fetched ingredient meta data: ', metaData);
-        this.metaData = metaData;
-      },
-      error: (error) => {
-        console.error('failed to fetch ingredient meta data: ', error);
-      },
-    });
+    this.fetchUnitChoices();
 
     this.ingredientsGridControlsService.setSearchBy(this.searchBy);
     this.ingredientsGridControlsService.setFilterBy(this.filterBy);
+  }
+
+  fetchUnitChoices(): void {
+    this.ingredientService.fetchUnitChoices().subscribe({
+      next: (unitChoices) => {
+        console.debug('fetched ingredient unit choices: ', unitChoices);
+        this.unitChoices = unitChoices;
+      },
+      error: (error) => {
+        console.error('failed to fetch ingredient unit choices: ', error);
+      },
+    });
+  }
+
+  getKeys(obj: Object): string[] {
+    // return keys of object
+    // used in template as Object.keys() is not available
+    return Object.keys(obj);
   }
 }

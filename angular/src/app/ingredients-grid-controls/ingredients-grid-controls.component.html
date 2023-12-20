@@ -25,8 +25,8 @@
     (selectionChange)="ingredientsGridControlsService.setFilterBy($event.value)"
   >
     <mat-option value="all">Alle</mat-option>
-    @for (unit of metaData?.choices?.unit; track unit) {
-    <mat-option [value]="unit.label">{{ unit.label }}</mat-option>
-    }
+    @if(unitChoices){ @for (choice of getKeys(unitChoices); track choice) {
+    <mat-option [value]="choice">{{ unitChoices[choice] }}</mat-option>
+    }}
   </mat-select>
 </mat-form-field>
