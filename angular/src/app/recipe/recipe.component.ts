@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
 import { Recipe } from '../interfaces/recipe';
 
@@ -16,7 +17,12 @@ import { DeleteRecipeDialogComponent } from '../dialogs/delete-recipe-dialog/del
 @Component({
   selector: 'app-recipe',
   standalone: true,
-  imports: [CommonModule, AmountsGridComponent, StepsGridComponent],
+  imports: [
+    CommonModule,
+    AmountsGridComponent,
+    StepsGridComponent,
+    MatIconModule,
+  ],
   templateUrl: './recipe.component.html',
   styleUrl: './recipe.component.css',
 })

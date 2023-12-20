@@ -8,8 +8,22 @@
 <app-amounts-grid [recipe]="recipe" />
 <app-steps-grid [recipe]="recipe" />
 
-<button (click)="openEditRecipeDialog()">Rezept Bearbeiten</button>
-<button (click)="openDeleteRecipeDialog()">Rezept löschen</button>
+<div class="buttons-wrapper">
+  <mat-icon
+    aria-hidden="false"
+    aria-label="edit icon"
+    fontIcon="edit"
+    class="button edit"
+    (click)="openEditRecipeDialog()"
+  ></mat-icon>
+  <mat-icon
+    aria-hidden="false"
+    aria-label="delete icon"
+    fontIcon="delete"
+    class="button delete"
+    (click)="openDeleteRecipeDialog()"
+  ></mat-icon>
+</div>
 }@else {
 <p>Rezept nicht gefunden</p>
 }
