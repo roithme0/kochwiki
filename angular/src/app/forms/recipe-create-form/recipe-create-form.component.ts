@@ -8,12 +8,15 @@ import {
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RecipeService } from '../../services/recipe/recipe.service';
 import { MatDialog } from '@angular/material/dialog';
-import { Ingredient } from '../../interfaces/ingredient';
+
+import { RecipeService } from '../../services/recipe/recipe.service';
 import { IngredientService } from '../../services/ingredient/ingredient.service';
-import { CreateIngredientDialogComponent } from '../../dialogs/create-ingredient-dialog/create-ingredient-dialog.component';
+
+import { Ingredient } from '../../interfaces/ingredient';
 import { Recipe } from '../../interfaces/recipe';
+
+import { CreateIngredientDialogComponent } from '../../dialogs/create-ingredient-dialog/create-ingredient-dialog.component';
 
 @Component({
   selector: 'app-recipe-create-form',
@@ -23,6 +26,8 @@ import { Recipe } from '../../interfaces/recipe';
   styleUrl: './recipe-create-form.component.css',
 })
 export class RecipeCreateFormComponent {
+  // fetch all ingredients
+  // render form to create recipe
   @Output() success: EventEmitter<void> = new EventEmitter();
   ingredients: WritableSignal<Ingredient[]> = signal([]);
   recipeForm = this.fb.group({
@@ -43,6 +48,7 @@ export class RecipeCreateFormComponent {
     private ingredientService: IngredientService,
     private dialog: MatDialog
   ) {
+    // track changes to ingredients
     ingredientService.ingredients$.subscribe(() => {
       this.fetchIngredients();
     });
@@ -50,41 +56,6 @@ export class RecipeCreateFormComponent {
 
   ngOnInit(): void {
     this.fetchIngredients();
-  }
-
-  get amounts(): FormArray {
-    return this.recipeForm.get('amounts') as FormArray;
-  }
-
-  addAmount(): void {
-    this.amounts.push(
-      this.fb.group({
-        index: [<number | null>null, Validators.required],
-        ingredient: [<number | null>null, Validators.required],
-        amount: [<number | null>null, Validators.required],
-      })
-    );
-  }
-
-  removeAmount(index: number): void {
-    this.amounts.removeAt(index);
-  }
-
-  get steps(): FormArray {
-    return this.recipeForm.get('steps') as FormArray;
-  }
-
-  addStep(): void {
-    this.steps.push(
-      this.fb.group({
-        index: [<number | null>null, Validators.required],
-        description: ['', Validators.required],
-      })
-    );
-  }
-
-  removeStep(index: number): void {
-    this.steps.removeAt(index);
   }
 
   fetchIngredients(): void {
@@ -165,6 +136,41 @@ export class RecipeCreateFormComponent {
         console.error('failed to create recipe: ', error);
       },
     });
+  }
+
+  get amounts(): FormArray {
+    return this.recipeForm.get('amounts') as FormArray;
+  }
+
+  addAmount(): void {
+    this.amounts.push(
+      this.fb.group({
+        index: [<number | null>null, Validators.required],
+        ingredient: [<number | null>null, Validators.required],
+        amount: [<number | null>null, Validators.required],
+      })
+    );
+  }
+
+  removeAmount(index: number): void {
+    this.amounts.removeAt(index);
+  }
+
+  get steps(): FormArray {
+    return this.recipeForm.get('steps') as FormArray;
+  }
+
+  addStep(): void {
+    this.steps.push(
+      this.fb.group({
+        index: [<number | null>null, Validators.required],
+        description: ['', Validators.required],
+      })
+    );
+  }
+
+  removeStep(index: number): void {
+    this.steps.removeAt(index);
   }
 
   openCreateIngredientDialog(): void {

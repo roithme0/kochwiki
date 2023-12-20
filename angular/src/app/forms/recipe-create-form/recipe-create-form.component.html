@@ -43,6 +43,7 @@
       <input type="number" formControlName="servings" />
       <p>Portionen</p>
     </header>
+
     <div formArrayName="amounts">
       @for(amount of amounts.controls; track amount){
       <div class="amount-fields-wrapper" formGroupName="{{ $index }}">
@@ -64,9 +65,10 @@
           id="amount"
           formControlName="amount"
         />
-        <p>unit</p>
+        <p>g/ml/Stk.</p>
       </div>
       }
+
       <button (click)="addAmount()">Hinzufügen</button>
       <button (click)="openCreateIngredientDialog()">Zutat erstellen</button>
     </div>
@@ -78,6 +80,7 @@
       <input type="number" formControlName="preptime" />
       <p>min</p>
     </header>
+
     <div formArrayName="steps">
       @for(step of steps.controls; track step){
       <div formGroupName="{{ $index }}" class="step-fields-wrapper">
@@ -91,6 +94,7 @@
         />
       </div>
       }
+
       <button (click)="addStep()">Hinzufügen</button>
     </div>
   </section>

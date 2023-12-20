@@ -8,7 +8,7 @@
   @for(amount of recipe.amounts; track amount.index){
   <p>{{ amount.ingredient?.name }}</p>
   <p>{{ amount.amount }}</p>
-  <p>{{ amount.ingredient?.unit }}</p>
+  <p>{{ amount.ingredient?.unitVerbose }}</p>
   }
 </div>
 }@else {
