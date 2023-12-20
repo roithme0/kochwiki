@@ -93,45 +93,6 @@ export class RecipeEditFormComponent {
     });
   }
 
-  get amounts(): FormArray {
-    return this.recipeForm.get('amounts') as FormArray;
-  }
-
-  addAmount(amount?: Amount): void {
-    // add either empty or existing amount to form
-    this.amounts.push(
-      this.fb.group({
-        index: [amount?.index ?? null, Validators.required],
-        // ingredient: [amount?.ingredient ?? null, Validators.required],
-        amount: [amount?.amount ?? null, Validators.required],
-        recipe: [null],
-      })
-    );
-  }
-
-  removeAmount(index: number): void {
-    this.amounts.removeAt(index);
-  }
-
-  get steps(): FormArray {
-    return this.recipeForm.get('steps') as FormArray;
-  }
-
-  addStep(step?: Step): void {
-    // add either empty or existing step to form
-    this.steps.push(
-      this.fb.group({
-        index: [step?.index ?? null, Validators.required],
-        description: [step?.description ?? '', Validators.required],
-        recipe: [null],
-      })
-    );
-  }
-
-  removeStep(index: number): void {
-    this.steps.removeAt(index);
-  }
-
   onIngredientSelect(event: any, index: number): void {
     console.debug('ingredient selected: ', event);
     this.ingredientService.getIngredientById(event.target.value).subscribe({
@@ -198,6 +159,45 @@ export class RecipeEditFormComponent {
         console.error('failed to update recipe: ', error);
       },
     });
+  }
+
+  get amounts(): FormArray {
+    return this.recipeForm.get('amounts') as FormArray;
+  }
+
+  addAmount(amount?: Amount): void {
+    // add either empty or existing amount to form
+    this.amounts.push(
+      this.fb.group({
+        index: [amount?.index ?? null, Validators.required],
+        // ingredient: [amount?.ingredient ?? null, Validators.required],
+        amount: [amount?.amount ?? null, Validators.required],
+        recipe: [null],
+      })
+    );
+  }
+
+  removeAmount(index: number): void {
+    this.amounts.removeAt(index);
+  }
+
+  get steps(): FormArray {
+    return this.recipeForm.get('steps') as FormArray;
+  }
+
+  addStep(step?: Step): void {
+    // add either empty or existing step to form
+    this.steps.push(
+      this.fb.group({
+        index: [step?.index ?? null, Validators.required],
+        description: [step?.description ?? '', Validators.required],
+        recipe: [null],
+      })
+    );
+  }
+
+  removeStep(index: number): void {
+    this.steps.removeAt(index);
   }
 
   openCreateIngredientDialog(): void {
