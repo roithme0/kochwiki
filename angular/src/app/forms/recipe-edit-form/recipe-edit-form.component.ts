@@ -54,16 +54,16 @@ export class RecipeEditFormComponent {
     private dialog: MatDialog
   ) {
     ingredientService.ingredients$.subscribe(() => {
-      this.fetchIngredients();
+      this.fetchAllIngredients();
     });
   }
 
   ngOnInit(): void {
-    this.fetchIngredients();
+    this.fetchAllIngredients();
     this.fetchRecipe();
   }
 
-  fetchIngredients(): void {
+  fetchAllIngredients(): void {
     this.ingredientService.getAllIngredients().subscribe({
       next: (ingredients) => {
         console.debug('fetched ingredients: ', ingredients);
@@ -75,17 +75,31 @@ export class RecipeEditFormComponent {
     });
   }
 
+  fetchIngredientsOfRecipe(recipe: Recipe): void {
+    for (let index = 0; index < recipe.amounts.length; index++) {
+      const amount = recipe.amounts[index];
+      this.ingredientService.getIngredientById(amount.ingredientId).subscribe({
+        next: (ingredient) => {
+          console.debug('fetched ingredient: ', ingredient);
+          amount.ingredient = ingredient;
+          this.addAmount(amount);
+        },
+        error: (error) => {
+          console.error('failed to fetch ingredient: ', error);
+        },
+      });
+    }
+  }
+
   fetchRecipe(): void {
     this.recipeService.getRecipeById(this.id).subscribe({
       next: (recipe) => {
         console.debug('fetched recipe: ', recipe);
         this.recipeForm.patchValue(recipe);
-        recipe.amounts.forEach((amount) => {
-          this.addAmount(amount);
-        });
         recipe.steps.forEach((step) => {
           this.addStep(step);
         });
+        this.fetchIngredientsOfRecipe(recipe);
       },
       error: (error) => {
         console.error('failed to fetch recipe: ', error);
@@ -170,9 +184,8 @@ export class RecipeEditFormComponent {
     this.amounts.push(
       this.fb.group({
         index: [amount?.index ?? null, Validators.required],
-        // ingredient: [amount?.ingredient ?? null, Validators.required],
+        ingredient: [amount?.ingredient ?? null, Validators.required],
         amount: [amount?.amount ?? null, Validators.required],
-        recipe: [null],
       })
     );
   }
@@ -191,7 +204,6 @@ export class RecipeEditFormComponent {
       this.fb.group({
         index: [step?.index ?? null, Validators.required],
         description: [step?.description ?? '', Validators.required],
-        recipe: [null],
       })
     );
   }
