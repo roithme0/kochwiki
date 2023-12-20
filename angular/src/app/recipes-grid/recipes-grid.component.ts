@@ -8,6 +8,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
 import { RecipesGridControlsComponent } from '../recipes-grid-controls/recipes-grid-controls.component';
 import { RecipesGridElementComponent } from '../recipes-grid-element/recipes-grid-element.component';
@@ -25,6 +26,7 @@ import { RecipeService } from '../services/recipe/recipe.service';
     RecipesGridControlsComponent,
     RecipesGridElementComponent,
     CreateRecipeDialogComponent,
+    MatIconModule,
   ],
   templateUrl: './recipes-grid.component.html',
   styleUrl: './recipes-grid.component.css',

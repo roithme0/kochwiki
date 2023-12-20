@@ -1,6 +1,6 @@
 <app-recipes-grid-controls />
 
-<section class="recipes-grid">
+<section class="grid">
   @for(recipe of displayedRecipes(); track recipe.id){
   <app-recipes-grid-element
     [recipe]="recipe"
@@ -10,4 +10,12 @@
   }
 </section>
 
-<button (click)="openCreateRecipeDialog()">Rezept erstellen</button>
+<div class="button-wrapper">
+  <mat-icon
+    aria-hidden="false"
+    aria-label="add icon"
+    fontIcon="add"
+    class="button"
+    (click)="openCreateRecipeDialog()"
+  ></mat-icon>
+</div>
