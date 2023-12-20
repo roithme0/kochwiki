@@ -53,4 +53,13 @@ public class RecipeResource {
         entity.setSteps(recipe.getSteps());
         return entity;
     }
+
+    @DELETE
+    @Transactional
+    @Path("/{id}")
+    public void delete(@PathParam("id") Long id){
+        Recipe entity = Recipe.findById(id);
+        log.info("DELETE: deleting recipe '" + entity.getName() + "' ...");
+        entity.delete();
+    }
 }

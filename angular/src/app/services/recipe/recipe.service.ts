@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { Recipe } from '../../interfaces/recipe';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { RecipeMetaData } from '../../interfaces/recipe-meta-data';
 
-const backendUrlDjango: string = 'http://localhost:8000';
 const backendUrl: string = 'http://localhost:8080';
 
 @Injectable({
@@ -58,11 +56,6 @@ export class RecipeService {
 
   deleteRecipe(id: number): Observable<number> {
     console.debug('DELETE: deleting recipe by id: ' + id.toString());
-    return this.http.delete<number>(backendUrlDjango + '/recipes/delete/' + id);
-  }
-
-  fetchMetaData(): Observable<RecipeMetaData> {
-    console.debug('GET: fetching recipe meta data');
-    return this.http.get<any>(backendUrlDjango + '/recipes/meta');
+    return this.http.delete<number>(backendUrl + '/recipes/' + id);
   }
 }
