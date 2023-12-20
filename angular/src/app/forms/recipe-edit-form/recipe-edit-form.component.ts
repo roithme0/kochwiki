@@ -9,14 +9,17 @@ import {
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RecipeService } from '../../services/recipe/recipe.service';
 import { MatDialog } from '@angular/material/dialog';
-import { Ingredient } from '../../interfaces/ingredient';
+
+import { RecipeService } from '../../services/recipe/recipe.service';
 import { IngredientService } from '../../services/ingredient/ingredient.service';
-import { CreateIngredientDialogComponent } from '../../dialogs/create-ingredient-dialog/create-ingredient-dialog.component';
-import { Recipe } from '../../interfaces/recipe';
+
+import { Ingredient } from '../../interfaces/ingredient';
 import { Step } from '../../interfaces/step';
+import { Recipe } from '../../interfaces/recipe';
 import { Amount } from '../../interfaces/amount';
+
+import { CreateIngredientDialogComponent } from '../../dialogs/create-ingredient-dialog/create-ingredient-dialog.component';
 
 @Component({
   selector: 'app-recipe-edit-form',
@@ -26,6 +29,8 @@ import { Amount } from '../../interfaces/amount';
   styleUrl: './recipe-edit-form.component.css',
 })
 export class RecipeEditFormComponent {
+  // fetch ingredient associated with recipe
+  // render form with values to edit recipe
   @Input() id!: number;
   @Output() success: EventEmitter<void> = new EventEmitter();
   ingredients: WritableSignal<Ingredient[]> = signal([]);
