@@ -128,7 +128,7 @@ public class Recipe extends PanacheEntity {
     // }
 
     public void setAmounts(List<Amount> newAmounts){
-        amounts = new ArrayList<>();
+        amounts.clear();
         for(Amount amount : newAmounts){
             addAmount(amount);
         }
@@ -140,7 +140,7 @@ public class Recipe extends PanacheEntity {
     }
 
     public void setSteps(List<Step> newSteps){
-        steps = new ArrayList<>();
+        steps.clear();
         for(Step step : newSteps){
             this.addStep(step);
         }
