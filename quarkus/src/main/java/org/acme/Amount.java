@@ -6,11 +6,17 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.persistence.Column;
 
 import org.jboss.logging.Logger;
 
 @Entity
+@Table(uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"index", "recipe_id"}),
+    @UniqueConstraint(columnNames = {"ingredient_id", "recipe_id"})
+})
 public class Amount extends PanacheEntity {
     private static final Logger log = Logger.getLogger(Amount.class);
     

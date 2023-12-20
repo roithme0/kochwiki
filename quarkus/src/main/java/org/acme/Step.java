@@ -6,12 +6,17 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 import org.jboss.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
+@Table(uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"index", "recipe_id"})
+})
 public class Step extends PanacheEntity {
     private static final Logger log = Logger.getLogger(Step.class);
 
