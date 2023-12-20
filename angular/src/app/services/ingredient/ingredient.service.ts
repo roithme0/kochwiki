@@ -57,12 +57,14 @@ export class IngredientService {
   fetchVerboseNames(): Observable<VerboseNames> {
     console.debug('GET: fetching ingredient verbose names ...');
     return this.http.get<VerboseNames>(
-      backendUrl + '/ingredients/verbose-names'
+      backendUrl + '/ingredients-meta-data/verbose-names'
     );
   }
 
   fetchUnitChoices(): Observable<UnitChoices> {
     console.debug('GET: fetching ingredient unit choices ...');
-    return this.http.get<UnitChoices>(backendUrl + '/ingredients/unit-choices');
+    return this.http.get<UnitChoices>(
+      backendUrl + '/ingredients-meta-data/unit-choices'
+    );
   }
 }
