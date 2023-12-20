@@ -40,8 +40,8 @@ public class RecipeResource {
     @Transactional
     @Path("/{id}")
     public Recipe update(@PathParam("id") Long id, Recipe recipe){
-        log.info("PUT: updating recipe '" + recipe.getName() + "' ...");
         Recipe entity = Recipe.findById(id);
+        log.info("PUT: updating recipe '" + entity.getName() + "' ...");
         entity.setName(recipe.getName());
         entity.setServings(recipe.getServings());
         entity.setPreptime(recipe.getPreptime());

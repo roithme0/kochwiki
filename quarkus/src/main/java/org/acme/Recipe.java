@@ -128,7 +128,10 @@ public class Recipe extends PanacheEntity {
     // }
 
     public void setAmounts(List<Amount> newAmounts){
-        amounts.clear();
+        List<Amount> oldAmounts = new ArrayList<>(amounts);
+        for(Amount amount : oldAmounts){
+            this.removeAmount(amount);
+        }
         for(Amount amount : newAmounts){
             addAmount(amount);
         }
@@ -139,8 +142,16 @@ public class Recipe extends PanacheEntity {
         newAmount.setRecipe(this);
     }
 
+    public void removeAmount(Amount amount){
+        amounts.remove(amount);
+        amount.setRecipe(null);
+    }
+
     public void setSteps(List<Step> newSteps){
-        steps.clear();
+        List<Step> oldSteps = new ArrayList<>(steps);
+        for(Step step : oldSteps){
+            this.removeStep(step);
+        }
         for(Step step : newSteps){
             this.addStep(step);
         }
@@ -149,6 +160,11 @@ public class Recipe extends PanacheEntity {
     public void addStep(Step newStep){
         steps.add(newStep);
         newStep.setRecipe(this);
+    }
+
+    public void removeStep(Step step){
+        steps.remove(step);
+        step.setRecipe(null);
     }
 
     public Recipe(){

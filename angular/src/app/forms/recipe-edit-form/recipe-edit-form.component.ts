@@ -35,7 +35,6 @@ export class RecipeEditFormComponent {
   @Output() success: EventEmitter<void> = new EventEmitter();
   ingredients: WritableSignal<Ingredient[]> = signal([]);
   recipeForm = this.fb.group({
-    id: [<number | null>null],
     name: ['', Validators.required],
     // image: [<File | null>null],
     originName: [''],
@@ -163,7 +162,7 @@ export class RecipeEditFormComponent {
     console.debug('submitting edit recipe form: ', this.recipeForm.value);
     const recipe = this.recipeForm.value as Recipe;
 
-    this.recipeService.putRecipe(recipe).subscribe({
+    this.recipeService.putRecipe(this.id, recipe).subscribe({
       next: (recipe) => {
         console.debug('recipe updated: ', recipe);
         this.success.emit();

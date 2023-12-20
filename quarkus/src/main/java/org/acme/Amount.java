@@ -13,10 +13,11 @@ import jakarta.persistence.Column;
 import org.jboss.logging.Logger;
 
 @Entity
-@Table(uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"index", "recipe_id"}),
-    @UniqueConstraint(columnNames = {"ingredient_id", "recipe_id"})
-})
+// unique constraints prevented updating recipes
+// @Table(uniqueConstraints = {
+//     @UniqueConstraint(columnNames = {"index", "recipe_id"}),
+//     @UniqueConstraint(columnNames = {"ingredient_id", "recipe_id"})
+// })
 public class Amount extends PanacheEntity {
     private static final Logger log = Logger.getLogger(Amount.class);
     
@@ -27,7 +28,7 @@ public class Amount extends PanacheEntity {
     private Float amount;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn
     @JsonBackReference("amount-ingredient")
     private Ingredient ingredient;
 

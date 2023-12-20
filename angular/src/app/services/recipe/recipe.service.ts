@@ -38,9 +38,9 @@ export class RecipeService {
   //   );
   // }
 
-  putRecipe(recipe: Recipe): Observable<Recipe> {
+  putRecipe(id: number, recipe: Recipe): Observable<Recipe> {
     console.debug('PUT: putting recipe: ', recipe);
-    return this.http.put<Recipe>(backendUrl + '/recipes/' + recipe.id, recipe);
+    return this.http.put<Recipe>(backendUrl + '/recipes/' + id, recipe);
   }
 
   // postRecipe(formData: FormData): Observable<Recipe> {

@@ -14,9 +14,10 @@ import org.jboss.logging.Logger;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
-@Table(uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"index", "recipe_id"})
-})
+// unique constraints prevented updating recipes
+// @Table(uniqueConstraints = {
+//     @UniqueConstraint(columnNames = {"index", "recipe_id"})
+// })
 public class Step extends PanacheEntity {
     private static final Logger log = Logger.getLogger(Step.class);
 
@@ -27,7 +28,7 @@ public class Step extends PanacheEntity {
     private String description;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "recipe_id", nullable = false)
     @JsonBackReference("recipe-steps")
     private Recipe recipe;
 
