@@ -6,11 +6,9 @@ import { Observable, Subject } from 'rxjs';
 import { Ingredient } from '../../interfaces/ingredient';
 import {
   VerboseNames,
-  IngredientMetaData,
   UnitChoices,
 } from '../../interfaces/ingredient-meta-data';
 
-const backendUrlDjango: string = 'http://localhost:8000';
 const backendUrl: string = 'http://localhost:8080';
 
 @Injectable({
@@ -54,12 +52,6 @@ export class IngredientService {
   deleteIngredient(id: number): Observable<number> {
     console.debug('DELETE: deleting ingredient by id "' + id + '" ...');
     return this.http.delete<number>(backendUrl + '/ingredients/' + id);
-  }
-
-  // deprecated
-  fetchMetaData(): Observable<IngredientMetaData> {
-    console.debug('GET: fetching ingredient meta data ...');
-    return this.http.get<any>(backendUrlDjango + '/ingredients/meta');
   }
 
   fetchVerboseNames(): Observable<VerboseNames> {
