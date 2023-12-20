@@ -37,9 +37,13 @@ export class IngredientsGridControlsComponent {
   unitChoices: UnitChoices | null = null;
   searchBy: string = '';
   filterBy: string = 'all';
+
   namesAndBrands: string[] = ['Zutat 1', 'Zutat 2'];
+  units: string[] = ['all', 'G', 'ML', 'PIECE'];
   filteredNamesAndBrands: Observable<string[]> = new Observable();
+  filteredUnits: Observable<string[]> = new Observable();
   searchControl: FormControl = new FormControl();
+  filterControl: FormControl = new FormControl('all');
 
   constructor(
     public ingredientsGridControlsService: IngredientsGridControlsService,
@@ -48,6 +52,8 @@ export class IngredientsGridControlsComponent {
 
   ngOnInit(): void {
     this.filterNamesAndBrands();
+    this.filterUnits();
+
     this.fetchUnitChoices();
 
     this.ingredientsGridControlsService.setSearchBy(this.searchBy);
@@ -74,6 +80,13 @@ export class IngredientsGridControlsComponent {
           nameOrBrand.includes(value || '')
         )
       )
+    );
+  }
+
+  filterUnits(): void {
+    this.filteredUnits = this.filterControl.valueChanges.pipe(
+      startWith(''),
+      map((value) => this.units.filter((unit) => unit.includes(value || '')))
     );
   }
 

@@ -4,16 +4,30 @@
     placeholder="Name oder Marke suchen ..."
     class="search-field"
     [formControl]="searchControl"
-    [matAutocomplete]="auto"
+    [matAutocomplete]="search"
     (ngModelChange)="ingredientsGridControlsService.setSearchBy($event)"
   />
-  <mat-autocomplete #auto="matAutocomplete">
+  <mat-autocomplete #search="matAutocomplete">
     @for (nameOrBrand of filteredNamesAndBrands | async; track nameOrBrand) {
     <mat-option [value]="nameOrBrand">{{ nameOrBrand }}</mat-option>
     }
   </mat-autocomplete>
 
-  <mat-form-field class="filter-field">
+  <input
+    type="text"
+    placeholder="Name oder Marke suchen ..."
+    class="filter-field"
+    [formControl]="filterControl"
+    [matAutocomplete]="filter"
+    (ngModelChange)="ingredientsGridControlsService.setFilterBy($event)"
+  />
+  <mat-autocomplete #filter="matAutocomplete">
+    @for (unit of filteredUnits | async; track unit) {
+    <mat-option [value]="unit">{{ unit }}</mat-option>
+    }
+  </mat-autocomplete>
+
+  <!-- <mat-form-field class="filter-field">
     <mat-label>Einheit filtern</mat-label>
     <mat-select
       [(value)]="filterBy"
@@ -26,5 +40,5 @@
       <mat-option [value]="choice">{{ unitChoices[choice] }}</mat-option>
       }}
     </mat-select>
-  </mat-form-field>
+  </mat-form-field> -->
 </form>
