@@ -1,8 +1,8 @@
 // deprecated
 export interface IngredientMetaData {
   verbose_names: VerboseNames;
-  blank_fields: BlankFields;
-  max_length: MaxLength;
+  // blank_fields: BlankFields;
+  // max_length: MaxLength;
   choices: Choices;
 }
 
@@ -17,21 +17,25 @@ export interface VerboseNames {
   fat: string;
 }
 
-export interface BlankFields {
-  name: boolean;
-  brand: boolean;
-  unit: boolean;
-  kcal: boolean;
-  carbs: boolean;
-  protein: boolean;
-  fat: boolean;
+export interface UnitChoices {
+  [key: string]: string;
 }
 
-export interface MaxLength {
-  name: number;
-  brand: number;
-  unit: number;
-}
+// export interface BlankFields {
+//   name: boolean;
+//   brand: boolean;
+//   unit: boolean;
+//   kcal: boolean;
+//   carbs: boolean;
+//   protein: boolean;
+//   fat: boolean;
+// }
+
+// export interface MaxLength {
+//   name: number;
+//   brand: number;
+//   unit: number;
+// }
 
 export interface Choices {
   unit: Choice[];

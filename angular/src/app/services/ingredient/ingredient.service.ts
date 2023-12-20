@@ -7,6 +7,7 @@ import { Ingredient } from '../../interfaces/ingredient';
 import {
   VerboseNames,
   IngredientMetaData,
+  UnitChoices,
 } from '../../interfaces/ingredient-meta-data';
 
 const backendUrlDjango: string = 'http://localhost:8000';
@@ -66,5 +67,10 @@ export class IngredientService {
     return this.http.get<VerboseNames>(
       backendUrl + '/ingredients/verbose-names'
     );
+  }
+
+  fetchUnitChoices(): Observable<UnitChoices> {
+    console.debug('GET: fetching ingredient unit choices ...');
+    return this.http.get<UnitChoices>(backendUrl + '/ingredients/unit-choices');
   }
 }

@@ -1,7 +1,6 @@
 package org.acme;
 
 import java.util.Map;
-
 import java.util.HashMap;
 
 public class IngredientMetaData {
@@ -17,6 +16,14 @@ public class IngredientMetaData {
         verboseNames.put("protein", "Proteine");
         verboseNames.put("fat", "Fett");
         return verboseNames;
+    }
+
+    public static Map<String, String> getUnitChoices() {
+        Map<String, String> unitChoices = new HashMap<>();
+        unitChoices.put("G", "g");
+        unitChoices.put("ML", "ml");
+        unitChoices.put("PIECE", "Stk.");
+        return unitChoices;
     }
 
     public IngredientMetaData() {}
