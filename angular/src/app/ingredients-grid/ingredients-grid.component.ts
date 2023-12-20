@@ -92,11 +92,11 @@ export class IngredientsGridComponent {
     // fetch all ingredients
     this.ingredientService.getAllIngredients().subscribe({
       next: (ingredients) => {
-        console.debug('Ingredients-Grid: fetched ingredients: ', ingredients);
+        console.debug('fetched ingredients: ', ingredients);
         this.ingredients.set(ingredients);
       },
       error: (error) => {
-        console.error('Ingredients-Grid: failed to fetch ingredients: ', error);
+        console.error('failed to fetch ingredients: ', error);
       },
     });
   }
@@ -115,9 +115,7 @@ export class IngredientsGridComponent {
   };
 
   searchIngredientsByNameOrBrand(ingredients: Ingredient[]): Ingredient[] {
-    console.debug(
-      'Ingredients-Grid: searching ingredients by: ' + this.searchBy()
-    );
+    console.debug('searching ingredients by: ' + this.searchBy());
     if (this.searchBy() === '') {
       return ingredients;
     }
@@ -130,9 +128,7 @@ export class IngredientsGridComponent {
   }
 
   filterIngredientsByUnit(ingredients: Ingredient[]): Ingredient[] {
-    console.debug(
-      'Ingredients-Grid: filtering ingredients by: ' + this.filterBy()
-    );
+    console.debug('filtering ingredients by: ' + this.filterBy());
     if (this.filterBy() === 'all') {
       return ingredients;
     }

@@ -26,17 +26,11 @@ export class IngredientsGridHeaderComponent {
   fetchVerboseNames(): void {
     this.ingredientService.fetchVerboseNames().subscribe({
       next: (verboseNames) => {
-        console.debug(
-          'Ingredients-grid-header: fetched ingredient verbose names: ',
-          verboseNames
-        );
+        console.debug('fetched ingredient verbose names: ', verboseNames);
         this.verboseNames = verboseNames;
       },
       error: (error) => {
-        console.error(
-          'Ingredients-grid-header: failed to fetch ingredient verbose names: ',
-          error
-        );
+        console.error('failed to fetch ingredient verbose names: ', error);
       },
     });
   }
