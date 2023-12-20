@@ -100,6 +100,9 @@ public class Recipe extends PanacheEntity {
     }
 
     public void setPreptime(Integer newPreptime){
+        if(preptime == null){ // allow null values
+            return;
+        }
         if(newPreptime < 0 || newPreptime > 999){
             throw new IllegalArgumentException("Wert muss zwischen 0 und 999 liegen.");
         }
