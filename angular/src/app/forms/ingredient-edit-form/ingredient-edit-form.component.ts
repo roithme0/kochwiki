@@ -2,9 +2,12 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+
 import { Ingredient } from '../../interfaces/ingredient';
+import { VerboseNames } from '../../interfaces/ingredient-meta-data';
+import { UnitChoices } from '../../interfaces/ingredient-meta-data';
+
 import { IngredientService } from '../../services/ingredient/ingredient.service';
-import { IngredientMetaData } from '../../interfaces/ingredient-meta-data';
 
 @Component({
   selector: 'app-ingredient-edit-form',
@@ -14,9 +17,12 @@ import { IngredientMetaData } from '../../interfaces/ingredient-meta-data';
   styleUrl: './ingredient-edit-form.component.css',
 })
 export class IngredientEditFormComponent {
+  // fetch ingredient meta data
+  // render form to edit ingredient
   @Input() id!: number;
   @Output() success: EventEmitter<void> = new EventEmitter();
-  metaData: IngredientMetaData | null = null;
+  verboseNames: VerboseNames | null = null;
+  unitChoices: UnitChoices | null = null;
   ingredientForm = this.fb.group({
     id: [<number | null>null],
     name: ['', Validators.required],
@@ -34,7 +40,8 @@ export class IngredientEditFormComponent {
   ) {}
 
   ngOnInit(): void {
-    this.fetchMetaData();
+    this.fetchVerboseNames();
+    this.fetchUnitChoices();
 
     this.ingredientService.getIngredientById(this.id).subscribe({
       next: (ingredient) => {
@@ -62,15 +69,33 @@ export class IngredientEditFormComponent {
     });
   }
 
-  fetchMetaData(): void {
-    this.ingredientService.fetchMetaData().subscribe({
-      next: (metaData) => {
-        console.debug('fetched ingredient meta data: ', metaData);
-        this.metaData = metaData;
+  fetchVerboseNames(): void {
+    this.ingredientService.fetchVerboseNames().subscribe({
+      next: (verboseNames) => {
+        console.debug('fetched ingredient verbose names: ', verboseNames);
+        this.verboseNames = verboseNames;
       },
       error: (error) => {
-        console.error('failed to fetch ingredient meta data: ', error);
+        console.error('failed to fetch ingredient verbose names: ', error);
       },
     });
+  }
+
+  fetchUnitChoices(): void {
+    this.ingredientService.fetchUnitChoices().subscribe({
+      next: (unitChoices) => {
+        console.debug('fetched ingredient unit choices: ', unitChoices);
+        this.unitChoices = unitChoices;
+      },
+      error: (error) => {
+        console.error('failed to fetch ingredient unit choices: ', error);
+      },
+    });
+  }
+
+  getKeys(obj: Object): string[] {
+    // return keys of object
+    // used in template as Object.keys() is not available
+    return Object.keys(obj);
   }
 }
