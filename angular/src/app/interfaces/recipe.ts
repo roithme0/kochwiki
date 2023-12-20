@@ -1,6 +1,5 @@
 import { Amount } from './amount';
 import { Step } from './step';
-import { RecipeMetaData } from './recipe-meta-data';
 
 export interface Recipe {
   id: number | null;
@@ -13,5 +12,4 @@ export interface Recipe {
   amounts: Amount[];
   preptime: number | null;
   steps: Step[];
-  meta_data?: RecipeMetaData;
 }
