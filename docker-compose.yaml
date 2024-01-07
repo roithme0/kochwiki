@@ -5,21 +5,25 @@ services:
     image: postgres:16
     restart: unless-stopped
     environment:
+      POSTGRES_DB: kochwiki
+      POSTGRES_USER: user
       POSTGRES_PASSWORD: password
+    ports:
+      - 5432:5432
 
   adminer:
     image: adminer
-    restart: always
+    restart: unless-stopped
     ports:
       - 9090:8080
 
-  # quarkus:
-  #   build:
-  #     context: quarkus
-  #     dockerfile: src/main/docker/Dockerfile.jvm
-  #   image: quarkus/quarkus
-  #   ports:
-  #     - 8080:8080
+  quarkus-app:
+    build:
+      context: quarkus
+      dockerfile: src/main/docker/Dockerfile.jvm
+    image: quarkus/quarkus
+    ports:
+      - 8080:8080
 
   # angular:
   #   build:
@@ -30,6 +34,5 @@ services:
   #   volumes:
   #     - ./angular:/angular
   #     - /angular/node_modules
-
-volumes:
-  postgres-data:
+# volumes:
+#   postgres-data:
