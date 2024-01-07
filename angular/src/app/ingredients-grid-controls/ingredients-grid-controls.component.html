@@ -15,7 +15,7 @@
 
   <input
     type="text"
-    placeholder="Name oder Marke suchen ..."
+  placeholder="Name oder Marke suchen ..."
     class="filter-field"
     [formControl]="filterControl"
     [matAutocomplete]="filter"
@@ -26,19 +26,4 @@
     <mat-option [value]="unit">{{ unit }}</mat-option>
     }
   </mat-autocomplete>
-
-  <!-- <mat-form-field class="filter-field">
-    <mat-label>Einheit filtern</mat-label>
-    <mat-select
-      [(value)]="filterBy"
-      (selectionChange)="
-        ingredientsGridControlsService.setFilterBy($event.value)
-      "
-    >
-      <mat-option value="all">Alle</mat-option>
-      @if(unitChoices){ @for (choice of getKeys(unitChoices); track choice) {
-      <mat-option [value]="choice">{{ unitChoices[choice] }}</mat-option>
-      }}
-    </mat-select>
-  </mat-form-field> -->
 </form>

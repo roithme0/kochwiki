@@ -1,0 +1,35 @@
+version: "3.1"
+
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: password
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 9090:8080
+
+  # quarkus:
+  #   build:
+  #     context: quarkus
+  #     dockerfile: src/main/docker/Dockerfile.jvm
+  #   image: quarkus/quarkus
+  #   ports:
+  #     - 8080:8080
+
+  # angular:
+  #   build:
+  #     context: angular
+  #     target: builder
+  #   ports:
+  #     - 4200:4200
+  #   volumes:
+  #     - ./angular:/angular
+  #     - /angular/node_modules
+
+volumes:
+  postgres-data:
