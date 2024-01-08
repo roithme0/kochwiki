@@ -1,31 +1,20 @@
-# syntax=docker/dockerfile:1.4
+# Srage 1: Compile and Build angular codebase
 
-FROM --platform=$BUILDPLATFORM node:20-bullseye-slim as builder
+# Use official node image as the base image
+FROM node:20 as build
 
-RUN mkdir /angular
-WORKDIR /angular
+# Add the source code to app
+WORKDIR /usr/local/app
+COPY ./ /usr/local/app/
 
-RUN npm install -g @angular/cli@13
+RUN npm install
+RUN npm run build
 
-COPY package.json package-lock.json ./
-RUN npm ci
+# Stage 2: Serve app with nginx server
 
-COPY . .
-CMD ["ng", "serve", "--host", "0.0.0.0"]
+FROM nginx:1.25
 
-FROM builder as dev-envs
+# Copy the build output to replace the default nginx contents.
+COPY --from=build /usr/local/app/dist/angular/browser /usr/share/nginx/html
 
-RUN <<EOF
-apt-get update
-apt-get install -y --no-install-recommends git
-EOF
-
-RUN <<EOF
-useradd -s /bin/bash -m vscode
-groupadd docker
-usermod -aG docker vscode
-EOF
-# install Docker tools (cli, buildx, compose)
-COPY --from=gloursdocker/docker / /
-
-CMD ["ng", "serve", "--host", "0.0.0.0"]
+EXPOSE 80

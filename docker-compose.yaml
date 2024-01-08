@@ -21,7 +21,7 @@ services:
 
   quarkus:
     build:
-      context: quarkus
+      context: ./quarkus
       dockerfile: src/main/docker/Dockerfile.jvm
     image: quarkus/quarkus
     ports:
@@ -29,15 +29,10 @@ services:
 
   angular:
     build:
-      context: angular
-      target: builder
+      context: ./angular
+      dockerfile: Dockerfile
     ports:
-      - 4200:4200
-    volumes:
-      - angular-data:/angular
-      - node-modules:/angular/node_modules
+      - 8000:80
 
 volumes:
   postgres-data:
-  angular-data:
-  node-modules:
