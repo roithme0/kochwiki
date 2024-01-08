@@ -9,7 +9,8 @@ import {
   UnitChoices,
 } from '../../interfaces/ingredient-meta-data';
 
-const backendUrl: string = 'http://localhost:8080';
+// const backendUrl: string = 'http://localhost:8080';
+const backendUrl: string = 'http://192.168.178.155:8888';
 
 @Injectable({
   providedIn: 'root',

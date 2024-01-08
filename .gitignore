@@ -15,5 +15,8 @@ media/
 logs/
 *.log
 
+# Docker
+*.tar
+
 # Other
 .vscode/

@@ -3,7 +3,8 @@ import { Recipe } from '../../interfaces/recipe';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-const backendUrl: string = 'http://localhost:8080';
+// const backendUrl: string = 'http://localhost:8080';
+const backendUrl: string = 'http://192.168.178.155:8888';
 
 @Injectable({
   providedIn: 'root',

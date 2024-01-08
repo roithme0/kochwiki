@@ -9,30 +9,37 @@ services:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
     ports:
-      - 5432:5432
+      - 5433:5432
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - kochwiki-postgres-data:/var/lib/postgresql/data
 
   adminer:
     image: adminer
     restart: unless-stopped
     ports:
       - 9090:8080
+    depends_on:
+      - db
 
-  quarkus:
+  quarkus-app:
     build:
       context: ./quarkus
       dockerfile: src/main/docker/Dockerfile.jvm
-    image: quarkus/quarkus
+    image: kochwiki-quarkus-app
     ports:
-      - 8080:8080
+      - 8888:8080
+    depends_on:
+      - db
 
-  angular:
+  angular-app:
     build:
       context: ./angular
       dockerfile: Dockerfile
+    image: kochwiki-angular-app
     ports:
       - 8000:80
+    depends_on:
+      - quarkus-app
 
 volumes:
-  postgres-data:
+  kochwiki-postgres-data:
