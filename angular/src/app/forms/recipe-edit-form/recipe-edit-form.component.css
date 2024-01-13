@@ -19,6 +19,12 @@
   grid-template-columns: min-content min-content 1fr;
 }
 
+.field-label {
+  &::after {
+    content: ":";
+  }
+}
+
 header {
   display: flex;
 }

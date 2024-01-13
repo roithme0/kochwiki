@@ -4,7 +4,7 @@
   [formGroup]="ingredientForm"
   (ngSubmit)="onSubmit(ingredientForm.value)"
 >
-  <label for="name">{{ verboseNames?.name }}</label>
+  <label for="name" class="field-label">{{ verboseNames?.name }}</label>
   <input
     type="text"
     name="name"
@@ -12,7 +12,7 @@
     formControlName="name"
   />
 
-  <label for="brand">{{ verboseNames?.brand }}</label>
+  <label for="brand" class="field-label">{{ verboseNames?.brand }}</label>
   <input
     type="text"
     name="brand"
@@ -20,14 +20,14 @@
     formControlName="brand"
   />
 
-  <label for="unit">{{ verboseNames?.unit }}</label>
+  <label for="unit" class="field-label">{{ verboseNames?.unit }}</label>
   <select name="unit" formControlName="unit">
     @if(unitChoices){ @for(choice of getKeys(unitChoices); track choice){
     <option value="{{ choice }}">{{ unitChoices[choice] }}</option>
     }}
   </select>
 
-  <label for="kcal">{{ verboseNames?.kcal }}</label>
+  <label for="kcal" class="field-label">{{ verboseNames?.kcal }}</label>
   <input
     type="number"
     name="kcal"
@@ -35,7 +35,7 @@
     formControlName="kcal"
   />
 
-  <label for="carbs">{{ verboseNames?.carbs }}</label>
+  <label for="carbs" class="field-label">{{ verboseNames?.carbs }}</label>
   <input
     type="number"
     name="carbs"
@@ -43,7 +43,7 @@
     formControlName="carbs"
   />
 
-  <label for="protein">{{ verboseNames?.protein }}</label>
+  <label for="protein" class="field-label">{{ verboseNames?.protein }}</label>
   <input
     type="number"
     name="protein"
@@ -51,7 +51,7 @@
     formControlName="protein"
   />
 
-  <label for="fat">{{ verboseNames?.fat }}</label>
+  <label for="fat" class="field-label">{{ verboseNames?.fat }}</label>
   <input
     type="number"
     name="fat"

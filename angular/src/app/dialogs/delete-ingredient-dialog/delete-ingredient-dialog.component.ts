@@ -10,7 +10,7 @@ import { MatDialogRef } from '@angular/material/dialog';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './delete-ingredient-dialog.component.html',
-  styleUrl: './delete-ingredient-dialog.component.css',
+  styleUrls: ['./delete-ingredient-dialog.component.css', '../dialog.css'],
 })
 export class DeleteIngredientDialogComponent {
   ingredient: Ingredient | undefined;

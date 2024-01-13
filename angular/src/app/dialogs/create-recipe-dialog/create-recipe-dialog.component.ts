@@ -8,7 +8,7 @@ import { MatDialogRef } from '@angular/material/dialog';
   standalone: true,
   imports: [CommonModule, RecipeCreateFormComponent],
   templateUrl: './create-recipe-dialog.component.html',
-  styleUrl: './create-recipe-dialog.component.css',
+  styleUrls: ['./create-recipe-dialog.component.css', '../dialog.css'],
 })
 export class CreateRecipeDialogComponent {
   constructor(public dialog: MatDialogRef<CreateRecipeDialogComponent>) {}

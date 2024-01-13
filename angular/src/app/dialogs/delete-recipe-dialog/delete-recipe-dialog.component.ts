@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './delete-recipe-dialog.component.html',
-  styleUrl: './delete-recipe-dialog.component.css',
+  styleUrls: ['./delete-recipe-dialog.component.css', '../dialog.css'],
 })
 export class DeleteRecipeDialogComponent {
   @Output() success: EventEmitter<void> = new EventEmitter();

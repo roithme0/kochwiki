@@ -1,0 +1,9 @@
+.field-label {
+  &::after {
+    content: ":";
+  }
+}
+
+.field-input {
+  font: inherit;
+}

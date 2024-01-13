@@ -10,7 +10,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, IngredientEditFormComponent],
   templateUrl: './edit-ingredient-dialog.component.html',
-  styleUrl: './edit-ingredient-dialog.component.css',
+  styleUrls: ['./edit-ingredient-dialog.component.css', '../dialog.css'],
 })
 export class EditIngredientDialogComponent {
   constructor(

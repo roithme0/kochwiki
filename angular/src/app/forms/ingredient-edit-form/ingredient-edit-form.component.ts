@@ -14,7 +14,7 @@ import { IngredientService } from '../../services/ingredient/ingredient.service'
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './ingredient-edit-form.component.html',
-  styleUrl: './ingredient-edit-form.component.css',
+  styleUrls: ['./ingredient-edit-form.component.css', '../form.css'],
 })
 export class IngredientEditFormComponent {
   // fetch ingredient meta data
