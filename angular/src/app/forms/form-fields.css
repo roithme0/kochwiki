@@ -1,0 +1,38 @@
+.input-text {
+  font: inherit;
+  padding: 0.25rem 0.5rem;
+  width: 15rem;
+  max-width: 100%;
+
+  border: var(--secondary-color) 1px solid;
+  border-radius: 0.25rem;
+
+  &.ng-dirty {
+    color: var(--highlight-color);
+    border-color: var(--highlight-color);
+  }
+}
+
+.input-number {
+  font: inherit;
+  padding: 0.25rem 0.5rem;
+  width: 15rem;
+  max-width: 100%;
+
+  border: var(--secondary-color) 1px solid;
+  border-radius: 0.25rem;
+
+  &.ng-dirty {
+    color: var(--highlight-color);
+    border-color: var(--highlight-color);
+  }
+
+  -moz-appearance: textfield;
+  appearance: textfield;
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}

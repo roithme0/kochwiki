@@ -26,7 +26,11 @@ import { CreateIngredientDialogComponent } from '../../dialogs/create-ingredient
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './recipe-edit-form.component.html',
-  styleUrls: ['./recipe-edit-form.component.css', '../form.css'],
+  styleUrls: [
+    './recipe-edit-form.component.css',
+    '../form.css',
+    '../form-fields.css',
+  ],
 })
 export class RecipeEditFormComponent {
   // fetch ingredient associated with recipe

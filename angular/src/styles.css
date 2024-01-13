@@ -1,8 +1,9 @@
 :root {
   --primary-color: black;
+  --secondary-color: grey;
   --positive-color: rgb(122, 224, 122);
   --negative-color: rgb(246, 121, 121);
-  --highlight-color: rgb(69, 173, 208);
+  --highlight-color: rgb(0, 191, 255);
   --header-font-size: 2rem;
   --footer-font-size: var(--header-font-size);
   --primary-background: white;
