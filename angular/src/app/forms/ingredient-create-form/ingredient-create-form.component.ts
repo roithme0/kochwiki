@@ -10,11 +10,17 @@ import { UnitChoices } from '../../interfaces/ingredient-meta-data';
 import { IngredientService } from '../../services/ingredient/ingredient.service';
 
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-ingredient-create-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatExpansionModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatExpansionModule,
+    MatButtonModule,
+  ],
   templateUrl: './ingredient-create-form.component.html',
   styleUrls: [
     './ingredient-create-form.component.css',

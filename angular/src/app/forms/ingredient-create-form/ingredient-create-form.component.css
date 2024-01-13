@@ -7,10 +7,17 @@
 .mat-expansion-panel {
   --mat-expansion-header-text-font: inherit;
   --mat-expansion-header-text-weight: normal;
+  box-shadow: none !important;
+  border: 1px solid var(--secondary-color);
 }
 
 .makros-wrapper {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+}
+
+.mdc-button {
+  --mdc-outlined-button-outline-color: var(--secondary-color);
+  --mdc-typography-button-font-weight: normal;
 }
