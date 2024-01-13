@@ -4,8 +4,10 @@
   --positive-color: rgb(122, 224, 122);
   --negative-color: rgb(246, 121, 121);
   --highlight-color: rgb(0, 191, 255);
+  --font-size: 1rem;
   --header-font-size: 2rem;
   --footer-font-size: var(--header-font-size);
+  --font-weight: normal;
   --primary-background: white;
   --secondary-background: rgb(228, 228, 228);
   --tertiary-background: rgb(193, 193, 193);
@@ -34,7 +36,6 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  letter-spacing: 0.0178em;
   color: var(--primary-color);
   background-color: var(--primary-background);
 }

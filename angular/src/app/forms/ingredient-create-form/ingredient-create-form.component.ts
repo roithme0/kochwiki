@@ -11,6 +11,10 @@ import { IngredientService } from '../../services/ingredient/ingredient.service'
 
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+// import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-ingredient-create-form',
@@ -20,6 +24,9 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     MatExpansionModule,
     MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
   ],
   templateUrl: './ingredient-create-form.component.html',
   styleUrls: [
