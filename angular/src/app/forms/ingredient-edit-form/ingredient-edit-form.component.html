@@ -4,59 +4,109 @@
   [formGroup]="ingredientForm"
   (ngSubmit)="onSubmit(ingredientForm.value)"
 >
-  <label for="name" class="field-label">{{ verboseNames?.name }}</label>
-  <input
-    type="text"
-    name="name"
-    placeholder="{{ verboseNames?.name }}"
-    formControlName="name"
-  />
+  <div class="field">
+    <label
+      for="name"
+      class="field-label"
+      [class.required]="ingredientForm.get('name')?.errors?.['required']"
+      >{{ verboseNames?.name }}</label
+    >
+    <input
+      type="text"
+      name="name"
+      class="field-input input-text"
+      formControlName="name"
+    />
+  </div>
 
-  <label for="brand" class="field-label">{{ verboseNames?.brand }}</label>
-  <input
-    type="text"
-    name="brand"
-    placeholder="{{ verboseNames?.brand }}"
-    formControlName="brand"
-  />
+  <div class="field">
+    <label
+      for="brand"
+      class="field-label"
+      [class.required]="ingredientForm.get('brand')?.errors?.['required']"
+      >{{ verboseNames?.brand }}</label
+    >
+    <input
+      type="text"
+      name="brand"
+      class="field-input input-text"
+      formControlName="brand"
+    />
+  </div>
 
-  <label for="unit" class="field-label">{{ verboseNames?.unit }}</label>
-  <select name="unit" formControlName="unit">
-    @if(unitChoices){ @for(choice of getKeys(unitChoices); track choice){
-    <option value="{{ choice }}">{{ unitChoices[choice] }}</option>
-    }}
-  </select>
+  <div class="field">
+    <label
+      for="unit"
+      class="field-label"
+      [class.required]="ingredientForm.get('unit')?.errors?.['required']"
+      >{{ verboseNames?.unit }}</label
+    >
+    <select name="unit" class="field-input" formControlName="unit">
+      @if(unitChoices){ @for(choice of getKeys(unitChoices); track choice){
+      <option value="{{ choice }}">{{ unitChoices[choice] }}</option>
+      }}
+    </select>
+  </div>
 
-  <label for="kcal" class="field-label">{{ verboseNames?.kcal }}</label>
-  <input
-    type="number"
-    name="kcal"
-    placeholder="Kalorien"
-    formControlName="kcal"
-  />
+  <div class="field">
+    <label
+      for="kcal"
+      class="field-label"
+      [class.required]="ingredientForm.get('kcal')?.errors?.['required']"
+      >{{ verboseNames?.kcal }}</label
+    >
+    <input
+      type="number"
+      name="kcal"
+      class="field-input input-number"
+      formControlName="kcal"
+    />
+  </div>
 
-  <label for="carbs" class="field-label">{{ verboseNames?.carbs }}</label>
-  <input
-    type="number"
-    name="carbs"
-    placeholder="{{ verboseNames?.carbs }}"
-    formControlName="carbs"
-  />
+  <div class="field">
+    <label
+      for="carbs"
+      class="field-label"
+      [class.required]="ingredientForm.get('carbs')?.errors?.['required']"
+      >{{ verboseNames?.carbs }}</label
+    >
+    <input
+      type="number"
+      name="carbs"
+      class="field-input input-number"
+      formControlName="carbs"
+    />
+  </div>
 
-  <label for="protein" class="field-label">{{ verboseNames?.protein }}</label>
-  <input
-    type="number"
-    name="protein"
-    placeholder="{{ verboseNames?.protein }}"
-    formControlName="protein"
-  />
+  <div class="field">
+    <label
+      for="protein"
+      class="field-label"
+      [class.required]="ingredientForm.get('protein')?.errors?.['required']"
+      >{{ verboseNames?.protein }}</label
+    >
+    <input
+      type="number"
+      name="protein"
+      class="field-input input-number"
+      formControlName="protein"
+    />
+  </div>
 
-  <label for="fat" class="field-label">{{ verboseNames?.fat }}</label>
-  <input
-    type="number"
-    name="fat"
-    placeholder="{{ verboseNames?.fat }}"
-    formControlName="fat"
-  />
+  <div class="field">
+    <label
+      for="fat"
+      class="field-label"
+      [class.required]="ingredientForm.get('fat')?.errors?.['required']"
+      >{{ verboseNames?.fat }}</label
+    >
+    <input
+      type="number"
+      name="fat"
+      class="field-input input-number"
+      formControlName="fat"
+    />
+  </div>
+
   <button type="submit" [disabled]="!ingredientForm.valid">Submit</button>
 </form>

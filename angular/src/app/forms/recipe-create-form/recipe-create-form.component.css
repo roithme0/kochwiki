@@ -5,8 +5,9 @@
 }
 
 .meta-fields-wrapper {
-  display: grid;
-  grid-template-columns: min-content 1fr;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 .amount-fields-wrapper {
