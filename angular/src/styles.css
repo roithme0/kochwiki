@@ -34,6 +34,7 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  letter-spacing: 0.0178em;
   color: var(--primary-color);
   background-color: var(--primary-background);
 }

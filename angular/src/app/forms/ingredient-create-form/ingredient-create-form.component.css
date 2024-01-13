@@ -3,3 +3,14 @@
   flex-direction: column;
   gap: 0.75rem;
 }
+
+.mat-expansion-panel {
+  --mat-expansion-header-text-font: inherit;
+  --mat-expansion-header-text-weight: normal;
+}
+
+.makros-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}

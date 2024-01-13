@@ -48,65 +48,73 @@
     </select>
   </div>
 
-  <div class="field">
-    <label
-      for="kcal"
-      class="field-label"
-      [class.required]="ingredientForm.get('kcal')?.errors?.['required']"
-      >{{ verboseNames?.kcal }}</label
-    >
-    <input
-      type="number"
-      name="kcal"
-      class="field-input input-number"
-      formControlName="kcal"
-    />
-  </div>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Nährstoffangaben </mat-panel-title>
+    </mat-expansion-panel-header>
 
-  <div class="field">
-    <label
-      for="carbs"
-      class="field-label"
-      [class.required]="ingredientForm.get('carbs')?.errors?.['required']"
-      >{{ verboseNames?.carbs }}</label
-    >
-    <input
-      type="number"
-      name="carbs"
-      class="field-input input-number"
-      formControlName="carbs"
-    />
-  </div>
+    <div class="makros-wrapper">
+      <div class="field">
+        <label
+          for="kcal"
+          class="field-label"
+          [class.required]="ingredientForm.get('kcal')?.errors?.['required']"
+          >{{ verboseNames?.kcal }}</label
+        >
+        <input
+          type="number"
+          name="kcal"
+          class="field-input input-number"
+          formControlName="kcal"
+        />
+      </div>
 
-  <div class="field">
-    <label
-      for="protein"
-      class="field-label"
-      [class.required]="ingredientForm.get('protein')?.errors?.['required']"
-      >{{ verboseNames?.protein }}</label
-    >
-    <input
-      type="number"
-      name="protein"
-      class="field-input input-number"
-      formControlName="protein"
-    />
-  </div>
+      <div class="field">
+        <label
+          for="carbs"
+          class="field-label"
+          [class.required]="ingredientForm.get('carbs')?.errors?.['required']"
+          >{{ verboseNames?.carbs }}</label
+        >
+        <input
+          type="number"
+          name="carbs"
+          class="field-input input-number"
+          formControlName="carbs"
+        />
+      </div>
 
-  <div class="field">
-    <label
-      for="fat"
-      class="field-label"
-      [class.required]="ingredientForm.get('fat')?.errors?.['required']"
-      >{{ verboseNames?.fat }}</label
-    >
-    <input
-      type="number"
-      name="fat"
-      class="field-input input-number"
-      formControlName="fat"
-    />
-  </div>
+      <div class="field">
+        <label
+          for="protein"
+          class="field-label"
+          [class.required]="ingredientForm.get('protein')?.errors?.['required']"
+          >{{ verboseNames?.protein }}</label
+        >
+        <input
+          type="number"
+          name="protein"
+          class="field-input input-number"
+          formControlName="protein"
+        />
+      </div>
+
+      <div class="field">
+        <label
+          for="fat"
+          class="field-label"
+          [class.required]="ingredientForm.get('fat')?.errors?.['required']"
+          >{{ verboseNames?.fat }}</label
+        >
+        <input
+          type="number"
+          name="fat"
+          class="field-input input-number"
+          formControlName="fat"
+        />
+      </div>
+    </div>
+  </mat-expansion-panel>
 
   <button type="submit" [disabled]="!ingredientForm.valid">Submit</button>
 </form>
