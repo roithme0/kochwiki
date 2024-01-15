@@ -9,16 +9,26 @@ import { UnitChoices } from '../../interfaces/ingredient-meta-data';
 
 import { IngredientService } from '../../services/ingredient/ingredient.service';
 
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+
 @Component({
   selector: 'app-ingredient-edit-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './ingredient-edit-form.component.html',
-  styleUrls: [
-    './ingredient-edit-form.component.css',
-    '../form.css',
-    '../form-fields.css',
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatExpansionModule,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
   ],
+  templateUrl: './ingredient-edit-form.component.html',
+  styleUrl: './ingredient-edit-form.component.css',
 })
 export class IngredientEditFormComponent {
   // fetch ingredient meta data

@@ -13,7 +13,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-// import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 
 @Component({
@@ -29,11 +28,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatSelectModule,
   ],
   templateUrl: './ingredient-create-form.component.html',
-  styleUrls: [
-    './ingredient-create-form.component.css',
-    '../form.css',
-    '../form-fields.css',
-  ],
+  styleUrl: './ingredient-create-form.component.css',
 })
 export class IngredientCreateFormComponent {
   // fetch ingredient meta data

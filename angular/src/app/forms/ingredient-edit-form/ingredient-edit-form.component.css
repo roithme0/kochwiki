@@ -1,5 +1,15 @@
 .ingredient-form {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+}
+
+.makros-wrapper {
+  display: flex;
+  flex-direction: column;
 }
