@@ -1,16 +1,6 @@
-import {
-  Component,
-  Input,
-  Signal,
-  computed,
-  effect,
-  signal,
-} from '@angular/core';
+import { Component, Input, Signal, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
-
-import { Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
 
 import { IngredientsGridControlsService } from '../services/ingredients-grid-controls/ingredients-grid-controls.service';
 import { IngredientService } from '../services/ingredient/ingredient.service';
@@ -64,7 +54,6 @@ export class IngredientsGridControlsComponent {
     );
   });
 
-  units: string[] = ['all', 'G', 'ML', 'PIECE'];
   unitChoices: UnitChoices | null = null;
 
   constructor(
