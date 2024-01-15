@@ -21,16 +21,26 @@ import { Amount } from '../../interfaces/amount';
 
 import { CreateIngredientDialogComponent } from '../../dialogs/create-ingredient-dialog/create-ingredient-dialog.component';
 
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+
 @Component({
   selector: 'app-recipe-edit-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './recipe-edit-form.component.html',
-  styleUrls: [
-    './recipe-edit-form.component.css',
-    '../form.css',
-    '../form-fields.css',
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatExpansionModule,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
   ],
+  templateUrl: './recipe-edit-form.component.html',
+  styleUrl: './recipe-edit-form.component.css',
 })
 export class RecipeEditFormComponent {
   // fetch ingredient associated with recipe
