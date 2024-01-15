@@ -3,7 +3,7 @@ import { Recipe } from '../../interfaces/recipe';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 const backendUrl: string = environment.backendUrl;
 

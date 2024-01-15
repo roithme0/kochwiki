@@ -8,7 +8,7 @@ WORKDIR /usr/local/app
 COPY ./ /usr/local/app/
 
 RUN npm install
-RUN npm run build
+RUN npm run build --configuration=production
 
 # Stage 2: Serve app with nginx server
 
