@@ -1,29 +1,34 @@
 <form class="form">
-  <input
-    type="text"
-    placeholder="Name oder Marke suchen ..."
-    class="search-field"
-    [formControl]="searchControl"
-    [matAutocomplete]="search"
-    (ngModelChange)="ingredientsGridControlsService.setSearchBy($event)"
-  />
-  <mat-autocomplete #search="matAutocomplete">
-    @for (nameOrBrand of filteredNamesAndBrands | async; track nameOrBrand) {
-    <mat-option [value]="nameOrBrand">{{ nameOrBrand }}</mat-option>
-    }
-  </mat-autocomplete>
+  <mat-form-field class="search-field">
+    <mat-label>Suche</mat-label>
+    <input
+      type="text"
+      placeholder="Name oder Marke suchen ..."
+      [formControl]="searchControl"
+      (ngModelChange)="ingredientsGridControlsService.setSearchBy($event)"
+      matInput
+      [matAutocomplete]="search"
+    />
+    <mat-autocomplete #search="matAutocomplete">
+      @for (nameOrBrand of filteredNamesAndBrands | async; track nameOrBrand) {
+      <mat-option [value]="nameOrBrand">{{ nameOrBrand }}</mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
 
-  <input
-    type="text"
-  placeholder="Name oder Marke suchen ..."
-    class="filter-field"
-    [formControl]="filterControl"
-    [matAutocomplete]="filter"
-    (ngModelChange)="ingredientsGridControlsService.setFilterBy($event)"
-  />
-  <mat-autocomplete #filter="matAutocomplete">
-    @for (unit of filteredUnits | async; track unit) {
-    <mat-option [value]="unit">{{ unit }}</mat-option>
-    }
-  </mat-autocomplete>
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <mat-select
+      [formControl]="filterControl"
+      single
+      (selectionChange)="
+        ingredientsGridControlsService.setFilterBy($event.value)
+      "
+    >
+      <mat-option value="all">Alle</mat-option>
+      @if(unitChoices){@for(choice of getKeys(unitChoices); track choice) {
+      <mat-option [value]="choice">{{ unitChoices[choice] }}</mat-option
+      >} }
+    </mat-select>
+  </mat-form-field>
 </form>

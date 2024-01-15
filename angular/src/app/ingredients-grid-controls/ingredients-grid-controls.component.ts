@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
@@ -15,6 +9,13 @@ import { IngredientsGridControlsService } from '../services/ingredients-grid-con
 import { IngredientService } from '../services/ingredient/ingredient.service';
 
 import { UnitChoices } from '../interfaces/ingredient-meta-data';
+
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-ingredients-grid-controls',
@@ -41,7 +42,6 @@ export class IngredientsGridControlsComponent {
   namesAndBrands: string[] = ['Zutat 1', 'Zutat 2'];
   units: string[] = ['all', 'G', 'ML', 'PIECE'];
   filteredNamesAndBrands: Observable<string[]> = new Observable();
-  filteredUnits: Observable<string[]> = new Observable();
   searchControl: FormControl = new FormControl();
   filterControl: FormControl = new FormControl('all');
 
@@ -52,7 +52,6 @@ export class IngredientsGridControlsComponent {
 
   ngOnInit(): void {
     this.filterNamesAndBrands();
-    this.filterUnits();
 
     this.fetchUnitChoices();
 
@@ -80,13 +79,6 @@ export class IngredientsGridControlsComponent {
           nameOrBrand.includes(value || '')
         )
       )
-    );
-  }
-
-  filterUnits(): void {
-    this.filteredUnits = this.filterControl.valueChanges.pipe(
-      startWith(''),
-      map((value) => this.units.filter((unit) => unit.includes(value || '')))
     );
   }
 
