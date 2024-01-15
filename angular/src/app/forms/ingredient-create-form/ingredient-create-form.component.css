@@ -9,7 +9,13 @@
   flex-direction: column;
 }
 
-.makros-wrapper {
+.nutrition-wrapper {
   display: flex;
   flex-direction: column;
+}
+
+.makros-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.5rem;
 }
