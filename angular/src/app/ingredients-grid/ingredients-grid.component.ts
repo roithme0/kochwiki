@@ -6,14 +6,14 @@ import {
   signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatDialog } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
 
 import { Ingredient } from '../interfaces/ingredient';
 
 import { IngredientService } from '../services/ingredient/ingredient.service';
 import { IngredientsGridControlsService } from '../services/ingredients-grid-controls/ingredients-grid-controls.service';
 
+import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { IngredientsGridControlsComponent } from '../ingredients-grid-controls/ingredients-grid-controls.component';
 import { IngredientsGridHeaderComponent } from '../ingredients-grid-header/ingredients-grid-header.component';
 import { IngredientsGridRowComponent } from '../ingredients-grid-row/ingredients-grid-row.component';
@@ -42,7 +42,7 @@ export class IngredientsGridComponent {
   );
   searchBy: WritableSignal<string> = signal('');
   filterBy: WritableSignal<string> = signal('all');
-  windowInnerWidth: WritableSignal<number> = signal(window.innerWidth);
+  windowInnerWidth = signal(window.innerWidth);
   displayedFields: Signal<string[]> = computed(() => {
     // adjust displayed fields based on window with
     var displayedFields: string[] = ['name', 'brand'];

@@ -1,4 +1,4 @@
-<app-ingredients-grid-controls />
+<app-ingredients-grid-controls [ingredients]="displayedIngredients" />
 
 <section class="grid" [style.--fields]="displayedFields().length">
   <app-ingredients-grid-header [displayedFields]="displayedFields()" />

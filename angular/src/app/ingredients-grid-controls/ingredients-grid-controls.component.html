@@ -10,7 +10,7 @@
       [matAutocomplete]="search"
     />
     <mat-autocomplete #search="matAutocomplete">
-      @for (nameOrBrand of filteredNamesAndBrands | async; track nameOrBrand) {
+      @for (nameOrBrand of filteredNamesAndBrands(); track nameOrBrand) {
       <mat-option [value]="nameOrBrand">{{ nameOrBrand }}</mat-option>
       }
     </mat-autocomplete>

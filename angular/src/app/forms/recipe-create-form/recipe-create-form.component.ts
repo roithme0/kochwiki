@@ -37,11 +37,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatSelectModule,
   ],
   templateUrl: './recipe-create-form.component.html',
-  styleUrls: [
-    './recipe-create-form.component.css',
-    '../form.css',
-    '../form-fields.css',
-  ],
+  styleUrl: './recipe-create-form.component.css',
 })
 export class RecipeCreateFormComponent {
   // fetch all ingredients

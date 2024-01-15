@@ -1,4 +1,11 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  Input,
+  Signal,
+  computed,
+  effect,
+  signal,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
 
@@ -9,6 +16,7 @@ import { IngredientsGridControlsService } from '../services/ingredients-grid-con
 import { IngredientService } from '../services/ingredient/ingredient.service';
 
 import { UnitChoices } from '../interfaces/ingredient-meta-data';
+import { Ingredient } from '../interfaces/ingredient';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -35,15 +43,29 @@ import { MatSelectModule } from '@angular/material/select';
   styleUrl: './ingredients-grid-controls.component.css',
 })
 export class IngredientsGridControlsComponent {
-  unitChoices: UnitChoices | null = null;
-  searchBy: string = '';
-  filterBy: string = 'all';
+  @Input() ingredients: Signal<Ingredient[]> = signal([]);
 
-  namesAndBrands: string[] = ['Zutat 1', 'Zutat 2'];
-  units: string[] = ['all', 'G', 'ML', 'PIECE'];
-  filteredNamesAndBrands: Observable<string[]> = new Observable();
-  searchControl: FormControl = new FormControl();
+  searchControl: FormControl = new FormControl('');
   filterControl: FormControl = new FormControl('all');
+
+  namesAndBrands: Signal<string[]> = computed(() => {
+    // generate a list of names and brands of all displayed ingredients
+    const names: string[] = this.ingredients().map(
+      (ingredient) => ingredient.name
+    );
+    const brands: string[] = this.ingredients().map(
+      (ingredient) => ingredient.brand || ''
+    );
+    return names.concat(brands);
+  });
+  filteredNamesAndBrands: Signal<string[]> = computed(() => {
+    return this.namesAndBrands().filter((nameOrBrand) =>
+      nameOrBrand.includes(this.searchControl.value || '')
+    );
+  });
+
+  units: string[] = ['all', 'G', 'ML', 'PIECE'];
+  unitChoices: UnitChoices | null = null;
 
   constructor(
     public ingredientsGridControlsService: IngredientsGridControlsService,
@@ -51,12 +73,10 @@ export class IngredientsGridControlsComponent {
   ) {}
 
   ngOnInit(): void {
-    this.filterNamesAndBrands();
-
     this.fetchUnitChoices();
 
-    this.ingredientsGridControlsService.setSearchBy(this.searchBy);
-    this.ingredientsGridControlsService.setFilterBy(this.filterBy);
+    this.ingredientsGridControlsService.setSearchBy(this.searchControl.value);
+    this.ingredientsGridControlsService.setFilterBy(this.filterControl.value);
   }
 
   fetchUnitChoices(): void {
@@ -69,17 +89,6 @@ export class IngredientsGridControlsComponent {
         console.error('failed to fetch ingredient unit choices: ', error);
       },
     });
-  }
-
-  filterNamesAndBrands(): void {
-    this.filteredNamesAndBrands = this.searchControl.valueChanges.pipe(
-      startWith(''),
-      map((value) =>
-        this.namesAndBrands.filter((nameOrBrand) =>
-          nameOrBrand.includes(value || '')
-        )
-      )
-    );
   }
 
   getKeys(obj: Object): string[] {
