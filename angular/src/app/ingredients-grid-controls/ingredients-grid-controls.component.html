@@ -2,13 +2,22 @@
   <mat-form-field class="search-field">
     <mat-label>Suche</mat-label>
     <input
-      type="text"
       placeholder="Name oder Marke suchen ..."
       [formControl]="searchControl"
-      (ngModelChange)="ingredientsGridControlsService.setSearchBy($event)"
+      (input)="emitControlValues()"
       matInput
       [matAutocomplete]="search"
     />
+    @if(searchControl.value){
+    <button
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="searchControl.setValue(''); emitControlValues()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    }
     <mat-autocomplete #search="matAutocomplete">
       @for (nameOrBrand of filteredNamesAndBrands(); track nameOrBrand) {
       <mat-option [value]="nameOrBrand">{{ nameOrBrand }}</mat-option>
@@ -21,9 +30,7 @@
     <mat-select
       [formControl]="filterControl"
       single
-      (selectionChange)="
-        ingredientsGridControlsService.setFilterBy($event.value)
-      "
+      (selectionChange)="emitControlValues()"
     >
       <mat-option value="all">Alle</mat-option>
       @if(unitChoices){@for(choice of getKeys(unitChoices); track choice) {

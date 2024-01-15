@@ -1,4 +1,11 @@
-import { Component, Input, Signal, computed, signal } from '@angular/core';
+import {
+  Component,
+  Input,
+  Signal,
+  computed,
+  effect,
+  signal,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
 
@@ -8,12 +15,11 @@ import { IngredientService } from '../services/ingredient/ingredient.service';
 import { UnitChoices } from '../interfaces/ingredient-meta-data';
 import { Ingredient } from '../interfaces/ingredient';
 
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-ingredients-grid-controls',
@@ -23,11 +29,10 @@ import { MatSelectModule } from '@angular/material/select';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    MatButtonModule,
-    MatIconModule,
     MatSelectModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
+    MatIconModule,
   ],
   templateUrl: './ingredients-grid-controls.component.html',
   styleUrl: './ingredients-grid-controls.component.css',
@@ -49,8 +54,10 @@ export class IngredientsGridControlsComponent {
     return names.concat(brands);
   });
   filteredNamesAndBrands: Signal<string[]> = computed(() => {
+    // filter names and brands based on search input (case-insensitive)
+    const searchValue = this.searchControl.value || '';
     return this.namesAndBrands().filter((nameOrBrand) =>
-      nameOrBrand.includes(this.searchControl.value || '')
+      nameOrBrand.toLowerCase().includes(searchValue.toLowerCase())
     );
   });
 
@@ -62,10 +69,8 @@ export class IngredientsGridControlsComponent {
   ) {}
 
   ngOnInit(): void {
+    // fetch unit choices
     this.fetchUnitChoices();
-
-    this.ingredientsGridControlsService.setSearchBy(this.searchControl.value);
-    this.ingredientsGridControlsService.setFilterBy(this.filterControl.value);
   }
 
   fetchUnitChoices(): void {
@@ -84,5 +89,12 @@ export class IngredientsGridControlsComponent {
     // return keys of object
     // used in template as Object.keys() is not available
     return Object.keys(obj);
+  }
+
+  emitControlValues(): void {
+    // emit search and filter values
+    console.log('search: ', this.searchControl.value);
+    this.ingredientsGridControlsService.setSearchBy(this.searchControl.value);
+    this.ingredientsGridControlsService.setFilterBy(this.filterControl.value);
   }
 }
