@@ -1,14 +1,18 @@
 import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IngredientService } from '../../services/ingredient/ingredient.service';
+
 import { Ingredient } from '../../interfaces/ingredient';
+
+import { IngredientService } from '../../services/ingredient/ingredient.service';
+
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-delete-ingredient-dialog',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatButtonModule],
   templateUrl: './delete-ingredient-dialog.component.html',
   styleUrls: ['./delete-ingredient-dialog.component.css', '../dialog.css'],
 })

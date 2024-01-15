@@ -1,3 +1,6 @@
 <p>Rezept löschen?</p>
-<button (click)="deleteRecipe()">Ja</button>
-<button (click)="dialogRef.close()">Nein</button>
+
+<div class="buttons">
+  <button mat-stroked-button (click)="deleteRecipe()">Ja</button>
+  <button mat-stroked-button (click)="dialogRef.close()">Nein</button>
+</div>

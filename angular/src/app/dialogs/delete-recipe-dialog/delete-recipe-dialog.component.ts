@@ -1,14 +1,17 @@
 import { Component, Inject, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+
 import { RecipeService } from '../../services/recipe/recipe.service';
+
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-delete-recipe-dialog',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatButtonModule],
   templateUrl: './delete-recipe-dialog.component.html',
   styleUrls: ['./delete-recipe-dialog.component.css', '../dialog.css'],
 })
