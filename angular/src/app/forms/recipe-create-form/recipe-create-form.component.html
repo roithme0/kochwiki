@@ -60,38 +60,44 @@
         <input matInput type="number" formControlName="servings" />
       </mat-form-field>
 
-      <div formArrayName="amounts">
+      <div formArrayName="amounts" class="amounts-wrapper">
         @for(amount of amounts.controls; track amount){
         <div class="amount-fields-wrapper" formGroupName="{{ $index }}">
           <button mat-stroked-button (click)="removeAmount($index)">
             Löschen
           </button>
 
-          <mat-form-field appearance="fill">
-            <mat-label>Index</mat-label>
-            <input matInput type="number" formControlName="index" />
-          </mat-form-field>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title> Zutat </mat-panel-title>
+            </mat-expansion-panel-header>
 
-          <mat-form-field>
-            <mat-label>Zutat</mat-label>
-            <mat-select
-              formControlName="ingredient"
-              single
-              (change)="onIngredientSelect($event, $index)"
-            >
-              <mat-option disabled selected></mat-option>
-              @for(ingredient of ingredients(); track ingredient.id) {
-              <mat-option [value]="ingredient.id">{{
-                ingredient.name
-              }}</mat-option
-              >}
-            </mat-select>
-          </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Index</mat-label>
+              <input matInput type="number" formControlName="index" />
+            </mat-form-field>
 
-          <mat-form-field appearance="fill">
-            <mat-label>Menge [g/ml/Stk.]</mat-label>
-            <input matInput type="number" formControlName="amount" />
-          </mat-form-field>
+            <mat-form-field>
+              <mat-label>Zutat</mat-label>
+              <mat-select
+                formControlName="ingredient"
+                single
+                (change)="onIngredientSelect($event, $index)"
+              >
+                <mat-option disabled selected></mat-option>
+                @for(ingredient of ingredients(); track ingredient.id) {
+                <mat-option [value]="ingredient.id">{{
+                  ingredient.name
+                }}</mat-option
+                >}
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Menge [g/ml/Stk.]</mat-label>
+              <input matInput type="number" formControlName="amount" />
+            </mat-form-field>
+          </mat-expansion-panel>
         </div>
         }
 
@@ -113,20 +119,27 @@
         <input matInput type="number" formControlName="preptime" />
       </mat-form-field>
 
-      <div formArrayName="steps">
+      <div formArrayName="steps" class="steps-wrapper">
         @for(step of steps.controls; track step){
         <div formGroupName="{{ $index }}" class="step-fields-wrapper">
           <button mat-stroked-button (click)="removeStep($index)">
             Löschen
           </button>
-          <mat-form-field appearance="fill">
-            <mat-label>Index</mat-label>
-            <input matInput type="number" formControlName="index" />
-          </mat-form-field>
-          <mat-form-field appearance="fill">
-            <mat-label>Beschreibung</mat-label>
-            <input matInput formControlName="description" />
-          </mat-form-field>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title> Schritt </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Index</mat-label>
+              <input matInput type="number" formControlName="index" />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Beschreibung</mat-label>
+              <input matInput formControlName="description" />
+            </mat-form-field>
+          </mat-expansion-panel>
         </div>
         }
 

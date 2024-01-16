@@ -3,6 +3,19 @@
   flex-direction: column;
 }
 
+.amounts-wrapper,
+.steps-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.amount-fields-wrapper,
+.step-fields-wrapper {
+  display: flex;
+  gap: 0.5rem;
+}
+
 .amount-buttons-wrapper {
   display: flex;
   gap: 0.5rem;
