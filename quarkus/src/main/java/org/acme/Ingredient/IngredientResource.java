@@ -16,6 +16,7 @@ import jakarta.ws.rs.PathParam;
 @Path("/ingredients")
 public class IngredientResource {
     private static final Logger log = Logger.getLogger(IngredientResource.class);
+
     @GET
     public List<Ingredient> getAll() {
         log.info("GET: getting all ingredients ...");
