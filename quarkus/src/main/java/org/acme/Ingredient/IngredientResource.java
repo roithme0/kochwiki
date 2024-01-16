@@ -5,7 +5,6 @@ import java.util.List;
 import org.jboss.logging.Logger;
 
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -33,7 +32,6 @@ public class IngredientResource {
     }
 
     @POST
-    @Transactional
     public Ingredient create(Ingredient ingredient) {
         log.info("POST: creating ingredient '" + ingredient.getName() + "' ...");
         return ingredientService.create(ingredient);
@@ -41,7 +39,6 @@ public class IngredientResource {
 
     @PUT
     @Path("/{id}")
-    @Transactional
     public Ingredient update(@PathParam("id") Long id, Ingredient ingredient) {
         log.info("PUT: updating ingredient with id '" + id + "' ...");
         return ingredientService.update(id, ingredient);
@@ -49,7 +46,6 @@ public class IngredientResource {
 
     @DELETE
     @Path("/{id}")
-    @Transactional
     public void delete(@PathParam("id") Long id) {
         log.info("DELETE: deleting ingredient with id '" + id + "' ...");
         ingredientService.delete(id);

@@ -3,7 +3,7 @@ package org.acme.Recipe;
 import java.util.List;
 import org.jboss.logging.Logger;
 
-import jakarta.transaction.Transactional;
+import jakarta.inject.Inject;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -15,51 +15,40 @@ import jakarta.ws.rs.PathParam;
 public class RecipeResource {
     private static final Logger log = Logger.getLogger(RecipeResource.class);
 
+    @Inject RecipeService recipeService;
+
     @GET
     public List<Recipe> getAll(){
         log.info("GET: getting all recipes ...");
-        return Recipe.listAll();
+        return recipeService.getAll();
     }    
 
     @GET
     @Path("/{id}")
     public Recipe getById(@PathParam("id") Long id){
         log.info("GET: getting recipe by id '" + id + "' ...");
-        return Recipe.findById(id);
+        return recipeService.getById(id);
     }    
 
     @POST
-    @Transactional
     public Recipe create(Recipe recipe){
         log.info("POST: creating recipe '" + recipe.getName() + "' ...");
-        recipe.persist();
-        return recipe;
+        return recipeService.create(recipe);
     }
 
     @PUT
-    @Transactional
     @Path("/{id}")
     public Recipe update(@PathParam("id") Long id, Recipe recipe){
         Recipe entity = Recipe.findById(id);
         log.info("PUT: updating recipe '" + entity.getName() + "' ...");
-        entity.setName(recipe.getName());
-        entity.setServings(recipe.getServings());
-        entity.setPreptime(recipe.getPreptime());
-        entity.setOriginName(recipe.getOriginName());
-        entity.setOriginUrl(recipe.getOriginUrl());
-        // entity.setOriginal(recipe.getOriginal());
-        // entity.setImage(recipe.getImage());
-        entity.setAmounts(recipe.getAmounts());
-        entity.setSteps(recipe.getSteps());
-        return entity;
+        return recipeService.update(id, recipe);
     }
 
     @DELETE
-    @Transactional
     @Path("/{id}")
     public void delete(@PathParam("id") Long id){
         Recipe entity = Recipe.findById(id);
         log.info("DELETE: deleting recipe '" + entity.getName() + "' ...");
-        entity.delete();
+        recipeService.delete(id);
     }
 }
