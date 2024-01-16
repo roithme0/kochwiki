@@ -5,12 +5,13 @@
     <mat-step formGroupName="metaFormGroup" errorMessage="">
       <ng-template matStepLabel></ng-template>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Name</mat-label>
-        <input matInput formControlName="name" />
-      </mat-form-field>
+      <div class="meta-fields-wrapper">
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
 
-      <!-- <div class="field">
+        <!-- <div class="field">
         <label
           for="image"
           class="field-label"
@@ -25,7 +26,7 @@
         />
       </div> -->
 
-      <!-- <div class="field">
+        <!-- <div class="field">
         <label
         for="original"
         class="field-label"
@@ -40,17 +41,15 @@
         />
       </div> -->
 
-      <mat-form-field appearance="fill">
-        <mat-label>URL</mat-label>
-        <input matInput formControlName="originUrl" />
-      </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>URL</mat-label>
+          <input matInput formControlName="originUrl" />
+        </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Ersteller*in</mat-label>
-        <input matInput formControlName="originName" />
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperNext>Weiter</button>
+        <mat-form-field appearance="fill">
+          <mat-label>Ersteller*in</mat-label>
+          <input matInput formControlName="originName" />
+        </mat-form-field>
       </div>
     </mat-step>
 
@@ -96,14 +95,14 @@
         </div>
         }
 
-        <button mat-stroked-button (click)="addAmount()">Hinzufügen</button>
-        <button mat-stroked-button (click)="openCreateIngredientDialog()">
-          Zutat erstellen
-        </button>
-      </div>
-      <div>
-        <button mat-button matStepperPrevious>Zurück</button>
-        <button mat-button matStepperNext>Weiter</button>
+        <div class="amount-buttons-wrapper">
+          <button mat-stroked-button (click)="addAmount()">
+            Zutat hinzufügen
+          </button>
+          <button mat-stroked-button (click)="openCreateIngredientDialog()">
+            Zutat erstellen
+          </button>
+        </div>
       </div>
     </mat-step>
 
@@ -133,17 +132,17 @@
 
         <button mat-stroked-button (click)="addStep()">Hinzufügen</button>
       </div>
-      <div>
-        <button mat-button matStepperPrevious>Zurück</button>
-        <button
-          mat-button
-          type="submit"
-          [disabled]="!recipeForm.valid"
-          (click)="onSubmit()"
-        >
-          Rezept erstellen
-        </button>
-      </div>
+    </mat-step>
+
+    <mat-step>
+      <button
+        mat-stroked-button
+        type="submit"
+        [disabled]="!recipeForm.valid"
+        (click)="onSubmit()"
+      >
+        Rezept erstellen
+      </button>
     </mat-step>
   </mat-stepper>
 </form>
