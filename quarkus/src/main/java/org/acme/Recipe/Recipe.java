@@ -1,4 +1,4 @@
-package org.acme;
+package org.acme.Recipe;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
@@ -11,13 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.net.URL;
 
-import org.jboss.logging.Logger;
+import org.acme.Amount.Amount;
+import org.acme.Step.Step;
+// import org.jboss.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Recipe extends PanacheEntity {
-    private static final Logger log = Logger.getLogger(Recipe.class);
+    // private static final Logger log = Logger.getLogger(Recipe.class);
 
     @Column(unique = true, nullable = false, length = 200)
     private String name;

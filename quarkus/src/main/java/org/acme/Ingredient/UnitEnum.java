@@ -1,7 +1,4 @@
-package org.acme;
-
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+package org.acme.Ingredient;
 
 public enum UnitEnum {
     G("g"),

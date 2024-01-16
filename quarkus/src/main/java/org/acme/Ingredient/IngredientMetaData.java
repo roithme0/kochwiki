@@ -1,4 +1,4 @@
-package org.acme;
+package org.acme.Ingredient;
 
 import java.util.Map;
 import java.util.HashMap;

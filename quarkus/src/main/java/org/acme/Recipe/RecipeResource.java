@@ -1,4 +1,4 @@
-package org.acme;
+package org.acme.Recipe;
 
 import java.util.List;
 import org.jboss.logging.Logger;

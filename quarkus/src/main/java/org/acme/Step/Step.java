@@ -1,4 +1,4 @@
-package org.acme;
+package org.acme.Step;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
@@ -6,10 +6,11 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+// import jakarta.persistence.Table;
+// import jakarta.persistence.UniqueConstraint;
 
-import org.jboss.logging.Logger;
+import org.acme.Recipe.Recipe;
+// import org.jboss.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -19,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 //     @UniqueConstraint(columnNames = {"index", "recipe_id"})
 // })
 public class Step extends PanacheEntity {
-    private static final Logger log = Logger.getLogger(Step.class);
+    // private static final Logger log = Logger.getLogger(Step.class);
 
     @Column(nullable = false, length = 2)
     private Integer index;

@@ -1,4 +1,4 @@
-package org.acme;
+package org.acme.Amount;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -6,11 +6,13 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+// import jakarta.persistence.Table;
+// import jakarta.persistence.UniqueConstraint;
 import jakarta.persistence.Column;
 
-import org.jboss.logging.Logger;
+import org.acme.Ingredient.Ingredient;
+import org.acme.Recipe.Recipe;
+// import org.jboss.logging.Logger;
 
 @Entity
 // unique constraints prevented updating recipes
@@ -19,7 +21,7 @@ import org.jboss.logging.Logger;
 //     @UniqueConstraint(columnNames = {"ingredient_id", "recipe_id"})
 // })
 public class Amount extends PanacheEntity {
-    private static final Logger log = Logger.getLogger(Amount.class);
+    // private static final Logger log = Logger.getLogger(Amount.class);
     
     @Column(nullable = false, length = 2)
     private Integer index;
