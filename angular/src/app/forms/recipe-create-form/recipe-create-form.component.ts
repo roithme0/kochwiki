@@ -6,10 +6,8 @@ import {
   WritableSignal,
   inject,
 } from '@angular/core';
-import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { FormArray } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 
 import { RecipeService } from '../../services/recipe/recipe.service';
 import { IngredientService } from '../../services/ingredient/ingredient.service';
@@ -19,11 +17,20 @@ import { Recipe } from '../../interfaces/recipe';
 
 import { CreateIngredientDialogComponent } from '../../dialogs/create-ingredient-dialog/create-ingredient-dialog.component';
 
+import { MatDialog } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-recipe-create-form',
@@ -36,6 +43,14 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
+    FormsModule,
+    MatStepperModule,
+  ],
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: { showError: true },
+    },
   ],
   templateUrl: './recipe-create-form.component.html',
   styleUrl: './recipe-create-form.component.css',
@@ -53,15 +68,21 @@ export class RecipeCreateFormComponent {
   dialog: MatDialog = inject(MatDialog);
 
   recipeForm = this.fb.group({
-    name: ['', Validators.required],
-    // image: [<File | null>null],
-    originName: [''],
-    originUrl: [''],
-    // original: [<File | null>null],
-    servings: [<number | null>null, Validators.required],
-    amounts: this.fb.array([]),
-    preptime: [<number | null>null],
-    steps: this.fb.array([]),
+    metaFormGroup: this.fb.group({
+      name: ['', Validators.required],
+      // image: [<File | null>null],
+      originName: [''],
+      originUrl: [''],
+      // original: [<File | null>null],
+    }),
+    amountsFormGroup: this.fb.group({
+      servings: [<number | null>null, Validators.required],
+      amounts: this.fb.array([]),
+    }),
+    preparationFormGroup: this.fb.group({
+      preptime: [<number | null>null],
+      steps: this.fb.array([]),
+    }),
   });
 
   constructor() {
@@ -140,9 +161,13 @@ export class RecipeCreateFormComponent {
   // }
 
   onSubmit(): void {
-    console.debug('submitting create recipe form: ', this.recipeForm.value);
-    const recipe = this.recipeForm.value as Recipe;
-
+    const formValue = this.recipeForm.value;
+    console.debug('submitting create recipe form: ', formValue);
+    const recipe: Recipe = {
+      ...formValue.metaFormGroup,
+      ...formValue.amountsFormGroup,
+      ...formValue.preparationFormGroup,
+    } as Recipe;
     this.recipeService.postRecipe(recipe).subscribe({
       next: (recipe) => {
         console.debug('recipe created: ', recipe);
@@ -156,7 +181,7 @@ export class RecipeCreateFormComponent {
   }
 
   get amounts(): FormArray {
-    return this.recipeForm.get('amounts') as FormArray;
+    return this.recipeForm.get('amountsFormGroup.amounts') as FormArray;
   }
 
   addAmount(): void {
@@ -174,7 +199,7 @@ export class RecipeCreateFormComponent {
   }
 
   get steps(): FormArray {
-    return this.recipeForm.get('steps') as FormArray;
+    return this.recipeForm.get('preparationFormGroup.steps') as FormArray;
   }
 
   addStep(): void {
