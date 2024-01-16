@@ -38,6 +38,9 @@ export class IngredientCreateFormComponent {
   verboseNames: VerboseNames | null = null;
   unitChoices: UnitChoices | null = null;
 
+  ingredientService: IngredientService = inject(IngredientService);
+  fb: FormBuilder = inject(FormBuilder);
+
   ingredientForm = this.fb.group({
     name: ['', Validators.required],
     brand: [''],
@@ -48,9 +51,6 @@ export class IngredientCreateFormComponent {
     fat: [<number | null>null],
     amounts: this.fb.array([]),
   });
-
-  ingredientService: IngredientService = inject(IngredientService);
-  fb: FormBuilder = inject(FormBuilder);
 
   ngOnInit(): void {
     this.fetchVerboseNames();

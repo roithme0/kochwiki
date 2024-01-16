@@ -5,9 +5,6 @@ import java.util.Map;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.acme.Ingredient.Ingredient;
-import org.acme.Step.Step;
-
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 
