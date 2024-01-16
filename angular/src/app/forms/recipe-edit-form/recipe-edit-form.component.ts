@@ -9,7 +9,6 @@ import {
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 
 import { RecipeService } from '../../services/recipe/recipe.service';
 import { IngredientService } from '../../services/ingredient/ingredient.service';
@@ -21,6 +20,7 @@ import { Amount } from '../../interfaces/amount';
 
 import { CreateIngredientDialogComponent } from '../../dialogs/create-ingredient-dialog/create-ingredient-dialog.component';
 
+import { MatDialog } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -47,7 +47,9 @@ export class RecipeEditFormComponent {
   // render form with values to edit recipe
   @Input() id!: number;
   @Output() success: EventEmitter<void> = new EventEmitter();
+
   ingredients: WritableSignal<Ingredient[]> = signal([]);
+
   recipeForm = this.fb.group({
     name: ['', Validators.required],
     // image: [<File | null>null],
@@ -135,55 +137,17 @@ export class RecipeEditFormComponent {
     });
   }
 
-  // onUpload(event: any, field: string): void {
-  //   console.debug(`uploading ${field}: `, event);
-  //   const file = event.target.files[0];
-  //   this.recipeForm.patchValue({
-  //     [field]: file,
-  //   });
-  // }
-
-  // onSubmit(): void {
-  //   console.debug('submitting edit recipe form: ', this.recipeForm.value);
-  //   const formData = new FormData();
-
-  //   Object.keys(this.recipeForm.value).forEach((key) => {
-  //     if (['image', 'original'].includes(key)) {
-  //       // handle files seperately
-  //       const control = this.recipeForm.get(key);
-  //       const file = control?.value;
-  //       file ? formData.append(key, file, file.name) : formData.append(key, '');
-  //     } else {
-  //       // handle all other form data
-  //       const value = this.recipeForm.get(key)?.value;
-  //       formData.append(key, value || '');
-  //     }
-  //   });
-
-  //   this.recipeService.putRecipe(formData, this.id).subscribe({
-  //     next: (recipe) => {
-  //       console.debug('recipe updated: ', recipe);
-  //       this.success.emit();
-  //       this.recipeService.notifyRecipesChanged();
-  //     },
-  //     error: (error) => {
-  //       console.error('failed to update recipe: ', error);
-  //     },
-  //   });
-  // }
-
   onSubmit(): void {
     console.debug('submitting edit recipe form: ', this.recipeForm.value);
-    const recipe = this.recipeForm.value as Recipe;
-
-    this.recipeService.putRecipe(this.id, recipe).subscribe({
+    const updates: Partial<Recipe> = this.recipeForm.value as Recipe;
+    this.recipeService.patchRecipe(this.id, updates).subscribe({
       next: (recipe) => {
-        console.debug('recipe updated: ', recipe);
+        console.debug('recipe patched: ', recipe);
         this.success.emit();
         this.recipeService.notifyRecipesChanged();
       },
       error: (error) => {
-        console.error('failed to update recipe: ', error);
+        console.error('failed to patch recipe: ', error);
       },
     });
   }

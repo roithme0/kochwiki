@@ -30,26 +30,10 @@ export class RecipeService {
     return this.http.get<Recipe>(backendUrl + '/recipes/' + id);
   }
 
-  // putRecipe(formData: FormData, id: number): Observable<Recipe> {
-  //   console.debug('putting recipe: ', formData);
-  //   return this.http.put<Recipe>(
-  //     backendUrlDjango + '/recipes/update/' + id,
-  //     formData
-  //   );
-  // }
-
-  putRecipe(id: number, recipe: Recipe): Observable<Recipe> {
-    console.debug('PUT: putting recipe: ', recipe);
-    return this.http.put<Recipe>(backendUrl + '/recipes/' + id, recipe);
+  patchRecipe(id: number, updates: Partial<Recipe>): Observable<Recipe> {
+    console.debug('PATCH: patching recipe "' + id + '" ...');
+    return this.http.patch<Recipe>(backendUrl + '/recipes/' + id, updates);
   }
-
-  // postRecipe(formData: FormData): Observable<Recipe> {
-  //   console.debug('posting recipe: ', formData);
-  //   return this.http.post<Recipe>(
-  //     backendUrlDjango + '/recipes/create',
-  //     formData
-  //   );
-  // }
 
   postRecipe(recipe: Recipe): Observable<Recipe> {
     console.debug('POST: posting recipe: ', recipe);

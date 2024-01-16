@@ -1,13 +1,15 @@
 package org.acme.Recipe;
 
 import java.util.List;
+import java.util.Map;
+
 import org.jboss.logging.Logger;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
-import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.PATCH;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 
@@ -36,12 +38,11 @@ public class RecipeResource {
         return recipeService.create(recipe);
     }
 
-    @PUT
+    @PATCH
     @Path("/{id}")
-    public Recipe update(@PathParam("id") Long id, Recipe recipe){
-        Recipe entity = Recipe.findById(id);
-        log.info("PUT: updating recipe '" + entity.getName() + "' ...");
-        return recipeService.update(id, recipe);
+    public Recipe patch(@PathParam("id") Long id, Map<String, Object> updates){
+        log.info("PATCH: patching recipe with id '" + id + "' ...");
+        return recipeService.patch(id, updates);
     }
 
     @DELETE
