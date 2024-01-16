@@ -3,7 +3,7 @@ import {
   Input,
   Signal,
   computed,
-  effect,
+  inject,
   signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -63,10 +63,10 @@ export class IngredientsGridControlsComponent {
 
   unitChoices: UnitChoices | null = null;
 
-  constructor(
-    public ingredientsGridControlsService: IngredientsGridControlsService,
-    private ingredientService: IngredientService
-  ) {}
+  ingredientsGridControlsService: IngredientsGridControlsService = inject(
+    IngredientsGridControlsService
+  );
+  ingredientService: IngredientService = inject(IngredientService);
 
   ngOnInit(): void {
     // fetch unit choices

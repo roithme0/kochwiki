@@ -1,4 +1,4 @@
-import { Component, Inject, EventEmitter, Output } from '@angular/core';
+import { Component, Inject, EventEmitter, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -17,14 +17,14 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class DeleteRecipeDialogComponent {
   @Output() success: EventEmitter<void> = new EventEmitter();
+
   id!: number;
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef: MatDialogRef<DeleteRecipeDialogComponent>,
-    private recipeService: RecipeService,
-    private router: Router
-  ) {
+  dialogRef: MatDialogRef<DeleteRecipeDialogComponent> = inject(MatDialogRef);
+  recipeService: RecipeService = inject(RecipeService);
+  router: Router = inject(Router);
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     this.id = data.id;
   }
 

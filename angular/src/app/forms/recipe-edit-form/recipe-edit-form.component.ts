@@ -5,6 +5,7 @@ import {
   Output,
   signal,
   WritableSignal,
+  inject,
 } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -50,6 +51,11 @@ export class RecipeEditFormComponent {
 
   ingredients: WritableSignal<Ingredient[]> = signal([]);
 
+  fb: FormBuilder = inject(FormBuilder);
+  recipeService: RecipeService = inject(RecipeService);
+  ingredientService: IngredientService = inject(IngredientService);
+  dialog: MatDialog = inject(MatDialog);
+
   recipeForm = this.fb.group({
     name: ['', Validators.required],
     // image: [<File | null>null],
@@ -62,13 +68,8 @@ export class RecipeEditFormComponent {
     steps: this.fb.array([]),
   });
 
-  constructor(
-    private fb: FormBuilder,
-    private recipeService: RecipeService,
-    private ingredientService: IngredientService,
-    private dialog: MatDialog
-  ) {
-    ingredientService.ingredients$.subscribe(() => {
+  constructor() {
+    this.ingredientService.ingredients$.subscribe(() => {
       this.fetchAllIngredients();
     });
   }

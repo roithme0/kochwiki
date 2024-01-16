@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 
@@ -14,7 +14,7 @@ import { PageHeaderService } from '../services/page-header/page-header.service';
 export class HomeComponent {
   // set header values
   // render navigation
-  constructor(private pageHeaderService: PageHeaderService) {}
+  pageHeaderService: PageHeaderService = inject(PageHeaderService);
 
   ngOnInit() {
     // set header values

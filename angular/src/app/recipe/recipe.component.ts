@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -11,6 +12,7 @@ import { PageHeaderService } from '../services/page-header/page-header.service';
 
 import { AmountsGridComponent } from '../amounts-grid/amounts-grid.component';
 import { StepsGridComponent } from '../steps-grid/steps-grid.component';
+
 import { EditRecipeDialogComponent } from '../dialogs/edit-recipe-dialog/edit-recipe-dialog.component';
 import { DeleteRecipeDialogComponent } from '../dialogs/delete-recipe-dialog/delete-recipe-dialog.component';
 
@@ -33,12 +35,12 @@ export class RecipeComponent {
   id!: number;
   recipe: Recipe | null = null;
 
-  constructor(
-    private route: ActivatedRoute,
-    private pageHeaderService: PageHeaderService,
-    private recipeService: RecipeService,
-    private dialog: MatDialog
-  ) {
+  route: ActivatedRoute = inject(ActivatedRoute);
+  pageHeaderService: PageHeaderService = inject(PageHeaderService);
+  recipeService: RecipeService = inject(RecipeService);
+  dialog: MatDialog = inject(MatDialog);
+
+  constructor() {
     // fetch recipe id from route
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     console.debug('id: ', this.id);

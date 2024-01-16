@@ -4,6 +4,7 @@ import {
   WritableSignal,
   computed,
   signal,
+  inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -14,9 +15,11 @@ import { IngredientsGridControlsService } from '../services/ingredients-grid-con
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+
 import { IngredientsGridControlsComponent } from '../ingredients-grid-controls/ingredients-grid-controls.component';
 import { IngredientsGridHeaderComponent } from '../ingredients-grid-header/ingredients-grid-header.component';
 import { IngredientsGridRowComponent } from '../ingredients-grid-row/ingredients-grid-row.component';
+
 import { CreateIngredientDialogComponent } from '../dialogs/create-ingredient-dialog/create-ingredient-dialog.component';
 
 @Component({
@@ -37,11 +40,18 @@ export class IngredientsGridComponent {
   // render ingredients-grid-controls component
   // render ingredients as grid
   ingredients: WritableSignal<Ingredient[]> = signal([]);
-  displayedIngredients: Signal<Ingredient[]> = computed(() =>
-    this.getDisplayedIngredients()
-  );
+  displayedIngredients: Signal<Ingredient[]> = computed(() => {
+    // apply search and filter functions to ingredients
+    var displayedIngredients = this.ingredients();
+    displayedIngredients =
+      this.searchIngredientsByNameOrBrand(displayedIngredients);
+    displayedIngredients = this.filterIngredientsByUnit(displayedIngredients);
+    return displayedIngredients;
+  });
+
   searchBy: WritableSignal<string> = signal('');
   filterBy: WritableSignal<string> = signal('all');
+
   windowInnerWidth = signal(window.innerWidth);
   displayedFields: Signal<string[]> = computed(() => {
     // adjust displayed fields based on window with
@@ -58,11 +68,13 @@ export class IngredientsGridComponent {
     return displayedFields;
   });
 
-  constructor(
-    private dialog: MatDialog,
-    private ingredientService: IngredientService,
-    private ingredientsGridControlsService: IngredientsGridControlsService
-  ) {
+  dialog: MatDialog = inject(MatDialog);
+  ingredientService: IngredientService = inject(IngredientService);
+  ingredientsGridControlsService: IngredientsGridControlsService = inject(
+    IngredientsGridControlsService
+  );
+
+  constructor() {
     // track changes to ingredients
     // track changes to searchBy
     // track changes to filterBy
@@ -99,15 +111,6 @@ export class IngredientsGridComponent {
         console.error('failed to fetch ingredients: ', error);
       },
     });
-  }
-
-  getDisplayedIngredients(): Ingredient[] {
-    // apply search and filter functions to ingredients
-    var displayedIngredients = this.ingredients();
-    displayedIngredients =
-      this.searchIngredientsByNameOrBrand(displayedIngredients);
-    displayedIngredients = this.filterIngredientsByUnit(displayedIngredients);
-    return displayedIngredients;
   }
 
   windowEventListener = (): void => {

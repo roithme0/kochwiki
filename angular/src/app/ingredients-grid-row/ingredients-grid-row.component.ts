@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -21,7 +22,7 @@ export class IngredientsGridRowComponent {
   @Input() ingredient!: Ingredient;
   @Input() displayedFields!: string[];
 
-  constructor(private dialog: MatDialog) {}
+  dialog: MatDialog = inject(MatDialog);
 
   openEditIngredientDialog(): void {
     this.dialog.open(EditIngredientDialogComponent, {

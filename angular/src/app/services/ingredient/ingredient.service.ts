@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable, Subject } from 'rxjs';
@@ -21,7 +21,7 @@ export class IngredientService {
   private ingredientsSubject = new Subject<void>();
   ingredients$ = this.ingredientsSubject.asObservable();
 
-  constructor(private http: HttpClient) {}
+  http: HttpClient = inject(HttpClient);
 
   notifyIngredientsChanged() {
     // notify subscribers that ingredients have changed

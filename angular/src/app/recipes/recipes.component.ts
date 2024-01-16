@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PageHeaderService } from '../services/page-header/page-header.service';
@@ -15,7 +15,7 @@ import { RecipesGridComponent } from '../recipes-grid/recipes-grid.component';
 export class RecipesComponent {
   // set header values
   // render the recipes-grid component
-  constructor(private pageHeaderService: PageHeaderService) {}
+  pageHeaderService: PageHeaderService = inject(PageHeaderService);
 
   ngOnInit() {
     // set header values

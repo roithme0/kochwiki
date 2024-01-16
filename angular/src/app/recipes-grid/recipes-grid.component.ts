@@ -4,14 +4,17 @@ import {
   WritableSignal,
   computed,
   signal,
+  inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 
 import { RecipesGridControlsComponent } from '../recipes-grid-controls/recipes-grid-controls.component';
 import { RecipesGridElementComponent } from '../recipes-grid-element/recipes-grid-element.component';
+
 import { CreateRecipeDialogComponent } from '../dialogs/create-recipe-dialog/create-recipe-dialog.component';
 
 import { Recipe } from '../interfaces/recipe';
@@ -42,11 +45,11 @@ export class RecipesGridComponent {
     return displayedRecipes;
   });
 
-  constructor(
-    private recipeService: RecipeService,
-    public router: Router,
-    private dialog: MatDialog
-  ) {
+  recipeService: RecipeService = inject(RecipeService);
+  router: Router = inject(Router);
+  dialog: MatDialog = inject(MatDialog);
+
+  constructor() {
     // track changes to recipes
     this.recipeService.recipes$.subscribe(() => {
       this.fetchRecipes();

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -39,6 +39,9 @@ export class IngredientEditFormComponent {
   verboseNames: VerboseNames | null = null;
   unitChoices: UnitChoices | null = null;
 
+  ingredientService: IngredientService = inject(IngredientService);
+  fb: FormBuilder = inject(FormBuilder);
+
   ingredientForm = this.fb.group({
     name: ['', Validators.required],
     brand: [''],
@@ -48,11 +51,6 @@ export class IngredientEditFormComponent {
     protein: [<number | null>null],
     fat: [<number | null>null],
   });
-
-  constructor(
-    private ingredientService: IngredientService,
-    private fb: FormBuilder
-  ) {}
 
   ngOnInit(): void {
     this.fetchVerboseNames();

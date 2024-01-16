@@ -1,8 +1,10 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+
 import { IngredientEditFormComponent } from '../../forms/ingredient-edit-form/ingredient-edit-form.component';
+
+import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -13,8 +15,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./edit-ingredient-dialog.component.css', '../dialog.css'],
 })
 export class EditIngredientDialogComponent {
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialog: MatDialogRef<EditIngredientDialogComponent>
-  ) {}
+  dialogRef: MatDialogRef<EditIngredientDialogComponent> = inject(MatDialogRef);
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 }

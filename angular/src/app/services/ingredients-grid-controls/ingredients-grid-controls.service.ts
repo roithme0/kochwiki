@@ -10,8 +10,6 @@ export class IngredientsGridControlsService {
   searchBy$: Observable<string> = this.searchBySubject.asObservable();
   filterBy$: Observable<string> = this.filterBySubject.asObservable();
 
-  constructor() {}
-
   setSearchBy(searchBy: string | null): void {
     if (searchBy === null) {
       searchBy = '';

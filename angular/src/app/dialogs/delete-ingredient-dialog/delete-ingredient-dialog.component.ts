@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { Ingredient } from '../../interfaces/ingredient';
@@ -19,11 +19,11 @@ import { MatButtonModule } from '@angular/material/button';
 export class DeleteIngredientDialogComponent {
   ingredient: Ingredient | undefined;
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef: MatDialogRef<DeleteIngredientDialogComponent>,
-    private ingredientService: IngredientService
-  ) {
+  dialogRef: MatDialogRef<DeleteIngredientDialogComponent> =
+    inject(MatDialogRef);
+  ingredientService: IngredientService = inject(IngredientService);
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     this.ingredientService.getIngredientById(data.id).subscribe({
       next: (ingredient) => {
         console.debug('ingredient fetched: ', ingredient);

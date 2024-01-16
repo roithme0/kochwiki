@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { IngredientService } from '../services/ingredient/ingredient.service';
@@ -15,9 +15,10 @@ export class IngredientsGridHeaderComponent {
   // fetch ingredient verbose names
   // render ingredient verbose names
   @Input() displayedFields!: string[];
+
   verboseNames: VerboseNames | null = null;
 
-  constructor(private ingredientService: IngredientService) {}
+  ingredientService: IngredientService = inject(IngredientService);
 
   ngOnInit(): void {
     this.fetchVerboseNames();

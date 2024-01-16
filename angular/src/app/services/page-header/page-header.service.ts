@@ -10,8 +10,6 @@ export class PageHeaderService {
   headline$ = this.headlineSubject.asObservable();
   back$ = this.backSubject.asObservable();
 
-  constructor() {}
-
   setHeadline(headline: string) {
     this.headlineSubject.next(headline);
   }

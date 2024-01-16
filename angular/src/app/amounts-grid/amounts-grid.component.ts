@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { Recipe } from '../interfaces/recipe';
@@ -17,7 +17,7 @@ export class AmountsGridComponent {
   // render amounts as grid
   @Input() recipe!: Recipe;
 
-  constructor(private ingredientService: IngredientService) {}
+  ingredientService: IngredientService = inject(IngredientService);
 
   ngOnInit() {
     // fetch ingredients associated with recipe

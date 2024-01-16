@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RecipeCreateFormComponent } from '../../forms/recipe-create-form/recipe-create-form.component';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -11,5 +11,5 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./create-recipe-dialog.component.css', '../dialog.css'],
 })
 export class CreateRecipeDialogComponent {
-  constructor(public dialog: MatDialogRef<CreateRecipeDialogComponent>) {}
+  dialogRef: MatDialogRef<CreateRecipeDialogComponent> = inject(MatDialogRef);
 }

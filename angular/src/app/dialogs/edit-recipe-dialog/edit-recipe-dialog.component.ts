@@ -1,6 +1,8 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { RecipeEditFormComponent } from '../../forms/recipe-edit-form/recipe-edit-form.component';
+
 import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -12,8 +14,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./edit-recipe-dialog.component.css', '../dialog.css'],
 })
 export class EditRecipeDialogComponent {
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialog: MatDialogRef<EditRecipeDialogComponent>
-  ) {}
+  dialogRef: MatDialogRef<EditRecipeDialogComponent> = inject(MatDialogRef);
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 }

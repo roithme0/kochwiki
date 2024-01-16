@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, RouterLink, RouterLinkActive } from '@angular/router';
+
 import { PageHeaderService } from '../services/page-header/page-header.service';
+
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -21,7 +23,7 @@ export class PageHeaderComponent {
   headline!: string;
   back!: string;
 
-  constructor(private pageHeaderService: PageHeaderService) {}
+  pageHeaderService: PageHeaderService = inject(PageHeaderService);
 
   ngOnInit() {
     this.pageHeaderService.headline$.subscribe((headline) => {
