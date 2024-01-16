@@ -1,4 +1,4 @@
-package org.acme.Ingredient;
+package org.acme.IngredientMetaData;
 
 public enum UnitEnum {
     G("g"),
