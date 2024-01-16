@@ -1,12 +1,14 @@
 package org.acme.Ingredient;
 
 import java.util.List;
+import java.util.Map;
 
 import org.jboss.logging.Logger;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.PATCH;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
@@ -37,11 +39,11 @@ public class IngredientResource {
         return ingredientService.create(ingredient);
     }
 
-    @PUT
+    @PATCH
     @Path("/{id}")
-    public Ingredient update(@PathParam("id") Long id, Ingredient ingredient) {
-        log.info("PUT: updating ingredient with id '" + id + "' ...");
-        return ingredientService.update(id, ingredient);
+    public Ingredient patch(@PathParam("id") Long id, Map<String, Object> updates) {
+        log.info("PATCH: patching ingredient with id '" + id + "' ...");
+        return ingredientService.patch(id, updates);
     }
 
     @DELETE

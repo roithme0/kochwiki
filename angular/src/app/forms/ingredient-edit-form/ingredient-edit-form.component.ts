@@ -35,10 +35,11 @@ export class IngredientEditFormComponent {
   // render form to edit ingredient
   @Input() id!: number;
   @Output() success: EventEmitter<void> = new EventEmitter();
+
   verboseNames: VerboseNames | null = null;
   unitChoices: UnitChoices | null = null;
+
   ingredientForm = this.fb.group({
-    id: [<number | null>null],
     name: ['', Validators.required],
     brand: [''],
     unit: ['', Validators.required],
@@ -70,15 +71,15 @@ export class IngredientEditFormComponent {
 
   onSubmit(formData: any): void {
     console.debug('submitting edit ingredient form: ', formData);
-    const ingredient: Ingredient = formData as Ingredient;
-    this.ingredientService.putIngredient(ingredient).subscribe({
+    const updates: Partial<Ingredient> = formData as Ingredient;
+    this.ingredientService.patchIngredient(this.id, updates).subscribe({
       next: (ingredient) => {
-        console.debug('ingredient updated: ', ingredient);
+        console.debug('ingredient patched: ', ingredient);
         this.ingredientService.notifyIngredientsChanged();
         this.success.emit();
       },
       error: (error) => {
-        console.error('failed to update ingredient: ', error);
+        console.error('failed to patch ingredient: ', error);
       },
     });
   }

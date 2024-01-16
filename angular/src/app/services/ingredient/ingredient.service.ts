@@ -38,11 +38,14 @@ export class IngredientService {
     return this.http.get<Ingredient>(backendUrl + '/ingredients/' + id);
   }
 
-  putIngredient(ingredient: Ingredient): Observable<Ingredient> {
-    console.debug('PUT: putting ingredient "' + ingredient.name + '" ...');
-    return this.http.put<Ingredient>(
-      backendUrl + '/ingredients/' + ingredient.id,
-      ingredient
+  patchIngredient(
+    id: number,
+    updates: Partial<Ingredient>
+  ): Observable<Ingredient> {
+    console.debug('PATCH: patching ingredient "' + id + '" ...');
+    return this.http.patch<Ingredient>(
+      backendUrl + '/ingredients/' + id,
+      updates
     );
   }
 

@@ -6,6 +6,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.EnumType;
@@ -47,7 +48,7 @@ public class Ingredient extends PanacheEntity {
     @Column(nullable = true, length = 3)    
     private Integer fat;
 
-    @OneToMany(mappedBy = "ingredient")
+    @OneToMany(mappedBy = "ingredient", fetch = FetchType.EAGER)
     @Column(nullable = true)
     @JsonManagedReference("amount-ingredient")
     private List<Amount> amounts = new ArrayList<>();
@@ -104,7 +105,7 @@ public class Ingredient extends PanacheEntity {
         try {
             unit = UnitEnum.valueOf(newUnit);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Einheit muss 'g', 'ml' oder 'Stk.' sein.");
+            throw new IllegalArgumentException("Einheit muss 'g[G]', 'ml[ML]' oder 'Stk.[PIECE]' sein.");
         }
     }
 
