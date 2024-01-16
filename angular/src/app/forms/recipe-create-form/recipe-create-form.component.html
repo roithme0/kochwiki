@@ -63,9 +63,15 @@
       <div formArrayName="amounts" class="amounts-wrapper">
         @for(amount of amounts.controls; track amount){
         <div class="amount-fields-wrapper" formGroupName="{{ $index }}">
-          <button mat-stroked-button (click)="removeAmount($index)">
-            Löschen
-          </button>
+          <div class="button-wrapper">
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Löschen"
+              fontIcon="close"
+              class="button"
+              (click)="removeAmount($index)"
+            ></mat-icon>
+          </div>
 
           <mat-expansion-panel>
             <mat-expansion-panel-header>
@@ -122,9 +128,15 @@
       <div formArrayName="steps" class="steps-wrapper">
         @for(step of steps.controls; track step){
         <div formGroupName="{{ $index }}" class="step-fields-wrapper">
-          <button mat-stroked-button (click)="removeStep($index)">
-            Löschen
-          </button>
+          <div class="button-wrapper">
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Löschen"
+              fontIcon="close"
+              class="button"
+              (click)="removeStep($index)"
+            ></mat-icon>
+          </div>
 
           <mat-expansion-panel>
             <mat-expansion-panel-header>
