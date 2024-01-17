@@ -110,21 +110,6 @@ export class RecipeCreateFormComponent {
     });
   }
 
-  onIngredientSelect(event: any, index: number): void {
-    console.debug('ingredient selected: ', event);
-    this.ingredientService.getIngredientById(event.target.value).subscribe({
-      next: (ingredient) => {
-        console.debug('fetched ingredient: ', ingredient);
-        this.amounts.controls[index].patchValue({
-          ingredient: ingredient,
-        });
-      },
-      error: (error) => {
-        console.error('failed to fetch ingredient: ', error);
-      },
-    });
-  }
-
   // onUpload(event: any, field: string): void {
   //   console.debug(`uploading ${field}: `, event);
   //   const file = event.target.files[0];
@@ -192,7 +177,6 @@ export class RecipeCreateFormComponent {
         index: [<number | null>0, Validators.required],
         // index: [<number | null>null, Validators.required],
         ingredientId: [<number | null>null, Validators.required],
-        // ingredient: [<number | null>null, Validators.required],
         amount: [<number | null>null, Validators.required],
       })
     );

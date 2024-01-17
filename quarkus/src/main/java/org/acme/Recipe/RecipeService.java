@@ -1,5 +1,7 @@
 package org.acme.Recipe;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.net.MalformedURLException;
@@ -8,9 +10,14 @@ import java.net.URL;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 
+import org.acme.Amount.Amount;
+import org.acme.Step.Step;
+import org.jboss.logging.Logger;
+
 @ApplicationScoped
 public class RecipeService {
-    
+    private static final Logger log = Logger.getLogger(RecipeService.class);
+
     public List<Recipe> getAll() {
         return Recipe.listAll();
     }
@@ -51,21 +58,34 @@ public class RecipeService {
                     recipe.setOriginName((String) value);
                     break;
                 case "originUrl":
-                    try {
-                        recipe.setOriginUrl(new URL((String) value));
-                    } catch (MalformedURLException e) {
-                        throw new IllegalArgumentException("Invalid URL format for 'originUrl'", e);
-                    }
+                    recipe.setOriginUrl((String) value);
                     break;
                 // case "original":
-                //     break;
+                // break;
                 // case "image":
-                //     break;
+                // break;
                 case "amounts":
-                    // recipe.setAmounts((List<Amount>) value);
+                    List<Amount> newAmounts = new ArrayList<Amount>();
+                    List<LinkedHashMap<String, Object>> amountsList = (List<LinkedHashMap<String, Object>>) value;
+                    for (LinkedHashMap<String, Object> amountMap : amountsList) {
+                        Integer index = (Integer) amountMap.get("index");
+                        Float amount = ((Integer) amountMap.get("amount")).floatValue();
+                        Long ingredientId = ((Integer) amountMap.get("ingredientId")).longValue();
+                        Amount newAmount = new Amount(index, amount, ingredientId);
+                        newAmounts.add(newAmount);
+                    }
+                    recipe.setAmounts(newAmounts);
                     break;
                 case "steps":
-                    // recipe.setSteps((List<Step>) value);
+                    List<Step> newSteps = new ArrayList<Step>();
+                    List<LinkedHashMap<String, Object>> stepsList = (List<LinkedHashMap<String, Object>>) value;
+                    for (LinkedHashMap<String, Object> stepMap : stepsList) {
+                        Integer index = (Integer) stepMap.get("index");
+                        String description = (String) stepMap.get("description");
+                        Step newStep = new Step(index, description);
+                        newSteps.add(newStep);
+                    }
+                    recipe.setSteps(newSteps);
                     break;
                 default:
                     throw new IllegalArgumentException("Unknown field '" + key + "'");

@@ -118,8 +118,17 @@ public class Recipe extends PanacheEntity {
         originName = newOriginName;
     }
 
-    public void setOriginUrl(URL newOriginUrl) {
-        originUrl = newOriginUrl;
+    public void setOriginUrl(String newOriginUrl) {
+        if (newOriginUrl == null || newOriginUrl == "") {
+            originUrl = null;
+            return;
+        }
+
+        try {
+            originUrl = new URL(newOriginUrl);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Invalid URL format for 'originUrl'", e);
+        }
     }
 
     // public void setOriginal(File newOriginal){
@@ -179,7 +188,7 @@ public class Recipe extends PanacheEntity {
             Integer servings,
             Integer preptime,
             String originName,
-            URL originUrl
+            String originUrl
     // File original,
     // File image,
     ) {
@@ -197,7 +206,7 @@ public class Recipe extends PanacheEntity {
             Integer servings,
             Integer preptime,
             String originName,
-            URL originUrl,
+            String originUrl,
             // File original,
             // File image,
             List<Amount> amounts,

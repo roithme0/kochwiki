@@ -77,11 +77,7 @@
               <div class="amount-fields-wrapper">
                 <mat-form-field appearance="fill" class="ingredient-field">
                   <mat-label>Zutat</mat-label>
-                  <mat-select
-                    formControlName="ingredientId"
-                    single
-                    (change)="onIngredientSelect($event, $index)"
-                  >
+                  <mat-select formControlName="ingredientId" single>
                     <mat-option disabled selected></mat-option>
                     @for(ingredient of ingredients(); track ingredient.id) {
                     <mat-option [value]="ingredient.id">{{

@@ -29,22 +29,22 @@ export class RecipeService {
   }
 
   getRecipeById(id: number): Observable<Recipe> {
-    console.debug('GET: fetching recipe by id: ' + id.toString());
+    console.debug('GET: fetching recipe by id', id);
     return this.http.get<Recipe>(backendUrl + '/recipes/' + id);
   }
 
   patchRecipe(id: number, updates: Partial<Recipe>): Observable<Recipe> {
-    console.debug('PATCH: patching recipe "' + id + '" ...');
+    console.debug('PATCH: patching recipe ' + id, updates);
     return this.http.patch<Recipe>(backendUrl + '/recipes/' + id, updates);
   }
 
   postRecipe(recipe: Partial<Recipe>): Observable<Recipe> {
-    console.debug('POST: posting recipe: ', recipe);
+    console.debug('POST: posting recipe ', recipe);
     return this.http.post<Recipe>(backendUrl + '/recipes', recipe);
   }
 
   deleteRecipe(id: number): Observable<number> {
-    console.debug('DELETE: deleting recipe by id: ' + id.toString());
+    console.debug('DELETE: deleting recipe ' + id);
     return this.http.delete<number>(backendUrl + '/recipes/' + id);
   }
 }

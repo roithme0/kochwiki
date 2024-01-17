@@ -108,22 +108,6 @@ export class RecipeEditFormComponent {
     });
   }
 
-  fetchIngredientsOfRecipe(recipe: Recipe): void {
-    for (let index = 0; index < recipe.amounts.length; index++) {
-      const amount = recipe.amounts[index];
-      this.ingredientService.getIngredientById(amount.ingredientId).subscribe({
-        next: (ingredient) => {
-          console.debug('fetched ingredient: ', ingredient);
-          amount.ingredient = ingredient;
-          this.addAmount(amount);
-        },
-        error: (error) => {
-          console.error('failed to fetch ingredient: ', error);
-        },
-      });
-    }
-  }
-
   fetchRecipe(): void {
     this.recipeService.getRecipeById(this.id).subscribe({
       next: (recipe) => {
@@ -141,10 +125,12 @@ export class RecipeEditFormComponent {
             preptime: recipe.preptime,
           },
         });
+        recipe.amounts.forEach((amount) => {
+          this.addAmount(amount);
+        });
         recipe.steps.forEach((step) => {
           this.addStep(step);
         });
-        this.fetchIngredientsOfRecipe(recipe);
       },
       error: (error) => {
         console.error('failed to fetch recipe: ', error);
@@ -152,25 +138,15 @@ export class RecipeEditFormComponent {
     });
   }
 
-  onIngredientSelect(event: any, index: number): void {
-    console.debug('ingredient selected: ', event);
-    this.ingredientService.getIngredientById(event.target.value).subscribe({
-      next: (ingredient) => {
-        console.debug('fetched ingredient: ', ingredient);
-        this.amounts.controls[index].patchValue({
-          ingredient: ingredient,
-        });
-      },
-      error: (error) => {
-        console.error('failed to fetch ingredient: ', error);
-      },
-    });
-  }
-
   onSubmit(): void {
-    console.debug('submitting edit recipe form: ', this.recipeForm.value);
-    const updates: Partial<Recipe> = this.recipeForm.value as Recipe;
-    this.recipeService.patchRecipe(this.id, updates).subscribe({
+    const formValue = this.recipeForm.value;
+    console.debug('submitting edit recipe form: ', formValue);
+    const recipe: Partial<Recipe> = {
+      ...formValue.metaFormGroup,
+      ...formValue.amountsFormGroup,
+      ...formValue.preparationFormGroup,
+    } as Recipe;
+    this.recipeService.patchRecipe(this.id, recipe).subscribe({
       next: (recipe) => {
         console.debug('recipe patched: ', recipe);
         this.success.emit();
@@ -192,7 +168,6 @@ export class RecipeEditFormComponent {
       this.fb.group({
         index: [1, Validators.required],
         // index: [amount?.index ?? null, Validators.required],
-        ingredient: [amount?.ingredient ?? null, Validators.required],
         ingredientId: [amount?.ingredientId ?? null, Validators.required],
         amount: [amount?.amount ?? null, Validators.required],
       })
