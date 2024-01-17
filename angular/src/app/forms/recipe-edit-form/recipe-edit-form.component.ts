@@ -7,9 +7,8 @@ import {
   WritableSignal,
   inject,
 } from '@angular/core';
-import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { FormArray } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
 
 import { RecipeService } from '../../services/recipe/recipe.service';
 import { IngredientService } from '../../services/ingredient/ingredient.service';
@@ -27,6 +26,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-recipe-edit-form',
@@ -39,6 +47,9 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
+    FormsModule,
+    MatStepperModule,
+    MatIconModule,
   ],
   templateUrl: './recipe-edit-form.component.html',
   styleUrl: './recipe-edit-form.component.css',
@@ -57,15 +68,21 @@ export class RecipeEditFormComponent {
   dialog: MatDialog = inject(MatDialog);
 
   recipeForm = this.fb.group({
-    name: ['', Validators.required],
-    // image: [<File | null>null],
-    originName: [''],
-    originUrl: [''],
-    // original: [<File | null>null],
-    servings: [<number | null>null, Validators.required],
-    amounts: this.fb.array([]),
-    preptime: [<number | null>null],
-    steps: this.fb.array([]),
+    metaFormGroup: this.fb.group({
+      name: ['', Validators.required],
+      // image: [<File | null>null],
+      originName: [''],
+      originUrl: [''],
+      // original: [<File | null>null],
+    }),
+    amountsFormGroup: this.fb.group({
+      servings: [<number | null>null, Validators.required],
+      amounts: this.fb.array([]),
+    }),
+    preparationFormGroup: this.fb.group({
+      preptime: [<number | null>null],
+      steps: this.fb.array([]),
+    }),
   });
 
   constructor() {
@@ -111,7 +128,19 @@ export class RecipeEditFormComponent {
     this.recipeService.getRecipeById(this.id).subscribe({
       next: (recipe) => {
         console.debug('fetched recipe: ', recipe);
-        this.recipeForm.patchValue(recipe);
+        this.recipeForm.patchValue({
+          metaFormGroup: {
+            name: recipe.name,
+            originName: recipe.originName,
+            originUrl: recipe.originUrl,
+          },
+          amountsFormGroup: {
+            servings: recipe.servings,
+          },
+          preparationFormGroup: {
+            preptime: recipe.preptime,
+          },
+        });
         recipe.steps.forEach((step) => {
           this.addStep(step);
         });
@@ -154,7 +183,7 @@ export class RecipeEditFormComponent {
   }
 
   get amounts(): FormArray {
-    return this.recipeForm.get('amounts') as FormArray;
+    return this.recipeForm.get('amountsFormGroup.amounts') as FormArray;
   }
 
   addAmount(amount?: Amount): void {
@@ -174,7 +203,7 @@ export class RecipeEditFormComponent {
   }
 
   get steps(): FormArray {
-    return this.recipeForm.get('steps') as FormArray;
+    return this.recipeForm.get('preparationFormGroup.steps') as FormArray;
   }
 
   addStep(step?: Step): void {
