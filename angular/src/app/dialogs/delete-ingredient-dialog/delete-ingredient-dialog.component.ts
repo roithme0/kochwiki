@@ -14,7 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
   standalone: true,
   imports: [CommonModule, MatButtonModule],
   templateUrl: './delete-ingredient-dialog.component.html',
-  styleUrls: ['./delete-ingredient-dialog.component.css', '../dialog.css'],
+  styleUrl: './delete-ingredient-dialog.component.css',
 })
 export class DeleteIngredientDialogComponent {
   ingredient: Ingredient | undefined;

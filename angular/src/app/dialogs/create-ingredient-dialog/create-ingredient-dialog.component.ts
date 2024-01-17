@@ -8,7 +8,7 @@ import { IngredientCreateFormComponent } from '../../forms/ingredient-create-for
   standalone: true,
   imports: [CommonModule, IngredientCreateFormComponent],
   templateUrl: './create-ingredient-dialog.component.html',
-  styleUrls: ['./create-ingredient-dialog.component.css', '../dialog.css'],
+  styleUrl: './create-ingredient-dialog.component.css',
 })
 export class CreateIngredientDialogComponent {
   constructor(public dialog: MatDialogRef<CreateIngredientDialogComponent>) {}

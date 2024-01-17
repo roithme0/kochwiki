@@ -1,3 +1,9 @@
+:host {
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
 .buttons {
   display: flex;
   gap: 0.5rem;

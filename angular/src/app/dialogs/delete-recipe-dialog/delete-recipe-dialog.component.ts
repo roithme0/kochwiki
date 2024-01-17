@@ -13,7 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
   standalone: true,
   imports: [CommonModule, MatButtonModule],
   templateUrl: './delete-recipe-dialog.component.html',
-  styleUrls: ['./delete-recipe-dialog.component.css', '../dialog.css'],
+  styleUrl: './delete-recipe-dialog.component.css',
 })
 export class DeleteRecipeDialogComponent {
   @Output() success: EventEmitter<void> = new EventEmitter();
