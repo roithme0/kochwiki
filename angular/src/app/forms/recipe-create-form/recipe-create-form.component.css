@@ -3,6 +3,13 @@
   flex-direction: column;
 }
 
+.amounts-mat-step,
+.preparation-mat-step {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .amounts-wrapper,
 .steps-wrapper {
   display: flex;
@@ -10,15 +17,38 @@
   gap: 0.5rem;
 }
 
-.amount-fields-wrapper,
-.step-fields-wrapper {
+.amount-wrapper,
+.step-wrapper {
   display: flex;
   gap: 0.5rem;
 }
 
-.amount-buttons-wrapper {
+.amount-expansion-panel,
+.step-expansion-panel {
+  flex: 1;
+}
+
+.amount-fields-wrapper,
+.step-fields-wrapper {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0 0.5rem;
+}
+
+.ingredient-field,
+.description-field {
+  flex: 1;
+}
+
+.amounts-array-buttons-wrapper {
+  display: flex;
+  justify-content: stretch;
   gap: 0.5rem;
+}
+
+.add-amount-button {
+  flex: 1 0 50%;
 }
 
 .button-wrapper {
