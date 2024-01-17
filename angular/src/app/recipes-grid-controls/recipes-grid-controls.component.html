@@ -1,1 +1,20 @@
-<p>recipes-grid-controls works!</p>
+<form class="form">
+  <mat-form-field class="search-field">
+    <mat-label>Suche</mat-label>
+    <input
+      placeholder="Name oder Ersteller*in suchen ..."
+      [formControl]="searchControl"
+      matInput
+    />
+    @if(searchControl.value){
+    <button
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="searchControl.setValue('')"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    }
+  </mat-form-field>
+</form>
