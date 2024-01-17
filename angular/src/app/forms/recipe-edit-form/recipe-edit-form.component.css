@@ -28,20 +28,18 @@
 }
 
 .amount-expansion-panel,
-.step-expansion-panel {
+.description-field {
   flex: 1;
 }
 
-.amount-fields-wrapper,
-.step-fields-wrapper {
+.amount-fields-wrapper {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 0 0.5rem;
 }
 
-.ingredient-field,
-.description-field {
+.ingredient-field {
   flex: 1;
 }
 
