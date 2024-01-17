@@ -37,40 +37,38 @@ public class RecipeService {
         for (Map.Entry<String, Object> entry : updates.entrySet()) {
             String key = entry.getKey();
             Object value = entry.getValue();
-            if (value != null) {
-                switch (key) {
-                    case "name":
-                        recipe.setName((String) value);
-                        break;
-                    case "servings":
-                        recipe.setServings((Integer) value);
-                        break;
-                    case "preptime":
-                        recipe.setPreptime((Integer) value);
-                        break;
-                    case "originName":
-                        recipe.setOriginName((String) value);
-                        break;
-                    case "originUrl":
-                        try {
-                            recipe.setOriginUrl(new URL((String) value));
-                        } catch (MalformedURLException e) {
-                            throw new IllegalArgumentException("Invalid URL format for 'originUrl'", e);
-                        }
-                        break;
-                    // case "original":
-                    //     break;
-                    // case "image":
-                    //     break;
-                    case "amounts":
-                        // recipe.setAmounts((List<Amount>) value);
-                        break;
-                    case "steps":
-                        // recipe.setSteps((List<Step>) value);
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Unknown field '" + key + "'");
-                }
+            switch (key) {
+                case "name":
+                    recipe.setName((String) value);
+                    break;
+                case "servings":
+                    recipe.setServings((Integer) value);
+                    break;
+                case "preptime":
+                    recipe.setPreptime((Integer) value);
+                    break;
+                case "originName":
+                    recipe.setOriginName((String) value);
+                    break;
+                case "originUrl":
+                    try {
+                        recipe.setOriginUrl(new URL((String) value));
+                    } catch (MalformedURLException e) {
+                        throw new IllegalArgumentException("Invalid URL format for 'originUrl'", e);
+                    }
+                    break;
+                // case "original":
+                //     break;
+                // case "image":
+                //     break;
+                case "amounts":
+                    // recipe.setAmounts((List<Amount>) value);
+                    break;
+                case "steps":
+                    // recipe.setSteps((List<Step>) value);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Unknown field '" + key + "'");
             }
         }
         return recipe;

@@ -3,11 +3,14 @@ package org.acme.Ingredient;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 
+import org.jboss.logging.Logger;
+
 import java.util.List;
 import java.util.Map;
 
 @ApplicationScoped
 public class IngredientService {
+    private static final Logger log = Logger.getLogger(IngredientService.class);
 
     public List<Ingredient> getAll() {
         return Ingredient.listAll();
@@ -32,35 +35,34 @@ public class IngredientService {
             throw new IllegalArgumentException("Ingredient with id " + id + " does not exist");
         }
 
+        log.debug("updates: " + updates);
         for (Map.Entry<String, Object> entry : updates.entrySet()) {
             String key = entry.getKey();
             Object value = entry.getValue();
-            if (value != null) {
-                switch (key) {
-                    case "name":
-                        ingredient.setName((String) value);
-                        break;
-                    case "brand":
-                        ingredient.setBrand((String) value);
-                        break;
-                    case "unit":
-                        ingredient.setUnit((String) value);
-                        break;
-                    case "kcal":
-                        ingredient.setKcal((Integer) value);
-                        break;
-                    case "carbs":
-                        ingredient.setCarbs((Integer) value);
-                        break;
-                    case "protein":
-                        ingredient.setProtein((Integer) value);
-                        break;
-                    case "fat":
-                        ingredient.setFat((Integer) value);
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Unknown field '" + key + "'");
-                }
+            switch (key) {
+                case "name":
+                    ingredient.setName((String) value);
+                    break;
+                case "brand":
+                    ingredient.setBrand((String) value);
+                    break;
+                case "unit":
+                    ingredient.setUnit((String) value);
+                    break;
+                case "kcal":
+                    ingredient.setKcal((Integer) value);
+                    break;
+                case "carbs":
+                    ingredient.setCarbs((Integer) value);
+                    break;
+                case "protein":
+                    ingredient.setProtein((Integer) value);
+                    break;
+                case "fat":
+                    ingredient.setFat((Integer) value);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Unknown field '" + key + "'");
             }
         }
         return ingredient;
