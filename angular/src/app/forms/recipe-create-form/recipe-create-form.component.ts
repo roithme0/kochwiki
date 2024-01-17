@@ -189,7 +189,8 @@ export class RecipeCreateFormComponent {
   addAmount(): void {
     this.amounts.push(
       this.fb.group({
-        index: [<number | null>null, Validators.required],
+        index: [<number | null>0, Validators.required],
+        // index: [<number | null>null, Validators.required],
         ingredient: [<number | null>null, Validators.required],
         amount: [<number | null>null, Validators.required],
       })
@@ -207,7 +208,8 @@ export class RecipeCreateFormComponent {
   addStep(): void {
     this.steps.push(
       this.fb.group({
-        index: [<number | null>null, Validators.required],
+        index: [<number | null>0, Validators.required],
+        // index: [<number | null>null, Validators.required],
         description: ['', Validators.required],
       })
     );

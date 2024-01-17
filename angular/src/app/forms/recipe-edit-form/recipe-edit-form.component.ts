@@ -190,7 +190,8 @@ export class RecipeEditFormComponent {
     // add either empty or existing amount to form
     this.amounts.push(
       this.fb.group({
-        index: [amount?.index ?? null, Validators.required],
+        index: [1, Validators.required],
+        // index: [amount?.index ?? null, Validators.required],
         ingredient: [amount?.ingredient ?? null, Validators.required],
         ingredientId: [amount?.ingredientId ?? null, Validators.required],
         amount: [amount?.amount ?? null, Validators.required],
@@ -210,7 +211,8 @@ export class RecipeEditFormComponent {
     // add either empty or existing step to form
     this.steps.push(
       this.fb.group({
-        index: [step?.index ?? null, Validators.required],
+        index: [1, Validators.required],
+        // index: [step?.index ?? null, Validators.required],
         description: [step?.description ?? '', Validators.required],
       })
     );
