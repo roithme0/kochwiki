@@ -12,17 +12,18 @@ import jakarta.persistence.Column;
 
 import org.acme.Ingredient.Ingredient;
 import org.acme.Recipe.Recipe;
-// import org.jboss.logging.Logger;
+import org.acme.Recipe.RecipeResource;
+import org.jboss.logging.Logger;
 
 @Entity
 // unique constraints prevented updating recipes
 // @Table(uniqueConstraints = {
-//     @UniqueConstraint(columnNames = {"index", "recipe_id"}),
-//     @UniqueConstraint(columnNames = {"ingredient_id", "recipe_id"})
+// @UniqueConstraint(columnNames = {"index", "recipe_id"}),
+// @UniqueConstraint(columnNames = {"ingredient_id", "recipe_id"})
 // })
 public class Amount extends PanacheEntity {
-    // private static final Logger log = Logger.getLogger(Amount.class);
-    
+    private static final Logger log = Logger.getLogger(Amount.class);
+
     @Column(nullable = false, length = 2)
     private Integer index;
 
@@ -64,22 +65,33 @@ public class Amount extends PanacheEntity {
     }
 
     public void setIndex(Integer newIndex) {
-        if (newIndex < 0 || newIndex > 99){
+        if (newIndex < 0 || newIndex > 99) {
             throw new IllegalArgumentException("Wert muss zwischen 0 und 99 liegen.");
         }
         index = newIndex;
     }
 
     public void setAmount(Float newAmount) {
-        if (newAmount < 0 || newAmount > 999){
+        log.debug("Setting amount: " + newAmount);
+        if (newAmount < 0 || newAmount > 999) {
             throw new IllegalArgumentException("Wert muss zwischen 0 und 999 liegen.");
         }
         amount = newAmount;
     }
 
     public void setIngredient(Ingredient newIngredient) {
+        log.debug("Setting ingredient: " + ingredient);
         ingredient = newIngredient;
         ingredient.addAmount(this);
+    }
+
+    public void setIngredientId(Long ingredientId) {
+        log.debug("Setting ingredient by id: " + ingredientId);
+        Ingredient newIngredient = Ingredient.findById(ingredientId);
+        if (newIngredient == null) {
+            throw new IllegalArgumentException("Ingredient with id " + ingredientId + " does not exist");
+        }
+        setIngredient(newIngredient);
     }
 
     public void setRecipe(Recipe newRecipe) {
@@ -90,12 +102,11 @@ public class Amount extends PanacheEntity {
     }
 
     public Amount(
-        Integer index, 
-        Float amount, 
-        Ingredient ingredient
-        ) {
+            Integer index,
+            Float amount,
+            Long ingredientId) {
         this.setIndex(index);
         this.setAmount(amount);
-        this.setIngredient(ingredient);
+        this.setIngredientId(ingredientId);
     }
 }
