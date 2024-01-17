@@ -62,7 +62,8 @@ export class IngredientCreateFormComponent {
       'submitting create ingredient form: ',
       this.ingredientForm.value
     );
-    const ingredient: Ingredient = this.ingredientForm.value as Ingredient;
+    const ingredient: Partial<Ingredient> = this.ingredientForm
+      .value as Ingredient;
 
     this.ingredientService.postIngredient(ingredient).subscribe({
       next: (ingredient) => {

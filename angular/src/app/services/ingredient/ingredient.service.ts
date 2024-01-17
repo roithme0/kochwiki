@@ -49,7 +49,7 @@ export class IngredientService {
     );
   }
 
-  postIngredient(ingredient: Ingredient): Observable<Ingredient> {
+  postIngredient(ingredient: Partial<Ingredient>): Observable<Ingredient> {
     console.debug('POST: posting ingredient "' + ingredient + '" ...');
     return this.http.post<Ingredient>(backendUrl + '/ingredients', ingredient);
   }

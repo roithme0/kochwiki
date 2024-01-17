@@ -165,7 +165,7 @@ export class RecipeCreateFormComponent {
   onSubmit(): void {
     const formValue = this.recipeForm.value;
     console.debug('submitting create recipe form: ', formValue);
-    const recipe: Recipe = {
+    const recipe: Partial<Recipe> = {
       ...formValue.metaFormGroup,
       ...formValue.amountsFormGroup,
       ...formValue.preparationFormGroup,

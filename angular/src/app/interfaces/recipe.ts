@@ -2,7 +2,7 @@ import { Amount } from './amount';
 import { Step } from './step';
 
 export interface Recipe {
-  id: number | null;
+  id: number;
   name: string;
   // image: File | null;
   originName: string | null;

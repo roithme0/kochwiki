@@ -13,6 +13,7 @@ const backendUrl: string = environment.backendUrl;
   providedIn: 'root',
 })
 export class RecipeService {
+  // backend communication associated with recipes
   private recipesSubject = new Subject<void>();
   recipes$ = this.recipesSubject.asObservable();
 
@@ -37,7 +38,7 @@ export class RecipeService {
     return this.http.patch<Recipe>(backendUrl + '/recipes/' + id, updates);
   }
 
-  postRecipe(recipe: Recipe): Observable<Recipe> {
+  postRecipe(recipe: Partial<Recipe>): Observable<Recipe> {
     console.debug('POST: posting recipe: ', recipe);
     return this.http.post<Recipe>(backendUrl + '/recipes', recipe);
   }

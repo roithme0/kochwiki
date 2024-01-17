@@ -2,7 +2,7 @@ import { Amount } from './amount';
 
 export interface Ingredient {
   [key: string]: any;
-  id: number | null;
+  id: number;
   name: string;
   brand: string | null;
   unit: string;
