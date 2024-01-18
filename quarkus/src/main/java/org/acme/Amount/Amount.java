@@ -12,7 +12,6 @@ import jakarta.persistence.Column;
 
 import org.acme.Ingredient.Ingredient;
 import org.acme.Recipe.Recipe;
-import org.acme.Recipe.RecipeResource;
 import org.jboss.logging.Logger;
 
 @Entity

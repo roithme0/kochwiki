@@ -4,19 +4,17 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 
 import org.acme.Amount.Amount;
 import org.acme.Step.Step;
-import org.jboss.logging.Logger;
+// import org.jboss.logging.Logger;
 
 @ApplicationScoped
 public class RecipeService {
-    private static final Logger log = Logger.getLogger(RecipeService.class);
+    // private static final Logger log = Logger.getLogger(RecipeService.class);
 
     public List<Recipe> getAll() {
         return Recipe.listAll();
