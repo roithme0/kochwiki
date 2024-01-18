@@ -6,8 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { Ingredient } from '../../../shared/interfaces/ingredient';
 
-import { EditIngredientDialogComponent } from '../../../shared/dialogs/ingredient-edit-dialog/ingredient-edit-dialog.component';
-import { DeleteIngredientDialogComponent } from '../../../shared/dialogs/ingredient-delete-dialog/ingredient-delete-dialog.component';
+import { IngredientEditDialogComponent } from '../../../shared/dialogs/ingredient-edit-dialog/ingredient-edit-dialog.component';
+import { IngredientDeleteDialogComponent } from '../../../shared/dialogs/ingredient-delete-dialog/ingredient-delete-dialog.component';
 
 @Component({
   selector: 'app-ingredients-grid-row',
@@ -25,13 +25,13 @@ export class IngredientsGridRowComponent {
   dialog: MatDialog = inject(MatDialog);
 
   openEditIngredientDialog(): void {
-    this.dialog.open(EditIngredientDialogComponent, {
+    this.dialog.open(IngredientEditDialogComponent, {
       data: { id: this.ingredient.id },
     });
   }
 
   openDeleteIngredientDialog(): void {
-    this.dialog.open(DeleteIngredientDialogComponent, {
+    this.dialog.open(IngredientDeleteDialogComponent, {
       data: { id: this.ingredient.id },
     });
   }

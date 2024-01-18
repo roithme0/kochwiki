@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Recipe } from '../../interfaces/recipe';
+
+import { Recipe } from '../../../shared/interfaces/recipe';
+
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({

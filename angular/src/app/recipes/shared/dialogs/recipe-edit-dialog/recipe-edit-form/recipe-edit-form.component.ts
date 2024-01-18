@@ -10,15 +10,15 @@ import {
 import { FormArray } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-import { RecipeService } from '../../recipes/shared/services/recipe.service';
-import { IngredientService } from '../../ingredients/ingredient/ingredient.service';
+import { RecipeService } from '../../../../shared/services/recipe.service';
+import { IngredientService } from '../../../../../ingredients/shared/services/ingredient.service';
 
-import { Ingredient } from '../../ingredients/shared/interfaces/ingredient';
-import { Step } from '../../interfaces/step';
-import { Recipe } from '../../interfaces/recipe';
-import { Amount } from '../../interfaces/amount';
+import { Ingredient } from '../../../../../ingredients/shared/interfaces/ingredient';
+import { Recipe } from '../../../interfaces/recipe';
+import { Step } from '../../../../../steps-grid/step';
+import { Amount } from '../../../../../amounts-grid/amount';
 
-import { IngredientCreateDialogComponent } from '../../ingredients/shared/dialogs/ingredient-create-dialog/ingredient-create-dialog.component';
+import { IngredientCreateDialogComponent } from '../../../../../ingredients/shared/dialogs/ingredient-create-dialog/ingredient-create-dialog.component';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';

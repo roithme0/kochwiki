@@ -1,7 +1,7 @@
 import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { IngredientService } from '../ingredients/ingredient/ingredient.service';
+import { IngredientService } from '../../../shared/services/ingredient.service';
 import { VerboseNames } from '../../../shared/interfaces/ingredient-meta-data';
 
 @Component({

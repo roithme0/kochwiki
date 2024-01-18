@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { Recipe } from '../interfaces/recipe';
+import { Recipe } from '../recipes/shared/interfaces/recipe';
 
 @Component({
   selector: 'app-steps-grid',

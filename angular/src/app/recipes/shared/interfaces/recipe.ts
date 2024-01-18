@@ -1,5 +1,5 @@
-import { Amount } from './amount';
-import { Step } from './step';
+import { Amount } from '../../../amounts-grid/amount';
+import { Step } from '../../../steps-grid/step';
 
 export interface Recipe {
   id: number;

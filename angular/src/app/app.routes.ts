@@ -16,8 +16,10 @@ export const routes: Routes = [
     path: 'recipes',
     component: RecipesComponent,
     title: 'Rezepte',
-    children: [
-      { path: 'recipe/:id', component: RecipeComponent, title: 'Rezept' },
-    ],
+  },
+  {
+    path: 'recipes/:id',
+    component: RecipeComponent,
+    title: 'Rezept',
   },
 ];

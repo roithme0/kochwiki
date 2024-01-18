@@ -8,10 +8,10 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { Ingredient } from '../interfaces/ingredient';
+import { Ingredient } from '../../shared/interfaces/ingredient';
 
-import { IngredientService } from '../ingredients/ingredient/ingredient.service';
-import { IngredientsGridControlsService } from '../ingredients/ingredients-grid-controls/ingredients-grid-controls.service';
+import { IngredientService } from '../../shared/services/ingredient.service';
+import { IngredientsGridControlsService } from './shared/ingredients-grid-controls.service';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -20,7 +20,7 @@ import { IngredientsGridControlsComponent } from './ingredients-grid-controls/in
 import { IngredientsGridHeaderComponent } from './ingredients-grid-header/ingredients-grid-header.component';
 import { IngredientsGridRowComponent } from './ingredients-grid-row/ingredients-grid-row.component';
 
-import { IngredientCreateDialogComponent } from '../dialogs/ingredient-create-dialog/ingredient-create-dialog.component';
+import { IngredientCreateDialogComponent } from '../../shared/dialogs/ingredient-create-dialog/ingredient-create-dialog.component';
 
 @Component({
   selector: 'app-ingredients-grid',

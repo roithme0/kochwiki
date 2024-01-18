@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Recipe } from '../../../interfaces/recipe';
+import { Recipe } from '../interfaces/recipe';
 
 import { Observable, Subject } from 'rxjs';
 

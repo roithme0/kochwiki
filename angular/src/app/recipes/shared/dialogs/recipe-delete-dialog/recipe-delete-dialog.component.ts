@@ -2,7 +2,7 @@ import { Component, Inject, EventEmitter, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
-import { RecipeService } from '../../shared/services/recipe.service';
+import { RecipeService } from '../../../shared/services/recipe.service';
 
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
