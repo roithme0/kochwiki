@@ -13,7 +13,7 @@
       matSuffix
       mat-icon-button
       aria-label="Clear"
-      (click)="searchControl.setValue('')"
+      (click)="searchControl.setValue(''); emitControlValue()"
     >
       <mat-icon>close</mat-icon>
     </button>

@@ -37,6 +37,7 @@ import { CreateIngredientDialogComponent } from '../dialogs/create-ingredient-di
 })
 export class IngredientsGridComponent {
   // fetch all ingredients
+  // filter ingredients by search & filter input
   // render ingredients-grid-controls component
   // render ingredients as grid
   ingredients: WritableSignal<Ingredient[]> = signal([]);
