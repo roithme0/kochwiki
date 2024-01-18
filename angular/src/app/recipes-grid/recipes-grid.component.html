@@ -1,4 +1,4 @@
-<app-recipes-grid-controls />
+<app-recipes-grid-controls [recipes]="displayedRecipes" />
 
 <section class="grid">
   @for(recipe of displayedRecipes(); track recipe.id){

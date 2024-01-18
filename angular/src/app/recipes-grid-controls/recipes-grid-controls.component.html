@@ -4,7 +4,9 @@
     <input
       placeholder="Name oder Ersteller*in suchen ..."
       [formControl]="searchControl"
+      (input)="emitControlValue()"
       matInput
+      [matAutocomplete]="search"
     />
     @if(searchControl.value){
     <button
@@ -16,5 +18,10 @@
       <mat-icon>close</mat-icon>
     </button>
     }
+    <mat-autocomplete #search="matAutocomplete">
+      @for (nameOrOrigin of filteredNamesAndOrigins(); track nameOrOrigin) {
+      <mat-option [value]="nameOrOrigin">{{ nameOrOrigin }}</mat-option>
+      }
+    </mat-autocomplete>
   </mat-form-field>
 </form>
