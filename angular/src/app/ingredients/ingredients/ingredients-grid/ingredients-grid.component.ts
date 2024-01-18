@@ -20,7 +20,7 @@ import { IngredientsGridControlsComponent } from './ingredients-grid-controls/in
 import { IngredientsGridHeaderComponent } from './ingredients-grid-header/ingredients-grid-header.component';
 import { IngredientsGridRowComponent } from './ingredients-grid-row/ingredients-grid-row.component';
 
-import { CreateIngredientDialogComponent } from '../dialogs/create-ingredient-dialog/create-ingredient-dialog.component';
+import { CreateIngredientDialogComponent } from '../dialogs/ingredient-create-dialog/ingredient-create-dialog.component';
 
 @Component({
   selector: 'app-ingredients-grid',

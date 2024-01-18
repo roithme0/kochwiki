@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeleteIngredientDialogComponent } from './ingredient-delete-dialog.component';
+import { IngredientDeleteDialogComponent } from './ingredient-delete-dialog.component';
 
-describe('DeleteIngredientDialogComponent', () => {
-  let component: DeleteIngredientDialogComponent;
-  let fixture: ComponentFixture<DeleteIngredientDialogComponent>;
+describe('IngredientDeleteDialogComponent', () => {
+  let component: IngredientDeleteDialogComponent;
+  let fixture: ComponentFixture<IngredientDeleteDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DeleteIngredientDialogComponent],
+      imports: [IngredientDeleteDialogComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(DeleteIngredientDialogComponent);
+    fixture = TestBed.createComponent(IngredientDeleteDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

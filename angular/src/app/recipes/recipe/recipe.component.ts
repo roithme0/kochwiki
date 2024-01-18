@@ -13,8 +13,8 @@ import { PageHeaderService } from '../../shared/page-header.service';
 import { AmountsGridComponent } from '../../amounts-grid/amounts-grid.component';
 import { StepsGridComponent } from '../../steps-grid/steps-grid.component';
 
-import { EditRecipeDialogComponent } from '../../dialogs/edit-recipe-dialog/edit-recipe-dialog.component';
-import { DeleteRecipeDialogComponent } from '../../dialogs/delete-recipe-dialog/delete-recipe-dialog.component';
+import { EditRecipeDialogComponent } from '../../dialogs/recipe-edit-dialog/recipe-edit-dialog.component';
+import { DeleteRecipeDialogComponent } from '../../dialogs/recipe-delete-dialog/recipe-delete-dialog.component';
 
 @Component({
   selector: 'app-recipe',

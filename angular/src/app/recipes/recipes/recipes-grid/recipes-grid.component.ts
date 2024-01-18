@@ -15,7 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RecipesGridControlsComponent } from './recipes-grid-controls/recipes-grid-controls.component';
 import { RecipesGridElementComponent } from './recipes-grid-element/recipes-grid-element.component';
 
-import { CreateRecipeDialogComponent } from '../dialogs/create-recipe-dialog/create-recipe-dialog.component';
+import { RecipeCreateDialogComponent } from '../shared/dialogs/recipe-create-dialog/recipe-create-dialog.component';
 
 import { Recipe } from '../interfaces/recipe';
 
@@ -29,7 +29,7 @@ import { RecipesGridControlsService } from '../services/recipes-grid-controls/re
     CommonModule,
     RecipesGridControlsComponent,
     RecipesGridElementComponent,
-    CreateRecipeDialogComponent,
+    RecipeCreateDialogComponent,
     MatIconModule,
   ],
   templateUrl: './recipes-grid.component.html',
@@ -116,6 +116,6 @@ export class RecipesGridComponent {
 
   openCreateRecipeDialog(): void {
     // open dialog to create new recipe
-    this.dialog.open(CreateRecipeDialogComponent);
+    this.dialog.open(RecipeCreateDialogComponent);
   }
 }
