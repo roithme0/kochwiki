@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { Recipe } from '../interfaces/recipe';
 
-import { IngredientService } from '../services/ingredient/ingredient.service';
+import { IngredientService } from '../ingredients/ingredient/ingredient.service';
 
 @Component({
   selector: 'app-amounts-grid',
