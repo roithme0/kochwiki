@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 
-import { Recipe } from '../../interfaces/recipe';
+import { Recipe } from '../shared/interfaces/recipe';
 
 import { RecipeService } from '../shared/services/recipe.service';
 import { PageHeaderService } from '../../shared/page-header.service';
@@ -13,8 +13,8 @@ import { PageHeaderService } from '../../shared/page-header.service';
 import { AmountsGridComponent } from '../../amounts-grid/amounts-grid.component';
 import { StepsGridComponent } from '../../steps-grid/steps-grid.component';
 
-import { EditRecipeDialogComponent } from '../../dialogs/recipe-edit-dialog/recipe-edit-dialog.component';
-import { DeleteRecipeDialogComponent } from '../../dialogs/recipe-delete-dialog/recipe-delete-dialog.component';
+import { RecipeEditDialogComponent } from '../shared/dialogs/recipe-edit-dialog/recipe-edit-dialog.component';
+import { RecipeDeleteDialogComponent } from '../shared/dialogs/recipe-delete-dialog/recipe-delete-dialog.component';
 
 @Component({
   selector: 'app-recipe',
@@ -72,13 +72,13 @@ export class RecipeComponent {
   }
 
   openEditRecipeDialog(): void {
-    this.dialog.open(EditRecipeDialogComponent, {
+    this.dialog.open(RecipeEditDialogComponent, {
       data: { id: this.recipe?.id },
     });
   }
 
   openDeleteRecipeDialog(): void {
-    this.dialog.open(DeleteRecipeDialogComponent, {
+    this.dialog.open(RecipeDeleteDialogComponent, {
       data: { id: this.recipe?.id },
     });
   }

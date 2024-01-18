@@ -9,13 +9,13 @@ import {
 import { FormArray } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-import { RecipeService } from '../../recipes/shared/services/recipe.service';
-import { IngredientService } from '../../ingredients/ingredient/ingredient.service';
+import { RecipeService } from '../../../../shared/services/recipe.service';
+import { IngredientService } from '../../../../../ingredients/shared/services/ingredient.service';
 
-import { Ingredient } from '../../ingredients/shared/interfaces/ingredient';
-import { Recipe } from '../../interfaces/recipe';
+import { Ingredient } from '../../../../../ingredients/shared/interfaces/ingredient';
+import { Recipe } from '../../../interfaces/recipe';
 
-import { CreateIngredientDialogComponent } from '../../ingredients/shared/dialogs/ingredient-create-dialog/ingredient-create-dialog.component';
+import { IngredientCreateDialogComponent } from '../../../../../ingredients/shared/dialogs/ingredient-create-dialog/ingredient-create-dialog.component';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -205,6 +205,6 @@ export class RecipeCreateFormComponent {
   }
 
   openCreateIngredientDialog(): void {
-    this.dialog.open(CreateIngredientDialogComponent);
+    this.dialog.open(IngredientCreateDialogComponent);
   }
 }

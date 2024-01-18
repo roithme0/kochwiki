@@ -14,9 +14,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
 
-import { Recipe } from '../../interfaces/recipe';
+import { Recipe } from '../../../shared/interfaces/recipe';
 
-import { RecipesGridControlsService } from '../../services/recipes-grid-controls/recipes-grid-controls.service';
+import { RecipesGridControlsService } from '../shared/recipes-grid-controls.service';
 
 @Component({
   selector: 'app-recipes-grid-controls',

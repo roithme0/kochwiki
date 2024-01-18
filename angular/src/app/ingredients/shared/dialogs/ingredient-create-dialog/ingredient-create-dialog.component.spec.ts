@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { IngredientCreateDialogComponent } from './ingredient-create-dialog.component';
 
-describe('CreateIngredientDialogComponent', () => {
+describe('IngredientCreateDialogComponent', () => {
   let component: IngredientCreateDialogComponent;
   let fixture: ComponentFixture<IngredientCreateDialogComponent>;
 

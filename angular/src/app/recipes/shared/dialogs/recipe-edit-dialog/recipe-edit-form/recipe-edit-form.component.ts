@@ -18,7 +18,7 @@ import { Step } from '../../interfaces/step';
 import { Recipe } from '../../interfaces/recipe';
 import { Amount } from '../../interfaces/amount';
 
-import { CreateIngredientDialogComponent } from '../../ingredients/shared/dialogs/ingredient-create-dialog/ingredient-create-dialog.component';
+import { IngredientCreateDialogComponent } from '../../ingredients/shared/dialogs/ingredient-create-dialog/ingredient-create-dialog.component';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -198,6 +198,6 @@ export class RecipeEditFormComponent {
   }
 
   openCreateIngredientDialog(): void {
-    this.dialog.open(CreateIngredientDialogComponent);
+    this.dialog.open(IngredientCreateDialogComponent);
   }
 }
