@@ -3,23 +3,23 @@ import { CommonModule } from '@angular/common';
 
 import { Ingredient } from '../../interfaces/ingredient';
 
-import { IngredientService } from '../../ingredients/ingredient/ingredient.service';
+import { IngredientService } from '../../services/ingredient.service';
 
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-delete-ingredient-dialog',
+  selector: 'app-ingredient-delete-dialog',
   standalone: true,
   imports: [CommonModule, MatButtonModule],
-  templateUrl: './delete-ingredient-dialog.component.html',
-  styleUrl: './delete-ingredient-dialog.component.css',
+  templateUrl: './ingredient-delete-dialog.component.html',
+  styleUrl: './ingredient-delete-dialog.component.css',
 })
-export class DeleteIngredientDialogComponent {
+export class IngredientDeleteDialogComponent {
   ingredient: Ingredient | undefined;
 
-  dialogRef: MatDialogRef<DeleteIngredientDialogComponent> =
+  dialogRef: MatDialogRef<IngredientDeleteDialogComponent> =
     inject(MatDialogRef);
   ingredientService: IngredientService = inject(IngredientService);
 

@@ -8,14 +8,14 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-edit-ingredient-dialog',
+  selector: 'app-ingredient-edit-dialog',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, IngredientEditFormComponent],
-  templateUrl: './edit-ingredient-dialog.component.html',
-  styleUrl: './edit-ingredient-dialog.component.css',
+  templateUrl: './ingredient-edit-dialog.component.html',
+  styleUrl: './ingredient-edit-dialog.component.css',
 })
-export class EditIngredientDialogComponent {
-  dialogRef: MatDialogRef<EditIngredientDialogComponent> = inject(MatDialogRef);
+export class IngredientEditDialogComponent {
+  dialogRef: MatDialogRef<IngredientEditDialogComponent> = inject(MatDialogRef);
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 }

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditIngredientDialogComponent } from './edit-ingredient-dialog.component';
+import { EditIngredientDialogComponent } from './ingredient-edit-dialog.component';
 
 describe('EditIngredientDialogComponent', () => {
   let component: EditIngredientDialogComponent;
@@ -8,10 +8,9 @@ describe('EditIngredientDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EditIngredientDialogComponent]
-    })
-    .compileComponents();
-    
+      imports: [EditIngredientDialogComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(EditIngredientDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeleteIngredientDialogComponent } from './delete-ingredient-dialog.component';
+import { DeleteIngredientDialogComponent } from './ingredient-delete-dialog.component';
 
 describe('DeleteIngredientDialogComponent', () => {
   let component: DeleteIngredientDialogComponent;
@@ -8,10 +8,9 @@ describe('DeleteIngredientDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DeleteIngredientDialogComponent]
-    })
-    .compileComponents();
-    
+      imports: [DeleteIngredientDialogComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(DeleteIngredientDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

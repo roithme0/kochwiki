@@ -7,7 +7,7 @@ import { Ingredient } from '../../../interfaces/ingredient';
 import { VerboseNames } from '../../../interfaces/ingredient-meta-data';
 import { UnitChoices } from '../../../interfaces/ingredient-meta-data';
 
-import { IngredientService } from '../../ingredients/ingredient/ingredient.service';
+import { IngredientService } from '../../../services/ingredient.service';
 
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
