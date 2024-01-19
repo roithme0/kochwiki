@@ -1,9 +1,12 @@
-<app-ingredients-grid-controls [ingredients]="displayedIngredients" />
+<app-ingredients-grid-controls
+  [ingredients]="displayedIngredientsService.displayedIngredients"
+/>
 
 <section class="grid" [style.--fields]="displayedFields().length">
   <app-ingredients-grid-header [displayedFields]="displayedFields" />
 
-  @for (ingredient of displayedIngredients(); track ingredient){
+  @for (ingredient of displayedIngredientsService.displayedIngredients(); track
+  ingredient){
   <app-ingredients-grid-row
     [ingredient]="ingredient"
     [displayedFields]="displayedFields()"
