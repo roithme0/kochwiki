@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, RouterLink, RouterLinkActive } from '@angular/router';
 
-import { PageHeaderService } from '../shared/page-header.service';
+import { PageHeaderService } from '../services/page-header.service';
 
 import { MatIconModule } from '@angular/material/icon';
 

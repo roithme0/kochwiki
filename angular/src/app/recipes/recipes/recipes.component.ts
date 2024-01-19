@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PageHeaderService } from '../../shared/page-header.service';
+import { PageHeaderService } from '../../shared/services/page-header.service';
 
 import { RecipesGridComponent } from './recipes-grid/recipes-grid.component';
 

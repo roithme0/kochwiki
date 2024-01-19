@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { IngredientsGridComponent } from './ingredients-grid/ingredients-grid.component';
 
-import { PageHeaderService } from '../../shared/page-header.service';
+import { PageHeaderService } from '../../shared/services/page-header.service';
 
 @Component({
   selector: 'app-ingredients',

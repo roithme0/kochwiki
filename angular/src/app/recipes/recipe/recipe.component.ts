@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Recipe } from '../shared/interfaces/recipe';
 
 import { RecipeService } from '../shared/services/recipe.service';
-import { PageHeaderService } from '../../shared/page-header.service';
+import { PageHeaderService } from '../../shared/services/page-header.service';
 
 import { AmountsGridComponent } from './amounts-grid/amounts-grid.component';
 import { StepsGridComponent } from './steps-grid/steps-grid.component';

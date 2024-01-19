@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, RouterLink } from '@angular/router';
 
-import { PageHeaderService } from '../shared/page-header.service';
+import { PageHeaderService } from '../shared/services/page-header.service';
 
 @Component({
   selector: 'app-home',
