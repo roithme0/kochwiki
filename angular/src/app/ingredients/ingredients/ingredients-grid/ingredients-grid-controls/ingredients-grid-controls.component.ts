@@ -7,7 +7,7 @@ import {
   signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { IngredientsGridControlsService } from '../shared/ingredients-grid-controls.service';
 import { IngredientService } from '../../../shared/services/ingredient.service';
@@ -28,7 +28,6 @@ import { MatIconModule } from '@angular/material/icon';
     CommonModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule,
     MatSelectModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
@@ -38,27 +37,30 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './ingredients-grid-controls.component.css',
 })
 export class IngredientsGridControlsComponent {
+  // track & emit grid control inputs
+  // render grid controls
   @Input() ingredients: Signal<Ingredient[]> = signal([]);
 
   searchControl: FormControl = new FormControl('');
   filterControl: FormControl = new FormControl('all');
 
   namesAndBrands: Signal<string[]> = computed(() => {
-    // generate a list of names and brands of all displayed ingredients
+    // generate a list of names & brands of all displayed ingredients
     const names: string[] = this.ingredients().map(
       (ingredient) => ingredient.name
     );
     const brands: string[] = this.ingredients().map(
       (ingredient) => ingredient.brand || ''
     );
-    return names.concat(brands);
+    return names.concat(brands.filter((brand) => brand !== ''));
   });
-  filteredNamesAndBrands: Signal<string[]> = computed(() => {
-    // filter names and brands based on search input (case-insensitive)
+  filteredNamesAndBrands: Signal<Set<string>> = computed(() => {
+    // filter names & brands based on search input (case-insensitive)
     const searchValue = this.searchControl.value || '';
-    return this.namesAndBrands().filter((nameOrBrand) =>
+    const filtered = this.namesAndBrands().filter((nameOrBrand) =>
       nameOrBrand.toLowerCase().includes(searchValue.toLowerCase())
     );
+    return new Set(filtered);
   });
 
   unitChoices: UnitChoices | null = null;
@@ -68,8 +70,17 @@ export class IngredientsGridControlsComponent {
   );
   ingredientService: IngredientService = inject(IngredientService);
 
+  constructor() {
+    // emit search and filter values
+    this.searchControl.valueChanges.subscribe((value) =>
+      this.ingredientsGridControlsService.setSearchBy(value)
+    );
+    this.filterControl.valueChanges.subscribe((value) =>
+      this.ingredientsGridControlsService.setFilterBy(value)
+    );
+  }
+
   ngOnInit(): void {
-    // fetch unit choices
     this.fetchUnitChoices();
   }
 
@@ -89,12 +100,5 @@ export class IngredientsGridControlsComponent {
     // return keys of object
     // used in template as Object.keys() is not available
     return Object.keys(obj);
-  }
-
-  emitControlValues(): void {
-    // emit search and filter values
-    console.log('search: ', this.searchControl.value);
-    this.ingredientsGridControlsService.setSearchBy(this.searchControl.value);
-    this.ingredientsGridControlsService.setFilterBy(this.filterControl.value);
   }
 }

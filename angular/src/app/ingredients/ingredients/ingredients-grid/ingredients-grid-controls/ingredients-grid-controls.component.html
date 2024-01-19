@@ -1,10 +1,9 @@
-<form class="form">
+<form class="ingredient-form">
   <mat-form-field class="search-field">
     <mat-label>Suche</mat-label>
     <input
       placeholder="Name oder Marke suchen ..."
       [formControl]="searchControl"
-      (input)="emitControlValues()"
       matInput
       [matAutocomplete]="search"
     />
@@ -12,8 +11,8 @@
     <button
       matSuffix
       mat-icon-button
-      aria-label="Clear"
-      (click)="searchControl.setValue(''); emitControlValues()"
+      aria-label="Löschen"
+      (click)="searchControl.setValue('')"
     >
       <mat-icon>close</mat-icon>
     </button>
@@ -27,11 +26,7 @@
 
   <mat-form-field class="filter-field">
     <mat-label>Filter</mat-label>
-    <mat-select
-      [formControl]="filterControl"
-      single
-      (selectionChange)="emitControlValues()"
-    >
+    <mat-select [formControl]="filterControl" single>
       <mat-option value="all">Alle</mat-option>
       @if(unitChoices){@for(choice of getKeys(unitChoices); track choice) {
       <mat-option [value]="choice">{{ unitChoices[choice] }}</mat-option
