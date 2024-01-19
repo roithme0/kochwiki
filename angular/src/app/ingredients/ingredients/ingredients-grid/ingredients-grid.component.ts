@@ -11,14 +11,14 @@ import { CommonModule } from '@angular/common';
 import { Ingredient } from '../../shared/interfaces/ingredient';
 
 import { IngredientService } from '../../shared/services/ingredient.service';
-import { IngredientsGridControlsService } from './shared/ingredients-grid-controls.service';
+import { IngredientsGridControlsService } from '../shared/ingredients-grid-controls.service';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 
-import { IngredientsGridControlsComponent } from './ingredients-grid-controls/ingredients-grid-controls.component';
-import { IngredientsGridHeaderComponent } from './ingredients-grid-header/ingredients-grid-header.component';
-import { IngredientsGridRowComponent } from './ingredients-grid-row/ingredients-grid-row.component';
+import { IngredientsGridControlsComponent } from '../ingredients-grid-controls/ingredients-grid-controls.component';
+import { IngredientsGridHeaderComponent } from '../ingredients-grid-header/ingredients-grid-header.component';
+import { IngredientsGridRowComponent } from '../ingredients-grid-row/ingredients-grid-row.component';
 
 import { IngredientCreateDialogComponent } from '../../shared/dialogs/ingredient-create-dialog/ingredient-create-dialog.component';
 

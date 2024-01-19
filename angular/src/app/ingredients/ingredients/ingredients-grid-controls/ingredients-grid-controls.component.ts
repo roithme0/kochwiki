@@ -10,10 +10,10 @@ import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { IngredientsGridControlsService } from '../shared/ingredients-grid-controls.service';
-import { IngredientService } from '../../../shared/services/ingredient.service';
+import { IngredientService } from '../../shared/services/ingredient.service';
 
-import { UnitChoices } from '../../../shared/interfaces/ingredient-meta-data';
-import { Ingredient } from '../../../shared/interfaces/ingredient';
+import { UnitChoices } from '../../shared/interfaces/ingredient-meta-data';
+import { Ingredient } from '../../shared/interfaces/ingredient';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';

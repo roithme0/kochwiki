@@ -4,10 +4,10 @@ import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 
-import { Ingredient } from '../../../shared/interfaces/ingredient';
+import { Ingredient } from '../../shared/interfaces/ingredient';
 
-import { IngredientEditDialogComponent } from '../../../shared/dialogs/ingredient-edit-dialog/ingredient-edit-dialog.component';
-import { IngredientDeleteDialogComponent } from '../../../shared/dialogs/ingredient-delete-dialog/ingredient-delete-dialog.component';
+import { IngredientEditDialogComponent } from '../../shared/dialogs/ingredient-edit-dialog/ingredient-edit-dialog.component';
+import { IngredientDeleteDialogComponent } from '../../shared/dialogs/ingredient-delete-dialog/ingredient-delete-dialog.component';
 
 @Component({
   selector: 'app-ingredients-grid-row',
