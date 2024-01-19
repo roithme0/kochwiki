@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, inject, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { IngredientService } from '../../../shared/services/ingredient.service';
@@ -14,7 +14,7 @@ import { VerboseNames } from '../../../shared/interfaces/ingredient-meta-data';
 export class IngredientsGridHeaderComponent {
   // fetch ingredient verbose names
   // render ingredient verbose names
-  @Input() displayedFields!: string[];
+  @Input() displayedFields!: Signal<string[]>;
 
   verboseNames: VerboseNames | null = null;
 

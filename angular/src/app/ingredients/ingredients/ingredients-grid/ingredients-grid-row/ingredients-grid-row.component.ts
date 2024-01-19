@@ -18,7 +18,7 @@ import { IngredientDeleteDialogComponent } from '../../../shared/dialogs/ingredi
 })
 export class IngredientsGridRowComponent {
   // render ingredient data
-  // render ingredient actions
+  // render ingredient buttons
   @Input() ingredient!: Ingredient;
   @Input() displayedFields!: string[];
 
