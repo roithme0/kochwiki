@@ -16,13 +16,12 @@ import { IngredientsGridControlsService } from './ingredients-grid-controls.serv
   providedIn: 'root',
 })
 export class IngredientsGridDisplayedIngredientsService {
-  ingredientService: IngredientService = inject(IngredientService);
-  ingredientsGridControlsService: IngredientsGridControlsService = inject(
-    IngredientsGridControlsService
-  );
+  private ingredientService: IngredientService = inject(IngredientService);
+  private ingredientsGridControlsService: IngredientsGridControlsService =
+    inject(IngredientsGridControlsService);
 
-  ingredients: WritableSignal<Ingredient[]> = signal([]);
-  displayedIngredients: Signal<Ingredient[]> = computed(() => {
+  private ingredients: WritableSignal<Ingredient[]> = signal([]);
+  private displayedIngredients: Signal<Ingredient[]> = computed(() => {
     // apply search & filter functions to ingredients
     var displayedIngredients = this.ingredients();
     displayedIngredients =
@@ -39,11 +38,14 @@ export class IngredientsGridDisplayedIngredientsService {
     this.fetchIngredients();
   }
 
-  fetchIngredients(): void {
+  getDisplayedIngredients(): Signal<Ingredient[]> {
+    return this.displayedIngredients;
+  }
+
+  private fetchIngredients(): void {
     // fetch all ingredients
     this.ingredientService.getAllIngredients().subscribe({
       next: (ingredients) => {
-        console.log('()()()()' + ingredients + '()()()()');
         console.debug('fetched ingredients: ', ingredients);
         this.ingredients.set(ingredients);
       },
@@ -53,7 +55,9 @@ export class IngredientsGridDisplayedIngredientsService {
     });
   }
 
-  searchIngredientsByNameOrBrand(ingredients: Ingredient[]): Ingredient[] {
+  private searchIngredientsByNameOrBrand(
+    ingredients: Ingredient[]
+  ): Ingredient[] {
     const searchBy: string = this.ingredientsGridControlsService.searchBy();
     console.debug('searching ingredients by: ' + searchBy);
     if (searchBy === '') {
@@ -67,7 +71,7 @@ export class IngredientsGridDisplayedIngredientsService {
     });
   }
 
-  filterIngredientsByUnit(ingredients: Ingredient[]): Ingredient[] {
+  private filterIngredientsByUnit(ingredients: Ingredient[]): Ingredient[] {
     const filterBy: string = this.ingredientsGridControlsService.filterBy();
     console.debug('filtering ingredients by: ' + filterBy);
     if (filterBy === 'all') {
