@@ -50,9 +50,6 @@ export class IngredientsGridComponent {
     return displayedIngredients;
   });
 
-  searchBy: WritableSignal<string> = signal('');
-  filterBy: WritableSignal<string> = signal('all');
-
   windowInnerWidth = signal(window.innerWidth);
   displayedFields: Signal<string[]> = computed(() => {
     // adjust displayed fields based on window with
@@ -77,16 +74,8 @@ export class IngredientsGridComponent {
 
   constructor() {
     // track changes to ingredients
-    // track changes to searchBy
-    // track changes to filterBy
     this.ingredientService.ingredients$.subscribe(() => {
       this.fetchIngredients();
-    });
-    this.ingredientsGridControlsService.searchBy$.subscribe((searchBy) => {
-      this.searchBy.set(searchBy);
-    });
-    this.ingredientsGridControlsService.filterBy$.subscribe((filterBy) => {
-      this.filterBy.set(filterBy);
     });
   }
 
@@ -119,25 +108,27 @@ export class IngredientsGridComponent {
   }
 
   searchIngredientsByNameOrBrand(ingredients: Ingredient[]): Ingredient[] {
-    console.debug('searching ingredients by: ' + this.searchBy());
-    if (this.searchBy() === '') {
+    const searchBy: string = this.ingredientsGridControlsService.searchBy();
+    console.debug('searching ingredients by: ' + searchBy);
+    if (searchBy === '') {
       return ingredients;
     }
     return ingredients.filter((ingredient) => {
       return (
-        ingredient.name.toLowerCase().includes(this.searchBy().toLowerCase()) ||
-        ingredient.brand?.toLowerCase().includes(this.searchBy().toLowerCase())
+        ingredient.name.toLowerCase().includes(searchBy.toLowerCase()) ||
+        ingredient.brand?.toLowerCase().includes(searchBy.toLowerCase())
       );
     });
   }
 
   filterIngredientsByUnit(ingredients: Ingredient[]): Ingredient[] {
-    console.debug('filtering ingredients by: ' + this.filterBy());
-    if (this.filterBy() === 'all') {
+    const filterBy: string = this.ingredientsGridControlsService.filterBy();
+    console.debug('filtering ingredients by: ' + filterBy);
+    if (filterBy === 'all') {
       return ingredients;
     }
     return ingredients.filter((ingredient) => {
-      return ingredient.unit === this.filterBy();
+      return ingredient.unit === filterBy;
     });
   }
 

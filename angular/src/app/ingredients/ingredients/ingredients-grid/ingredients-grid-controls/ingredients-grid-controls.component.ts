@@ -71,12 +71,12 @@ export class IngredientsGridControlsComponent {
   ingredientService: IngredientService = inject(IngredientService);
 
   constructor() {
-    // emit search and filter values
+    // emit search & filter values
     this.searchControl.valueChanges.subscribe((value) =>
-      this.ingredientsGridControlsService.setSearchBy(value)
+      this.ingredientsGridControlsService.searchBy.set(value)
     );
     this.filterControl.valueChanges.subscribe((value) =>
-      this.ingredientsGridControlsService.setFilterBy(value)
+      this.ingredientsGridControlsService.filterBy.set(value)
     );
   }
 
