@@ -9,7 +9,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
-import { IngredientsGridControlsService } from '../shared/services/ingredients-grid-controls.service';
+import { IngredientsGridControlsService } from '../shared/ingredients-grid-controls.service';
 import { IngredientService } from '../../shared/services/ingredient.service';
 
 import { UnitChoices } from '../../shared/interfaces/ingredient-meta-data';
