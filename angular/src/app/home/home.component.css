@@ -1,20 +1,20 @@
 .navigation {
   display: flex;
   gap: 0.5rem;
-}
 
-.link {
-  padding: 5%;
-  background-color: var(--secondary-background);
-  border-radius: 10%;
-}
+  a {
+    padding: 5%;
+    background-color: var(--secondary-background);
+    border-radius: 10%;
+  }
 
-.image {
-  width: 100%;
+  img {
+    width: 100%;
 
-  &:focus,
-  &:hover {
-    transform: scale(1.1);
-    transition: transform 0.2s ease-in-out;
+    &:focus,
+    &:hover {
+      transform: scale(1.1);
+      transition: transform 0.2s ease-in-out;
+    }
   }
 }
