@@ -1,21 +1,12 @@
 <header class="page-header">
-  <a
-    routerLink=""
-    routerLinkActive="active"
-    ariaCurrentWhenActive="page"
-    class="link"
-  >
-    <img src="../../assets/logo.png" alt="Home" class="logo"
+  <a routerLink="" routerLinkActive="active">
+    <img src="../../assets/logo.png" alt="Home"
   /></a>
-  <h1>{{ headline }}</h1>
-  <a
-    [routerLink]="back"
-    routerLinkActive="active"
-    ariaCurrentWhenActive="page"
-    class="link"
+  <h1>{{ pageHeaderService.headline() }}</h1>
+  <a [routerLink]="pageHeaderService.back()" routerLinkActive="active"
     ><mat-icon
       aria-hidden="false"
-      aria-label="back icon"
+      aria-label="Zurück"
       fontIcon="arrow_back_ios"
     ></mat-icon>
   </a>

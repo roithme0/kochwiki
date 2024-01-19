@@ -49,7 +49,7 @@ export class RecipeComponent {
   ngOnInit() {
     // set headline
     // track recipe changes
-    this.pageHeaderService.setBack('recipes');
+    this.pageHeaderService.back.set('recipes');
 
     this.recipeService.recipes$.subscribe(() => {
       this.fetchRecipe(this.id);
@@ -62,11 +62,11 @@ export class RecipeComponent {
       next: (recipe: Recipe) => {
         console.debug('fetched recipe: ', recipe);
         this.recipe = recipe;
-        this.pageHeaderService.setHeadline(this.recipe.name);
+        this.pageHeaderService.headline.set(this.recipe.name);
       },
       error: (error: any) => {
         console.error('failed to fetch recipe: ', error);
-        this.pageHeaderService.setHeadline('Fehler');
+        this.pageHeaderService.headline.set('Fehler');
       },
     });
   }

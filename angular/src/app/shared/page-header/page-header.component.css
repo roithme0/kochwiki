@@ -6,7 +6,7 @@
   font-size: 1.5rem;
 }
 
-.logo,
+img,
 mat-icon {
   &:focus,
   &:hover {
@@ -15,7 +15,7 @@ mat-icon {
   }
 }
 
-.logo {
+img {
   height: 1.5rem;
 }
 

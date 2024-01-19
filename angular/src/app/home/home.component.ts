@@ -18,7 +18,7 @@ export class HomeComponent {
 
   ngOnInit() {
     // set header values
-    this.pageHeaderService.setHeadline('Home');
-    this.pageHeaderService.setBack('');
+    this.pageHeaderService.headline.set('Home');
+    this.pageHeaderService.back.set('');
   }
 }
