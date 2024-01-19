@@ -1,4 +1,4 @@
-import { Ingredient } from '../ingredients/shared/interfaces/ingredient';
+import { Ingredient } from '../../../ingredients/shared/interfaces/ingredient';
 
 export interface Amount {
   id: number;

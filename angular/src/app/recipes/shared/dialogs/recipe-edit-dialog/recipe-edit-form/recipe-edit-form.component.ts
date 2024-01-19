@@ -15,8 +15,8 @@ import { IngredientService } from '../../../../../ingredients/shared/services/in
 
 import { Ingredient } from '../../../../../ingredients/shared/interfaces/ingredient';
 import { Recipe } from '../../../interfaces/recipe';
-import { Step } from '../../../../../steps-grid/step';
-import { Amount } from '../../../../../amounts-grid/amount';
+import { Step } from '../../../interfaces/step';
+import { Amount } from '../../../interfaces/amount';
 
 import { IngredientCreateDialogComponent } from '../../../../../ingredients/shared/dialogs/ingredient-create-dialog/ingredient-create-dialog.component';
 

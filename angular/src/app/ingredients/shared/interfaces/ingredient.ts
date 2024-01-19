@@ -1,4 +1,4 @@
-import { Amount } from '../../../amounts-grid/amount';
+import { Amount } from '../../../recipes/shared/interfaces/amount';
 
 export interface Ingredient {
   [key: string]: any;

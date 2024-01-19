@@ -10,8 +10,8 @@ import { Recipe } from '../shared/interfaces/recipe';
 import { RecipeService } from '../shared/services/recipe.service';
 import { PageHeaderService } from '../../shared/page-header.service';
 
-import { AmountsGridComponent } from '../../amounts-grid/amounts-grid.component';
-import { StepsGridComponent } from '../../steps-grid/steps-grid.component';
+import { AmountsGridComponent } from './amounts-grid/amounts-grid.component';
+import { StepsGridComponent } from './steps-grid/steps-grid.component';
 
 import { RecipeEditDialogComponent } from '../shared/dialogs/recipe-edit-dialog/recipe-edit-dialog.component';
 import { RecipeDeleteDialogComponent } from '../shared/dialogs/recipe-delete-dialog/recipe-delete-dialog.component';

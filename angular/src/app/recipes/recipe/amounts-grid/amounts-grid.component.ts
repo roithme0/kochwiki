@@ -1,9 +1,9 @@
 import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { Recipe } from '../recipes/shared/interfaces/recipe';
+import { Recipe } from '../../shared/interfaces/recipe';
 
-import { IngredientService } from '../ingredients/shared/services/ingredient.service';
+import { IngredientService } from '../../../ingredients/shared/services/ingredient.service';
 
 @Component({
   selector: 'app-amounts-grid',
