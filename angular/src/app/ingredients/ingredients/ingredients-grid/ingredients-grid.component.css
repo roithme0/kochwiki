@@ -1,4 +1,5 @@
 :host {
+  /* stretch whole page */
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -27,7 +28,7 @@ app-ingredients-grid-row {
   align-items: end;
 }
 
-.button {
+mat-icon {
   font-size: 1.5rem;
 
   &:focus,

@@ -42,7 +42,7 @@ export class IngredientsGridComponent {
   // render ingredients as grid
   ingredients: WritableSignal<Ingredient[]> = signal([]);
   displayedIngredients: Signal<Ingredient[]> = computed(() => {
-    // apply search and filter functions to ingredients
+    // apply search & filter functions to ingredients
     var displayedIngredients = this.ingredients();
     displayedIngredients =
       this.searchIngredientsByNameOrBrand(displayedIngredients);
@@ -101,6 +101,10 @@ export class IngredientsGridComponent {
     window.removeEventListener('resize', this.windowEventListener);
   }
 
+  windowEventListener = (): void => {
+    this.windowInnerWidth.set(window.innerWidth);
+  };
+
   fetchIngredients(): void {
     // fetch all ingredients
     this.ingredientService.getAllIngredients().subscribe({
@@ -113,10 +117,6 @@ export class IngredientsGridComponent {
       },
     });
   }
-
-  windowEventListener = (): void => {
-    this.windowInnerWidth.set(window.innerWidth);
-  };
 
   searchIngredientsByNameOrBrand(ingredients: Ingredient[]): Ingredient[] {
     console.debug('searching ingredients by: ' + this.searchBy());
@@ -141,8 +141,11 @@ export class IngredientsGridComponent {
     });
   }
 
+  loggi(): void {
+    console.log('sorti');
+  }
+
   openCreateIngredientDialog(): void {
-    // open dialog to create new ingredient
     this.dialog.open(IngredientCreateDialogComponent);
   }
 }

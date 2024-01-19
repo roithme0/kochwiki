@@ -3,7 +3,7 @@
 <section class="grid" [style.--fields]="displayedFields().length">
   <app-ingredients-grid-header [displayedFields]="displayedFields()" />
 
-  @for (ingredient of displayedIngredients(); track ingredient.id){
+  @for (ingredient of displayedIngredients(); track ingredient){
   <app-ingredients-grid-row
     [ingredient]="ingredient"
     [displayedFields]="displayedFields()"
@@ -16,9 +16,8 @@
 <div class="button-wrapper">
   <mat-icon
     aria-hidden="false"
-    aria-label="add icon"
+    aria-label="Hinzufügen"
     fontIcon="add"
-    class="button"
     (click)="openCreateIngredientDialog()"
   ></mat-icon>
 </div>
