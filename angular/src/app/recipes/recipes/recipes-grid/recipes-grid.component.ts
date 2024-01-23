@@ -1,11 +1,4 @@
-import {
-  Component,
-  Signal,
-  WritableSignal,
-  computed,
-  signal,
-  inject,
-} from '@angular/core';
+import { Component, Signal, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -19,8 +12,7 @@ import { RecipeCreateDialogComponent } from '../../shared/dialogs/recipe-create-
 
 import { Recipe } from '../../shared/interfaces/recipe';
 
-import { RecipeService } from '../../shared/services/recipe.service';
-import { RecipesGridControlsService } from '../shared/recipes-grid-controls.service';
+import { RecipesGridDisplayedRecipesService } from '../shared/recipes-grid-displayed-recipes.service';
 
 @Component({
   selector: 'app-recipes-grid',
@@ -36,78 +28,15 @@ import { RecipesGridControlsService } from '../shared/recipes-grid-controls.serv
   styleUrl: './recipes-grid.component.css',
 })
 export class RecipesGridComponent {
-  // fetch all recipes
-  // filter recipes by search input
   // render grid-controls component
   // render recipes in grid
-  recipeService: RecipeService = inject(RecipeService);
-  recipesGridControlsService: RecipesGridControlsService = inject(
-    RecipesGridControlsService
-  );
+  recipesGridDisplayedRecipesService: RecipesGridDisplayedRecipesService =
+    inject(RecipesGridDisplayedRecipesService);
   router: Router = inject(Router);
   dialog: MatDialog = inject(MatDialog);
 
-  recipes: WritableSignal<Recipe[]> = signal([]);
-  displayedRecipes: Signal<Recipe[]> = computed(() => {
-    // apply search input to recipes
-    // sort recipes
-    var displayedRecipes = this.recipes();
-    displayedRecipes = this.filterRecipesByNameOrOrigin(displayedRecipes);
-    displayedRecipes = this.sortRecipes('name', displayedRecipes);
-    return displayedRecipes;
-  });
-
-  searchBy: Signal<string> = this.recipesGridControlsService.getSearchBy();
-
-  constructor() {
-    // track changes to recipes
-    this.recipeService.recipes$.subscribe(() => {
-      this.fetchRecipes();
-    });
-  }
-
-  ngOnInit() {
-    this.fetchRecipes();
-  }
-
-  fetchRecipes(): void {
-    // fetch all recipes
-    this.recipeService.getAllRecipes().subscribe({
-      next: (recipes) => {
-        console.debug('fetched recipes: ', recipes);
-        this.recipes.set(recipes);
-      },
-      error: (err) => {
-        console.error('failed to fetch recipes: ', err);
-      },
-    });
-  }
-
-  filterRecipesByNameOrOrigin(recipes: Recipe[]): Recipe[] {
-    // filter recipes by search input
-    const searchBy = this.searchBy();
-    if (searchBy === '') {
-      return recipes;
-    }
-    return recipes.filter((recipe) => {
-      return (
-        recipe.name.toLowerCase().includes(searchBy.toLowerCase()) ||
-        recipe.originName?.toLowerCase().includes(searchBy.toLowerCase())
-      );
-    });
-  }
-
-  sortRecipes(sortBy: string, recipes: Recipe[]): Recipe[] {
-    // sort recipes by field
-    const sortedRecipes = [...recipes];
-    return sortedRecipes.sort((a, b) => {
-      if (sortBy === 'name') {
-        return a.name.localeCompare(b.name);
-      }
-      console.debug('sortBy invalid: ', sortBy);
-      return 0;
-    });
-  }
+  displayedRecipes: Signal<Recipe[]> =
+    this.recipesGridDisplayedRecipesService.getDisplayedRecipes();
 
   openCreateRecipeDialog(): void {
     // open dialog to create new recipe
