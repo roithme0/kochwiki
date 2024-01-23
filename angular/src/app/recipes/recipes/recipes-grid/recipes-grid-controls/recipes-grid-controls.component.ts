@@ -34,6 +34,12 @@ import { RecipesGridControlsService } from '../shared/recipes-grid-controls.serv
   styleUrl: './recipes-grid-controls.component.css',
 })
 export class RecipesGridControlsComponent {
+  // generate a list of names and origins of all displayed recipes
+  // render recipe grid controls
+  recipeGridControlsService: RecipesGridControlsService = inject(
+    RecipesGridControlsService
+  );
+
   @Input() recipes: Signal<Recipe[]> = signal([]);
 
   searchControl: FormControl = new FormControl('');
@@ -55,10 +61,6 @@ export class RecipesGridControlsComponent {
       )
     );
   });
-
-  recipeGridControlsService: RecipesGridControlsService = inject(
-    RecipesGridControlsService
-  );
 
   emitControlValue(): void {
     console.log('search: ', this.searchControl.value);
