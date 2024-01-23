@@ -40,6 +40,13 @@ export class RecipesGridComponent {
   // filter recipes by search input
   // render grid-controls component
   // render recipes in grid
+  recipeService: RecipeService = inject(RecipeService);
+  recipesGridControlsService: RecipesGridControlsService = inject(
+    RecipesGridControlsService
+  );
+  router: Router = inject(Router);
+  dialog: MatDialog = inject(MatDialog);
+
   recipes: WritableSignal<Recipe[]> = signal([]);
   displayedRecipes: Signal<Recipe[]> = computed(() => {
     // apply search input to recipes
@@ -51,23 +58,12 @@ export class RecipesGridComponent {
     return displayedRecipes;
   });
 
-  searchBy: WritableSignal<string> = signal('');
-
-  recipeService: RecipeService = inject(RecipeService);
-  recipesGridControlsService: RecipesGridControlsService = inject(
-    RecipesGridControlsService
-  );
-  router: Router = inject(Router);
-  dialog: MatDialog = inject(MatDialog);
+  searchBy: Signal<string> = this.recipesGridControlsService.getSearchBy();
 
   constructor() {
     // track changes to recipes
-    // track changes to search input
     this.recipeService.recipes$.subscribe(() => {
       this.fetchRecipes();
-    });
-    this.recipesGridControlsService.searchBy$.subscribe((searchBy) => {
-      this.searchBy.set(searchBy);
     });
   }
 

@@ -4,7 +4,6 @@
     <input
       placeholder="Name oder Ersteller*in suchen ..."
       [formControl]="searchControl"
-      (input)="emitControlValue()"
       matInput
       [matAutocomplete]="search"
     />
@@ -13,7 +12,7 @@
       matSuffix
       mat-icon-button
       aria-label="Clear"
-      (click)="searchControl.setValue(''); emitControlValue()"
+      (click)="searchControl.setValue('')"
     >
       <mat-icon>close</mat-icon>
     </button>

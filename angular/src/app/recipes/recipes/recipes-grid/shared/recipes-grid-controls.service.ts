@@ -1,21 +1,19 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Injectable, Signal, WritableSignal, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RecipesGridControlsService {
-  searchBySubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
-  searchBy$: Observable<string> = this.searchBySubject.asObservable();
+  private searchBy: WritableSignal<string> = signal('');
 
   setSearchBy(searchBy: string | null): void {
     if (searchBy === null) {
       searchBy = '';
     }
-    this.searchBySubject.next(searchBy);
+    this.searchBy.set(searchBy);
   }
 
-  getSearchBy(): string {
-    return this.searchBySubject.getValue();
+  getSearchBy(): Signal<string> {
+    return this.searchBy;
   }
 }
