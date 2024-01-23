@@ -49,15 +49,17 @@ export class IngredientCreateFormComponent {
     carbs: [<number | null>null],
     protein: [<number | null>null],
     fat: [<number | null>null],
-    amounts: this.fb.array([]),
   });
 
   ngOnInit(): void {
+    // fetch ingredient meta data
     this.fetchVerboseNames();
     this.fetchUnitChoices();
   }
 
   onSubmit(): void {
+    // submit form to create ingredient
+    // close dialog on success
     console.debug(
       'submitting create ingredient form: ',
       this.ingredientForm.value
@@ -67,7 +69,7 @@ export class IngredientCreateFormComponent {
 
     this.ingredientService.postIngredient(ingredient).subscribe({
       next: (ingredient) => {
-        console.debug('ingredient created: ', ingredient);
+        console.info('ingredient created: ', ingredient);
         this.ingredientService.notifyIngredientsChanged();
         this.success.emit();
       },

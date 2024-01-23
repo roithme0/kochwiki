@@ -17,11 +17,14 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './ingredient-delete-dialog.component.css',
 })
 export class IngredientDeleteDialogComponent {
-  ingredient: Ingredient | undefined;
-
+  // get ingredient id from mat dialog data
+  // fetch ingredient by id
+  // render buttons to delete ingredient
   dialogRef: MatDialogRef<IngredientDeleteDialogComponent> =
     inject(MatDialogRef);
   ingredientService: IngredientService = inject(IngredientService);
+
+  ingredient: Ingredient | undefined;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     this.ingredientService.getIngredientById(data.id).subscribe({
@@ -39,12 +42,12 @@ export class IngredientDeleteDialogComponent {
     this.ingredient?.id
       ? this.ingredientService.deleteIngredient(this.ingredient.id).subscribe({
           next: (id) => {
-            console.debug('ingredient deleted: ', id);
+            console.info('ingredient deleted: ', id);
             this.ingredientService.notifyIngredientsChanged();
             this.dialogRef.close();
           },
           error: (error) => {
-            console.error('failed to delete ingredienet: ', error);
+            console.error('failed to delete ingredient: ', error);
           },
         })
       : null;

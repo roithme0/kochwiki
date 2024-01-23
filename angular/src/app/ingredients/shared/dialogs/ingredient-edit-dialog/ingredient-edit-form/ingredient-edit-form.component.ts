@@ -32,15 +32,16 @@ import { MatSelectModule } from '@angular/material/select';
 })
 export class IngredientEditFormComponent {
   // fetch ingredient meta data
+  // fetch ingredient by id
   // render form to edit ingredient
+  ingredientService: IngredientService = inject(IngredientService);
+  fb: FormBuilder = inject(FormBuilder);
+
   @Input() id!: number;
   @Output() success: EventEmitter<void> = new EventEmitter();
 
   verboseNames: VerboseNames | null = null;
   unitChoices: UnitChoices | null = null;
-
-  ingredientService: IngredientService = inject(IngredientService);
-  fb: FormBuilder = inject(FormBuilder);
 
   ingredientForm = this.fb.group({
     name: ['', Validators.required],
@@ -53,6 +54,8 @@ export class IngredientEditFormComponent {
   });
 
   ngOnInit(): void {
+    // fetch ingredient meta data
+    // fetch ingredient by id
     this.fetchVerboseNames();
     this.fetchUnitChoices();
 
@@ -68,7 +71,9 @@ export class IngredientEditFormComponent {
   }
 
   onSubmit(formData: any): void {
-    console.debug('submitting edit ingredient form: ', formData);
+    // submit form to patch ingredient
+    // close dialog on success
+    console.debug('submitting patch ingredient form: ', formData);
     const updates: Partial<Ingredient> = formData as Ingredient;
     this.ingredientService.patchIngredient(this.id, updates).subscribe({
       next: (ingredient) => {
