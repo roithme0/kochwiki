@@ -13,7 +13,7 @@ import { PageHeaderService } from '../../shared/services/page-header.service';
 import { AmountsGridComponent } from './amounts-grid/amounts-grid.component';
 import { StepsGridComponent } from './steps-grid/steps-grid.component';
 
-import { RecipeEditDialogComponent } from '../shared/dialogs/recipe-edit-dialog/recipe-edit-dialog.component';
+import { RecipePatchDialogComponent } from '../shared/dialogs/recipe-patch-dialog/recipe-patch-dialog.component';
 import { RecipeDeleteDialogComponent } from '../shared/dialogs/recipe-delete-dialog/recipe-delete-dialog.component';
 
 @Component({
@@ -75,7 +75,7 @@ export class RecipeComponent {
   }
 
   openPatchRecipeDialog(): void {
-    this.dialog.open(RecipeEditDialogComponent, {
+    this.dialog.open(RecipePatchDialogComponent, {
       data: { id: this.recipe?.id },
     });
   }

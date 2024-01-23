@@ -10,7 +10,7 @@ import {
 import { FormArray } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-import { RecipeService } from '../../../../shared/services/recipe.service';
+import { RecipeService } from '../../../services/recipe.service';
 import { IngredientService } from '../../../../../ingredients/shared/services/ingredient.service';
 
 import { Ingredient } from '../../../../../ingredients/shared/interfaces/ingredient';
@@ -37,7 +37,7 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { MatStepperModule } from '@angular/material/stepper';
 
 @Component({
-  selector: 'app-recipe-edit-form',
+  selector: 'app-recipe-patch-form',
   standalone: true,
   imports: [
     CommonModule,
@@ -51,10 +51,10 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatStepperModule,
     MatIconModule,
   ],
-  templateUrl: './recipe-edit-form.component.html',
-  styleUrl: './recipe-edit-form.component.css',
+  templateUrl: './recipe-patch-form.component.html',
+  styleUrl: './recipe-patch-form.component.css',
 })
-export class RecipeEditFormComponent {
+export class RecipePatchFormComponent {
   // fetch ingredient associated with recipe
   // render form with values to edit recipe
   fb: FormBuilder = inject(FormBuilder);
