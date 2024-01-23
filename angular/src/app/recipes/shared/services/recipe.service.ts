@@ -14,10 +14,10 @@ const backendUrl: string = environment.backendUrl;
 })
 export class RecipeService {
   // backend communication associated with recipes
+  private http: HttpClient = inject(HttpClient);
+
   private recipesSubject = new Subject<void>();
   recipes$ = this.recipesSubject.asObservable();
-
-  http: HttpClient = inject(HttpClient);
 
   notifyRecipesChanged() {
     this.recipesSubject.next();

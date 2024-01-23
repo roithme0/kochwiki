@@ -18,7 +18,7 @@ export class WindowWidthService {
     return this.windowInnerWidth;
   }
 
-  windowEventListener = (): void => {
+  private windowEventListener = (): void => {
     this.windowInnerWidth.set(window.innerWidth);
   };
 }
