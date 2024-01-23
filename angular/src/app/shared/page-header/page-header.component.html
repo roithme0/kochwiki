@@ -2,8 +2,8 @@
   <a routerLink="" routerLinkActive="active">
     <img src="../../assets/logo.png" alt="Home"
   /></a>
-  <h1>{{ pageHeaderService.headline() }}</h1>
-  <a [routerLink]="pageHeaderService.back()" routerLinkActive="active"
+  <h1>{{ headline() }}</h1>
+  <a [routerLink]="back()" routerLinkActive="active"
     ><mat-icon
       aria-hidden="false"
       aria-label="Zurück"

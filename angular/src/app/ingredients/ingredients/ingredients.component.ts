@@ -19,7 +19,7 @@ export class IngredientsComponent {
 
   ngOnInit() {
     // set header values
-    this.pageHeaderService.headline.set('Zutaten');
-    this.pageHeaderService.back.set('');
+    this.pageHeaderService.setHeadline('Zutaten');
+    this.pageHeaderService.setBack('');
   }
 }

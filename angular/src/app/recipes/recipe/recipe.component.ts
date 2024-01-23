@@ -50,7 +50,7 @@ export class RecipeComponent {
     // set headline
     // track recipe changes
     // fetch recipe
-    this.pageHeaderService.back.set('recipes');
+    this.pageHeaderService.setBack('recipes');
 
     this.recipeService.recipes$.subscribe(() => {
       this.fetchRecipe(this.id);
@@ -65,11 +65,11 @@ export class RecipeComponent {
       next: (recipe: Recipe) => {
         console.debug('fetched recipe: ', recipe);
         this.recipe = recipe;
-        this.pageHeaderService.headline.set(this.recipe.name);
+        this.pageHeaderService.setHeadline(this.recipe.name);
       },
       error: (error: any) => {
         console.error('failed to fetch recipe: ', error);
-        this.pageHeaderService.headline.set('Fehler');
+        this.pageHeaderService.setHeadline('Fehler');
       },
     });
   }

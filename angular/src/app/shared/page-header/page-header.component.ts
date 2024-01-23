@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, Signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, RouterLink } from '@angular/router';
 
@@ -14,5 +14,9 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './page-header.component.css',
 })
 export class PageHeaderComponent {
+  // render page header
   pageHeaderService: PageHeaderService = inject(PageHeaderService);
+
+  headline: Signal<string> = this.pageHeaderService.getHeadline();
+  back: Signal<string> = this.pageHeaderService.getBack();
 }
