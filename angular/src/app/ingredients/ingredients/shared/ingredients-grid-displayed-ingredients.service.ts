@@ -16,6 +16,7 @@ import { IngredientsGridControlsService } from './ingredients-grid-controls.serv
   providedIn: 'root',
 })
 export class IngredientsGridDisplayedIngredientsService {
+  // provide displayed ingredients for ingredients grid
   private ingredientService: IngredientService = inject(IngredientService);
   private ingredientsGridControlsService: IngredientsGridControlsService =
     inject(IngredientsGridControlsService);
