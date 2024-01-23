@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IngredientEditDialogComponent } from './ingredient-edit-dialog.component';
+import { IngredientEditDialogComponent } from './ingredient-patch-dialog.component';
 
 describe('IngredientEditDialogComponent', () => {
   let component: IngredientEditDialogComponent;

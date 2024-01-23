@@ -16,7 +16,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 
 @Component({
-  selector: 'app-ingredient-edit-form',
+  selector: 'app-ingredient-patch-form',
   standalone: true,
   imports: [
     CommonModule,
@@ -27,10 +27,10 @@ import { MatSelectModule } from '@angular/material/select';
     MatFormFieldModule,
     MatSelectModule,
   ],
-  templateUrl: './ingredient-edit-form.component.html',
-  styleUrl: './ingredient-edit-form.component.css',
+  templateUrl: './ingredient-patch-form.component.html',
+  styleUrl: './ingredient-patch-form.component.css',
 })
-export class IngredientEditFormComponent {
+export class IngredientPatchFormComponent {
   // fetch ingredient meta data
   // fetch ingredient by id
   // render form to edit ingredient

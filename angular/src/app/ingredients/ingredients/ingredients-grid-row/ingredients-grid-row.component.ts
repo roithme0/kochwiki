@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { Ingredient } from '../../shared/interfaces/ingredient';
 
-import { IngredientEditDialogComponent } from '../../shared/dialogs/ingredient-edit-dialog/ingredient-edit-dialog.component';
+import { IngredientEditDialogComponent } from '../../shared/dialogs/ingredient-patch-dialog/ingredient-patch-dialog.component';
 import { IngredientDeleteDialogComponent } from '../../shared/dialogs/ingredient-delete-dialog/ingredient-delete-dialog.component';
 
 @Component({
