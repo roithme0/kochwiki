@@ -14,10 +14,11 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './ingredient-patch-dialog.component.html',
   styleUrl: './ingredient-patch-dialog.component.css',
 })
-export class IngredientEditDialogComponent {
+export class IngredientPatchDialogComponent {
   // get ingredient id from mat dialog data
   // render ingredient-patch-form
-  dialogRef: MatDialogRef<IngredientEditDialogComponent> = inject(MatDialogRef);
+  dialogRef: MatDialogRef<IngredientPatchDialogComponent> =
+    inject(MatDialogRef);
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 }
