@@ -1,4 +1,4 @@
-import { Component, Signal, signal, inject } from '@angular/core';
+import { Component, Signal, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -13,6 +13,7 @@ import { RecipeCreateDialogComponent } from '../../shared/dialogs/recipe-create-
 import { Recipe } from '../../shared/interfaces/recipe';
 
 import { RecipesGridDisplayedRecipesService } from '../shared/recipes-grid-displayed-recipes.service';
+import { WindowWidthService } from '../../../shared/services/window-width.service';
 
 @Component({
   selector: 'app-recipes-grid',
@@ -32,11 +33,25 @@ export class RecipesGridComponent {
   // render recipes in grid
   recipesGridDisplayedRecipesService: RecipesGridDisplayedRecipesService =
     inject(RecipesGridDisplayedRecipesService);
+  windowWidthService: WindowWidthService = inject(WindowWidthService);
   router: Router = inject(Router);
   dialog: MatDialog = inject(MatDialog);
 
   displayedRecipes: Signal<Recipe[]> =
     this.recipesGridDisplayedRecipesService.getDisplayedRecipes();
+  windowInnerWidth: Signal<number> =
+    this.windowWidthService.getWindowInnerWidth();
+
+  displayedColumns: Signal<number> = computed(() => {
+    const windowInnerWidth: number = this.windowInnerWidth();
+    if (windowInnerWidth < 600) {
+      return 2;
+    } else if (windowInnerWidth < 900) {
+      return 3;
+    } else {
+      return 4;
+    }
+  });
 
   openCreateRecipeDialog(): void {
     // open dialog to create new recipe

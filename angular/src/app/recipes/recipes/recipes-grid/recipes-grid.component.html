@@ -1,6 +1,6 @@
 <app-recipes-grid-controls [recipes]="displayedRecipes" />
 
-<section class="grid">
+<section class="grid" [style.--columns]="displayedColumns()">
   @for(recipe of displayedRecipes(); track recipe.id){
   <app-recipes-grid-element
     [recipe]="recipe"
