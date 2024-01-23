@@ -6,10 +6,7 @@ import { Injectable, Signal, WritableSignal, signal } from '@angular/core';
 export class RecipesGridControlsService {
   private searchBy: WritableSignal<string> = signal('');
 
-  setSearchBy(searchBy: string | null): void {
-    if (searchBy === null) {
-      searchBy = '';
-    }
+  setSearchBy(searchBy: string): void {
     this.searchBy.set(searchBy);
   }
 
