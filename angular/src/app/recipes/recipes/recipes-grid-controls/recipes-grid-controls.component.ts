@@ -14,7 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
 
-import { Recipe } from '../../../shared/interfaces/recipe';
+import { Recipe } from '../../shared/interfaces/recipe';
 
 import { RecipesGridControlsService } from '../shared/recipes-grid-controls.service';
 

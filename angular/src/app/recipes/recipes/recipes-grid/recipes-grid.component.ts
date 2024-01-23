@@ -12,15 +12,15 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 
-import { RecipesGridControlsComponent } from './recipes-grid-controls/recipes-grid-controls.component';
-import { RecipesGridElementComponent } from './recipes-grid-element/recipes-grid-element.component';
+import { RecipesGridControlsComponent } from '../recipes-grid-controls/recipes-grid-controls.component';
+import { RecipesGridElementComponent } from '../recipes-grid-element/recipes-grid-element.component';
 
 import { RecipeCreateDialogComponent } from '../../shared/dialogs/recipe-create-dialog/recipe-create-dialog.component';
 
 import { Recipe } from '../../shared/interfaces/recipe';
 
 import { RecipeService } from '../../shared/services/recipe.service';
-import { RecipesGridControlsService } from './shared/recipes-grid-controls.service';
+import { RecipesGridControlsService } from '../shared/recipes-grid-controls.service';
 
 @Component({
   selector: 'app-recipes-grid',
