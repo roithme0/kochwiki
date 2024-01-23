@@ -30,6 +30,11 @@ export class IngredientsGridDisplayedIngredientsService {
     return displayedIngredients;
   });
 
+  private searchBy: Signal<string> =
+    this.ingredientsGridControlsService.getSearchBy();
+  private filterBy: Signal<string> =
+    this.ingredientsGridControlsService.getFilterBy();
+
   constructor() {
     // track changes to ingredients
     this.ingredientService.ingredients$.subscribe(() => {
@@ -58,7 +63,7 @@ export class IngredientsGridDisplayedIngredientsService {
   private searchIngredientsByNameOrBrand(
     ingredients: Ingredient[]
   ): Ingredient[] {
-    const searchBy: string = this.ingredientsGridControlsService.searchBy();
+    const searchBy: string = this.searchBy();
     console.debug('searching ingredients by: ' + searchBy);
     if (searchBy === '') {
       return ingredients;
@@ -72,7 +77,7 @@ export class IngredientsGridDisplayedIngredientsService {
   }
 
   private filterIngredientsByUnit(ingredients: Ingredient[]): Ingredient[] {
-    const filterBy: string = this.ingredientsGridControlsService.filterBy();
+    const filterBy: string = this.filterBy();
     console.debug('filtering ingredients by: ' + filterBy);
     if (filterBy === 'all') {
       return ingredients;
