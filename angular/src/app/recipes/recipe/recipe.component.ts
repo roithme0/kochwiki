@@ -32,13 +32,13 @@ export class RecipeComponent {
   // set header values
   // fetch recipe
   // render recipe details
-  id!: number;
-  recipe: Recipe | null = null;
-
   route: ActivatedRoute = inject(ActivatedRoute);
   pageHeaderService: PageHeaderService = inject(PageHeaderService);
   recipeService: RecipeService = inject(RecipeService);
   dialog: MatDialog = inject(MatDialog);
+
+  id!: number;
+  recipe: Recipe | null = null;
 
   constructor() {
     // fetch recipe id from route
@@ -49,6 +49,7 @@ export class RecipeComponent {
   ngOnInit() {
     // set headline
     // track recipe changes
+    // fetch recipe
     this.pageHeaderService.back.set('recipes');
 
     this.recipeService.recipes$.subscribe(() => {
@@ -58,6 +59,8 @@ export class RecipeComponent {
   }
 
   fetchRecipe(id: number): void {
+    // fetch recipe by id
+    // set headline
     this.recipeService.getRecipeById(id).subscribe({
       next: (recipe: Recipe) => {
         console.debug('fetched recipe: ', recipe);
@@ -71,7 +74,7 @@ export class RecipeComponent {
     });
   }
 
-  openEditRecipeDialog(): void {
+  openPatchRecipeDialog(): void {
     this.dialog.open(RecipeEditDialogComponent, {
       data: { id: this.recipe?.id },
     });

@@ -15,9 +15,9 @@ import { IngredientService } from '../../../ingredients/shared/services/ingredie
 export class AmountsGridComponent {
   // fetch ingredients associated with recipe
   // render amounts as grid
-  @Input() recipe!: Recipe;
-
   ingredientService: IngredientService = inject(IngredientService);
+
+  @Input() recipe!: Recipe;
 
   ngOnInit() {
     // fetch ingredients associated with recipe
