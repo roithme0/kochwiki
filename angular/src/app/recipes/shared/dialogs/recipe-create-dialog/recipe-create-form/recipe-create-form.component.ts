@@ -60,14 +60,14 @@ import { MatStepperModule } from '@angular/material/stepper';
 export class RecipeCreateFormComponent {
   // fetch all ingredients
   // render form to create recipe
-  @Output() success: EventEmitter<void> = new EventEmitter();
-
-  ingredients: WritableSignal<Ingredient[]> = signal([]);
-
   fb: FormBuilder = inject(FormBuilder);
   recipeService: RecipeService = inject(RecipeService);
   ingredientService: IngredientService = inject(IngredientService);
   dialog: MatDialog = inject(MatDialog);
+
+  @Output() success: EventEmitter<void> = new EventEmitter();
+
+  ingredients: WritableSignal<Ingredient[]> = signal([]);
 
   recipeForm = this.fb.group({
     metaFormGroup: this.fb.group({
@@ -78,7 +78,7 @@ export class RecipeCreateFormComponent {
       // original: [<File | null>null],
     }),
     amountsFormGroup: this.fb.group({
-      servings: [<number | null>null, Validators.required],
+      servings: [2, Validators.required],
       amounts: this.fb.array([]),
     }),
     preparationFormGroup: this.fb.group({
@@ -157,7 +157,7 @@ export class RecipeCreateFormComponent {
     } as Recipe;
     this.recipeService.postRecipe(recipe).subscribe({
       next: (recipe) => {
-        console.debug('recipe created: ', recipe);
+        console.info('recipe created: ', recipe);
         this.success.emit();
         this.recipeService.notifyRecipesChanged();
       },

@@ -54,7 +54,6 @@ export class RecipesGridComponent {
     var displayedRecipes = this.recipes();
     displayedRecipes = this.filterRecipesByNameOrOrigin(displayedRecipes);
     displayedRecipes = this.sortRecipes('name', displayedRecipes);
-    console.debug('displayedRecipes: ', displayedRecipes);
     return displayedRecipes;
   });
 

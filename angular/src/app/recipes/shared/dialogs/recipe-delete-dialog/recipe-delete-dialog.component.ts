@@ -16,22 +16,26 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './recipe-delete-dialog.component.css',
 })
 export class RecipeDeleteDialogComponent {
-  @Output() success: EventEmitter<void> = new EventEmitter();
-
-  id!: number;
-
+  // get recipe id from mat dialog data
+  // render buttons to delete a recipe
   dialogRef: MatDialogRef<RecipeDeleteDialogComponent> = inject(MatDialogRef);
   recipeService: RecipeService = inject(RecipeService);
   router: Router = inject(Router);
+
+  @Output() success: EventEmitter<void> = new EventEmitter();
+
+  id!: number;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     this.id = data.id;
   }
 
   deleteRecipe(): void {
+    // delete recipe
+    // close dialog on success
     this.recipeService.deleteRecipe(this.id).subscribe({
       next: (id) => {
-        console.debug('recipe deleted: ', id);
+        console.info('recipe deleted: ', id);
         this.success.emit();
         this.dialogRef.close();
         this.router.navigate(['recipes']);

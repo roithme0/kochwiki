@@ -13,5 +13,6 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrl: './recipe-create-dialog.component.css',
 })
 export class RecipeCreateDialogComponent {
+  // render form to create a recipe
   dialogRef: MatDialogRef<RecipeCreateDialogComponent> = inject(MatDialogRef);
 }

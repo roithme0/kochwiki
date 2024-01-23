@@ -57,15 +57,15 @@ import { MatStepperModule } from '@angular/material/stepper';
 export class RecipeEditFormComponent {
   // fetch ingredient associated with recipe
   // render form with values to edit recipe
-  @Input() id!: number;
-  @Output() success: EventEmitter<void> = new EventEmitter();
-
-  ingredients: WritableSignal<Ingredient[]> = signal([]);
-
   fb: FormBuilder = inject(FormBuilder);
   recipeService: RecipeService = inject(RecipeService);
   ingredientService: IngredientService = inject(IngredientService);
   dialog: MatDialog = inject(MatDialog);
+
+  @Input() id!: number;
+  @Output() success: EventEmitter<void> = new EventEmitter();
+
+  ingredients: WritableSignal<Ingredient[]> = signal([]);
 
   recipeForm = this.fb.group({
     metaFormGroup: this.fb.group({
@@ -148,7 +148,7 @@ export class RecipeEditFormComponent {
     } as Recipe;
     this.recipeService.patchRecipe(this.id, recipe).subscribe({
       next: (recipe) => {
-        console.debug('recipe patched: ', recipe);
+        console.info('recipe patched: ', recipe);
         this.success.emit();
         this.recipeService.notifyRecipesChanged();
       },
