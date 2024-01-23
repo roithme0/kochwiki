@@ -15,10 +15,10 @@ const backendUrl: string = environment.backendUrl;
 })
 export class IngredientService {
   // backend communication for ingredients
+  private http: HttpClient = inject(HttpClient);
+
   private ingredientsSubject = new Subject<void>();
   ingredients$ = this.ingredientsSubject.asObservable();
-
-  http: HttpClient = inject(HttpClient);
 
   notifyIngredientsChanged() {
     // notify subscribers that ingredients have changed
