@@ -13,5 +13,5 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './recipes-grid-element.component.css',
 })
 export class RecipesGridElementComponent {
-  @Input() recipe!: Recipe | undefined; // type 'undefined' to allow for optional chaining in template
+  @Input() recipe: Recipe | undefined; // type 'undefined' to allow for optional chaining in template
 }

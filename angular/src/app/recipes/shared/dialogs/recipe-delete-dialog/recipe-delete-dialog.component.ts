@@ -24,7 +24,7 @@ export class RecipeDeleteDialogComponent {
 
   @Output() success: EventEmitter<void> = new EventEmitter();
 
-  id!: number;
+  id: number | undefined;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     this.id = data.id;
@@ -33,6 +33,11 @@ export class RecipeDeleteDialogComponent {
   deleteRecipe(): void {
     // delete recipe
     // close dialog on success
+    if (this.id === undefined) {
+      console.error('no recipe id provided');
+      return;
+    }
+
     this.recipeService.deleteRecipe(this.id).subscribe({
       next: (id) => {
         console.info('recipe deleted: ', id);

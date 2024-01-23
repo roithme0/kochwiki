@@ -19,20 +19,20 @@ import { IngredientDeleteDialogComponent } from '../../shared/dialogs/ingredient
 export class IngredientsGridRowComponent {
   // render ingredient data
   // render ingredient buttons
-  @Input() ingredient!: Ingredient;
-  @Input() displayedFields!: string[];
+  @Input() ingredient: Ingredient | undefined;
+  @Input() displayedFields: string[] = [];
 
   dialog: MatDialog = inject(MatDialog);
 
   openEditIngredientDialog(): void {
     this.dialog.open(IngredientPatchDialogComponent, {
-      data: { id: this.ingredient.id },
+      data: { id: this.ingredient?.id },
     });
   }
 
   openDeleteIngredientDialog(): void {
     this.dialog.open(IngredientDeleteDialogComponent, {
-      data: { id: this.ingredient.id },
+      data: { id: this.ingredient?.id },
     });
   }
 }

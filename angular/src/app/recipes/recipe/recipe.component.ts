@@ -37,24 +37,34 @@ export class RecipeComponent {
   recipeService: RecipeService = inject(RecipeService);
   dialog: MatDialog = inject(MatDialog);
 
-  id!: number;
+  id: number | undefined;
   recipe: Recipe | null = null;
 
   constructor() {
     // fetch recipe id from route
+    // track recipe changes
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     console.debug('id: ', this.id);
+
+    this.recipeService.recipes$.subscribe(() => {
+      if (this.id === undefined) {
+        console.error('no recipe id provided');
+        return;
+      }
+      this.fetchRecipe(this.id);
+    });
   }
 
   ngOnInit() {
     // set headline
-    // track recipe changes
     // fetch recipe
     this.pageHeaderService.setBack('recipes');
 
-    this.recipeService.recipes$.subscribe(() => {
-      this.fetchRecipe(this.id);
-    });
+    if (this.id === undefined) {
+      console.error('no recipe id provided');
+      return;
+    }
+
     this.fetchRecipe(this.id);
   }
 

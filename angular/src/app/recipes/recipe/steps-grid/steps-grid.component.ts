@@ -12,5 +12,5 @@ import { Recipe } from '../../shared/interfaces/recipe';
 })
 export class StepsGridComponent {
   // render steps as grid
-  @Input() recipe!: Recipe;
+  @Input() recipe: Recipe | undefined;
 }

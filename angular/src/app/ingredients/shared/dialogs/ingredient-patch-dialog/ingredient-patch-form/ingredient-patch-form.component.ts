@@ -37,7 +37,7 @@ export class IngredientPatchFormComponent {
   ingredientService: IngredientService = inject(IngredientService);
   fb: FormBuilder = inject(FormBuilder);
 
-  @Input() id!: number;
+  @Input() id: number | undefined;
   @Output() success: EventEmitter<void> = new EventEmitter();
 
   verboseNames: VerboseNames | null = null;
@@ -59,15 +59,12 @@ export class IngredientPatchFormComponent {
     this.fetchVerboseNames();
     this.fetchUnitChoices();
 
-    this.ingredientService.getIngredientById(this.id).subscribe({
-      next: (ingredient) => {
-        console.debug('ingredient fetched: ', ingredient);
-        this.ingredientForm.patchValue(ingredient);
-      },
-      error: (error) => {
-        console.error('failed to fetch ingredient: ', error);
-      },
-    });
+    if (this.id === undefined) {
+      console.error('no ingredient id provided');
+      return;
+    }
+
+    this.fetchIngredientById(this.id);
   }
 
   onSubmit(formData: any): void {
@@ -75,6 +72,12 @@ export class IngredientPatchFormComponent {
     // close dialog on success
     console.debug('submitting patch ingredient form: ', formData);
     const updates: Partial<Ingredient> = formData as Ingredient;
+
+    if (this.id === undefined) {
+      console.error('no ingredient id provided');
+      return;
+    }
+
     this.ingredientService.patchIngredient(this.id, updates).subscribe({
       next: (ingredient) => {
         console.debug('ingredient patched: ', ingredient);
@@ -83,6 +86,18 @@ export class IngredientPatchFormComponent {
       },
       error: (error) => {
         console.error('failed to patch ingredient: ', error);
+      },
+    });
+  }
+
+  fetchIngredientById(id: number): void {
+    this.ingredientService.getIngredientById(id).subscribe({
+      next: (ingredient) => {
+        console.debug('ingredient fetched: ', ingredient);
+        this.ingredientForm.patchValue(ingredient);
+      },
+      error: (error) => {
+        console.error('failed to fetch ingredient: ', error);
       },
     });
   }

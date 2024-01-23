@@ -62,7 +62,7 @@ export class RecipePatchFormComponent {
   ingredientService: IngredientService = inject(IngredientService);
   dialog: MatDialog = inject(MatDialog);
 
-  @Input() id!: number;
+  @Input() id: number | undefined;
   @Output() success: EventEmitter<void> = new EventEmitter();
 
   ingredients: WritableSignal<Ingredient[]> = signal([]);
@@ -109,6 +109,11 @@ export class RecipePatchFormComponent {
   }
 
   fetchRecipe(): void {
+    if (this.id === undefined) {
+      console.error('no recipe id provided');
+      return;
+    }
+
     this.recipeService.getRecipeById(this.id).subscribe({
       next: (recipe) => {
         console.debug('fetched recipe: ', recipe);
@@ -146,6 +151,12 @@ export class RecipePatchFormComponent {
       ...formValue.amountsFormGroup,
       ...formValue.preparationFormGroup,
     } as Recipe;
+
+    if (this.id === undefined) {
+      console.error('no recipe id provided');
+      return;
+    }
+
     this.recipeService.patchRecipe(this.id, recipe).subscribe({
       next: (recipe) => {
         console.info('recipe patched: ', recipe);

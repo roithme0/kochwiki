@@ -1,6 +1,6 @@
-@for(field of displayedFields; track field){
+@if(ingredient !== undefined){ @for(field of displayedFields; track field){
 <p>{{ ingredient[field] }}</p>
-}
+} }
 
 <mat-icon
   aria-hidden="false"

@@ -17,10 +17,15 @@ export class AmountsGridComponent {
   // render amounts as grid
   ingredientService: IngredientService = inject(IngredientService);
 
-  @Input() recipe!: Recipe;
+  @Input() recipe: Recipe | undefined;
 
   ngOnInit() {
     // fetch ingredients associated with recipe
+    if (this.recipe === undefined) {
+      console.error('no recipe provided');
+      return;
+    }
+
     for (let amount of this.recipe.amounts) {
       this.ingredientService.getIngredientById(amount.ingredientId).subscribe({
         next: (ingredient) => {

@@ -1,4 +1,5 @@
-@if(verboseNames !== null){ @for(field of displayedFields(); track field){
+@if(verboseNames !== null && displayedFields !== undefined){ @for(field of
+displayedFields(); track field){
 <p>{{ verboseNames[field] }}</p>
 } }
 <!-- where ingredient rows place their buttons -->

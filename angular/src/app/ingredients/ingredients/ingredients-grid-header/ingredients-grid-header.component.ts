@@ -14,7 +14,7 @@ import { VerboseNames } from '../../shared/interfaces/ingredient-meta-data';
 export class IngredientsGridHeaderComponent {
   // fetch ingredient verbose names
   // render ingredient verbose names
-  @Input() displayedFields!: Signal<string[]>;
+  @Input() displayedFields: Signal<string[]> | undefined;
 
   verboseNames: VerboseNames | null = null;
 
