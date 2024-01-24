@@ -2,12 +2,22 @@ package org.acme.Amount;
 
 import java.util.List;
 
-import jakarta.enterprise.context.ApplicationScoped;
+import org.jboss.logging.Logger;
 
-@ApplicationScoped
+import jakarta.ws.rs.Path;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.GET;
+
+@Path("/amounts")
 public class AmountService {
-    
-    public List<Amount> getAll() {
-        return Amount.listAll();
+    private static final Logger log = Logger.getLogger(AmountService.class);
+
+    @Inject
+    AmountResource amountResource;
+
+    @GET
+    public List<Amount> listAll() {
+        log.info("GET: list all amounts ...");
+        return amountResource.listAll();
     }
 }

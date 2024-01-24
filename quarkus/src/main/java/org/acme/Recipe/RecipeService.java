@@ -5,96 +5,61 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.transaction.Transactional;
-
 import org.acme.Amount.Amount;
 import org.acme.Step.Step;
-// import org.jboss.logging.Logger;
+import org.jboss.logging.Logger;
 
-@ApplicationScoped
+import jakarta.inject.Inject;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PATCH;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.transaction.Transactional;
+
+@Path("/recipes")
 public class RecipeService {
-    // private static final Logger log = Logger.getLogger(RecipeService.class);
+    private static final Logger log = Logger.getLogger(RecipeService.class);
 
-    public List<Recipe> getAll() {
-        return Recipe.listAll();
+    @Inject
+    RecipeResource recipeResource;
+
+    @GET
+    public List<Recipe> findAll() {
+        log.info("GET: finding all recipes ...");
+        return recipeResource.listAll();
     }
 
-    public Recipe getById(Long id) {
-        return Recipe.findById(id);
+    @GET
+    @Path("/{id}")
+    public Recipe findById(@PathParam("id") Long id) {
+        log.info("GET: finding recipe by id '" + id + "' ...");
+        return recipeResource.findById(id);
     }
 
+    @POST
     @Transactional
     public Recipe create(Recipe recipe) {
-        recipe.persist();
+        log.info("POST: creating recipe '" + recipe.name + "' ...");
+        recipeResource.persist(recipe);
         return recipe;
     }
 
+    @PATCH
     @Transactional
-    public Recipe patch(Long id, Map<String, Object> updates) {
-        // check if recipe exists
-        // update all fields except id if not null
-        Recipe recipe = Recipe.findById(id);
-        if (recipe == null) {
-            throw new IllegalArgumentException("Recipe with id " + id + " does not exist");
-        }
-
-        for (Map.Entry<String, Object> entry : updates.entrySet()) {
-            String key = entry.getKey();
-            Object value = entry.getValue();
-            switch (key) {
-                case "name":
-                    recipe.name = (String) value;
-                    break;
-                case "servings":
-                    recipe.servings = (Integer) value;
-                    break;
-                case "preptime":
-                    recipe.preptime = (Integer) value;
-                    break;
-                case "originName":
-                    recipe.originName = (String) value;
-                    break;
-                case "originUrl":
-                    recipe.setOriginUrl((String) value);
-                    break;
-                // case "original":
-                // break;
-                // case "image":
-                // break;
-                case "amounts":
-                    List<Amount> newAmounts = new ArrayList<Amount>();
-                    List<LinkedHashMap<String, Object>> amountsList = (List<LinkedHashMap<String, Object>>) value;
-                    for (LinkedHashMap<String, Object> amountMap : amountsList) {
-                        Integer index = (Integer) amountMap.get("index");
-                        Float amount = ((Integer) amountMap.get("amount")).floatValue();
-                        Long ingredientId = ((Integer) amountMap.get("ingredientId")).longValue();
-                        Amount newAmount = new Amount(index, amount, ingredientId);
-                        newAmounts.add(newAmount);
-                    }
-                    recipe.setAmounts(newAmounts);
-                    break;
-                case "steps":
-                    List<Step> newSteps = new ArrayList<Step>();
-                    List<LinkedHashMap<String, Object>> stepsList = (List<LinkedHashMap<String, Object>>) value;
-                    for (LinkedHashMap<String, Object> stepMap : stepsList) {
-                        Integer index = (Integer) stepMap.get("index");
-                        String description = (String) stepMap.get("description");
-                        Step newStep = new Step(index, description);
-                        newSteps.add(newStep);
-                    }
-                    recipe.setSteps(newSteps);
-                    break;
-                default:
-                    throw new IllegalArgumentException("Unknown field '" + key + "'");
-            }
-        }
-        return recipe;
+    @Path("/{id}")
+    public Recipe patch(@PathParam("id") Long id, Map<String, Object> updates) {
+        log.info("PATCH: patching recipe with id '" + id + "' ...");
+        return recipeResource.patch(id, updates);
     }
 
+    @DELETE
     @Transactional
-    public void delete(Long id) {
+    @Path("/{id}")
+    public void delete(@PathParam("id") Long id) {
+        log.info("DELETE: deleting recipe with id '" + id + "' ...");
         Recipe entity = Recipe.findById(id);
-        entity.delete();
+        recipeResource.delete(entity);
     }
 }

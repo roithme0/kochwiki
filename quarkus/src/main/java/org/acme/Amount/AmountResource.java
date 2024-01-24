@@ -1,21 +1,9 @@
 package org.acme.Amount;
 
-import java.util.List;
-import org.jboss.logging.Logger;
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
-import jakarta.inject.Inject;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
+import jakarta.enterprise.context.ApplicationScoped;
 
-@Path("/amounts")
-public class AmountResource {
-    private static final Logger log = Logger.getLogger(AmountResource.class);
-
-    @Inject AmountService amountService;
-
-    @GET
-    public List<Amount> getAll(){
-        log.info("GET: getting all amounts ...");
-        return amountService.getAll();
-    }    
+@ApplicationScoped
+public class AmountResource implements PanacheRepository<Amount> {
 }

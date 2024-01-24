@@ -1,58 +1,81 @@
 package org.acme.Recipe;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.jboss.logging.Logger;
+import org.acme.Amount.Amount;
+import org.acme.Step.Step;
+
+// import org.jboss.logging.Logger;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
-import jakarta.inject.Inject;
-import jakarta.ws.rs.DELETE;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.PATCH;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
+import jakarta.enterprise.context.ApplicationScoped;
 
-@Path("/recipes")
+@ApplicationScoped
 public class RecipeResource implements PanacheRepository<Recipe> {
-    private static final Logger log = Logger.getLogger(RecipeResource.class);
+    // private static final Logger log = Logger.getLogger(RecipeResource.class);
 
-    @Inject
-    RecipeService recipeService;
+    public Recipe patch(Long id, Map<String, Object> updates) {
+        // check if recipe exists
+        // update all fields except id if not null
+        Recipe recipe = Recipe.findById(id);
+        if (recipe == null) {
+            throw new IllegalArgumentException("Recipe with id " + id + " does not exist");
+        }
 
-    @GET
-    public List<Recipe> getAll() {
-        log.info("GET: getting all recipes ...");
-        return recipeService.getAll();
-    }
-
-    @GET
-    @Path("/{id}")
-    public Recipe getById(@PathParam("id") Long id) {
-        log.info("GET: getting recipe by id '" + id + "' ...");
-        return recipeService.getById(id);
-    }
-
-    @POST
-    public Recipe create(Recipe recipe) {
-        log.info("POST: creating recipe '" + recipe.name + "' ...");
-        return recipeService.create(recipe);
-    }
-
-    @PATCH
-    @Path("/{id}")
-    public Recipe patch(@PathParam("id") Long id, Map<String, Object> updates) {
-        log.info("PATCH: patching recipe with id '" + id + "' ...");
-        return recipeService.patch(id, updates);
-    }
-
-    @DELETE
-    @Path("/{id}")
-    public void delete(@PathParam("id") Long id) {
-        Recipe entity = Recipe.findById(id);
-        log.info("DELETE: deleting recipe '" + entity.name + "' ...");
-        recipeService.delete(id);
+        for (Map.Entry<String, Object> entry : updates.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+            switch (key) {
+                case "name":
+                    recipe.name = (String) value;
+                    break;
+                case "servings":
+                    recipe.servings = (Integer) value;
+                    break;
+                case "preptime":
+                    recipe.preptime = (Integer) value;
+                    break;
+                case "originName":
+                    recipe.originName = (String) value;
+                    break;
+                case "originUrl":
+                    recipe.setOriginUrl((String) value);
+                    break;
+                // case "original":
+                // break;
+                // case "image":
+                // break;
+                case "amounts":
+                    List<Amount> newAmounts = new ArrayList<Amount>();
+                    List<LinkedHashMap<String, Object>> amountsList = (List<LinkedHashMap<String, Object>>) value;
+                    for (LinkedHashMap<String, Object> amountMap : amountsList) {
+                        Integer index = (Integer) amountMap.get("index");
+                        Float amount = ((Integer) amountMap.get("amount")).floatValue();
+                        Long ingredientId = ((Integer) amountMap.get("ingredientId")).longValue();
+                        Amount newAmount = new Amount(index, amount, ingredientId);
+                        newAmounts.add(newAmount);
+                    }
+                    recipe.setAmounts(newAmounts);
+                    break;
+                case "steps":
+                    List<Step> newSteps = new ArrayList<Step>();
+                    List<LinkedHashMap<String, Object>> stepsList = (List<LinkedHashMap<String, Object>>) value;
+                    for (LinkedHashMap<String, Object> stepMap : stepsList) {
+                        Integer index = (Integer) stepMap.get("index");
+                        String description = (String) stepMap.get("description");
+                        Step newStep = new Step(index, description);
+                        newSteps.add(newStep);
+                    }
+                    recipe.setSteps(newSteps);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Unknown field '" + key + "'");
+            }
+        }
+        return recipe;
     }
 }

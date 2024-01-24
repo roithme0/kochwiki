@@ -1,57 +1,55 @@
 package org.acme.Ingredient;
 
-import java.util.List;
 import java.util.Map;
 
 import org.jboss.logging.Logger;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
-import jakarta.inject.Inject;
-import jakarta.ws.rs.DELETE;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.PATCH;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
+import jakarta.enterprise.context.ApplicationScoped;
 
-@Path("/ingredients")
+@ApplicationScoped
 public class IngredientResource implements PanacheRepository<Ingredient> {
-    private static final Logger log = Logger.getLogger(IngredientResource.class);
+    private static final Logger log = Logger.getLogger(IngredientService.class);
 
-    @Inject
-    IngredientService ingredientService;
+    public Ingredient patch(Long id, Map<String, Object> updates) {
+        // check if ingredient exists
+        // update all fields except id and amounts if values are not null
+        Ingredient ingredient = Ingredient.findById(id);
+        if (ingredient == null) {
+            throw new IllegalArgumentException("Ingredient with id " + id + " does not exist");
+        }
 
-    @GET
-    public List<Ingredient> getAll() {
-        log.info("GET: getting all ingredients ...");
-        return ingredientService.getAll();
-    }
-
-    @GET
-    @Path("/{id}")
-    public Ingredient getById(@PathParam("id") Long id) {
-        log.info("GET: getting ingredient with id '" + id + "' ...");
-        return ingredientService.getById(id);
-    }
-
-    @POST
-    public Ingredient create(Ingredient ingredient) {
-        log.info("POST: creating ingredient '" + ingredient.name + "' ...");
-        return ingredientService.create(ingredient);
-    }
-
-    @PATCH
-    @Path("/{id}")
-    public Ingredient patch(@PathParam("id") Long id, Map<String, Object> updates) {
-        log.info("PATCH: patching ingredient with id '" + id + "' ...");
-        return ingredientService.patch(id, updates);
-    }
-
-    @DELETE
-    @Path("/{id}")
-    public void delete(@PathParam("id") Long id) {
-        log.info("DELETE: deleting ingredient with id '" + id + "' ...");
-        ingredientService.delete(id);
+        log.debug("updates: " + updates);
+        for (Map.Entry<String, Object> entry : updates.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+            switch (key) {
+                case "name":
+                    ingredient.name = (String) value;
+                    break;
+                case "brand":
+                    ingredient.brand = (String) value;
+                    break;
+                case "unit":
+                    ingredient.setUnit((String) value);
+                    break;
+                case "kcal":
+                    ingredient.kcal = (Integer) value;
+                    break;
+                case "carbs":
+                    ingredient.carbs = (Integer) value;
+                    break;
+                case "protein":
+                    ingredient.protein = (Integer) value;
+                    break;
+                case "fat":
+                    ingredient.fat = (Integer) value;
+                    break;
+                default:
+                    throw new IllegalArgumentException("Unknown field '" + key + "'");
+            }
+        }
+        return ingredient;
     }
 }

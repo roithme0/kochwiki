@@ -2,12 +2,22 @@ package org.acme.Step;
 
 import java.util.List;
 
-import jakarta.enterprise.context.ApplicationScoped;
+import org.jboss.logging.Logger;
 
-@ApplicationScoped
+import jakarta.inject.Inject;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+
+@Path("/steps")
 public class StepService {
-    
-    public List<Step> getAll() {
-        return Step.listAll();
+    private static final Logger log = Logger.getLogger(StepService.class);
+
+    @Inject
+    StepResource stepResource;
+
+    @GET
+    public List<Step> findAll() {
+        log.info("GET: finding all steps ...");
+        return stepResource.listAll();
     }
 }

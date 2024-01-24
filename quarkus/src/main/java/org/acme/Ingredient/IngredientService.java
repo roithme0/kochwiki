@@ -1,75 +1,60 @@
 package org.acme.Ingredient;
 
-import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.PATCH;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 
 import org.jboss.logging.Logger;
 
 import java.util.List;
 import java.util.Map;
 
-@ApplicationScoped
+@Path("/ingredients")
 public class IngredientService {
     private static final Logger log = Logger.getLogger(IngredientService.class);
 
-    public List<Ingredient> getAll() {
-        return Ingredient.listAll();
+    @Inject
+    IngredientResource ingredientResource;
+
+    @GET
+    public List<Ingredient> listAll() {
+        log.info("GET: listing all ingredients ...");
+        return ingredientResource.listAll();
     }
 
-    public Ingredient getById(Long id) {
-        return Ingredient.findById(id);
+    @GET
+    @Path("/{id}")
+    public Ingredient findById(@PathParam("id") Long id) {
+        log.info("GET: find ingredient with id '" + id + "' ...");
+        return ingredientResource.findById(id);
     }
 
+    @POST
     @Transactional
     public Ingredient create(Ingredient ingredient) {
-        ingredient.persist();
+        log.info("POST: creating ingredient '" + ingredient.name + "' ...");
+        ingredientResource.persist(ingredient);
         return ingredient;
     }
 
+    @PATCH
+    @Path("/{id}")
     @Transactional
-    public Ingredient patch(Long id, Map<String, Object> updates) {
-        // check if ingredient exists
-        // update all fields except id and amounts if values are not null
-        Ingredient ingredient = Ingredient.findById(id);
-        if (ingredient == null) {
-            throw new IllegalArgumentException("Ingredient with id " + id + " does not exist");
-        }
-
-        log.debug("updates: " + updates);
-        for (Map.Entry<String, Object> entry : updates.entrySet()) {
-            String key = entry.getKey();
-            Object value = entry.getValue();
-            switch (key) {
-                case "name":
-                    ingredient.name = (String) value;
-                    break;
-                case "brand":
-                    ingredient.brand = (String) value;
-                    break;
-                case "unit":
-                    ingredient.setUnit((String) value);
-                    break;
-                case "kcal":
-                    ingredient.kcal = (Integer) value;
-                    break;
-                case "carbs":
-                    ingredient.carbs = (Integer) value;
-                    break;
-                case "protein":
-                    ingredient.protein = (Integer) value;
-                    break;
-                case "fat":
-                    ingredient.fat = (Integer) value;
-                    break;
-                default:
-                    throw new IllegalArgumentException("Unknown field '" + key + "'");
-            }
-        }
-        return ingredient;
+    public Ingredient patch(@PathParam("id") Long id, Map<String, Object> updates) {
+        log.info("PATCH: patching ingredient with id '" + id + "' ...");
+        return ingredientResource.patch(id, updates);
     }
 
+    @DELETE
+    @Path("/{id}")
     @Transactional
-    public void delete(Long id) {
+    public void delete(@PathParam("id") Long id) {
+        log.info("DELETE: deleting ingredient with id '" + id + "' ...");
         Ingredient entity = Ingredient.findById(id);
         entity.delete();
     }
