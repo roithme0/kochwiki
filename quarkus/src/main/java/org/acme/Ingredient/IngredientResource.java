@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.jboss.logging.Logger;
 
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
+
 import jakarta.inject.Inject;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -14,10 +16,11 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 
 @Path("/ingredients")
-public class IngredientResource {
+public class IngredientResource implements PanacheRepository<Ingredient> {
     private static final Logger log = Logger.getLogger(IngredientResource.class);
 
-    @Inject IngredientService ingredientService;
+    @Inject
+    IngredientService ingredientService;
 
     @GET
     public List<Ingredient> getAll() {
@@ -34,7 +37,7 @@ public class IngredientResource {
 
     @POST
     public Ingredient create(Ingredient ingredient) {
-        log.info("POST: creating ingredient '" + ingredient.getName() + "' ...");
+        log.info("POST: creating ingredient '" + ingredient.name + "' ...");
         return ingredientService.create(ingredient);
     }
 

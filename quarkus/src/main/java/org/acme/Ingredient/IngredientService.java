@@ -41,25 +41,25 @@ public class IngredientService {
             Object value = entry.getValue();
             switch (key) {
                 case "name":
-                    ingredient.setName((String) value);
+                    ingredient.name = (String) value;
                     break;
                 case "brand":
-                    ingredient.setBrand((String) value);
+                    ingredient.brand = (String) value;
                     break;
                 case "unit":
                     ingredient.setUnit((String) value);
                     break;
                 case "kcal":
-                    ingredient.setKcal((Integer) value);
+                    ingredient.kcal = (Integer) value;
                     break;
                 case "carbs":
-                    ingredient.setCarbs((Integer) value);
+                    ingredient.carbs = (Integer) value;
                     break;
                 case "protein":
-                    ingredient.setProtein((Integer) value);
+                    ingredient.protein = (Integer) value;
                     break;
                 case "fat":
-                    ingredient.setFat((Integer) value);
+                    ingredient.fat = (Integer) value;
                     break;
                 default:
                     throw new IllegalArgumentException("Unknown field '" + key + "'");

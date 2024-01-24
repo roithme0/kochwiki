@@ -21,79 +21,35 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Recipe extends PanacheEntity {
 
     @Column(unique = true, nullable = false, length = 200)
-    private String name;
+    public String name;
 
     @Column(nullable = false, length = 2)
-    private Integer servings;
+    public Integer servings;
 
     @Column(nullable = true, length = 3)
-    private Integer preptime;
+    public Integer preptime;
 
     @Column(nullable = true, length = 200)
-    private String originName;
+    public String originName;
 
     @Column(nullable = true, length = 200)
-    private URL originUrl;
+    public URL originUrl;
 
     // @Column(nullable = true)
-    // private File original;
+    // public File original;
 
     // @Column(nullable = true)
-    // private File image;
+    // public File image;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @Column(nullable = true)
     @JsonManagedReference("recipe-amounts")
-    private List<Amount> amounts = new ArrayList<>();
+    public List<Amount> amounts = new ArrayList<>();
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @Column(nullable = true)
     @JsonManagedReference("recipe-steps")
-    private List<Step> steps = new ArrayList<>();
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Integer getServings() {
-        return servings;
-    }
-
-    public Integer getPreptime() {
-        return preptime;
-    }
-
-    public String getOriginName() {
-        return originName;
-    }
-
-    public URL getOriginUrl() {
-        return originUrl;
-    }
-
-    // public File getOriginal(){
-
-    // }
-
-    // public File getImage(){
-
-    // }
-
-    public List<Amount> getAmounts() {
-        return amounts;
-    }
-
-    public List<Step> getSteps() {
-        return steps;
-    }
-
-    public void setName(String newName) {
-        name = newName;
-    }
+    public List<Step> steps = new ArrayList<>();
 
     public void setServings(Integer newServings) {
         if (newServings < 0 || newServings > 99) {
@@ -112,10 +68,6 @@ public class Recipe extends PanacheEntity {
         preptime = newPreptime;
     }
 
-    public void setOriginName(String newOriginName) {
-        originName = newOriginName;
-    }
-
     public void setOriginUrl(String newOriginUrl) {
         if (newOriginUrl == null || newOriginUrl == "") {
             originUrl = null;
@@ -128,14 +80,6 @@ public class Recipe extends PanacheEntity {
             throw new IllegalArgumentException("Invalid URL format for 'originUrl'", e);
         }
     }
-
-    // public void setOriginal(File newOriginal){
-
-    // }
-
-    // public void setImage(File newImage){
-
-    // }
 
     public void setAmounts(List<Amount> newAmounts) {
         List<Amount> oldAmounts = new ArrayList<>(amounts);
@@ -169,12 +113,12 @@ public class Recipe extends PanacheEntity {
 
     public void addStep(Step newStep) {
         steps.add(newStep);
-        newStep.setRecipe(this);
+        newStep.recipe = this;
     }
 
     public void removeStep(Step step) {
         steps.remove(step);
-        step.setRecipe(null);
+        step.recipe = null;
     }
 
     public Recipe() {
@@ -186,17 +130,12 @@ public class Recipe extends PanacheEntity {
             Integer servings,
             Integer preptime,
             String originName,
-            String originUrl
-    // File original,
-    // File image,
-    ) {
-        this.setName(name);
-        this.setServings(servings);
-        this.setPreptime(preptime);
-        this.setOriginName(originName);
+            String originUrl) {
+        this.name = name;
+        this.servings = servings;
+        this.preptime = preptime;
+        this.originName = originName;
         this.setOriginUrl(originUrl);
-        // this.setOriginal(original);
-        // this.setImage(image);
     }
 
     public Recipe(
@@ -209,14 +148,12 @@ public class Recipe extends PanacheEntity {
             // File image,
             List<Amount> amounts,
             List<Step> steps) {
-        this.setName(name);
-        this.setServings(servings);
-        this.setPreptime(preptime);
-        this.setOriginName(originName);
+        this.name = name;
+        this.servings = servings;
+        this.preptime = preptime;
+        this.originName = originName;
         this.setOriginUrl(originUrl);
-        // this.setOriginal(original);
-        // this.setImage(image);
-        this.setAmounts(amounts);
-        this.setSteps(steps);
+        this.amounts = amounts;
+        this.steps = steps;
     }
 }

@@ -44,16 +44,16 @@ public class RecipeService {
             Object value = entry.getValue();
             switch (key) {
                 case "name":
-                    recipe.setName((String) value);
+                    recipe.name = (String) value;
                     break;
                 case "servings":
-                    recipe.setServings((Integer) value);
+                    recipe.servings = (Integer) value;
                     break;
                 case "preptime":
-                    recipe.setPreptime((Integer) value);
+                    recipe.preptime = (Integer) value;
                     break;
                 case "originName":
-                    recipe.setOriginName((String) value);
+                    recipe.originName = (String) value;
                     break;
                 case "originUrl":
                     recipe.setOriginUrl((String) value);
