@@ -15,7 +15,7 @@ public class IngredientResource implements PanacheRepository<Ingredient> {
     public Ingredient patch(Long id, Map<String, Object> updates) {
         // check if ingredient exists
         // update all fields except id and amounts if values are not null
-        Ingredient ingredient = Ingredient.findById(id);
+        Ingredient ingredient = findById(id);
         if (ingredient == null) {
             throw new IllegalArgumentException("Ingredient with id " + id + " does not exist");
         }

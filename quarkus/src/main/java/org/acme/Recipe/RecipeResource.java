@@ -21,7 +21,7 @@ public class RecipeResource implements PanacheRepository<Recipe> {
     public Recipe patch(Long id, Map<String, Object> updates) {
         // check if recipe exists
         // update all fields except id if not null
-        Recipe recipe = Recipe.findById(id);
+        Recipe recipe = findById(id);
         if (recipe == null) {
             throw new IllegalArgumentException("Recipe with id " + id + " does not exist");
         }
