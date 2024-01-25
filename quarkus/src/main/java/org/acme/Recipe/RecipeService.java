@@ -1,12 +1,8 @@
 package org.acme.Recipe;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.acme.Amount.Amount;
-import org.acme.Step.Step;
 import org.jboss.logging.Logger;
 
 import jakarta.inject.Inject;
