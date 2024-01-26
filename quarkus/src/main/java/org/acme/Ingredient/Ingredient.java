@@ -61,6 +61,15 @@ public class Ingredient extends PanacheEntity {
         return unit.getUnitVerbose();
     }
 
+    public void setBrand(String newBrand) {
+        if (newBrand == "") {
+            brand = null;
+            return;
+        }
+
+        brand = newBrand;
+    }
+
     public void setUnit(String newUnit) {
         try {
             unit = UnitEnum.valueOf(newUnit);
@@ -72,37 +81,37 @@ public class Ingredient extends PanacheEntity {
     public void setKcal(Integer newKcal) {
         if (newKcal == null) {
             kcal = null;
-        } else {
-            this.checkInteger(newKcal);
-            kcal = newKcal;
+            return;
         }
+        this.checkInteger(newKcal);
+        kcal = newKcal;
     }
 
     public void setCarbs(Integer newCarbs) {
         if (newCarbs == null) {
             carbs = null;
-        } else {
-            this.checkInteger(newCarbs);
-            carbs = newCarbs;
+            return;
         }
+        this.checkInteger(newCarbs);
+        carbs = newCarbs;
     }
 
     public void setProtein(Integer newProtein) {
         if (newProtein == null) {
             protein = null;
-        } else {
-            this.checkInteger(newProtein);
-            protein = newProtein;
+            return;
         }
+        this.checkInteger(newProtein);
+        protein = newProtein;
     }
 
     public void setFat(Integer newFat) {
         if (newFat == null) {
             fat = null;
-        } else {
-            this.checkInteger(newFat);
-            fat = newFat;
+            return;
         }
+        this.checkInteger(newFat);
+        fat = newFat;
     }
 
     private void checkInteger(Integer value) {
@@ -127,12 +136,12 @@ public class Ingredient extends PanacheEntity {
             Integer protein,
             Integer fat) {
         this.name = name;
-        this.brand = brand;
+        this.setBrand(brand);
         this.setUnit(unit);
-        this.kcal = kcal;
-        this.carbs = carbs;
-        this.protein = protein;
-        this.fat = fat;
+        this.setKcal(kcal);
+        this.setCarbs(carbs);
+        this.setProtein(protein);
+        this.setFat(fat);
     }
 
     @Override

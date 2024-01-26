@@ -18,10 +18,18 @@ public class IngredientResourceTest {
     IngredientResource ingredientResource;
 
     @Test
-    public void patchShouldUpdateName() {
+    public void nameSpaghettiShouldBeSpaghetti() {
         Map<String, Object> updates = new HashMap<>();
         updates.put("name", "Spaghetti");
-        Ingredient patchedIngredient = ingredientResource.patch(ingredient, updates);
-        assertEquals(patchedIngredient, new Ingredient("Spaghetti", "Barilla", "G", 360, null, null, null));
+        assertEquals(ingredientResource.patch(ingredient, updates),
+                new Ingredient("Spaghetti", "Barilla", "G", 360, null, null, null));
+    }
+
+    @Test
+    public void brandEmptyStringShouldReturnNull() {
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("brand", "");
+        assertEquals(ingredientResource.patch(ingredient, updates),
+                new Ingredient("Nudeln", null, "G", 360, null, null, null));
     }
 }
