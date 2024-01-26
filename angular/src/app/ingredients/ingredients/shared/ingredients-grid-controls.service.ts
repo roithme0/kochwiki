@@ -12,6 +12,10 @@ export class IngredientsGridControlsService {
   }
 
   setFilterBy(filterBy: string): void {
+    if (filterBy === undefined || filterBy === null) {
+      this.filterBy.set('all');
+      return;
+    }
     this.filterBy.set(filterBy);
   }
 
