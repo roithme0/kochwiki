@@ -48,7 +48,7 @@ public class Step extends PanacheEntity {
     public Step(
             Integer index,
             String description) {
-        this.index = index;
+        this.setIndex(index);
         this.description = description;
     }
 }

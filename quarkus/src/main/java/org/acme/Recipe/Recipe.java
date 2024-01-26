@@ -132,8 +132,8 @@ public class Recipe extends PanacheEntity {
             String originName,
             String originUrl) {
         this.name = name;
-        this.servings = servings;
-        this.preptime = preptime;
+        this.setServings(servings);
+        this.setPreptime(preptime);
         this.originName = originName;
         this.setOriginUrl(originUrl);
     }
@@ -149,11 +149,11 @@ public class Recipe extends PanacheEntity {
             List<Amount> amounts,
             List<Step> steps) {
         this.name = name;
-        this.servings = servings;
-        this.preptime = preptime;
+        this.setServings(servings);
+        this.setPreptime(preptime);
         this.originName = originName;
         this.setOriginUrl(originUrl);
-        this.amounts = amounts;
-        this.steps = steps;
+        this.setAmounts(amounts);
+        this.setSteps(steps);
     }
 }

@@ -83,8 +83,8 @@ public class Amount extends PanacheEntity {
             Integer index,
             Float amount,
             Long ingredientId) {
-        this.index = index;
-        this.amount = amount;
+        this.setIndex(index);
+        this.setAmount(amount);
         this.setIngredientId(ingredientId);
     }
 }
