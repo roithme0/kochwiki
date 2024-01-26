@@ -2,6 +2,7 @@ import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MatDialog } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 import { Ingredient } from '../../shared/interfaces/ingredient';
@@ -12,7 +13,7 @@ import { IngredientDeleteDialogComponent } from '../../shared/dialogs/ingredient
 @Component({
   selector: 'app-ingredients-grid-row',
   standalone: true,
-  imports: [CommonModule, MatIconModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule],
   templateUrl: './ingredients-grid-row.component.html',
   styleUrl: './ingredients-grid-row.component.css',
 })

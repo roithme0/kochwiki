@@ -2,6 +2,7 @@ import { Component, Signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MatDialog } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 import { IngredientsGridControlsComponent } from '../ingredients-grid-controls/ingredients-grid-controls.component';
@@ -23,6 +24,7 @@ import { IngredientsGridDisplayedFieldsService } from '../shared/ingredients-gri
     IngredientsGridControlsComponent,
     IngredientsGridHeaderComponent,
     IngredientsGridRowComponent,
+    MatButtonModule,
     MatIconModule,
   ],
   templateUrl: './ingredients-grid.component.html',

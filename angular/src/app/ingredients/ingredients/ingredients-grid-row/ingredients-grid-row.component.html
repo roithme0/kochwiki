@@ -2,18 +2,22 @@
 <p>{{ ingredient[field] }}</p>
 } }
 
-<mat-icon
-  aria-hidden="false"
-  aria-label="Bearbeiten"
-  fontIcon="edit"
-  class="button"
-  (click)="openEditIngredientDialog()"
-></mat-icon>
+<button mat-icon-button (click)="openEditIngredientDialog()">
+  <mat-icon
+    aria-hidden="false"
+    aria-label="Bearbeiten"
+    fontIcon="edit"
+  ></mat-icon>
+</button>
 
-<mat-icon
-  aria-hidden="false"
-  aria-label="Löschen"
-  fontIcon="delete"
-  class="button delete"
-  (click)="openDeleteIngredientDialog()"
-></mat-icon>
+<button
+  mat-icon-button
+  class="delete-button"
+  (click)="openEditIngredientDialog()"
+>
+  <mat-icon
+    aria-hidden="false"
+    aria-label="Löschen"
+    fontIcon="delete"
+  ></mat-icon>
+</button>
