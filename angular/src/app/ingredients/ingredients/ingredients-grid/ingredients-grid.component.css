@@ -29,6 +29,7 @@ app-ingredients-grid-row {
   grid-column: span var(--columns);
   display: grid;
   grid-template-columns: subgrid;
+  align-items: center;
 }
 
 .button-wrapper {
