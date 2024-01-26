@@ -5,10 +5,12 @@ import { Recipe } from '../../shared/interfaces/recipe';
 
 import { IngredientService } from '../../../ingredients/shared/services/ingredient.service';
 
+import { MatCardModule } from '@angular/material/card';
+
 @Component({
   selector: 'app-amounts-grid',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatCardModule],
   templateUrl: './amounts-grid.component.html',
   styleUrl: './amounts-grid.component.css',
 })
