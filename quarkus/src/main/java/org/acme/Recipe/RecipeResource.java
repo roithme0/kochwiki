@@ -18,13 +18,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 public class RecipeResource implements PanacheRepository<Recipe> {
     // private static final Logger log = Logger.getLogger(RecipeResource.class);
 
-    public Recipe patch(Long id, Map<String, Object> updates) {
-        // check if recipe exists
+    public Recipe patch(Recipe recipe, Map<String, Object> updates) {
         // update all fields except id if not null
-        Recipe recipe = findById(id);
-        if (recipe == null) {
-            throw new IllegalArgumentException("Recipe with id " + id + " does not exist");
-        }
 
         for (Map.Entry<String, Object> entry : updates.entrySet()) {
             String key = entry.getKey();

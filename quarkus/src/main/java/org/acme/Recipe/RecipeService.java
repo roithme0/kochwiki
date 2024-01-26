@@ -46,8 +46,12 @@ public class RecipeService {
     @Transactional
     @Path("/{id}")
     public Recipe patch(@PathParam("id") Long id, Map<String, Object> updates) {
+        Recipe recipe = findById(id);
+        if (recipe == null) {
+            throw new IllegalArgumentException("Recipe with id " + id + " does not exist");
+        }
         log.info("PATCH: patching recipe with id '" + id + "' ...");
-        return recipeResource.patch(id, updates);
+        return recipeResource.patch(recipe, updates);
     }
 
     @DELETE
