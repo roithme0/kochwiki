@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 import { RecipesGridControlsComponent } from '../recipes-grid-controls/recipes-grid-controls.component';
 import { RecipesGridElementComponent } from '../recipes-grid-element/recipes-grid-element.component';
@@ -24,6 +25,7 @@ import { WindowWidthService } from '../../../shared/services/window-width.servic
     RecipesGridElementComponent,
     RecipeCreateDialogComponent,
     MatIconModule,
+    MatButtonModule,
   ],
   templateUrl: './recipes-grid.component.html',
   styleUrl: './recipes-grid.component.css',

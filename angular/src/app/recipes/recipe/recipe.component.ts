@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 import { Recipe } from '../shared/interfaces/recipe';
 
@@ -24,6 +25,7 @@ import { RecipeDeleteDialogComponent } from '../shared/dialogs/recipe-delete-dia
     AmountsGridComponent,
     StepsGridComponent,
     MatIconModule,
+    MatButtonModule,
   ],
   templateUrl: './recipe.component.html',
   styleUrl: './recipe.component.css',
