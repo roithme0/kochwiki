@@ -1,13 +1,16 @@
-<header class="page-header">
-  <a routerLink="" routerLinkActive="active">
-    <img src="../../assets/logo.png" alt="Home"
-  /></a>
+<mat-toolbar>
+  <button mat-icon-button aria-label="Menü">
+    <mat-icon>menu</mat-icon>
+  </button>
   <h1>{{ headline() }}</h1>
-  <a [routerLink]="back()" routerLinkActive="active"
-    ><mat-icon
-      aria-hidden="false"
-      aria-label="Zurück"
-      fontIcon="arrow_back_ios"
-    ></mat-icon>
+  <span class="spacer"></span>
+  <a [routerLink]="back()" routerLinkActive="active">
+    <button mat-icon-button>
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Zurück"
+        fontIcon="arrow_back"
+      ></mat-icon>
+    </button>
   </a>
-</header>
+</mat-toolbar>

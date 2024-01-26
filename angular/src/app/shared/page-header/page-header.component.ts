@@ -5,11 +5,20 @@ import { RouterModule, RouterLink } from '@angular/router';
 import { PageHeaderService } from '../services/page-header.service';
 
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-page-header',
   standalone: true,
-  imports: [CommonModule, RouterModule, RouterLink, MatIconModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    RouterLink,
+    MatIconModule,
+    MatButtonModule,
+    MatToolbarModule,
+  ],
   templateUrl: './page-header.component.html',
   styleUrl: './page-header.component.css',
 })
