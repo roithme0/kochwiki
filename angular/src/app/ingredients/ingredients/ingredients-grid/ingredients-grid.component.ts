@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { IngredientsGridControlsComponent } from '../ingredients-grid-controls/ingredients-grid-controls.component';
 import { IngredientsGridHeaderComponent } from '../ingredients-grid-header/ingredients-grid-header.component';
@@ -26,6 +27,7 @@ import { IngredientsGridDisplayedFieldsService } from '../shared/ingredients-gri
     IngredientsGridRowComponent,
     MatButtonModule,
     MatIconModule,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './ingredients-grid.component.html',
   styleUrl: './ingredients-grid.component.css',
@@ -42,6 +44,8 @@ export class IngredientsGridComponent {
 
   displayedIngredients: Signal<Ingredient[]> =
     this.displayedIngredientsService.getDisplayedIngredients();
+  loadingDisplayedIngredients: Signal<boolean> =
+    this.displayedIngredientsService.getLoading();
   displayedFields: Signal<string[]> =
     this.displayedFieldsService.getDisplayedFields();
 

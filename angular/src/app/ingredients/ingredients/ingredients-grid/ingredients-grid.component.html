@@ -1,24 +1,32 @@
-<app-ingredients-grid-controls [ingredients]="displayedIngredients" />
-
-<section class="grid" [style.--fields]="displayedFields().length">
-  <app-ingredients-grid-header [displayedFields]="displayedFields" />
-
-  @for (ingredient of displayedIngredients(); track ingredient){
-  <app-ingredients-grid-row
-    [ingredient]="ingredient"
-    [displayedFields]="displayedFields()"
-  />
-  }@empty {
-  <p>Keine Zutaten gefunden</p>
-  }
-</section>
-
-<div class="button-wrapper">
-  <button mat-icon-button (click)="openCreateIngredientDialog()">
-    <mat-icon
-      aria-hidden="false"
-      aria-label="Hinzufügen"
-      fontIcon="add"
-    ></mat-icon>
-  </button>
+@if(loadingDisplayedIngredients()){
+<div class="spinner-wrapper">
+  <mat-spinner></mat-spinner>
 </div>
+}@else{
+<div class="grid-wrapper">
+  <app-ingredients-grid-controls [ingredients]="displayedIngredients" />
+
+  <section class="grid" [style.--fields]="displayedFields().length">
+    <app-ingredients-grid-header [displayedFields]="displayedFields" />
+
+    @for (ingredient of displayedIngredients(); track ingredient){
+    <app-ingredients-grid-row
+      [ingredient]="ingredient"
+      [displayedFields]="displayedFields()"
+    />
+    }@empty {
+    <p>Keine Zutaten gefunden</p>
+    }
+  </section>
+
+  <div class="button-wrapper">
+    <button mat-icon-button (click)="openCreateIngredientDialog()">
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Hinzufügen"
+        fontIcon="add"
+      ></mat-icon>
+    </button>
+  </div>
+</div>
+}
