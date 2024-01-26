@@ -20,6 +20,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-ingredients-grid-controls',
@@ -32,6 +33,7 @@ import { MatIconModule } from '@angular/material/icon';
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatIconModule,
+    MatButtonModule,
   ],
   templateUrl: './ingredients-grid-controls.component.html',
   styleUrl: './ingredients-grid-controls.component.css',

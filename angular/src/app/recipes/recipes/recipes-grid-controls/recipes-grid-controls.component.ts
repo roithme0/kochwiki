@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 import { Recipe } from '../../shared/interfaces/recipe';
 
@@ -29,6 +30,7 @@ import { RecipesGridControlsService } from '../shared/recipes-grid-controls.serv
     MatFormFieldModule,
     MatAutocompleteModule,
     MatIconModule,
+    MatButtonModule,
   ],
   templateUrl: './recipes-grid-controls.component.html',
   styleUrl: './recipes-grid-controls.component.css',
