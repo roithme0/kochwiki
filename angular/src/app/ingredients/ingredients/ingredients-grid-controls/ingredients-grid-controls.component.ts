@@ -44,21 +44,30 @@ export class IngredientsGridControlsComponent {
   searchControl: FormControl = new FormControl('');
   filterControl: FormControl = new FormControl('all');
 
-  namesAndBrands: Signal<string[]> = computed(() => {
-    // generate a list of names & brands of all displayed ingredients
-    const names: string[] = this.ingredients().map(
-      (ingredient) => ingredient.name
-    );
+  names: Signal<string[]> = computed(() => {
+    // generate a list of names of all displayed ingredients
+    return this.ingredients().map((ingredient) => ingredient.name);
+  });
+  brands: Signal<string[]> = computed(() => {
+    // generate a list of brands of all displayed ingredients
     const brands: string[] = this.ingredients().map(
       (ingredient) => ingredient.brand || ''
     );
-    return names.concat(brands.filter((brand) => brand !== ''));
+    return brands.filter((brand) => brand !== '');
   });
-  filteredNamesAndBrands: Signal<Set<string>> = computed(() => {
-    // filter names & brands based on search input (case-insensitive)
+  filteredNames: Signal<Set<string>> = computed(() => {
+    // filter names based on search input (case-insensitive)
     const searchValue = this.searchControl.value || '';
-    const filtered = this.namesAndBrands().filter((nameOrBrand) =>
-      nameOrBrand.toLowerCase().includes(searchValue.toLowerCase())
+    const filtered = this.names().filter((name) =>
+      name.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    return new Set(filtered);
+  });
+  filteredBrands: Signal<Set<string>> = computed(() => {
+    // filter brands based on search input (case-insensitive)
+    const searchValue = this.searchControl.value || '';
+    const filtered = this.brands().filter((brand) =>
+      brand.toLowerCase().includes(searchValue.toLowerCase())
     );
     return new Set(filtered);
   });

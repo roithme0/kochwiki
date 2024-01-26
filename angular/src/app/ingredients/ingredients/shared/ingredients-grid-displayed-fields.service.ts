@@ -17,11 +17,11 @@ export class IngredientsGridDisplayedFieldsService {
     if (this.windowInnerWidth() > 600) {
       displayedFields.push('kcal');
     }
-    if (this.windowInnerWidth() > 700) {
-      displayedFields.push('unitVerbose');
+    if (this.windowInnerWidth() > 1100) {
+      displayedFields.push('carbs', 'protein', 'fat');
     }
     if (this.windowInnerWidth() > 1200) {
-      displayedFields.push('carbs', 'protein', 'fat');
+      displayedFields.push('unitVerbose');
     }
     return displayedFields;
   });
