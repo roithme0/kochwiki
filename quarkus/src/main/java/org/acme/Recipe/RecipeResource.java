@@ -8,19 +8,15 @@ import java.util.Map;
 import org.acme.Amount.Amount;
 import org.acme.Step.Step;
 
-// import org.jboss.logging.Logger;
-
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class RecipeResource implements PanacheRepository<Recipe> {
-    // private static final Logger log = Logger.getLogger(RecipeResource.class);
 
     public Recipe patch(Recipe recipe, Map<String, Object> updates) {
         // update all fields except id if not null
-
         for (Map.Entry<String, Object> entry : updates.entrySet()) {
             String key = entry.getKey();
             Object value = entry.getValue();
