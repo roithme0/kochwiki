@@ -2,5 +2,7 @@
 
 <div class="buttons">
   <button mat-stroked-button (click)="deleteIngredient()">Ja</button>
-  <button mat-stroked-button (click)="dialogRef.close()">Nein</button>
+  <button mat-stroked-button cdkFocusInitial (click)="dialogRef.close()">
+    Nein
+  </button>
 </div>
