@@ -15,6 +15,7 @@ import org.acme.Amount.Amount;
 import org.acme.IngredientMetaData.UnitEnum;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -64,7 +65,7 @@ public class Ingredient extends PanacheEntity {
         try {
             unit = UnitEnum.valueOf(newUnit);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Einheit muss 'g[G]', 'ml[ML]' oder 'Stk.[PIECE]' sein.");
+            throw new IllegalArgumentException("Einheit muss 'G', 'ML' oder 'PIECE' sein.");
         }
     }
 
@@ -132,5 +133,23 @@ public class Ingredient extends PanacheEntity {
         this.carbs = carbs;
         this.protein = protein;
         this.fat = fat;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Ingredient)) {
+            return false;
+        }
+        Ingredient ingredient = (Ingredient) obj;
+        return Objects.equals(name, ingredient.name)
+                && Objects.equals(brand, ingredient.brand)
+                && Objects.equals(unit, ingredient.unit)
+                && Objects.equals(kcal, ingredient.kcal)
+                && Objects.equals(carbs, ingredient.carbs)
+                && Objects.equals(protein, ingredient.protein)
+                && Objects.equals(fat, ingredient.fat);
     }
 }

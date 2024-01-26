@@ -12,14 +12,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 public class IngredientResource implements PanacheRepository<Ingredient> {
     private static final Logger log = Logger.getLogger(IngredientService.class);
 
-    public Ingredient patch(Long id, Map<String, Object> updates) {
-        // check if ingredient exists
+    public Ingredient patch(Ingredient ingredient, Map<String, Object> updates) {
         // update all fields except id and amounts if values are not null
-        Ingredient ingredient = findById(id);
-        if (ingredient == null) {
-            throw new IllegalArgumentException("Ingredient with id " + id + " does not exist");
-        }
-
         log.debug("updates: " + updates);
         for (Map.Entry<String, Object> entry : updates.entrySet()) {
             String key = entry.getKey();

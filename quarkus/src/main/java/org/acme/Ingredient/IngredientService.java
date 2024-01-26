@@ -47,7 +47,11 @@ public class IngredientService {
     @Transactional
     public Ingredient patch(@PathParam("id") Long id, Map<String, Object> updates) {
         log.info("PATCH: patching ingredient with id '" + id + "' ...");
-        return ingredientResource.patch(id, updates);
+        Ingredient ingredient = findById(id);
+        if (ingredient == null) {
+            throw new IllegalArgumentException("Ingredient with id " + id + " does not exist");
+        }
+        return ingredientResource.patch(ingredient, updates);
     }
 
     @DELETE
@@ -55,7 +59,7 @@ public class IngredientService {
     @Transactional
     public void delete(@PathParam("id") Long id) {
         log.info("DELETE: deleting ingredient with id '" + id + "' ...");
-        Ingredient entity = Ingredient.findById(id);
-        entity.delete();
+        Ingredient ingredient = Ingredient.findById(id);
+        ingredient.delete();
     }
 }
