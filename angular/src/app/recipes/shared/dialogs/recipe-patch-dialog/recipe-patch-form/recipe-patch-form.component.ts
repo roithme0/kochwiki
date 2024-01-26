@@ -35,6 +35,7 @@ import {
 } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-recipe-patch-form',
@@ -50,6 +51,7 @@ import { MatStepperModule } from '@angular/material/stepper';
     FormsModule,
     MatStepperModule,
     MatIconModule,
+    MatDividerModule,
   ],
   templateUrl: './recipe-patch-form.component.html',
   styleUrl: './recipe-patch-form.component.css',
