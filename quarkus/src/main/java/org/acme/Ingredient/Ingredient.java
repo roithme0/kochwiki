@@ -66,7 +66,6 @@ public class Ingredient extends PanacheEntity {
             brand = null;
             return;
         }
-
         brand = newBrand;
     }
 
