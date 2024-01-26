@@ -26,7 +26,7 @@ export class RecipeDeleteDialogComponent {
 
   id: number | undefined;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { id: number }) {
     this.id = data.id;
   }
 

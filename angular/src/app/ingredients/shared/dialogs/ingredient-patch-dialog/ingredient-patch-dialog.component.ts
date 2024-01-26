@@ -20,5 +20,5 @@ export class IngredientPatchDialogComponent {
   dialogRef: MatDialogRef<IngredientPatchDialogComponent> =
     inject(MatDialogRef);
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { id: number }) {}
 }
