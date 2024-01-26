@@ -5,12 +5,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { IngredientPatchFormComponent } from './ingredient-patch-form/ingredient-patch-form.component';
 
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogContent } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-ingredient-patch-dialog',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, IngredientPatchFormComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    IngredientPatchFormComponent,
+    MatDialogContent,
+  ],
   templateUrl: './ingredient-patch-dialog.component.html',
   styleUrl: './ingredient-patch-dialog.component.css',
 })
