@@ -1,21 +1,23 @@
-<app-recipes-grid-controls [recipes]="displayedRecipes" />
+<section>
+  <app-recipes-grid-controls [recipes]="displayedRecipes" />
 
-<section class="grid" [style.--columns]="displayedColumns()">
-  @for(recipe of displayedRecipes(); track recipe.id){
-  <app-recipes-grid-element
-    [recipe]="recipe"
-    (click)="router.navigate(['recipes', recipe.id])"
-  />} @empty {
-  <p>Keine Rezepte gefunden</p>
-  }
+  <div class="grid" [style.--columns]="displayedColumns()">
+    @for(recipe of displayedRecipes(); track recipe.id){
+    <app-recipes-grid-element
+      [recipe]="recipe"
+      (click)="router.navigate(['recipes', recipe.id])"
+    />} @empty {
+    <p>Keine Rezepte gefunden</p>
+    }
+  </div>
+
+  <div class="button-wrapper">
+    <button mat-icon-button (click)="openCreateRecipeDialog()">
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Hinzufügen"
+        fontIcon="add"
+      ></mat-icon>
+    </button>
+  </div>
 </section>
-
-<div class="button-wrapper">
-  <button mat-icon-button (click)="openCreateRecipeDialog()">
-    <mat-icon
-      aria-hidden="false"
-      aria-label="Hinzufügen"
-      fontIcon="add"
-    ></mat-icon>
-  </button>
-</div>
