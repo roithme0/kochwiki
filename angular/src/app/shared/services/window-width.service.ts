@@ -1,17 +1,28 @@
-import { Injectable, WritableSignal, signal, Signal } from '@angular/core';
+import {
+  Injectable,
+  WritableSignal,
+  signal,
+  Signal,
+  afterRender,
+} from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WindowWidthService {
-  private windowInnerWidth: WritableSignal<number> = signal(window.innerWidth);
+  private windowInnerWidth: WritableSignal<number> = signal(360);
 
   constructor() {
-    window.addEventListener('resize', this.windowEventListener);
+    afterRender(() => {
+      this.windowInnerWidth.set(window.innerWidth);
+      window.addEventListener('resize', this.windowEventListener);
+    });
   }
 
   ngOnDestroy(): void {
-    window.removeEventListener('resize', this.windowEventListener);
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('resize', this.windowEventListener);
+    }
   }
 
   getWindowInnerWidth(): Signal<number> {
