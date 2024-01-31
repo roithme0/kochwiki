@@ -59,14 +59,13 @@
         <div class="amounts-wrapper" formArrayName="amounts">
           @for(amount of amounts.controls; track amount){
           <div class="amount-wrapper" formGroupName="{{ $index }}">
-            <div class="button-wrapper">
+            <button mat-icon-button color="warn" (click)="removeAmount($index)">
               <mat-icon
                 aria-hidden="false"
                 aria-label="Löschen"
                 fontIcon="close"
-                (click)="removeAmount($index)"
               ></mat-icon>
-            </div>
+            </button>
 
             <mat-expansion-panel class="amount-expansion-panel">
               <mat-expansion-panel-header>
@@ -126,14 +125,13 @@
         <div class="steps-wrapper" formArrayName="steps">
           @for(step of steps.controls; track step){
           <div class="step-wrapper" formGroupName="{{ $index }}">
-            <div class="button-wrapper">
+            <button mat-icon-button color="warn" (click)="removeStep($index)">
               <mat-icon
                 aria-hidden="false"
                 aria-label="Löschen"
                 fontIcon="close"
-                (click)="removeStep($index)"
               ></mat-icon>
-            </div>
+            </button>
 
             <mat-form-field appearance="fill" class="description-field">
               <mat-label>Beschreibung</mat-label>
@@ -150,15 +148,15 @@
     </mat-step>
   </mat-stepper>
 
-  <mat-divider></mat-divider>
-
-  <button
-    mat-stroked-button
-    type="submit"
-    color="primary"
-    [disabled]="!recipeForm.valid"
-    (click)="onSubmit()"
-  >
-    Speichern
-  </button>
+  <div class="button-wrapper">
+    <button
+      mat-stroked-button
+      type="submit"
+      color="primary"
+      [disabled]="!recipeForm.valid"
+      (click)="onSubmit()"
+    >
+      Speichern
+    </button>
+  </div>
 </form>

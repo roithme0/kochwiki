@@ -32,7 +32,6 @@ import {
 } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { MatStepperModule } from '@angular/material/stepper';
-import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-recipe-create-form',
@@ -48,7 +47,6 @@ import { MatDividerModule } from '@angular/material/divider';
     FormsModule,
     MatStepperModule,
     MatIconModule,
-    MatDividerModule,
   ],
   providers: [
     {
