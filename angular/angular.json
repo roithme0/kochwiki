@@ -19,10 +19,10 @@
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/custom-themes.scss", "src/styles.css"],
+            "styles": ["src/custom-themes.scss", "src/styles.scss"],
             "scripts": [],
             "server": "src/main.server.ts",
-            "prerender": false,
+            "prerender": true,
             "ssr": {
               "entry": "server.ts"
             }

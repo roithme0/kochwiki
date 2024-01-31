@@ -29,27 +29,22 @@
 
 html,
 body {
-  height: 100dvh;
-  width: 100dvw;
+  height: 100%; /* auto added by material ui */
 }
 
 body {
-  margin: 0;
-  font-family: Roboto, sans-serif;
-  color: var(--primary-color);
-  background-color: var(--primary-background);
+  margin: 0; /* auto added by material ui */
+  font-family: Roboto, "Helvetica Neue", sans-serif; /* auto added by material ui */
 }
 
 app-root {
-  max-width: var(--used-width);
-  margin: auto;
-  padding: 0.5rem;
   height: 100%;
-  width: 100%;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+main {
+  max-width: 80rem;
+  margin: 0 auto;
+}
