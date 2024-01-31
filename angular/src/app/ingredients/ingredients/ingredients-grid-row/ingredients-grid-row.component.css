@@ -1,10 +1,3 @@
 p {
   margin: 0;
 }
-
-.delete-button {
-  &:hover,
-  &:focus {
-    color: red;
-  }
-}
