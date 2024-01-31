@@ -1,7 +1,9 @@
 <h2>Zutat löschen?</h2>
 
-<div class="buttons">
-  <button mat-stroked-button (click)="deleteIngredient()">Ja</button>
+<div class="buttons-wrapper">
+  <button mat-stroked-button color="warn" (click)="deleteIngredient()">
+    Ja
+  </button>
   <button mat-stroked-button cdkFocusInitial (click)="dialogRef.close()">
     Nein
   </button>
