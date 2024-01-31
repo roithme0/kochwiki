@@ -1,5 +1,18 @@
 :host {
+  /* stretch hole page */
+  display: inline-block;
   height: 100%;
+  width: 100%;
+}
+
+main,
+article {
+  /* stretch hole page */
+  height: 100%;
+  width: 100%;
+}
+
+article {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
