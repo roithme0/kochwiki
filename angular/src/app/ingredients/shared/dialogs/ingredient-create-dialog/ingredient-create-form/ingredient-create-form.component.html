@@ -55,7 +55,12 @@
     </mat-expansion-panel>
   </div>
 
-  <button mat-stroked-button type="submit" [disabled]="!ingredientForm.valid">
+  <button
+    mat-stroked-button
+    type="submit"
+    color="primary"
+    [disabled]="!ingredientForm.valid"
+  >
     Erstellen
   </button>
 </form>
