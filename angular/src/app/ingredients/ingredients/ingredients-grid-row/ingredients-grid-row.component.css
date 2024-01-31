@@ -2,10 +2,6 @@ p {
   margin: 0;
 }
 
-button {
-  --mdc-icon-button-state-layer-size: 1rem;
-}
-
 .delete-button {
   &:hover,
   &:focus {
