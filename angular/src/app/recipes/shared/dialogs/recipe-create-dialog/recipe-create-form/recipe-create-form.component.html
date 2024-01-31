@@ -64,7 +64,6 @@
                 aria-hidden="false"
                 aria-label="Löschen"
                 fontIcon="close"
-                class="button"
                 (click)="removeAmount($index)"
               ></mat-icon>
             </div>
@@ -100,12 +99,17 @@
         <div class="amounts-array-buttons-wrapper">
           <button
             mat-stroked-button
+            color="accent"
             (click)="addAmount()"
             class="add-amount-button"
           >
             Zutat hinzufügen
           </button>
-          <button mat-stroked-button (click)="openCreateIngredientDialog()">
+          <button
+            mat-stroked-button
+            color="accent"
+            (click)="openCreateIngredientDialog()"
+          >
             Zutat erstellen
           </button>
         </div>
@@ -127,7 +131,6 @@
                 aria-hidden="false"
                 aria-label="Löschen"
                 fontIcon="close"
-                class="button"
                 (click)="removeStep($index)"
               ></mat-icon>
             </div>
@@ -140,7 +143,9 @@
           }
         </div>
 
-        <button mat-stroked-button (click)="addStep()">Hinzufügen</button>
+        <button mat-stroked-button color="accent" (click)="addStep()">
+          Hinzufügen
+        </button>
       </div>
     </mat-step>
   </mat-stepper>
@@ -150,7 +155,7 @@
   <button
     mat-stroked-button
     type="submit"
-    class="submit-button"
+    color="primary"
     [disabled]="!recipeForm.valid"
     (click)="onSubmit()"
   >
