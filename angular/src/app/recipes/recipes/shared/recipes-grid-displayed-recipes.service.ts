@@ -45,13 +45,10 @@ export class RecipesGridDisplayedRecipesService {
   constructor() {
     // track changes to recipes
     this.recipeService.recipes$.subscribe(() => {
-      this._loading.set(true);
       this.fetchRecipes();
-      this._loading.set(false);
     });
-    this._loading.set(true);
+
     this.fetchRecipes();
-    this._loading.set(false);
   }
 
   get displayedRecipes(): Signal<Recipe[]> {
@@ -66,8 +63,9 @@ export class RecipesGridDisplayedRecipesService {
     return this._error;
   }
 
-  private fetchRecipes(): void {
+  private async fetchRecipes() {
     // fetch all recipes
+    this._loading.set(true);
     this.recipeService.getAllRecipes().subscribe({
       next: (recipes) => {
         console.debug('fetched recipes: ', recipes);
@@ -78,7 +76,11 @@ export class RecipesGridDisplayedRecipesService {
         console.error('failed to fetch recipes: ', err);
         this.snackBarService.open('Rezepte konnten nicht geladen werden', '',{duration: 5000});
         this._error.set(true);
+        this._loading.set(false);
       },
+      complete: () => {
+        this._loading.set(false);
+      }
     });
   }
 

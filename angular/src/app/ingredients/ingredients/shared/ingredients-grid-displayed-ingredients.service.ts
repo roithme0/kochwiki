@@ -45,14 +45,10 @@ export class IngredientsGridDisplayedIngredientsService {
   constructor() {
     // track changes to ingredients
     this.ingredientService.ingredients$.subscribe(() => {
-      this._loading.set(true);
       this.fetchIngredients();
-      this._loading.set(false);
     });
-
-    this._loading.set(true);
+    
     this.fetchIngredients();
-    this._loading.set(false);
   }
 
   get displayedIngredients(): Signal<Ingredient[]> {
@@ -67,8 +63,9 @@ export class IngredientsGridDisplayedIngredientsService {
     return this._error;
   }
 
-  private fetchIngredients(): void {
+  private async fetchIngredients() {
     // fetch all ingredients
+    this._loading.set(true);
     this.ingredientService.getAllIngredients().subscribe({
       next: (ingredients) => {
         console.debug('fetched ingredients: ', ingredients);
@@ -79,7 +76,11 @@ export class IngredientsGridDisplayedIngredientsService {
         console.error('failed to fetch ingredients: ', error);
         this.snackBarService.open('Zutaten konnten nicht geladen werden', '',{duration: 5000});
         this._error.set(true);
+        this._loading.set(false);
       },
+      complete: () => {
+        this._loading.set(false);
+      }
     });
   }
 

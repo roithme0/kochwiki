@@ -3,6 +3,12 @@
   display: flex;
 }
 
+.spinner-wrapper {
+  display: grid;
+  place-items: center;
+  width: 100%;
+}
+
 .grid-wrapper {
   width: 100%;
   display: flex;

@@ -4,7 +4,7 @@
 </div>
 }
 
-@if(loadingDisplayedIngredients() == true && errorLoadingDisplayedIngredients() == false) {
+@if(loadingDisplayedIngredients() == false && errorLoadingDisplayedIngredients() == false) {
   <section class="grid-wrapper">
     <app-ingredients-grid-controls [ingredients]="displayedIngredients" />
     
