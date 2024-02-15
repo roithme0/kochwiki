@@ -46,6 +46,7 @@ export class IngredientsGridComponent {
     this.displayedIngredientsService.displayedIngredients;
   loadingDisplayedIngredients: Signal<boolean> =
     this.displayedIngredientsService.loading;
+  errorLoadingDisplayedIngredients: Signal<boolean> = this.displayedIngredientsService.error;
   displayedFields: Signal<string[]> =
     this.displayedFieldsService.displayedFields;
 
