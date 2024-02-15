@@ -46,20 +46,32 @@ export class RecipesGridControlsComponent {
 
   searchControl: FormControl = new FormControl('');
 
-  namesAndOrigins: Signal<string[]> = computed(() => {
-    // generate a list of names and origins of all displayed recipes
-    const names: string[] = this.recipes().map((recipe) => recipe.name);
+  names: Signal<string[]> = computed(() => {
+    // generate a list of names of all displayed recipes
+    return this.recipes().map((recipe) => recipe.name);
+  });
+  origins: Signal<string[]> = computed(() => {
+    // generate a list of origins of all displayed recipes
     const origins: string[] = this.recipes().map(
       (recipe) => recipe.originName || ''
     );
-    return [...names, ...origins];
+    return origins.filter((origin) => origin != '')
   });
-  filteredNamesAndOrigins: Signal<Set<string>> = computed(() => {
-    // filter names and origins based on search input (case-insensitive)
+  filteredNames: Signal<Set<string>> = computed(() => {
+    // filter names based on search input (case-insensitive)
     const searchValue = this.searchControl.value || '';
     return new Set(
-      this.namesAndOrigins().filter((nameOrOrigin) =>
-        nameOrOrigin.toLowerCase().includes(searchValue.toLowerCase())
+      this.names().filter((name) =>
+        name.toLowerCase().includes(searchValue.toLowerCase())
+      )
+    );
+  });
+  filteredOrigins: Signal<Set<string>> = computed(() => {
+    // filter origins based on search input (case-insensitive)
+    const searchValue = this.searchControl.value || '';
+    return new Set(
+      this.origins().filter((origin) =>
+        origin.toLowerCase().includes(searchValue.toLowerCase())
       )
     );
   });

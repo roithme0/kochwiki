@@ -18,8 +18,19 @@
     </button>
     }
     <mat-autocomplete #search="matAutocomplete">
-      @for (nameOrOrigin of filteredNamesAndOrigins(); track nameOrOrigin) {
-      <mat-option [value]="nameOrOrigin">{{ nameOrOrigin }}</mat-option>
+      @if(filteredNames().size > 0){
+        <mat-optgroup label="Namen">
+          @for (name of filteredNames(); track name) {
+            <mat-option [value]="name">{{ name }}</mat-option>
+          }
+        </mat-optgroup>
+      }
+      @if(filteredOrigins().size > 0){
+        <mat-optgroup label="Ersteller*innen">
+          @for (origin of filteredOrigins(); track origin) {
+            <mat-option [value]="origin">{{ origin }}</mat-option>
+          }
+        </mat-optgroup>
       }
     </mat-autocomplete>
   </mat-form-field>
