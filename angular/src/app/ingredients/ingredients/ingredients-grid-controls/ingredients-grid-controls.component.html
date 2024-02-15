@@ -18,17 +18,21 @@
     </button>
     }
     <mat-autocomplete autoActiveFirstOption #search="matAutocomplete">
-      <mat-optgroup label="Namen">
-        @for (name of filteredNames(); track name) {
-        <mat-option [value]="name">{{ name }}</mat-option>
-        }
-      </mat-optgroup>
-      <mat-optgroup label="Marken">
-        @for (brand of filteredBrands(); track brand) {
-        <mat-option [value]="brand">{{ brand }}</mat-option>
-        }
-      </mat-optgroup>
-    </mat-autocomplete>
+      @if(filteredNames().size > 0){
+        <mat-optgroup label="Namen">
+          @for (name of filteredNames(); track name) {
+            <mat-option [value]="name">{{ name }}</mat-option>
+          }
+        </mat-optgroup>
+      }
+      @if(filteredBrands().size > 0){
+        <mat-optgroup label="Marken">
+          @for (brand of filteredBrands(); track brand) {
+            <mat-option [value]="brand">{{ brand }}</mat-option>
+          }
+        </mat-optgroup>
+      }
+      </mat-autocomplete>
   </mat-form-field>
 
   <mat-form-field class="filter-field">
