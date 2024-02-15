@@ -37,6 +37,7 @@ export class IngredientsGridDisplayedIngredientsService {
     this.ingredientsGridControlsService.filterBy;
 
   private _loading: WritableSignal<boolean> = signal(true);
+  private _error: WritableSignal<boolean> = signal(false);
 
   constructor() {
     // track changes to ingredients
@@ -59,15 +60,21 @@ export class IngredientsGridDisplayedIngredientsService {
     return this._loading;
   }
 
+  get error(): Signal<boolean> {
+    return this._error;
+  }
+
   private fetchIngredients(): void {
     // fetch all ingredients
     this.ingredientService.getAllIngredients().subscribe({
       next: (ingredients) => {
         console.debug('fetched ingredients: ', ingredients);
         this.ingredients.set(ingredients);
+        this._error.set(false);
       },
       error: (error) => {
         console.error('failed to fetch ingredients: ', error);
+        this._error.set(true);
       },
     });
   }
