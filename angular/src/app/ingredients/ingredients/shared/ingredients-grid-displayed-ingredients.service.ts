@@ -12,6 +12,8 @@ import { Ingredient } from '../../shared/interfaces/ingredient';
 import { IngredientService } from '../../shared/services/ingredient.service';
 import { IngredientsGridControlsService } from './ingredients-grid-controls.service';
 
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -20,6 +22,7 @@ export class IngredientsGridDisplayedIngredientsService {
   private ingredientService: IngredientService = inject(IngredientService);
   private ingredientsGridControlsService: IngredientsGridControlsService =
     inject(IngredientsGridControlsService);
+  private snackBarService: MatSnackBar = inject(MatSnackBar);
 
   private ingredients: WritableSignal<Ingredient[]> = signal([]);
   private _displayedIngredients: Signal<Ingredient[]> = computed(() => {
@@ -74,6 +77,7 @@ export class IngredientsGridDisplayedIngredientsService {
       },
       error: (error) => {
         console.error('failed to fetch ingredients: ', error);
+        this.snackBarService.open('Zutaten konnten nicht geladen werden', '',{duration: 5000});
         this._error.set(true);
       },
     });

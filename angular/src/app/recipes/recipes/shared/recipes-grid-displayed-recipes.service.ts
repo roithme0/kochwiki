@@ -12,6 +12,8 @@ import { RecipeService } from '../../shared/services/recipe.service';
 import { Recipe } from '../../shared/interfaces/recipe';
 import { RecipesGridControlsService } from './recipes-grid-controls.service';
 
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -32,6 +34,7 @@ export class RecipesGridDisplayedRecipesService {
     displayedRecipes = this.sortRecipes('name', displayedRecipes);
     return displayedRecipes;
   });
+  private snackBarService: MatSnackBar = inject(MatSnackBar);
 
   private _loading: WritableSignal<boolean> = signal(true);
   private _error: WritableSignal<boolean> = signal(false);
@@ -73,6 +76,7 @@ export class RecipesGridDisplayedRecipesService {
       },
       error: (err) => {
         console.error('failed to fetch recipes: ', err);
+        this.snackBarService.open('Rezepte konnten nicht geladen werden', '',{duration: 5000});
         this._error.set(true);
       },
     });
