@@ -4,26 +4,26 @@ import { Injectable, Signal, WritableSignal, signal } from '@angular/core';
   providedIn: 'root',
 })
 export class IngredientsGridControlsService {
-  private searchBy: WritableSignal<string> = signal('');
-  private filterBy: WritableSignal<string> = signal('all');
+  private _searchBy: WritableSignal<string> = signal('');
+  private _filterBy: WritableSignal<string> = signal('all');
 
-  setSearchBy(searchBy: string): void {
-    this.searchBy.set(searchBy);
+  set searchBy(value: string) {
+    this._searchBy.set(value);
   }
 
-  setFilterBy(filterBy: string): void {
-    if (filterBy === undefined || filterBy === null) {
-      this.filterBy.set('all');
+  set filterBy(value: string) {
+    if (value === undefined || value === null) {
+      this._filterBy.set('all');
       return;
     }
-    this.filterBy.set(filterBy);
+    this._filterBy.set(value);
   }
 
-  getSearchBy(): Signal<string> {
-    return this.searchBy;
+  get searchBy(): Signal<string> {
+    return this._searchBy;
   }
 
-  getFilterBy(): Signal<string> {
-    return this.filterBy;
+  get filterBy(): Signal<string> {
+    return this._filterBy;
   }
 }

@@ -32,9 +32,9 @@ export class IngredientsGridDisplayedIngredientsService {
   });
 
   private searchBy: Signal<string> =
-    this.ingredientsGridControlsService.getSearchBy();
+    this.ingredientsGridControlsService.searchBy;
   private filterBy: Signal<string> =
-    this.ingredientsGridControlsService.getFilterBy();
+    this.ingredientsGridControlsService.filterBy;
 
   private loading: WritableSignal<boolean> = signal(true);
 

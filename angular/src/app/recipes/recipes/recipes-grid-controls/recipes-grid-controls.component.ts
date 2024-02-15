@@ -67,12 +67,12 @@ export class RecipesGridControlsComponent {
   constructor() {
     // emit search value
     this.searchControl.valueChanges.subscribe((value) =>
-      this.recipeGridControlsService.setSearchBy(value)
+      this.recipeGridControlsService.searchBy = value
     );
   }
 
   emitControlValue(): void {
     console.log('search: ', this.searchControl.value);
-    this.recipeGridControlsService.setSearchBy(this.searchControl.value);
+    this.recipeGridControlsService.searchBy = this.searchControl.value;
   }
 }

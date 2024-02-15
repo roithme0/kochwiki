@@ -34,7 +34,7 @@ export class RecipesGridDisplayedRecipesService {
   });
 
   private searchBy: Signal<string> =
-    this.recipesGridControlsService.getSearchBy();
+    this.recipesGridControlsService.searchBy;
 
   constructor() {
     // track changes to recipes
