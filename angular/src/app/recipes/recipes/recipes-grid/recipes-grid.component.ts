@@ -40,7 +40,7 @@ export class RecipesGridComponent {
   dialog: MatDialog = inject(MatDialog);
 
   displayedRecipes: Signal<Recipe[]> =
-    this.recipesGridDisplayedRecipesService.getDisplayedRecipes();
+    this.recipesGridDisplayedRecipesService.displayedRecipes;
   windowInnerWidth: Signal<number> =
     this.windowWidthService.getWindowInnerWidth();
 

@@ -22,7 +22,7 @@ export class IngredientsGridDisplayedIngredientsService {
     inject(IngredientsGridControlsService);
 
   private ingredients: WritableSignal<Ingredient[]> = signal([]);
-  private displayedIngredients: Signal<Ingredient[]> = computed(() => {
+  private _displayedIngredients: Signal<Ingredient[]> = computed(() => {
     // apply search & filter functions to ingredients
     var displayedIngredients = this.ingredients();
     displayedIngredients =
@@ -36,27 +36,27 @@ export class IngredientsGridDisplayedIngredientsService {
   private filterBy: Signal<string> =
     this.ingredientsGridControlsService.filterBy;
 
-  private loading: WritableSignal<boolean> = signal(true);
+  private _loading: WritableSignal<boolean> = signal(true);
 
   constructor() {
     // track changes to ingredients
     this.ingredientService.ingredients$.subscribe(() => {
-      this.loading.set(true);
+      this._loading.set(true);
       this.fetchIngredients();
-      this.loading.set(false);
+      this._loading.set(false);
     });
 
-    this.loading.set(true);
+    this._loading.set(true);
     this.fetchIngredients();
-    this.loading.set(false);
+    this._loading.set(false);
   }
 
-  getDisplayedIngredients(): Signal<Ingredient[]> {
-    return this.displayedIngredients;
+  get displayedIngredients(): Signal<Ingredient[]> {
+    return this._displayedIngredients;
   }
 
-  getLoading(): Signal<boolean> {
-    return this.loading;
+  get loading(): Signal<boolean> {
+    return this._loading;
   }
 
   private fetchIngredients(): void {

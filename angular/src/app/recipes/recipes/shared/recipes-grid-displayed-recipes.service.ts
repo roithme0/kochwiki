@@ -24,7 +24,7 @@ export class RecipesGridDisplayedRecipesService {
   );
 
   private recipes: WritableSignal<Recipe[]> = signal([]);
-  private displayedRecipes: Signal<Recipe[]> = computed(() => {
+  private _displayedRecipes: Signal<Recipe[]> = computed(() => {
     // apply search input to recipes
     // sort recipes
     var displayedRecipes = this.recipes();
@@ -44,8 +44,8 @@ export class RecipesGridDisplayedRecipesService {
     this.fetchRecipes();
   }
 
-  getDisplayedRecipes(): Signal<Recipe[]> {
-    return this.displayedRecipes;
+  get displayedRecipes(): Signal<Recipe[]> {
+    return this._displayedRecipes;
   }
 
   private fetchRecipes(): void {

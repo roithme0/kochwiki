@@ -11,7 +11,7 @@ export class IngredientsGridDisplayedFieldsService {
   private windowInnerWidth: Signal<number> =
     this.windowWidthService.getWindowInnerWidth();
 
-  private displayedFields: Signal<string[]> = computed(() => {
+  private _displayedFields: Signal<string[]> = computed(() => {
     // adjust displayed fields based on window with
     var displayedFields: string[] = ['name', 'brand'];
     if (this.windowInnerWidth() > 600) {
@@ -26,7 +26,7 @@ export class IngredientsGridDisplayedFieldsService {
     return displayedFields;
   });
 
-  getDisplayedFields(): Signal<string[]> {
-    return this.displayedFields;
+  get displayedFields(): Signal<string[]> {
+    return this._displayedFields;
   }
 }

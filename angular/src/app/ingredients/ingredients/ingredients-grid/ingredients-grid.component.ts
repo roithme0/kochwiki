@@ -43,11 +43,11 @@ export class IngredientsGridComponent {
   );
 
   displayedIngredients: Signal<Ingredient[]> =
-    this.displayedIngredientsService.getDisplayedIngredients();
+    this.displayedIngredientsService.displayedIngredients;
   loadingDisplayedIngredients: Signal<boolean> =
-    this.displayedIngredientsService.getLoading();
+    this.displayedIngredientsService.loading;
   displayedFields: Signal<string[]> =
-    this.displayedFieldsService.getDisplayedFields();
+    this.displayedFieldsService.displayedFields;
 
   openCreateIngredientDialog(): void {
     this.dialog.open(IngredientCreateDialogComponent);
