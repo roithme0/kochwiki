@@ -16,10 +16,11 @@
         [ingredient]="ingredient"
         [displayedFields]="displayedFields()"
         />
-      }@empty {
-        <p>Keine passenden Zutaten gefunden</p>
       }
     </div>
+    @if(displayedIngredients().length == 0){
+      <p>Keine passenden Zutaten gefunden</p>
+    }
 
     <div class="button-wrapper">
       <button mat-icon-button (click)="openCreateIngredientDialog()">
