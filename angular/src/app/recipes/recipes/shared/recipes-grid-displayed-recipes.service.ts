@@ -33,19 +33,29 @@ export class RecipesGridDisplayedRecipesService {
     return displayedRecipes;
   });
 
+  private _loading: WritableSignal<boolean> = signal(true);
+
   private searchBy: Signal<string> =
     this.recipesGridControlsService.searchBy;
 
   constructor() {
     // track changes to recipes
     this.recipeService.recipes$.subscribe(() => {
+      this._loading.set(true);
       this.fetchRecipes();
+      this._loading.set(false);
     });
+    this._loading.set(true);
     this.fetchRecipes();
+    this._loading.set(false);
   }
 
   get displayedRecipes(): Signal<Recipe[]> {
     return this._displayedRecipes;
+  }
+
+  get loading(): Signal<boolean> {
+    return this._loading;
   }
 
   private fetchRecipes(): void {
