@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { RecipesGridControlsComponent } from '../recipes-grid-controls/recipes-grid-controls.component';
 import { RecipesGridElementComponent } from '../recipes-grid-element/recipes-grid-element.component';
@@ -26,6 +27,7 @@ import { WindowWidthService } from '../../../shared/services/window-width.servic
     RecipeCreateDialogComponent,
     MatIconModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './recipes-grid.component.html',
   styleUrl: './recipes-grid.component.css',
@@ -41,6 +43,8 @@ export class RecipesGridComponent {
 
   displayedRecipes: Signal<Recipe[]> =
     this.recipesGridDisplayedRecipesService.displayedRecipes;
+  loadingDisplayedRecipes: Signal<boolean> = this.recipesGridDisplayedRecipesService.loading;
+  errorLoadingDisplayedRecipes: Signal<boolean> = this.recipesGridDisplayedRecipesService.error;
   windowInnerWidth: Signal<number> =
     this.windowWidthService.getWindowInnerWidth();
 
