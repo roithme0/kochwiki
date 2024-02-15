@@ -26,6 +26,7 @@ export class PageHeaderComponent {
   // render page header
   pageHeaderService: PageHeaderService = inject(PageHeaderService);
 
-  headline: Signal<string> = this.pageHeaderService.getHeadline();
-  back: Signal<string> = this.pageHeaderService.getBack();
+  headline: Signal<string> = this.pageHeaderService.headline;
+  back: Signal<string> = this.pageHeaderService.back;
+  showBack: Signal<boolean> = this.pageHeaderService.showBack;
 }

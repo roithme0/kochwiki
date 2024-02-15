@@ -4,22 +4,31 @@ import { Injectable, WritableSignal, Signal, signal } from '@angular/core';
   providedIn: 'root',
 })
 export class PageHeaderService {
-  private headline: WritableSignal<string> = signal('');
-  private back: WritableSignal<string> = signal('');
+  private _headline: WritableSignal<string> = signal('');
+  private _back: WritableSignal<string> = signal('');
+  private _showBack: WritableSignal<boolean> = signal(true)
 
-  setHeadline(headline: string): void {
-    this.headline.set(headline);
+  set headline(value: string) {
+    this._headline.set(value);
   }
 
-  setBack(back: string): void {
-    this.back.set(back);
+  set back(value: string) {
+    this._back.set(value);
   }
 
-  getHeadline(): Signal<string> {
-    return this.headline;
+  set showBack(value: boolean){
+    this._showBack.set(value)
   }
 
-  getBack(): Signal<string> {
-    return this.back;
+  get headline(): Signal<string> {
+    return this._headline;
+  }
+
+  get back(): Signal<string> {
+    return this._back;
+  }
+
+  get showBack(): Signal<boolean>{
+    return this._showBack
   }
 }

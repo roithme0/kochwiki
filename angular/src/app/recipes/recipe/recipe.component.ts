@@ -60,7 +60,8 @@ export class RecipeComponent {
   ngOnInit() {
     // set headline
     // fetch recipe
-    this.pageHeaderService.setBack('recipes');
+    this.pageHeaderService.back = 'recipes';
+    this.pageHeaderService.showBack = true;
 
     if (this.id === undefined) {
       console.error('no recipe id provided');
@@ -77,11 +78,11 @@ export class RecipeComponent {
       next: (recipe: Recipe) => {
         console.debug('fetched recipe: ', recipe);
         this.recipe = recipe;
-        this.pageHeaderService.setHeadline(this.recipe.name);
+        this.pageHeaderService.headline = this.recipe.name;
       },
       error: (error: any) => {
         console.error('failed to fetch recipe: ', error);
-        this.pageHeaderService.setHeadline('Fehler');
+        this.pageHeaderService.headline = 'Fehler';
       },
     });
   }

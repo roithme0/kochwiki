@@ -4,13 +4,15 @@
   </button>
   <span>{{ headline() }}</span>
   <span class="spacer"></span>
-  <a [routerLink]="back()" routerLinkActive="active">
-    <button mat-icon-button>
+  @if(showBack() == true){
+    <a [routerLink]="back()" routerLinkActive="active">
+      <button mat-icon-button>
       <mat-icon
-        aria-hidden="false"
+      aria-hidden="false"
         aria-label="Zurück"
         fontIcon="arrow_back"
-      ></mat-icon>
-    </button>
-  </a>
+        ></mat-icon>
+      </button>
+    </a>
+  }
 </mat-toolbar>
