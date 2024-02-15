@@ -34,6 +34,7 @@ export class RecipesGridDisplayedRecipesService {
   });
 
   private _loading: WritableSignal<boolean> = signal(true);
+  private _error: WritableSignal<boolean> = signal(false);
 
   private searchBy: Signal<string> =
     this.recipesGridControlsService.searchBy;
@@ -58,15 +59,21 @@ export class RecipesGridDisplayedRecipesService {
     return this._loading;
   }
 
+  get error(): Signal<boolean> {
+    return this._error;
+  }
+
   private fetchRecipes(): void {
     // fetch all recipes
     this.recipeService.getAllRecipes().subscribe({
       next: (recipes) => {
         console.debug('fetched recipes: ', recipes);
         this.recipes.set(recipes);
+        this._error.set(false);
       },
       error: (err) => {
         console.error('failed to fetch recipes: ', err);
+        this._error.set(true);
       },
     });
   }
