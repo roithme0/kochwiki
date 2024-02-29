@@ -25,7 +25,7 @@ services:
     build:
       context: ./quarkus
       dockerfile: src/main/docker/Dockerfile.jvm
-    image: kochwiki-quarkus-app
+    image: kochwiki-quarkus
     ports:
       - 8888:8080
     depends_on:
@@ -35,7 +35,7 @@ services:
     build:
       context: ./angular
       dockerfile: Dockerfile
-    image: kochwiki-angular-app
+    image: kochwiki-angular
     ports:
       - 8000:80
     depends_on:
