@@ -36,6 +36,3 @@ jobs:
 
       - name: Test
         run: ./mvnw test
-
-      - name: Package
-        run: ./mvnw package
