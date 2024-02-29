@@ -49,6 +49,9 @@ jobs:
           ref: github-actions
           sparse-checkout: quarkus
 
+      - name: Test
+        run: ./mvnw clean package
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
