@@ -9,7 +9,7 @@ on:
     paths-ignore: [angular, .github/workflows/angular.yml]
 
 jobs:
-  build-and-test:
+  test:
     runs-on: ubuntu-latest
     defaults:
       run:

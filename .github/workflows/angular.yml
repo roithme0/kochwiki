@@ -9,7 +9,7 @@ on:
     paths-ignore: [quarkus, .github/workflows/quarkus.yml]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     defaults:
       run:
