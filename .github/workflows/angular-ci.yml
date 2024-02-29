@@ -1,0 +1,32 @@
+name: Angular CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: angular
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+        # - name: Test
+        #   run: npm run test  -- --watch=false --browsers=ChromeHeadless
+
+      - name: Build
+        run: npm run build

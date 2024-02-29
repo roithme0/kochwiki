@@ -1,0 +1,36 @@
+name: Quarkus CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: quarkus
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: oracle
+          java-version: 17
+
+      - name: Provide Permissions
+        run: chmod +x ./mvnw
+
+      - name: Compile
+        run: ./mvnw compile
+
+      - name: Test
+        run: ./mvnw test
+
+      - name: Package
+        run: ./mvnw package
