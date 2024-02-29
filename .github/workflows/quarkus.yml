@@ -68,3 +68,5 @@ jobs:
           file: quarkus/src/main/docker/Dockerfile.jvm
           push: true
           tags: roithme0/kochwiki-quarkus:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
