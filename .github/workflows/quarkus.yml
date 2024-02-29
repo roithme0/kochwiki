@@ -23,6 +23,9 @@ jobs:
           distribution: oracle
           java-version: 17
 
+      - name: Provide Permissions
+        run: chmod +x ./mvnw
+
       - name: Compile
         run: ./mvnw compile
 
