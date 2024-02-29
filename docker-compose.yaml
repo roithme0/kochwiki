@@ -22,14 +22,14 @@ services:
       - db
 
   quarkus-app:
-    image: kochwiki-quarkus:latest
+    image: roithme0/kochwiki-quarkus:latest
     ports:
       - 8888:8080
     depends_on:
       - db
 
   angular-app:
-    image: kochwiki-angular:latest
+    image: roithme0/kochwiki-angular:latest
     ports:
       - 8000:80
     depends_on:
