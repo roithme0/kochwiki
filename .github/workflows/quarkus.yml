@@ -23,5 +23,11 @@ jobs:
           distribution: oracle
           java-version: 17
 
-      - name: Build and test
-        run: ./mvnw clean install -DskipTests=false
+      - name: Compile
+        run: ./mvnw compile
+
+      - name: Test
+        run: ./mvnw test
+
+      - name: Package
+        run: ./mvnw package
