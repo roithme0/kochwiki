@@ -19,6 +19,7 @@ jobs:
   #     - name: Checkout code
   #       uses: actions/checkout@v4
   #       with:
+  #         ref: main
   #         sparse-checkout: quarkus
 
   #     - name: Set up JDK
@@ -48,9 +49,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          sparse-checkout: |
-            quarkus
-            docker-compose-nas.yaml
+          ref: main
+          sparse-checkout: quarkus
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
