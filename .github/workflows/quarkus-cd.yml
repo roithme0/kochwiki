@@ -1,4 +1,4 @@
-name: Quarkus
+name: Quarkus-CD
 
 on:
   release:

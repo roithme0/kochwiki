@@ -1,4 +1,4 @@
-name: Quarkus
+name: Quarkus-CI
 
 on:
   push:
