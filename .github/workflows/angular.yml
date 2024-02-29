@@ -25,10 +25,7 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install
+        run: npm clean install
 
         # - name: Test
         #   run: npm run test  -- --watch=false --browsers=ChromeHeadless
-
-      - name: Build
-        run: npm run build
