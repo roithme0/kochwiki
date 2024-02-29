@@ -2,10 +2,10 @@ name: Quarkus
 
 on:
   push:
-    branches: [main]
+    branches: [github-actions]
     paths-ignore: [angular, .github/workflows/angular.yml]
   pull_request:
-    branches: [main]
+    branches: [github-actions]
     paths-ignore: [angular, .github/workflows/angular.yml]
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
   #     - name: Checkout code
   #       uses: actions/checkout@v4
   #       with:
-  #         ref: main
+  #         ref: github-actions
   #         sparse-checkout: quarkus
 
   #     - name: Set up JDK
@@ -46,7 +46,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: main
+          ref: github-actions
           sparse-checkout: quarkus
 
       - name: Set up QEMU
