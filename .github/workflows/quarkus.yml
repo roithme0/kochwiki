@@ -1,1 +1,26 @@
+name: Quarkus CI
 
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: quarkus
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: "17"
+
+      - name: Build and test
+        run: ./mvnw clean install -DskipTests=false
