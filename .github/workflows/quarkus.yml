@@ -61,7 +61,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: ./quarkus
-          file: src/main/docker/Dockerfile.jvm
+          context: "{{defaultContext}}:kochwiki"
+          file: quarkus/src/main/docker/Dockerfile.jvm
           push: true
           tags: roithme0/kochwiki-quarkus:latest
