@@ -9,37 +9,7 @@ on:
     paths-ignore: [angular, .github/workflows/angular.yml]
 
 jobs:
-  # test:
-  #   runs-on: ubuntu-latest
-  #   defaults:
-  #     run:
-  #       working-directory: quarkus
-
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
-  #       with:
-  #         ref: github-actions
-  #         sparse-checkout: quarkus
-
-  #     - name: Set up JDK
-  #       uses: actions/setup-java@v4
-  #       with:
-  #         distribution: oracle
-  #         java-version: 17
-  #         cache: "maven"
-
-  #     - name: Provide Permissions
-  #       run: chmod +x ./mvnw
-
-  #     - name: Compile
-  #       run: ./mvnw compile
-
-  #     - name: Test
-  #       run: ./mvnw test
-
-  dockerize:
-    # needs: test
+  test-and-dockerize:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -52,8 +22,21 @@ jobs:
           ref: github-actions
           sparse-checkout: quarkus
 
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: oracle
+          java-version: 17
+          cache: "maven"
+
       - name: Provide Permissions
         run: chmod +x ./mvnw
+
+      - name: Compile
+        run: ./mvnw compile
+
+      - name: Test
+        run: ./mvnw test
 
       - name: Package
         run: ./mvnw clean package
