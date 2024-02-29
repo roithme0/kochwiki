@@ -2,10 +2,10 @@ name: Angular
 
 on:
   push:
-    branches: [main]
+    branches: [github-actions]
     paths-ignore: [quarkus, .github/workflows/quarkus.yml]
   pull_request:
-    branches: [main]
+    branches: [github-actions]
     paths-ignore: [quarkus, .github/workflows/quarkus.yml]
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: main
+          ref: github-actions
           sparse-checkout: angular
 
       - name: Set up Node.js
