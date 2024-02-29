@@ -1,12 +1,8 @@
 name: Quarkus
 
 on:
-  push:
-    branches: [github-actions]
-    paths-ignore: [angular, .github/workflows/angular.yml]
-  pull_request:
-    branches: [github-actions]
-    paths-ignore: [angular, .github/workflows/angular.yml]
+  release:
+    types: [published]
 
 jobs:
   test-and-dockerize:
@@ -19,7 +15,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: github-actions
+          ref: main
           sparse-checkout: quarkus
 
       - name: Set up JDK
@@ -59,6 +55,8 @@ jobs:
           context: ./quarkus
           file: quarkus/src/main/docker/Dockerfile.jvm
           push: true
-          tags: roithme0/kochwiki-quarkus:latest
+          tags: |
+            roithme0/kochwiki-quarkus:latest
+            roithme0/kochwiki-quarkus:${{github.event.release.tag_name}}
           cache-from: type=gha
           cache-to: type=gha,mode=max

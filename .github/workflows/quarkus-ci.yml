@@ -1,0 +1,39 @@
+name: Quarkus
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: [angular, .github/workflows/angular.yml]
+  pull_request:
+    branches: [main]
+    paths-ignore: [angular, .github/workflows/angular.yml]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: quarkus
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          sparse-checkout: quarkus
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: oracle
+          java-version: 17
+          cache: "maven"
+
+      - name: Provide Permissions
+        run: chmod +x ./mvnw
+
+      - name: Compile
+        run: ./mvnw compile
+
+      - name: Test
+        run: ./mvnw test

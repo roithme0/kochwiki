@@ -1,12 +1,8 @@
 name: Angular
 
 on:
-  push:
-    branches: [github-actions]
-    paths-ignore: [quarkus, .github/workflows/quarkus.yml]
-  pull_request:
-    branches: [github-actions]
-    paths-ignore: [quarkus, .github/workflows/quarkus.yml]
+  release:
+    types: [published]
 
 jobs:
   test-and-dockerize:
@@ -19,7 +15,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: github-actions
+          ref: main
           sparse-checkout: angular
 
       - name: Set up Node.js
@@ -52,6 +48,8 @@ jobs:
           context: ./angular
           file: angular/Dockerfile
           push: true
-          tags: roithme0/kochwiki-angular:latest
+          tags: |
+            roithme0/kochwiki-angular:latest
+            roithme0/kochwiki-angular:${{github.event.release.tag_name}}
           cache-from: type=gha
           cache-to: type=gha,mode=max
