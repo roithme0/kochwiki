@@ -41,6 +41,9 @@ jobs:
   dockerize:
     # needs: test
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: quarkus
 
     steps:
       - name: Checkout code
@@ -49,7 +52,7 @@ jobs:
           ref: github-actions
           sparse-checkout: quarkus
 
-      - name: Test
+      - name: Package
         run: ./mvnw clean package
 
       - name: Set up QEMU
