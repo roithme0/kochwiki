@@ -1,4 +1,4 @@
-name: Angular CI
+name: Angular
 
 on:
   push:
@@ -15,7 +15,9 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: angular
 
       - name: Set up Node.js
         uses: actions/setup-node@v2

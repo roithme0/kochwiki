@@ -1,4 +1,4 @@
-name: Quarkus CI
+name: Quarkus
 
 on:
   push:
@@ -15,7 +15,9 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: quarkus
 
       - name: Set up JDK
         uses: actions/setup-java@v4
