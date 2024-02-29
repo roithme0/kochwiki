@@ -28,7 +28,7 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
-        run: npm clean install
+        run: npm ci
 
         # - name: Test
         #   run: npm run test  -- --watch=false --browsers=ChromeHeadless
