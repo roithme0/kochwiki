@@ -15,6 +15,9 @@ media/
 logs/
 *.log
 
+# Quarkus
+.quarkus/
+
 # Docker
 *.tar
 
