@@ -3,8 +3,10 @@ name: Angular
 on:
   push:
     branches: [main]
+    paths-ignore: [quarkus, .github/workflows/quarkus.yml]
   pull_request:
     branches: [main]
+    paths-ignore: [quarkus, .github/workflows/quarkus.yml]
 
 jobs:
   build:

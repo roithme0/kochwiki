@@ -3,8 +3,10 @@ name: Quarkus
 on:
   push:
     branches: [main]
+    paths-ignore: [angular, .github/workflows/angular.yml]
   pull_request:
     branches: [main]
+    paths-ignore: [angular, .github/workflows/angular.yml]
 
 jobs:
   build-and-test:
