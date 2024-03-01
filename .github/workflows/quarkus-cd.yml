@@ -14,10 +14,7 @@ jobs:
 
     steps:
       - name: Test and package
-        uses: actions/download-artifact@v2
-        with:
-          name: quarkus
-          path: target/quarkus-app.jar
+        uses: .github/actions/quarkus-ci
 
   dockerize:
     needs: test-and-package
@@ -29,6 +26,12 @@ jobs:
         with:
           ref: main
           sparse-checkout: quarkus
+
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: quarkus
+          path: quarkus/target/quarkus-app.jar
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
