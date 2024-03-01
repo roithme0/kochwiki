@@ -6,10 +6,10 @@ on:
   push:
     branches: [main]
     paths-ignore:
-      [angular, .github/workflows/angular.yml, README.md, .gitignore]
+      [angular, .github/workflows/angular*.yml, README.md, .gitignore]
   pull_request:
     paths-ignore:
-      [angular, .github/workflows/angular.yml, README.md, .gitignore]
+      [angular, .github/workflows/angular*.yml, README.md, .gitignore]
 
 defaults:
   run:

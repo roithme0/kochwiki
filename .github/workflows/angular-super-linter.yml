@@ -5,10 +5,10 @@ on:
   push:
     branches: [main]
     paths-ignore:
-      [quarkus, .github/workflows/quarkus.yml, README.md, .gitignore]
+      [quarkus, .github/workflows/quarkus*.yml, README.md, .gitignore]
   pull_request:
     paths-ignore:
-      [quarkus, .github/workflows/quarkus.yml, README.md, .gitignore]
+      [quarkus, .github/workflows/quarkus*.yml, README.md, .gitignore]
 
 # for super linter
 permissions:
