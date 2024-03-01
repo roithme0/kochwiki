@@ -9,12 +9,13 @@ on:
     paths-ignore: [quarkus, .github/workflows/quarkus.yml]
   workflow_dispatch:
 
+defaults:
+  run:
+    working-directory: angular
+
 jobs:
   test:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: angular
 
     steps:
       - name: Checkout code

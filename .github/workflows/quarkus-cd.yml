@@ -4,12 +4,13 @@ on:
   release:
     types: [published]
 
+defaults:
+  run:
+    working-directory: quarkus
+
 jobs:
   test-and-dockerize:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: quarkus
 
     steps:
       - name: Checkout code
