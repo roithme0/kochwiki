@@ -1,13 +1,15 @@
 name: Quarkus-CI
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
-    paths-ignore: [angular, .github/workflows/angular.yml]
+    paths-ignore:
+      [angular, .github/workflows/angular.yml, README.md, .gitignore]
   pull_request:
     branches: [main]
-    paths-ignore: [angular, .github/workflows/angular.yml]
-  workflow_dispatch:
+    paths-ignore:
+      [angular, .github/workflows/angular.yml, README.md, .gitignore]
 
 defaults:
   run:
