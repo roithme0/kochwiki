@@ -30,7 +30,7 @@ jobs:
           distribution: oracle
           java-version: 17
           cache: maven
-          cache-dependency-path: pom.xml
+          cache-dependency-path: ./pom.xml
 
       - name: Provide Permissions
         run: chmod +x ./mvnw
