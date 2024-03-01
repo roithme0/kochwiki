@@ -13,31 +13,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Test and package
+        uses: actions/download-artifact@v2
         with:
-          ref: main
-          sparse-checkout: quarkus
-
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          distribution: oracle
-          java-version: 17
-          cache: maven
-          cache-dependency-path: pom.xml
-
-      - name: Provide Permissions
-        run: chmod +x ./mvnw
-
-      - name: Compile
-        run: ./mvnw compile
-
-      - name: Test
-        run: ./mvnw test
-
-      - name: Package
-        run: ./mvnw clean package
+          name: quarkus
+          path: target/quarkus-app.jar
 
   dockerize:
     needs: test-and-package

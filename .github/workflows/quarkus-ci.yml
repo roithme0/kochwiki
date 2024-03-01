@@ -40,3 +40,12 @@ jobs:
 
       - name: Test
         run: ./mvnw test
+
+      - name: Package
+        run: ./mvnw clean package
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: quarkus package
+          path: target/quarkus-app.jar
