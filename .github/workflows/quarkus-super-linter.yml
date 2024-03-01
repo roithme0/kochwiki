@@ -1,21 +1,28 @@
-name: Quarkus-CI
+name: Quarkus-Super-Linter
 
 on:
   workflow_dispatch:
   push:
-    branches: [main]
     paths-ignore:
       [angular, .github/workflows/angular.yml, README.md, .gitignore]
   pull_request:
     paths-ignore:
       [angular, .github/workflows/angular.yml, README.md, .gitignore]
+  release:
+    types: [published]
 
 defaults:
   run:
     working-directory: quarkus
 
+# for super linter
+permissions:
+  contents: read
+  packages: read
+  statuses: write
+
 jobs:
-  test:
+  super-linter:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,19 +30,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           sparse-checkout: quarkus
+          # for super linter
+          fetch-depth: 0
 
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          distribution: oracle
-          java-version: 17
-          cache: "maven"
-
-      - name: Provide Permissions
-        run: chmod +x ./mvnw
-
-      - name: Compile
-        run: ./mvnw compile
-
-      - name: Test
-        run: ./mvnw test
+      - name: Super Linter
+        uses: super-linter/super-linter@v6.3.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
