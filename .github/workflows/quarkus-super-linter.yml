@@ -8,8 +8,6 @@ on:
   pull_request:
     paths-ignore:
       [angular, .github/workflows/angular.yml, README.md, .gitignore]
-  release:
-    types: [published]
 
 # for super linter
 permissions:

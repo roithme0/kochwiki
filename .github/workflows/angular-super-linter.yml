@@ -8,8 +8,6 @@ on:
   pull_request:
     paths-ignore:
       [quarkus, .github/workflows/quarkus.yml, README.md, .gitignore]
-  release:
-    types: [published]
 
 # for super linter
 permissions:
