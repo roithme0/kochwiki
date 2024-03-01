@@ -6,7 +6,7 @@ on:
 
 jobs:
   test-and-package:
-    uses: ./.github/workflows/quarkus-ci.yml@main
+    uses: ./.github/workflows/quarkus-ci.yml
 
   dockerize:
     needs: test-and-package
