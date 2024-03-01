@@ -13,7 +13,6 @@ console.log('active environment: ' + environment.name);
   standalone: true,
   imports: [CommonModule, RouterOutlet, PageHeaderComponent],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'default';
