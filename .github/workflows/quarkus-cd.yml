@@ -9,7 +9,7 @@ defaults:
     working-directory: quarkus
 
 jobs:
-  test-and-dockerize:
+  test-and-package:
     runs-on: ubuntu-latest
 
     steps:
@@ -37,6 +37,17 @@ jobs:
 
       - name: Package
         run: ./mvnw clean package
+
+  dockerize:
+    needs: test-and-package
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          sparse-checkout: quarkus
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
