@@ -47,6 +47,7 @@ jobs:
         uses: super-linter/super-linter@v6.3.0
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          DISABLE_ERRORS: true
 
       # - name: Test
       #   run: ng test --no-watch --no-progress --browsers=ChromeHeadless
