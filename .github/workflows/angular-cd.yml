@@ -6,7 +6,7 @@ on:
 
 jobs:
   test:
-    uses: ./angular-ci.yml@main
+    uses: ./.github/workflows/angular-ci.yml@main
 
   dockerize:
     needs: test
