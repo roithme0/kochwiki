@@ -3,6 +3,7 @@ name: Quarkus-Super-Linter
 on:
   workflow_dispatch:
   push:
+    branches: [main]
     paths-ignore:
       [angular, .github/workflows/angular.yml, README.md, .gitignore]
   pull_request:

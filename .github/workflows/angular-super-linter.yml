@@ -3,6 +3,7 @@ name: Angular-Super-Linter
 on:
   workflow_dispatch:
   push:
+    branches: [main]
     paths-ignore:
       [quarkus, .github/workflows/quarkus.yml, README.md, .gitignore]
   pull_request:
