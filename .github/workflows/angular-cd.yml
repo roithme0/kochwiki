@@ -4,10 +4,6 @@ on:
   release:
     types: [published]
 
-defaults:
-  run:
-    working-directory: angular
-
 jobs:
   test:
     runs-on: ubuntu-latest

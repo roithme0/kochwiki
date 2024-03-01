@@ -4,10 +4,6 @@ on:
   release:
     types: [published]
 
-defaults:
-  run:
-    working-directory: quarkus
-
 jobs:
   test-and-package:
     runs-on: ubuntu-latest
