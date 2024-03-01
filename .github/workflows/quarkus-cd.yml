@@ -32,7 +32,7 @@ jobs:
         with:
           distribution: oracle
           java-version: 17
-          cache: "maven"
+          cache: maven
 
       - name: Provide Permissions
         run: chmod +x ./mvnw
