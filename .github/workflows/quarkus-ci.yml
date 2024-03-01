@@ -50,7 +50,7 @@ jobs:
       - name: Super Linter
         uses: super-linter/super-linter@v6.3.0
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DISABLE_ERRORS: true
 
       - name: Test
