@@ -8,27 +8,29 @@ services:
       POSTGRES_DB: kochwiki
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
-    volumes:
-      - /volume1/docker/Kochwiki/staging/postgresql/data:/var/lib/postgresql/data
 
   # adminer:
   #   image: adminer
   #   restart: unless-stopped
   #   ports:
-  #     - 9091:8080
+  #     - 9090:8080
   #   depends_on:
   #     - db
 
   quarkus-app:
-    image: roithme0/kochwiki-quarkus:alpha
+    build:
+      context: quarkus
+      dockerfile: src/main/docker/Dockerfile.jvm
     ports:
-      - 8889:8080
+      - 8888:8080
     depends_on:
       - db
 
   angular-app:
-    image: roithme0/kochwiki-angular:alpha
+    build:
+      context: angular
+      dockerfile: Dockerfile
     ports:
-      - 8001:80
+      - 8000:80
     depends_on:
       - quarkus-app

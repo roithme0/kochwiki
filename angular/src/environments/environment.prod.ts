@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  backendUrl: 'http://quarkus-app:8080',
+  backendUrl: 'http://localhost:8888',
   name: 'prod',
 };
