@@ -5,11 +5,9 @@ on:
   workflow_call:
   push:
     branches: [main]
-    paths-ignore:
-      [quarkus, .github/workflows/quarkus*.yml, README.md, .gitignore]
+    paths: [angular]
   pull_request:
-    paths-ignore:
-      [quarkus, .github/workflows/quarkus*.yml, README.md, .gitignore]
+    paths: [angular]
 
 defaults:
   run:

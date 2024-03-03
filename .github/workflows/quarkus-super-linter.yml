@@ -4,11 +4,9 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths-ignore:
-      [angular, .github/workflows/angular*.yml, README.md, .gitignore]
+    paths: [quarkus]
   pull_request:
-    paths-ignore:
-      [angular, .github/workflows/angular*.yml, README.md, .gitignore]
+    paths: [quarkus]
 
 # for super linter
 permissions:
