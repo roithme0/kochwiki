@@ -75,7 +75,8 @@ jobs:
           file: angular/Dockerfile
           build-args: CONFIGURATION=production
           push: true
-          tags: roithme0/kochwiki-angular:latest
+          tags: |
+            roithme0/kochwiki-angular:latest
             roithme0/kochwiki-angular:${{github.event.release.tag_name}}
           cache-from: type=gha
           cache-to: type=gha,mode=max
