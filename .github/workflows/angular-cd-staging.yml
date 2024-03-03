@@ -1,4 +1,4 @@
-name: Angular-CD
+name: Angular-CD-Staging
 
 on:
   release:
