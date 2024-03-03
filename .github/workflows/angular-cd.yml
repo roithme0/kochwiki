@@ -36,7 +36,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./angular
-          file: angular/Dockerfile.stag
+          file: angular/Dockerfile
           push: true
           tags: |
             roithme0/kochwiki-angular:alpha
@@ -71,7 +71,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./angular
-          file: angular/Dockerfile.prod
+          file: angular/Dockerfile
           push: true
           tags: roithme0/kochwiki-angular:latest
             roithme0/kochwiki-angular:${{github.event.release.tag_name}}

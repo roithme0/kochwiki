@@ -42,7 +42,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./quarkus
-          file: quarkus/src/main/docker/Dockerfile.jvm.staging
+          file: quarkus/src/main/docker/Dockerfile.jvm
           push: true
           tags: |
             roithme0/kochwiki-quarkus:alpha
@@ -83,7 +83,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./quarkus
-          file: quarkus/src/main/docker/Dockerfile.jvm.production
+          file: quarkus/src/main/docker/Dockerfile.jvm
           push: true
           tags: |
             roithme0/kochwiki-quarkus:latest
