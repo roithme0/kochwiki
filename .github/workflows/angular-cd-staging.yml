@@ -35,7 +35,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./angular
-          file: angular/Dockerfile.staging
+          file: angular/Dockerfile.stag
           push: true
           tags: |
             roithme0/kochwiki-angular:alpha
