@@ -50,7 +50,7 @@ jobs:
           cache-to: type=gha,mode=max
 
   dockerize-production:
-    if: ${{ github.event.release.prerelease == 'false' }}
+    if: ${{ !github.event.release.prerelease }}
     needs: test-and-package
     runs-on: ubuntu-latest
 
