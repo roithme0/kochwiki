@@ -30,6 +30,8 @@ services:
     build:
       context: angular
       dockerfile: Dockerfile
+      args:
+        CONFIGURATION: local
     ports:
       - 8000:80
     depends_on:

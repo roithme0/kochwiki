@@ -1,12 +1,14 @@
 ### Stage 1: compile and build angular ###
 FROM node:20 as build
 
+ARG CONFIGURATION
+
 # add source code
 WORKDIR /usr/local/app
 COPY ./ /usr/local/app/
 
 RUN npm install
-RUN ./node_modules/.bin/ng build --configuration=production
+RUN ./node_modules/.bin/ng build --configuration=${CONFIGURATION}
 
 ### Stage 2: serve with nginx ###
 FROM nginx:1.25
