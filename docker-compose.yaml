@@ -11,7 +11,7 @@ services:
     ports:
       - 5433:5432
     volumes:
-      - kochwiki-postgres-data:/var/lib/postgresql/data
+      - /volume1/docker/Kochwiki/production:/var/lib/postgresql/data
 
   adminer:
     image: adminer
@@ -34,6 +34,3 @@ services:
       - 8000:80
     depends_on:
       - quarkus-app
-
-volumes:
-  kochwiki-postgres-data:
