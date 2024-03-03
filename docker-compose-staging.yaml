@@ -11,7 +11,7 @@ services:
     ports:
       - 5434:5432
     volumes:
-      - /volume1/docker/Kochwiki/staging:/var/lib/postgresql/data
+      - /volume1/docker/Kochwiki/staging/postgresql/data:/var/lib/postgresql/data
 
   adminer:
     image: adminer
