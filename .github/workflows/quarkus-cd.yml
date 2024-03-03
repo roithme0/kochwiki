@@ -2,7 +2,7 @@ name: Quarkus-CD
 
 on:
   release:
-    types: [published]
+    types: [published, prereleased]
 
 jobs:
   test-and-package:
@@ -44,7 +44,7 @@ jobs:
           file: quarkus/src/main/docker/Dockerfile.jvm
           push: true
           tags: |
-            roithme0/kochwiki-quarkus:latest
+            ${{ github.event.release.prerelease == 'false' && 'roithme0/kochwiki-quarkus:latest' }}
             roithme0/kochwiki-quarkus:${{github.event.release.tag_name}}
           cache-from: type=gha
           cache-to: type=gha,mode=max
