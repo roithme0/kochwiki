@@ -45,6 +45,6 @@ jobs:
           push: true
           tags: |
             ${{ github.event.release.prerelease && 'roithme0/kochwiki-quarkus:alpha' || 'roithme0/kochwiki-quarkus:latest' }}
-            roithme0/kochwiki-quarkus:${{ github.event.release.tag_name }}${{ github.event.release.prerelease && '-alpha' || '' }}
+            roithme0/kochwiki-quarkus:${{ github.event.release.tag_name }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
