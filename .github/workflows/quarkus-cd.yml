@@ -44,7 +44,7 @@ jobs:
           file: quarkus/src/main/docker/Dockerfile.jvm
           push: true
           tags: |
-            ${{ github.event.release.prerelease == 'false' && 'roithme0/kochwiki-quarkus:latest' || '' }}
-            roithme0/kochwiki-quarkus:${{github.event.release.tag_name}}
+            ${{ github.event.release.prerelease && 'roithme0/kochwiki-quarkus:alpha' || 'roithme0/kochwiki-quarkus:latest' }}
+            roithme0/kochwiki-quarkus:${{ github.event.release.tag_name }}${{ github.event.release.prerelease && '-alpha' || '' }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
