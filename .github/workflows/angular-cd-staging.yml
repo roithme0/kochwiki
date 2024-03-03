@@ -2,7 +2,7 @@ name: Angular-CD
 
 on:
   release:
-    types: [released, prereleased]
+    types: [prereleased]
 
 jobs:
   test:
@@ -35,10 +35,9 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./angular
-          file: angular/Dockerfile
+          file: angular/Dockerfile.staging
           push: true
           tags: |
-            ${{ github.event.release.prerelease && 'roithme0/kochwiki-angular:alpha' || 'roithme0/kochwiki-angular:latest' }}
-            roithme0/kochwiki-angular:${{github.event.release.tag_name}}
+            roithme0/kochwiki-angular:alpha
           cache-from: type=gha
           cache-to: type=gha,mode=max
