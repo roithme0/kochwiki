@@ -7,7 +7,6 @@ COPY ./ /usr/local/app/
 
 RUN npm install
 RUN ./node_modules/.bin/ng build --configuration=staging
-# RUN npm run build --configuration=staging
 
 ### Stage 2: serve with nginx ###
 FROM nginx:1.25
