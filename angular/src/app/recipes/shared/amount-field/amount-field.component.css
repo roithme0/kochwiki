@@ -1,18 +1,17 @@
-  .amount-expansion-panel{
-    flex: 1;
-  }
-  
-  .amount-fields-wrapper {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0 0.5rem;
-  }
-  
-  .ingredient-field {
-    flex: 1;
-  }
-  
-  .add-amount-button {
-    flex: 1 0 50%;
-  }
+.amount-expansion-panel {
+  flex: 1;
+}
+
+.amount-fields-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 0 0.5rem;
+}
+
+.ingredient-field {
+  flex: 1;
+}
+
+.add-amount-button {
+  flex: 1 0 50%;
+}
