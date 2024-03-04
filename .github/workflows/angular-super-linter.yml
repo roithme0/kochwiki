@@ -29,3 +29,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_HTML: false # validation does not work with Angular templates
+          FILTER_REGEX_EXCLUDE: .*.scss # validation does not work with scss files
