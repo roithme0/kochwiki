@@ -27,3 +27,5 @@ jobs:
         uses: super-linter/super-linter@v6
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_BASH: false # no diy bash files in project
+          VALIDATE_BASH_EXEC: false # no diy bash files in project
