@@ -17,7 +17,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: main
           sparse-checkout: angular
 
       - name: Set up QEMU
@@ -53,7 +52,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: main
           sparse-checkout: angular
 
       - name: Set up QEMU
