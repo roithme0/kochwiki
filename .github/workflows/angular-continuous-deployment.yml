@@ -18,7 +18,7 @@ jobs:
         run: docker pull roithme0/kochwiki-angular:alpha
 
       - name: Remove old staging
-        run: docker rm $(docker ps -a -q)
+        run: docker compose -f "docker-compose-staging.yaml" down
 
       - name: Deploy staging
         run: docker compose -f "docker-compose-staging.yaml" up -d --build
