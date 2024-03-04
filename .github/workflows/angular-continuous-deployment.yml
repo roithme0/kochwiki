@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: main
-          sparse-checkout: docker-compose-staging.yml
+          sparse-checkout: docker-compose-staging.yaml
 
       - name: Pull image
         run: docker pull roithme0/kochwiki-angular:alpha
