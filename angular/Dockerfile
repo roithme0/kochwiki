@@ -10,6 +10,10 @@ COPY ./ /usr/local/app/
 RUN npm install
 RUN ./node_modules/.bin/ng build --configuration=${CONFIGURATION}
 
+# # create user to avoid running as root <> must use root for node
+# RUN useradd -m node
+# USER node
+
 ### Stage 2: serve with nginx ###
 FROM nginx:1.25
 
@@ -17,8 +21,8 @@ FROM nginx:1.25
 COPY --from=build /usr/local/app/dist/angular/browser /usr/share/nginx/html
 
 # # create user to avoid running as root <> must use root for nginx
-# RUN useradd -m myuser
-# USER myuser
+# RUN useradd -m nginx
+# USER nginx
 
 EXPOSE 80
 
