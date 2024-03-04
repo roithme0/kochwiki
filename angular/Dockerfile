@@ -22,3 +22,5 @@ COPY --from=build /usr/local/app/dist/angular/browser /usr/share/nginx/html
 ### must use root 
 
 EXPOSE 80
+
+HEALTHCHECK --interval=5m --timeout=5s --start-period=1m --retries=3 CMD curl --fail http://localhost:80/
