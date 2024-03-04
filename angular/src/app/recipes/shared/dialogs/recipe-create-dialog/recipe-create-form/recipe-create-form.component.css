@@ -39,8 +39,7 @@
 
 .amount-fields-wrapper {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   gap: 0 0.5rem;
 }
 
@@ -59,7 +58,7 @@
 }
 
 .button-wrapper {
-  padding: 0 24px 24px 24px;
+  padding: 0 24px 24px;
   display: flex;
 
   button {
