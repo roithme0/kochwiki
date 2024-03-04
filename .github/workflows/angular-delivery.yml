@@ -1,4 +1,4 @@
-name: Angular-CD
+name: Angular-Delivery
 
 on:
   release:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   test:
-    uses: ./.github/workflows/angular-ci.yml
+    uses: ./.github/workflows/angular-integration.yml
 
   dockerize-staging:
     if: ${{ github.event.release.prerelease }}
