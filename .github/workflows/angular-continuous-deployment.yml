@@ -1,0 +1,24 @@
+name: Angular-Continuous-Deployment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: kochwiki-staging
+
+    steps:
+      - name: Checkout docker compose
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          sparse-checkout: docker-compose-staging.yml
+
+      - name: Pull image
+        run: docker pull roithme0/kochwiki-angular:alpha
+
+      - name: Remove old staging
+        run: docker compose down -f "docker-compose-staging.yaml"
+
+      - name: Deploy staging
+        run: docker compose up -f "docker-compose-staging.yaml" up -d --build
