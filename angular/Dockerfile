@@ -16,10 +16,9 @@ FROM nginx:1.25
 # copy build output to replace the default nginx content
 COPY --from=build /usr/local/app/dist/angular/browser /usr/share/nginx/html
 
-# # create user to avoid running as root
+# # create user to avoid running as root <> must use root for nginx
 # RUN useradd -m myuser
 # USER myuser
-### must use root 
 
 EXPOSE 80
 
