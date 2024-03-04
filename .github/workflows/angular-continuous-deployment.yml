@@ -21,4 +21,4 @@ jobs:
         run: docker rm $(docker ps -a -q)
 
       - name: Deploy staging
-        run: docker compose up -f "docker-compose-staging.yaml" up -d --build
+        run: docker compose -f "docker-compose-staging.yaml" up -d --build
