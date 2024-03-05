@@ -84,6 +84,10 @@ public class Recipe extends PanacheEntity {
     @JsonManagedReference("recipe-steps")
     public List<Step> steps = new ArrayList<>();
 
+    /**
+     * Set the number of servings of recipe.
+     * Check for invalid values.
+     */
     public void setServings(Integer newServings) {
         if (newServings < 0 || newServings > 99) {
             throw new IllegalArgumentException("Wert muss zwischen 0 und 99 liegen.");
@@ -91,6 +95,10 @@ public class Recipe extends PanacheEntity {
         servings = newServings;
     }
 
+    /**
+     * Set preparation time of recipe.
+     * Check for invalid values.
+     */
     public void setPreptime(Integer newPreptime) {
         if (newPreptime == null) { // allow null values
             return;
@@ -101,6 +109,11 @@ public class Recipe extends PanacheEntity {
         preptime = newPreptime;
     }
 
+    /**
+     * Set url of origin of recipe.
+     * Check for invalid values.
+     * Convert to URL.
+     */
     public void setOriginUrl(String newOriginUrl) {
         if (newOriginUrl == null || newOriginUrl == "") {
             originUrl = null;
@@ -114,6 +127,9 @@ public class Recipe extends PanacheEntity {
         }
     }
 
+    /**
+     * Replace amounts used in recipe.
+     */
     public void setAmounts(List<Amount> newAmounts) {
         List<Amount> oldAmounts = new ArrayList<>(amounts);
         for (Amount amount : oldAmounts) {
@@ -124,16 +140,25 @@ public class Recipe extends PanacheEntity {
         }
     }
 
+    /** 
+     * Add single amount to recipe.
+     */
     public void addAmount(Amount newAmount) {
         amounts.add(newAmount);
         newAmount.setRecipe(this);
     }
 
+    /**
+     * Remove single amount from recipe.
+     */
     public void removeAmount(Amount amount) {
         amounts.remove(amount);
         amount.setRecipe(null);
     }
 
+    /**
+     * Replace steps of recipe.
+     */
     public void setSteps(List<Step> newSteps) {
         List<Step> oldSteps = new ArrayList<>(steps);
         for (Step step : oldSteps) {
@@ -144,11 +169,17 @@ public class Recipe extends PanacheEntity {
         }
     }
 
+    /**
+     * Add single step to recipe.
+     */
     public void addStep(Step newStep) {
         steps.add(newStep);
         newStep.recipe = this;
     }
 
+    /**
+     * Remove single step from recipe.
+     */
     public void removeStep(Step step) {
         steps.remove(step);
         step.recipe = null;
@@ -157,7 +188,9 @@ public class Recipe extends PanacheEntity {
     public Recipe() {
     }
 
-    // for import.sql
+    /**
+     * Used only for import.sql.
+     */
     public Recipe(
             String name,
             Integer servings,
