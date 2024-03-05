@@ -213,14 +213,14 @@ public class Ingredient extends PanacheEntity {
 
     /**
      * Check new nutritional value.
-     * @param value New nutritional value.
+     * @param newValue New nutritional value.
      */
     private void checkNutritionalValue(final int newValue) {
-        final int MIN_VALUE = 0;
-        final int MAX_VALUE = 999;
+        final int minValue = 0;
+        final int maxValue = 999;
 
-        if (newValue < MIN_VALUE || newValue > MAX_VALUE) {
-            throw new IllegalArgumentException(String.format("Wert muss zwischen %d und %d liegen.", MIN_VALUE, MAX_VALUE));
+        if (newValue < minValue || newValue > maxValue) {
+            throw new IllegalArgumentException(String.format("Wert muss zwischen %d und %d liegen.", minValue, maxValue));
         }
     }
 
