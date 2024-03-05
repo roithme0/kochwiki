@@ -9,19 +9,28 @@ import jakarta.ws.rs.Path;
 
 @Path("/ingredients-meta-data")
 public class IngredientMetaDataService {
-    private static final Logger log = Logger.getLogger(IngredientMetaDataService.class);
+    /**
+     * Logger for this class.
+     */
+    private static final Logger LOG = Logger.getLogger(IngredientMetaDataService.class);
 
+    /**
+     * @return verbose names of the ingredients
+     */
     @GET
     @Path("/verbose-names")
     public Map<String, String> getVerboseNames() {
-        log.info("GET: getting ingredient verbose names ...");
+        LOG.info("GET: getting ingredient verbose names ...");
         return IngredientMetaData.getVerboseNames();
     }
 
+    /**
+     * @return unit choices for the ingredients
+     */
     @GET
     @Path("/unit-choices")
     public Map<String, String> getUnitChoices() {
-        log.info("GET: getting ingredient unit choices ...");
+        LOG.info("GET: getting ingredient unit choices ...");
         return IngredientMetaData.getUnitChoices();
     }
 }

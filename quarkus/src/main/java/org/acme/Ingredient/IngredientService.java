@@ -16,37 +16,59 @@ import java.util.Map;
 
 @Path("/ingredients")
 public class IngredientService {
-    private static final Logger log = Logger.getLogger(IngredientService.class);
+    /**
+     * Logger for this class.
+     */
+    private static final Logger LOG = Logger.getLogger(IngredientService.class);
 
+    /**
+     * Resource to access ingredients.
+     */
     @Inject
-    IngredientResource ingredientResource;
+    private IngredientResource ingredientResource;
 
+    /**
+     * @return list of all ingredients.
+     */
     @GET
     public List<Ingredient> listAll() {
-        log.info("GET: listing all ingredients ...");
+        LOG.info("GET: listing all ingredients ...");
         return ingredientResource.listAll();
     }
 
+    /**
+     * @param id of ingredient to find.
+     * @return ingredient with given id.
+     */
     @GET
     @Path("/{id}")
-    public Ingredient findById(@PathParam("id") Long id) {
-        log.info("GET: find ingredient with id '" + id + "' ...");
+    public Ingredient findById(@PathParam("id") final Long id) {
+        LOG.info("GET: find ingredient with id '" + id + "' ...");
         return ingredientResource.findById(id);
     }
 
+    /**
+     * @param ingredient to create.
+     * @return created ingredient.
+     */
     @POST
     @Transactional
-    public Ingredient create(Ingredient ingredient) {
-        log.info("POST: creating ingredient '" + ingredient.name + "' ...");
+    public Ingredient create(final Ingredient ingredient) {
+        LOG.info("POST: creating ingredient '" + ingredient.name + "' ...");
         ingredientResource.persist(ingredient);
         return ingredient;
     }
 
+    /**
+     * @param id of ingredient to update.
+     * @param updates to apply.
+     * @return updated ingredient.
+     */
     @PATCH
     @Path("/{id}")
     @Transactional
-    public Ingredient patch(@PathParam("id") Long id, Map<String, Object> updates) {
-        log.info("PATCH: patching ingredient with id '" + id + "' ...");
+    public Ingredient patch(@PathParam("id") final Long id, final Map<String, Object> updates) {
+        LOG.info("PATCH: patching ingredient with id '" + id + "' ...");
         Ingredient ingredient = findById(id);
         if (ingredient == null) {
             throw new IllegalArgumentException("Ingredient with id " + id + " does not exist");
@@ -54,11 +76,15 @@ public class IngredientService {
         return ingredientResource.patch(ingredient, updates);
     }
 
+    /**
+     * Delete ingredient with given id.
+     * @param id of ingredient to delete.
+     */
     @DELETE
     @Path("/{id}")
     @Transactional
-    public void delete(@PathParam("id") Long id) {
-        log.info("DELETE: deleting ingredient with id '" + id + "' ...");
+    public void delete(@PathParam("id") final Long id) {
+        LOG.info("DELETE: deleting ingredient with id '" + id + "' ...");
         Ingredient ingredient = Ingredient.findById(id);
         ingredient.delete();
     }

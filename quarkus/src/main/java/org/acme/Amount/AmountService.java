@@ -10,14 +10,23 @@ import jakarta.ws.rs.GET;
 
 @Path("/amounts")
 public class AmountService {
-    private static final Logger log = Logger.getLogger(AmountService.class);
+    /**
+     * Logger for this class.
+     */
+    private static final Logger LOG = Logger.getLogger(AmountService.class);
 
+    /**
+     * Resource to access amounts.
+     */
     @Inject
-    AmountResource amountResource;
+    private AmountResource amountResource;
 
+    /**
+     * @return list of all amounts.
+     */
     @GET
     public List<Amount> listAll() {
-        log.info("GET: list all amounts ...");
+        LOG.info("GET: list all amounts ...");
         return amountResource.listAll();
     }
 }
