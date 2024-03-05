@@ -92,8 +92,11 @@ public class Amount extends PanacheEntity {
      * @param newAmount new amount to set.
      */
     public void setAmount(final Float newAmount) {
-        if (newAmount < 0 || newAmount > 999) {
-            throw new IllegalArgumentException("Wert muss zwischen 0 und 999 liegen.");
+        final int minAmount = 1;
+        final int maxAmount = 999;
+
+        if (newAmount < minAmount || newAmount > maxAmount) {
+            throw new IllegalArgumentException(String.format("Wert muss zwischen %d und %d liegen.", minAmount, maxAmount));
         }
         amount = newAmount;
     }
