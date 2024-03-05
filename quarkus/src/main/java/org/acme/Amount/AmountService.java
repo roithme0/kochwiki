@@ -15,6 +15,9 @@ public class AmountService {
      */
     private static final Logger LOG = Logger.getLogger(AmountService.class);
 
+    /**
+     * Resource to access amounts
+     */
     @Inject
     private AmountResource amountResource;
 

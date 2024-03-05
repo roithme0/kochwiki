@@ -15,6 +15,9 @@ public class StepService {
      */
     private static final Logger LOG = Logger.getLogger(StepService.class);
 
+    /**
+     * Resource to access steps
+     */
     @Inject
     private StepResource stepResource;
 

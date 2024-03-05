@@ -21,6 +21,9 @@ public class RecipeService {
      */
     private static final Logger LOG = Logger.getLogger(RecipeService.class);
 
+    /**
+     * Resource to access recipes
+     */
     @Inject
     private RecipeResource recipeResource;
 

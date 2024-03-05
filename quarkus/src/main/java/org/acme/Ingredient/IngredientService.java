@@ -21,6 +21,9 @@ public class IngredientService {
      */
     private static final Logger LOG = Logger.getLogger(IngredientService.class);
 
+    /**
+     * Resource to access ingredients
+     */
     @Inject
     private IngredientResource ingredientResource;
 
