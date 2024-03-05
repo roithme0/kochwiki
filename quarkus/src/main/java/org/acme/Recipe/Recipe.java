@@ -20,34 +20,40 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 public class Recipe extends PanacheEntity {
 
+    static final MAX_LENGTH_NAME = 200;
+    static final MAX_LENGTH_SERVINGS = 2;
+    static final MAX_LENGTH_PREPTIME = 3;
+    static final MAX_LENGTH_ORIGINNAME = 200;
+    static final MAX_LENGTH_ORIGINURL = 200;
+
     /**
      * Name of the recipe.
      */
-    @Column(unique = true, nullable = false, length = 200)
+    @Column(unique = true, nullable = false, length = MAX_LENGTH_NAME)
     public String name;
 
     /**
      * Number of servings the recipe is for.
      */
-    @Column(nullable = false, length = 2)
+    @Column(nullable = false, length = MAX_LENGTH_SERVINGS)
     public Integer servings;
 
     /**
      * Preparation time of the recipe in minutes.
      */
-    @Column(nullable = true, length = 3)
+    @Column(nullable = true, length = MAX_LENGTH_PREPTIME)
     public Integer preptime;
 
     /**
      * Name of the origin of the recipe.
      */
-    @Column(nullable = true, length = 200)
+    @Column(nullable = true, length = MAX_LENGTH_ORIGINNAME)
     public String originName;
 
     /**
      * URL of the origin of the recipe.
      */
-    @Column(nullable = true, length = 200)
+    @Column(nullable = true, length = MAX_LENGTH_ORIGINURL)
     public URL originUrl;
 
     // /**
