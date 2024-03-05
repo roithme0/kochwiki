@@ -191,11 +191,11 @@ public class Ingredient extends PanacheEntity {
      * Check new nutritional value.
      * @param value New nutritional value.
      */
-    private void checkNutritionalValue(Integer value) {
+    private void checkNutritionalValue(Integer newValue) {
         final int MIN_VALUE = 0;
         final int MAX_VALUE = 999;
 
-        if (value < MIN_VALUE || value > MAX_VALUE) {
+        if (newValue < MIN_VALUE || newValue > MAX_VALUE) {
             throw new IllegalArgumentException(String.format("Wert muss zwischen %d und %d liegen.", MIN_VALUE, MAX_VALUE));
         }
     }
@@ -216,22 +216,29 @@ public class Ingredient extends PanacheEntity {
 
     /**
      * Constructor for ingredient.
+     * @param paramName Name of ingredient.
+     * @param paramBrand Brand of ingredient.
+     * @param paramUnit Unit of ingredient.
+     * @param paramKcal Kcal of ingredient.
+     * @param paramCarbs Carbs of ingredient.
+     * @param paramProtein Protein of ingredient.
+     * @param paramFat Fat of ingredient.
      */
     public Ingredient(
-            String name,
-            String brand,
-            String unit,
-            Integer kcal,
-            Integer carbs,
-            Integer protein,
-            Integer fat) {
-        this.name = name;
-        this.setBrand(brand);
-        this.setUnit(unit);
-        this.setKcal(kcal);
-        this.setCarbs(carbs);
-        this.setProtein(protein);
-        this.setFat(fat);
+            final String paramName,
+            final String paramBrand,
+            final String paramUnit,
+            final Integer paramKcal,
+            final Integer paramCarbs,
+            final Integer paramProtein,
+            final Integer paramFat) {
+        this.name = paramName;
+        this.setBrand(paramBrand);
+        this.setUnit(paramUnit);
+        this.setKcal(paramKcal);
+        this.setCarbs(paramCarbs);
+        this.setProtein(paramProtein);
+        this.setFat(paramFat);
     }
 
     @Override
