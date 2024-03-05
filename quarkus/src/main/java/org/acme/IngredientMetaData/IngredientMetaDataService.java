@@ -10,7 +10,7 @@ import jakarta.ws.rs.Path;
 @Path("/ingredients-meta-data")
 public class IngredientMetaDataService {
     /**
-     * Logger for this class
+     * Logger for this class.
      */
     private static final Logger LOG = Logger.getLogger(IngredientMetaDataService.class);
 

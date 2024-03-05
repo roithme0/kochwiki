@@ -22,19 +22,19 @@ import org.acme.Recipe.Recipe;
 public class Amount extends PanacheEntity {
 
     /**
-     * Index of the amount in the recipe
+     * Index of the amount in the recipe.
      */
     @Column(nullable = false, length = 2)
     public Integer index;
 
     /**
-     * Amount of the ingredient in the recipe
+     * Amount of the ingredient in the recipe.
      */
     @Column(nullable = false, length = 3)
     public Float amount;
 
     /**
-     * Ingredient of the amount
+     * Ingredient of the amount.
      */
     @ManyToOne
     @JoinColumn
@@ -42,7 +42,7 @@ public class Amount extends PanacheEntity {
     public Ingredient ingredient;
 
     /**
-     * Recipe the amount is used in
+     * Recipe the amount is used in.
      */
     @ManyToOne
     @JoinColumn

@@ -11,18 +11,18 @@ import jakarta.ws.rs.GET;
 @Path("/amounts")
 public class AmountService {
     /**
-     * Logger for this class
+     * Logger for this class.
      */
     private static final Logger LOG = Logger.getLogger(AmountService.class);
 
     /**
-     * Resource to access amounts
+     * Resource to access amounts.
      */
     @Inject
     private AmountResource amountResource;
 
     /**
-     * Gets list of all amounts
+     * @return list of all amounts.
      */
     @GET
     public List<Amount> listAll() {

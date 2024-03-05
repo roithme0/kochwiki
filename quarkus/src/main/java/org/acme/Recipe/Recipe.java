@@ -21,49 +21,49 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Recipe extends PanacheEntity {
 
     /**
-     * Name of the recipe
+     * Name of the recipe.
      */
     @Column(unique = true, nullable = false, length = 200)
     public String name;
 
     /**
-     * Number of servings the recipe is for
+     * Number of servings the recipe is for.
      */
     @Column(nullable = false, length = 2)
     public Integer servings;
 
     /**
-     * Preparation time of the recipe in minutes
+     * Preparation time of the recipe in minutes.
      */
     @Column(nullable = true, length = 3)
     public Integer preptime;
 
     /**
-     * Name of the origin of the recipe
+     * Name of the origin of the recipe.
      */
     @Column(nullable = true, length = 200)
     public String originName;
 
     /**
-     * URL of the origin of the recipe
+     * URL of the origin of the recipe.
      */
     @Column(nullable = true, length = 200)
     public URL originUrl;
 
     /**
-     * File containing the original recipe
+     * File containing the original recipe.
      */
     // @Column(nullable = true)
     // public File original;
 
     /**
-     * Image of the recipe
+     * Image of the recipe.
      */
     // @Column(nullable = true)
     // public File image;
 
     /**
-     * List of amounts used in the recipe
+     * List of amounts used in the recipe.
      */
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @Column(nullable = true)
@@ -71,7 +71,7 @@ public class Recipe extends PanacheEntity {
     public List<Amount> amounts = new ArrayList<>();
 
     /**
-     * List of steps of the recipe
+     * List of steps of the recipe.
      */
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @Column(nullable = true)

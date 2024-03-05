@@ -17,12 +17,12 @@ import jakarta.transaction.Transactional;
 @Path("/recipes")
 public class RecipeService {
     /**
-     * Logger for this class
+     * Logger for this class.
      */
     private static final Logger LOG = Logger.getLogger(RecipeService.class);
 
     /**
-     * Resource to access recipes
+     * Resource to access recipes.
      */
     @Inject
     private RecipeResource recipeResource;

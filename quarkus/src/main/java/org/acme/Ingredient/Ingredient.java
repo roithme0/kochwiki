@@ -27,50 +27,50 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Ingredient extends PanacheEntity {
 
     /**
-     * Name of the ingredient
+     * Name of the ingredient.
      */
     @Column(nullable = false, length = 50)
     public String name;
 
     /**
-     * Brand of the ingredient
+     * Brand of the ingredient.
      */
     @Column(nullable = true, length = 100)
     public String brand;
 
     /**
-     * Unit of the ingredient
+     * Unit of the ingredient.
      */
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 5)
     public UnitEnum unit;
 
     /**
-     * Nutritional value of the ingredient
+     * Nutritional value of the ingredient.
      */
     @Column(nullable = true, length = 3)
     public Integer kcal;
 
     /**
-     * Nutritional value of the ingredient
+     * Nutritional value of the ingredient.
      */
     @Column(nullable = true, length = 3)
     public Integer carbs;
 
     /**
-     * Nutritional value of the ingredient
+     * Nutritional value of the ingredient.
      */
     @Column(nullable = true, length = 3)
     public Integer protein;
 
     /**
-     * Nutritional value of the ingredient
+     * Nutritional value of the ingredient.
      */
     @Column(nullable = true, length = 3)
     public Integer fat;
 
     /**
-     * List of amounts the ingredient is used in
+     * List of amounts the ingredient is used in.
      */
     @OneToMany(mappedBy = "ingredient", fetch = FetchType.EAGER)
     @Column(nullable = true)
