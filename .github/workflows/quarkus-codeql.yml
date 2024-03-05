@@ -1,4 +1,4 @@
-name: "CodeQL"
+name: "Quarkus-CodeQL"
 
 on:
   workflow_dispatch:
