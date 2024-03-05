@@ -21,19 +21,29 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 public class Step extends PanacheEntity {
 
     /**
-     * Index of the step in the recipe
+     * Maximum length of the index.
      */
-    @Column(nullable = false, length = 2)
+    private static final int MAX_LENGTH_INDEX = 2;
+
+    /**
+     * Maximum length of the description.
+     */
+    private static final int MAX_LENGTH_DESCRIPTION = 200;
+
+    /**
+     * Index of the step in the recipe.
+     */
+    @Column(nullable = false, length = MAX_LENGTH_INDEX)
     public Integer index;
 
     /**
-     * Description of the step
+     * Description of the step.
      */
-    @Column(nullable = false, length = 200)
+    @Column(nullable = false, length = MAX_LENGTH_DESCRIPTION)
     public String description;
 
     /**
-     * Recipe the step is used in
+     * Recipe the step is used in.
      */
     @ManyToOne
     @JoinColumn(name = "recipe_id", nullable = false)
