@@ -120,7 +120,7 @@ public class Recipe extends PanacheEntity {
      * Check for invalid values.
      * Convert to URL.
      */
-    public void setOriginUrl(String newOriginUrl) {
+    public void setOriginUrl(final String newOriginUrl) {
         if (newOriginUrl == null || newOriginUrl == "") {
             originUrl = null;
             return;
@@ -136,7 +136,7 @@ public class Recipe extends PanacheEntity {
     /**
      * Replace amounts used in recipe.
      */
-    public void setAmounts(List<Amount> newAmounts) {
+    public void setAmounts(final List<Amount> newAmounts) {
         List<Amount> oldAmounts = new ArrayList<>(amounts);
         for (Amount amount : oldAmounts) {
             this.removeAmount(amount);
@@ -149,7 +149,7 @@ public class Recipe extends PanacheEntity {
     /** 
      * Add single amount to recipe.
      */
-    public void addAmount(Amount newAmount) {
+    public void addAmount(final Amount newAmount) {
         amounts.add(newAmount);
         newAmount.setRecipe(this);
     }
@@ -157,7 +157,7 @@ public class Recipe extends PanacheEntity {
     /**
      * Remove single amount from recipe.
      */
-    public void removeAmount(Amount amount) {
+    public void removeAmount(final Amount amount) {
         amounts.remove(amount);
         amount.setRecipe(null);
     }
@@ -165,7 +165,7 @@ public class Recipe extends PanacheEntity {
     /**
      * Replace steps of recipe.
      */
-    public void setSteps(List<Step> newSteps) {
+    public void setSteps(final List<Step> newSteps) {
         List<Step> oldSteps = new ArrayList<>(steps);
         for (Step step : oldSteps) {
             this.removeStep(step);
@@ -178,7 +178,7 @@ public class Recipe extends PanacheEntity {
     /**
      * Add single step to recipe.
      */
-    public void addStep(Step newStep) {
+    public void addStep(final Step newStep) {
         steps.add(newStep);
         newStep.recipe = this;
     }
@@ -186,7 +186,7 @@ public class Recipe extends PanacheEntity {
     /**
      * Remove single step from recipe.
      */
-    public void removeStep(Step step) {
+    public void removeStep(final Step step) {
         steps.remove(step);
         step.recipe = null;
     }
