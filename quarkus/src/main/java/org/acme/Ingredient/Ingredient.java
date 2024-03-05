@@ -132,7 +132,7 @@ public class Ingredient extends PanacheEntity {
             kcal = null;
             return;
         }
-        this.checkInteger(newKcal);
+        this.checkNutritionalValue(newKcal);
         kcal = newKcal;
     }
 
@@ -144,7 +144,7 @@ public class Ingredient extends PanacheEntity {
             carbs = null;
             return;
         }
-        this.checkInteger(newCarbs);
+        this.checkNutritionalValue(newCarbs);
         carbs = newCarbs;
     }
 
@@ -156,7 +156,7 @@ public class Ingredient extends PanacheEntity {
             protein = null;
             return;
         }
-        this.checkInteger(newProtein);
+        this.checkNutritionalValue(newProtein);
         protein = newProtein;
     }
 
@@ -168,16 +168,19 @@ public class Ingredient extends PanacheEntity {
             fat = null;
             return;
         }
-        this.checkInteger(newFat);
+        this.checkNutritionalValue(newFat);
         fat = newFat;
     }
 
     /**
      * Check new nutritional value.
      */
-    private void checkInteger(Integer value) {
-        if (value < 0 || value > 999) {
-            throw new IllegalArgumentException("Wert muss zwischen 0 und 999 liegen.");
+    private void checkNutritionalValue(Integer value) {
+        final int MIN_VALUE = 0;
+        final int MAX_VALUE = 999;
+
+        if (value < MIN_VALUE || value > MAX_VALUE) {
+            throw new IllegalArgumentException(String.format("Wert muss zwischen %d und %d liegen.", MIN_VALUE, MAX_VALUE));
         }
     }
 
