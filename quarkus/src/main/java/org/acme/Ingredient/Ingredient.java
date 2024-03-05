@@ -241,6 +241,9 @@ public class Ingredient extends PanacheEntity {
         this.setFat(paramFat);
     }
 
+    /**
+     * @return String representation of ingredient.
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {
