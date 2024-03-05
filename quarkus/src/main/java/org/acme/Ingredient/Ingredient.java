@@ -27,46 +27,57 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Ingredient extends PanacheEntity {
 
     /**
+     * Maximum length of ingredient attributes.
+     */
+    private static final int MAX_LENGTH_NAME = 50;
+    private static final int MAX_LENGTH_BRAND = 100;
+    private static final int MAX_LENGTH_UNIT = 5;
+    private static final int MAX_LENGTH_KCAL = 3;
+    private static final int MAX_LENGTH_CARBS = 3;
+    private static final int MAX_LENGTH_PROTEIN = 3;
+    private static final int MAX_LENGTH_FAT = 3;
+
+    /**
      * Name of the ingredient.
      */
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = MAX_LENGTH_NAME)
     public String name;
 
     /**
      * Brand of the ingredient.
      */
-    @Column(nullable = true, length = 100)
+    @Column(nullable = true, length = MAX_LENGTH_BRAND)
     public String brand;
 
     /**
      * Unit of the ingredient.
      */
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 5)
+    @Column(nullable = false, length = MAX_LENGTH_UNIT)
     public UnitEnum unit;
 
     /**
      * Nutritional value of the ingredient.
      */
-    @Column(nullable = true, length = 3)
+    @Column(nullable = true, length = MAX_LENGTH_KCAL)
     public Integer kcal;
 
     /**
      * Nutritional value of the ingredient.
      */
-    @Column(nullable = true, length = 3)
+    @Column(nullable = true, length = MAX_LENGTH_CARBS)
     public Integer carbs;
 
     /**
      * Nutritional value of the ingredient.
      */
-    @Column(nullable = true, length = 3)
+    @Column(nullable = true, length = MAX_LENGTH_PROTEIN)
     public Integer protein;
 
     /**
      * Nutritional value of the ingredient.
      */
-    @Column(nullable = true, length = 3)
+    @Column(nullable = true, length = MAX_LENGTH_FAT)
     public Integer fat;
 
     /**
