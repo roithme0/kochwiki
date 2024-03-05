@@ -131,7 +131,7 @@ public class Ingredient extends PanacheEntity {
      * If brand is empty, set to null.
      * @param newBrand new brand of ingredient.
      */
-    public void setBrand(String newBrand) {
+    public void setBrand(final String newBrand) {
         if (newBrand == "") {
             brand = null;
             return;
@@ -143,7 +143,7 @@ public class Ingredient extends PanacheEntity {
      * Set unit of ingredient.
      * @param newUnit new unit of ingredient.
      */
-    public void setUnit(String newUnit) {
+    public void setUnit(final String newUnit) {
         try {
             unit = UnitEnum.valueOf(newUnit);
         } catch (IllegalArgumentException e) {
@@ -157,7 +157,7 @@ public class Ingredient extends PanacheEntity {
      * Check for invalid values.
      * @param newKcal new kcal of ingredient.
      */
-    public void setKcal(Integer newKcal) {
+    public void setKcal(final Integer newKcal) {
         if (newKcal == null) {
             kcal = null;
             return;
@@ -172,7 +172,7 @@ public class Ingredient extends PanacheEntity {
      * Check for invalid values.
      * @param newCarbs new carbs of ingredient.
      */
-    public void setCarbs(Integer newCarbs) {
+    public void setCarbs(final Integer newCarbs) {
         if (newCarbs == null) {
             carbs = null;
             return;
@@ -187,7 +187,7 @@ public class Ingredient extends PanacheEntity {
      * Check for invalid values.
      * @param newProtein new protein of ingredient.
      */
-    public void setProtein(Integer newProtein) {
+    public void setProtein(final Integer newProtein) {
         if (newProtein == null) {
             protein = null;
             return;
@@ -202,7 +202,7 @@ public class Ingredient extends PanacheEntity {
      * Check for invalid values.
      * @param newFat new fat of ingredient.
      */
-    public void setFat(Integer newFat) {
+    public void setFat(final Integer newFat) {
         if (newFat == null) {
             fat = null;
             return;
@@ -215,7 +215,7 @@ public class Ingredient extends PanacheEntity {
      * Check new nutritional value.
      * @param value New nutritional value.
      */
-    private void checkNutritionalValue(Integer newValue) {
+    private void checkNutritionalValue(final Integer newValue) {
         final int MIN_VALUE = 0;
         final int MAX_VALUE = 999;
 
@@ -228,7 +228,7 @@ public class Ingredient extends PanacheEntity {
      * Add single amount to ingredient.
      * @param newAmount New amount to add.
      */
-    public void addAmount(Amount newAmount) {
+    public void addAmount(final Amount newAmount) {
         amounts.add(newAmount);
     }
 
