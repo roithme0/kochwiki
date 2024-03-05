@@ -27,12 +27,19 @@ public class IngredientService {
     @Inject
     private IngredientResource ingredientResource;
 
+    /**
+     * @return list of all ingredients.
+     */
     @GET
     public List<Ingredient> listAll() {
         LOG.info("GET: listing all ingredients ...");
         return ingredientResource.listAll();
     }
 
+    /**
+     * @param id of ingredient to find.
+     * @return ingredient with given id.
+     */
     @GET
     @Path("/{id}")
     public Ingredient findById(@PathParam("id") Long id) {
@@ -40,6 +47,10 @@ public class IngredientService {
         return ingredientResource.findById(id);
     }
 
+    /**
+     * @param ingredient to create.
+     * @return created ingredient.
+     */
     @POST
     @Transactional
     public Ingredient create(Ingredient ingredient) {
@@ -48,6 +59,11 @@ public class IngredientService {
         return ingredient;
     }
 
+    /**
+     * @param id of ingredient to update.
+     * @param updates to apply.
+     * @return updated ingredient.
+     */
     @PATCH
     @Path("/{id}")
     @Transactional
@@ -60,6 +76,10 @@ public class IngredientService {
         return ingredientResource.patch(ingredient, updates);
     }
 
+    /**
+     * Delete ingredient with given id.
+     * @param id of ingredient to delete.
+     */
     @DELETE
     @Path("/{id}")
     @Transactional
