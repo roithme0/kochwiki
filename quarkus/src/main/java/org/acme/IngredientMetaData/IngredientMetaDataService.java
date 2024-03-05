@@ -14,6 +14,9 @@ public class IngredientMetaDataService {
      */
     private static final Logger LOG = Logger.getLogger(IngredientMetaDataService.class);
 
+    /**
+     * @return verbose names of the ingredients
+     */
     @GET
     @Path("/verbose-names")
     public Map<String, String> getVerboseNames() {
@@ -21,6 +24,9 @@ public class IngredientMetaDataService {
         return IngredientMetaData.getVerboseNames();
     }
 
+    /**
+     * @return unit choices for the ingredients
+     */
     @GET
     @Path("/unit-choices")
     public Map<String, String> getUnitChoices() {
