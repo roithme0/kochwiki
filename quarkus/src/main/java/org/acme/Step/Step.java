@@ -62,7 +62,7 @@ public class Step extends PanacheEntity {
      * @param newIndex new index
      */
     public void setIndex(final Integer newIndex) {
-        final int minIndex = 0;
+        final int minIndex = 1;
         final int maxIndex = 99;
 
         if (newIndex < minIndex || newIndex > maxIndex) {
