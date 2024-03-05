@@ -22,7 +22,7 @@ public class IngredientResource implements PanacheRepository<Ingredient> {
      * @param updates updates to apply
      * @return patched ingredient
      */
-    public Ingredient patch(Ingredient ingredient, Map<String, Object> updates) {
+    public Ingredient patch(final Ingredient ingredient, final Map<String, Object> updates) {
         LOG.debug("updates: " + updates);
         for (Map.Entry<String, Object> entry : updates.entrySet()) {
             String key = entry.getKey();
