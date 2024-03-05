@@ -20,17 +20,25 @@ import org.acme.Recipe.Recipe;
 // @UniqueConstraint(columnNames = {"ingredient_id", "recipe_id"})
 // })
 public class Amount extends PanacheEntity {
+    /**
+     * Max length for index.
+     */
+    private static final int MAX_INDEX = 2;
+    /**
+     * Max length for amount.
+     */
+    private static final int MAX_AMOUNT = 3;
 
     /**
      * Index of the amount in the recipe.
      */
-    @Column(nullable = false, length = 2)
+    @Column(nullable = false, length = MAX_INDEX)
     public Integer index;
 
     /**
      * Amount of the ingredient in the recipe.
      */
-    @Column(nullable = false, length = 3)
+    @Column(nullable = false, length = MAX_AMOUNT)
     public Float amount;
 
     /**
