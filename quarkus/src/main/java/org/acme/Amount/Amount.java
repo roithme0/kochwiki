@@ -131,12 +131,18 @@ public class Amount extends PanacheEntity {
     public Amount() {
     }
 
+    /**
+     * Constructor.
+     * @param paramIndex index of the amount.
+     * @param paramAmount amount of the ingredient in the recipe.
+     * @param paramIngredientId id of the ingredient of the amount.
+     */
     public Amount(
-            Integer index,
-            Float amount,
-            Long ingredientId) {
-        this.setIndex(index);
-        this.setAmount(amount);
-        this.setIngredientId(ingredientId);
+            final Integer paramIndex,
+            final Float paramAmount,
+            final Long paramIngredientId) {
+        this.setIndex(paramIndex);
+        this.setAmount(paramAmount);
+        this.setIngredientId(paramIngredientId);
     }
 }
