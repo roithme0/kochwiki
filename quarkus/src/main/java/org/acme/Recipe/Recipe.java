@@ -103,11 +103,14 @@ public class Recipe extends PanacheEntity {
      * Check for invalid values.
      */
     public void setPreptime(final Integer newPreptime) {
+        Integer MIN_PREPTIME = 0;
+        Integer MAX_PREPTIME = 999;
+        
         if (newPreptime == null) { // allow null values
             return;
         }
-        if (newPreptime < 0 || newPreptime > 999) {
-            throw new IllegalArgumentException("Wert muss zwischen 0 und 999 liegen.");
+        if (newPreptime < MIN_PREPTIME || newPreptime > MAX_PREPTIME) {
+            throw new IllegalArgumentException(String.format("Wert muss zwischen %d und %d liegen.", MIN_PREPTIME, MAX_PREPTIME));
         }
         preptime = newPreptime;
     }
