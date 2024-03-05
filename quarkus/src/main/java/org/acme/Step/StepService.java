@@ -13,7 +13,7 @@ public class StepService {
     private static final Logger LOG = Logger.getLogger(StepService.class);
 
     @Inject
-    StepResource stepResource;
+    private StepResource stepResource;
 
     @GET
     public List<Step> findAll() {

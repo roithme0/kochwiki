@@ -19,7 +19,7 @@ public class RecipeService {
     private static final Logger LOG = Logger.getLogger(RecipeService.class);
 
     @Inject
-    RecipeResource recipeResource;
+    private RecipeResource recipeResource;
 
     @GET
     public List<Recipe> findAll() {

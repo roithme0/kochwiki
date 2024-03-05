@@ -19,7 +19,7 @@ public class IngredientService {
     private static final Logger LOG = Logger.getLogger(IngredientService.class);
 
     @Inject
-    IngredientResource ingredientResource;
+    private IngredientResource ingredientResource;
 
     @GET
     public List<Ingredient> listAll() {

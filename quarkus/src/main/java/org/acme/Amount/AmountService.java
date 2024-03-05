@@ -13,7 +13,7 @@ public class AmountService {
     private static final Logger LOG = Logger.getLogger(AmountService.class);
 
     @Inject
-    AmountResource amountResource;
+    private AmountResource amountResource;
 
     /**
      * Gets list of all amounts
