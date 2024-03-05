@@ -57,14 +57,25 @@ public class Amount extends PanacheEntity {
     @JsonBackReference("recipe-amounts")
     public Recipe recipe;
 
+    /**
+     * @return id of referenced ingredient.
+     */
     public Long getIngredientId() {
         return ingredient.id;
     }
 
+    /**
+     * @return id of recipe using this amount.
+     */
     public Long getRecipeId() {
         return recipe.id;
     }
 
+    /**
+     * Set index of the amount.
+     * Validate new index.
+     * @param newIndex new index to set.
+     */
     public void setIndex(Integer newIndex) {
         if (newIndex < 0 || newIndex > 99) {
             throw new IllegalArgumentException("Wert muss zwischen 0 und 99 liegen.");
@@ -72,6 +83,11 @@ public class Amount extends PanacheEntity {
         index = newIndex;
     }
 
+    /**
+     * Set amount of the ingredient in the recipe.
+     * Validate new amount.
+     * @param newAmount new amount to set.
+     */
     public void setAmount(Float newAmount) {
         if (newAmount < 0 || newAmount > 999) {
             throw new IllegalArgumentException("Wert muss zwischen 0 und 999 liegen.");
@@ -79,11 +95,20 @@ public class Amount extends PanacheEntity {
         amount = newAmount;
     }
 
+    /**
+     * Set ingredient of the amount.
+     * @param newIngredient new ingredient to set.
+     */
     public void setIngredient(Ingredient newIngredient) {
         ingredient = newIngredient;
         ingredient.addAmount(this);
     }
 
+    /**
+     * Set id of the ingredient of the amount.
+     * Check if ingredient exists.
+     * @param ingredientId id of new ingredient to set.
+     */
     public void setIngredientId(Long ingredientId) {
         Ingredient newIngredient = Ingredient.findById(ingredientId);
         if (newIngredient == null) {
@@ -92,10 +117,17 @@ public class Amount extends PanacheEntity {
         setIngredient(newIngredient);
     }
 
+    /**
+     * Set recipe using the amount.
+     * @param newRecipe new recipe to set.
+     */
     public void setRecipe(Recipe newRecipe) {
         recipe = newRecipe;
     }
 
+    /**
+     * Default constructor for hibernate.
+     */
     public Amount() {
     }
 
