@@ -11,16 +11,19 @@ import jakarta.ws.rs.Path;
 @Path("/steps")
 public class StepService {
     /**
-     * Logger for this class
+     * Logger for this class.
      */
     private static final Logger LOG = Logger.getLogger(StepService.class);
 
     /**
-     * Resource to access steps
+     * Resource to access steps.
      */
     @Inject
     private StepResource stepResource;
 
+    /**
+     * @return all steps
+     */
     @GET
     public List<Step> findAll() {
         LOG.info("GET: finding all steps ...");
