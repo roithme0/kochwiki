@@ -50,10 +50,17 @@ public class Step extends PanacheEntity {
     @JsonBackReference("recipe-steps")
     public Recipe recipe;
 
+    /**
+     * @return id of the recipe the step is used in
+     */
     public Long getRecipeId() {
         return recipe.id;
     }
 
+    /**
+     * Set index of the step.
+     * @param newIndex new index
+     */
     public void setIndex(Integer newIndex) {
         if (newIndex < 0 || newIndex > 99) {
             throw new IllegalArgumentException("Wert muss zwischen 0 und 99 liegen.");
@@ -61,6 +68,9 @@ public class Step extends PanacheEntity {
         index = newIndex;
     }
 
+    /**
+     * Default constructor for hibernate.
+     */
     public Step() {
     }
 
