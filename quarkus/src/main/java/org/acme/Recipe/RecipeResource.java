@@ -14,9 +14,14 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class RecipeResource implements PanacheRepository<Recipe> {
-
-    public Recipe patch(Recipe recipe, Map<String, Object> updates) {
-        // update all fields except id if not null
+    /**
+     * Patch a recipe with the given updates.
+     * Update all fields except id.
+     * @param recipe the recipe to patch
+     * @param updates the updates to apply
+     * @return patched recipe
+     */
+    public Recipe patch(final Recipe recipe, final Map<String, Object> updates) {
         for (Map.Entry<String, Object> entry : updates.entrySet()) {
             String key = entry.getKey();
             Object value = entry.getValue();
