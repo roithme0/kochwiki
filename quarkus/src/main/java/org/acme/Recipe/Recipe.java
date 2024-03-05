@@ -65,7 +65,10 @@ public class Recipe extends PanacheEntity {
     /**
      * List of amounts used in the recipe.
      */
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "recipe", 
+        cascade = CascadeType.ALL, 
+        orphanRemoval = true, 
+        fetch = FetchType.EAGER)
     @Column(nullable = true)
     @JsonManagedReference("recipe-amounts")
     public List<Amount> amounts = new ArrayList<>();
@@ -73,7 +76,10 @@ public class Recipe extends PanacheEntity {
     /**
      * List of steps of the recipe.
      */
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "recipe", 
+        cascade = CascadeType.ALL, 
+        orphanRemoval = true, 
+        fetch = FetchType.EAGER)
     @Column(nullable = true)
     @JsonManagedReference("recipe-steps")
     public List<Step> steps = new ArrayList<>();
