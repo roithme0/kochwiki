@@ -27,14 +27,38 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Ingredient extends PanacheEntity {
 
     /**
-     * Maximum length of ingredient attributes.
+     * Maximum length of name attribute.
      */
     private static final int MAX_LENGTH_NAME = 50;
+
+    /**
+     * Maximum length of brand attribute.
+     */
     private static final int MAX_LENGTH_BRAND = 100;
+
+    /**
+     * Maximum length of unit attribute.
+     */
     private static final int MAX_LENGTH_UNIT = 5;
+
+    /**
+     * Maximum length of kcal attribute.
+     */
     private static final int MAX_LENGTH_KCAL = 3;
+
+    /**
+     * Maximum length of carbs attribute.
+     */
     private static final int MAX_LENGTH_CARBS = 3;
+
+    /**
+     * Maximum length of protein attribute.
+     */
     private static final int MAX_LENGTH_PROTEIN = 3;
+
+    /**
+     * Maximum length of fat attribute.
+     */
     private static final int MAX_LENGTH_FAT = 3;
 
     /**
