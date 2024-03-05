@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class IngredientMetaData {
 
     /**
-     * Key value pairs of the verbose names and names of the ingredient fields.
+     * @return Key value pairs of the verbose names and names of the ingredient fields.
      */
     public static Map<String, String> getVerboseNames() {
         Map<String, String> verboseNames = new HashMap<>();
@@ -22,7 +22,7 @@ public class IngredientMetaData {
     }
 
     /**
-     * Key value pairs of the unit choices verbose names and names.
+     * @return Key value pairs of the unit choices verbose names and names.
      */
     public static Map<String, String> getUnitChoices() {
         Map<String, String> unitChoices = new HashMap<>();
