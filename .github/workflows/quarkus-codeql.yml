@@ -7,6 +7,10 @@ on:
     paths: [quarkus]
   pull_request:
 
+defaults:
+  run:
+    working-directory: quarkus
+
 jobs:
   analyze:
     name: Analyze
