@@ -31,6 +31,4 @@ public class IngredientMetaData {
         unitChoices.put("PIECE", "Stk.");
         return unitChoices;
     }
-
-    public IngredientMetaData() {}
 }
