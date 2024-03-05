@@ -76,7 +76,7 @@ public class Amount extends PanacheEntity {
      * Validate new index.
      * @param newIndex new index to set.
      */
-    public void setIndex(Integer newIndex) {
+    public void setIndex(final Integer newIndex) {
         if (newIndex < 0 || newIndex > 99) {
             throw new IllegalArgumentException("Wert muss zwischen 0 und 99 liegen.");
         }
@@ -88,7 +88,7 @@ public class Amount extends PanacheEntity {
      * Validate new amount.
      * @param newAmount new amount to set.
      */
-    public void setAmount(Float newAmount) {
+    public void setAmount(final Float newAmount) {
         if (newAmount < 0 || newAmount > 999) {
             throw new IllegalArgumentException("Wert muss zwischen 0 und 999 liegen.");
         }
@@ -99,7 +99,7 @@ public class Amount extends PanacheEntity {
      * Set ingredient of the amount.
      * @param newIngredient new ingredient to set.
      */
-    public void setIngredient(Ingredient newIngredient) {
+    public void setIngredient(final Ingredient newIngredient) {
         ingredient = newIngredient;
         ingredient.addAmount(this);
     }
@@ -109,7 +109,7 @@ public class Amount extends PanacheEntity {
      * Check if ingredient exists.
      * @param ingredientId id of new ingredient to set.
      */
-    public void setIngredientId(Long ingredientId) {
+    public void setIngredientId(final Long ingredientId) {
         Ingredient newIngredient = Ingredient.findById(ingredientId);
         if (newIngredient == null) {
             throw new IllegalArgumentException("Ingredient with id " + ingredientId + " does not exist");
@@ -121,7 +121,7 @@ public class Amount extends PanacheEntity {
      * Set recipe using the amount.
      * @param newRecipe new recipe to set.
      */
-    public void setRecipe(Recipe newRecipe) {
+    public void setRecipe(final Recipe newRecipe) {
         recipe = newRecipe;
     }
 
