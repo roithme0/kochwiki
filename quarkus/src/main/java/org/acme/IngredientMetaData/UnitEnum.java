@@ -23,7 +23,7 @@ public enum UnitEnum {
      * Constructor.
      * @param newUnit unit to set.
      */
-    public UnitEnum(final String newUnit) {
+    private UnitEnum(final String newUnit) { // needs to be private for some reason
         unit = newUnit;
     }
 
