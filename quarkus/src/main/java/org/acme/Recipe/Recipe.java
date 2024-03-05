@@ -71,10 +71,7 @@ public class Recipe extends PanacheEntity {
     /**
      * List of amounts used in the recipe.
      */
-    @OneToMany(mappedBy = "recipe",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true,
-        fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @Column(nullable = true)
     @JsonManagedReference("recipe-amounts")
     public List<Amount> amounts = new ArrayList<>();
@@ -82,10 +79,7 @@ public class Recipe extends PanacheEntity {
     /**
      * List of steps of the recipe.
      */
-    @OneToMany(mappedBy = "recipe",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true,
-        fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @Column(nullable = true)
     @JsonManagedReference("recipe-steps")
     public List<Step> steps = new ArrayList<>();
@@ -93,6 +87,7 @@ public class Recipe extends PanacheEntity {
     /**
      * Set the number of servings of recipe.
      * Check for invalid values.
+     * @param newServings New number of servings.
      */
     public void setServings(final Integer newServings) {
         static final Integer MIN_SERVINGS = 0;
