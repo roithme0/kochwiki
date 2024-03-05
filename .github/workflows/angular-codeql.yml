@@ -63,7 +63,7 @@ jobs:
         run: npm ci
 
       - name: Build angular
-        run: ng build --configuration=production
+        run: ./node_modules/.bin/ng build --configuration=production
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
