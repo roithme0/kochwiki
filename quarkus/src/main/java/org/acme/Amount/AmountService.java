@@ -15,6 +15,9 @@ public class AmountService {
     @Inject
     AmountResource amountResource;
 
+    /**
+     * Gets list of all amounts
+     */
     @GET
     public List<Amount> listAll() {
         log.info("GET: list all amounts ...");
