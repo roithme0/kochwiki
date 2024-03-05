@@ -88,14 +88,23 @@ public class Ingredient extends PanacheEntity {
     @JsonManagedReference("amount-ingredient")
     public List<Amount> amounts = new ArrayList<>();
 
+    /**
+     * @return name of unit of ingredient.
+     */
     public String getUnit() {
         return unit.name();
     }
 
+    /**
+     * @return verbose name of unit of ingredient.
+     */
     public String getUnitVerbose() {
         return unit.getUnitVerbose();
     }
 
+    /**
+     * Set brand of ingredient.
+     */
     public void setBrand(String newBrand) {
         if (newBrand == "") {
             brand = null;
@@ -104,6 +113,9 @@ public class Ingredient extends PanacheEntity {
         brand = newBrand;
     }
 
+    /**
+     * Set unit of ingredient.
+     */
     public void setUnit(String newUnit) {
         try {
             unit = UnitEnum.valueOf(newUnit);
@@ -112,6 +124,9 @@ public class Ingredient extends PanacheEntity {
         }
     }
 
+    /**
+     * Set kcal of ingredient.
+     */
     public void setKcal(Integer newKcal) {
         if (newKcal == null) {
             kcal = null;
@@ -121,6 +136,9 @@ public class Ingredient extends PanacheEntity {
         kcal = newKcal;
     }
 
+    /**
+     * Set carbs of ingredient.
+     */
     public void setCarbs(Integer newCarbs) {
         if (newCarbs == null) {
             carbs = null;
@@ -130,6 +148,9 @@ public class Ingredient extends PanacheEntity {
         carbs = newCarbs;
     }
 
+    /**
+     * Set protein of ingredient.
+     */
     public void setProtein(Integer newProtein) {
         if (newProtein == null) {
             protein = null;
@@ -139,6 +160,9 @@ public class Ingredient extends PanacheEntity {
         protein = newProtein;
     }
 
+    /**
+     * Set fat of ingredient.
+     */
     public void setFat(Integer newFat) {
         if (newFat == null) {
             fat = null;
@@ -148,19 +172,31 @@ public class Ingredient extends PanacheEntity {
         fat = newFat;
     }
 
+    /**
+     * Check new nutritional value.
+     */
     private void checkInteger(Integer value) {
         if (value < 0 || value > 999) {
             throw new IllegalArgumentException("Wert muss zwischen 0 und 999 liegen.");
         }
     }
 
+    /**
+     * Add single amount to ingredient.
+     */
     public void addAmount(Amount newAmount) {
         amounts.add(newAmount);
     }
 
+    /**
+     * Default constructor for hibernate.
+     */
     public Ingredient() {
     }
 
+    /**
+     * Constructor for ingredient.
+     */
     public Ingredient(
             String name,
             String brand,
