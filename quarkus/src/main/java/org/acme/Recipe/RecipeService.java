@@ -42,7 +42,7 @@ public class RecipeService {
      */
     @GET
     @Path("/{id}")
-    public Recipe findById(@PathParam("id") Long id) {
+    public Recipe findById(@PathParam("id") final Long id) {
         LOG.info("GET: finding recipe by id '" + id + "' ...");
         return recipeResource.findById(id);
     }
@@ -53,7 +53,7 @@ public class RecipeService {
      */
     @POST
     @Transactional
-    public Recipe create(Recipe recipe) {
+    public Recipe create(final Recipe recipe) {
         LOG.info("POST: creating recipe '" + recipe.name + "' ...");
         recipeResource.persist(recipe);
         return recipe;
@@ -67,7 +67,7 @@ public class RecipeService {
     @PATCH
     @Transactional
     @Path("/{id}")
-    public Recipe patch(@PathParam("id") Long id, Map<String, Object> updates) {
+    public Recipe patch(@PathParam("id") final Long id, final Map<String, Object> updates) {
         Recipe recipe = findById(id);
         if (recipe == null) {
             throw new IllegalArgumentException("Recipe with id " + id + " does not exist");
@@ -83,7 +83,7 @@ public class RecipeService {
     @DELETE
     @Transactional
     @Path("/{id}")
-    public void delete(@PathParam("id") Long id) {
+    public void delete(@PathParam("id") final Long id) {
         LOG.info("DELETE: deleting recipe with id '" + id + "' ...");
         Recipe entity = Recipe.findById(id);
         recipeResource.delete(entity);
