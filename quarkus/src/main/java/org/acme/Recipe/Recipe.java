@@ -20,6 +20,9 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 public class Recipe extends PanacheEntity {
 
+    /**
+     * Maximum length of recipe attributes.
+     */
     static final int MAX_LENGTH_NAME = 200;
     static final int MAX_LENGTH_SERVINGS = 2;
     static final int MAX_LENGTH_PREPTIME = 3;
