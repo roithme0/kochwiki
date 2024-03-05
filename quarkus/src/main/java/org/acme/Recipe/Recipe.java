@@ -50,15 +50,15 @@ public class Recipe extends PanacheEntity {
     @Column(nullable = true, length = 200)
     public URL originUrl;
 
-    /**
-     * File containing the original recipe.
-     */
+    // /**
+    //  * File containing the original recipe.
+    //  */
     // @Column(nullable = true)
     // public File original;
 
-    /**
-     * Image of the recipe.
-     */
+    // /**
+    //  * Image of the recipe.
+    //  */
     // @Column(nullable = true)
     // public File image;
 
