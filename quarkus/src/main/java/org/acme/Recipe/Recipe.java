@@ -20,32 +20,59 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 public class Recipe extends PanacheEntity {
 
+    /**
+     * Name of the recipe
+     */
     @Column(unique = true, nullable = false, length = 200)
     public String name;
 
+    /**
+     * Number of servings the recipe is for
+     */
     @Column(nullable = false, length = 2)
     public Integer servings;
 
+    /**
+     * Preparation time of the recipe in minutes
+     */
     @Column(nullable = true, length = 3)
     public Integer preptime;
 
+    /**
+     * Name of the origin of the recipe
+     */
     @Column(nullable = true, length = 200)
     public String originName;
 
+    /**
+     * URL of the origin of the recipe
+     */
     @Column(nullable = true, length = 200)
     public URL originUrl;
 
+    /**
+     * File containing the original recipe
+     */
     // @Column(nullable = true)
     // public File original;
 
+    /**
+     * Image of the recipe
+     */
     // @Column(nullable = true)
     // public File image;
 
+    /**
+     * List of amounts used in the recipe
+     */
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @Column(nullable = true)
     @JsonManagedReference("recipe-amounts")
     public List<Amount> amounts = new ArrayList<>();
 
+    /**
+     * List of steps of the recipe
+     */
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @Column(nullable = true)
     @JsonManagedReference("recipe-steps")

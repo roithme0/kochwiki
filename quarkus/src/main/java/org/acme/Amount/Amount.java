@@ -21,17 +21,29 @@ import org.acme.Recipe.Recipe;
 // })
 public class Amount extends PanacheEntity {
 
+    /**
+     * Index of the amount in the recipe
+     */
     @Column(nullable = false, length = 2)
     public Integer index;
 
+    /**
+     * Amount of the ingredient in the recipe
+     */
     @Column(nullable = false, length = 3)
     public Float amount;
 
+    /**
+     * Ingredient of the amount
+     */
     @ManyToOne
     @JoinColumn
     @JsonBackReference("amount-ingredient")
     public Ingredient ingredient;
 
+    /**
+     * Recipe the amount is used in
+     */
     @ManyToOne
     @JoinColumn
     @JsonBackReference("recipe-amounts")
