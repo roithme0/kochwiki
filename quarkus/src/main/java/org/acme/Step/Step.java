@@ -19,12 +19,10 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 // @UniqueConstraint(columnNames = {"index", "recipe_id"})
 // })
 public class Step extends PanacheEntity {
-
     /**
      * Maximum length of the index.
      */
     private static final int MAX_LENGTH_INDEX = 2;
-
     /**
      * Maximum length of the description.
      */
