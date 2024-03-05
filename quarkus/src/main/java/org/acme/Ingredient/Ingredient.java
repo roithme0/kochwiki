@@ -285,4 +285,12 @@ public class Ingredient extends PanacheEntity {
                 && Objects.equals(protein, ingredient.protein)
                 && Objects.equals(fat, ingredient.fat);
     }
+
+    /**
+     * @return Hash code of ingredient.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, brand, unit, kcal, carbs, protein, fat);
+    }
 }
