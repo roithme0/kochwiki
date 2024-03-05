@@ -7,6 +7,10 @@ on:
     paths: [angular]
   pull_request:
 
+defaults:
+  run:
+    working-directory: angular
+
 jobs:
   analyze:
     name: Analyze
