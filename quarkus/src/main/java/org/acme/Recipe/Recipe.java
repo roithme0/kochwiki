@@ -102,6 +102,7 @@ public class Recipe extends PanacheEntity {
     /**
      * Set preparation time of recipe.
      * Check for invalid values.
+     * @param newPreptime New preparation time in minutes.
      */
     public void setPreptime(final Integer newPreptime) {
         static final Integer MIN_PREPTIME = 0;
@@ -120,6 +121,7 @@ public class Recipe extends PanacheEntity {
      * Set url of origin of recipe.
      * Check for invalid values.
      * Convert to URL.
+     * @param newOriginUrl New URL of origin.
      */
     public void setOriginUrl(final String newOriginUrl) {
         if (newOriginUrl == null || newOriginUrl == "") {
@@ -136,6 +138,7 @@ public class Recipe extends PanacheEntity {
 
     /**
      * Replace amounts used in recipe.
+     * @param newAmounts New list of amounts.
      */
     public void setAmounts(final List<Amount> newAmounts) {
         List<Amount> oldAmounts = new ArrayList<>(amounts);
@@ -149,6 +152,7 @@ public class Recipe extends PanacheEntity {
 
     /** 
      * Add single amount to recipe.
+     * @param newAmount New amount to add.
      */
     public void addAmount(final Amount newAmount) {
         amounts.add(newAmount);
@@ -157,6 +161,7 @@ public class Recipe extends PanacheEntity {
 
     /**
      * Remove single amount from recipe.
+     * @param amount Amount to remove.
      */
     public void removeAmount(final Amount amount) {
         amounts.remove(amount);
@@ -165,6 +170,7 @@ public class Recipe extends PanacheEntity {
 
     /**
      * Replace steps of recipe.
+     * @param newSteps New list of steps.
      */
     public void setSteps(final List<Step> newSteps) {
         List<Step> oldSteps = new ArrayList<>(steps);
@@ -178,6 +184,7 @@ public class Recipe extends PanacheEntity {
 
     /**
      * Add single step to recipe.
+     * @param newStep New step to add.
      */
     public void addStep(final Step newStep) {
         steps.add(newStep);
@@ -186,6 +193,7 @@ public class Recipe extends PanacheEntity {
 
     /**
      * Remove single step from recipe.
+     * @param step Step to remove.
      */
     public void removeStep(final Step step) {
         steps.remove(step);
