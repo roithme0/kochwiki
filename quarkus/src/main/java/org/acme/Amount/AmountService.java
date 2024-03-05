@@ -10,6 +10,9 @@ import jakarta.ws.rs.GET;
 
 @Path("/amounts")
 public class AmountService {
+    /**
+     * Logger for this class
+     */
     private static final Logger LOG = Logger.getLogger(AmountService.class);
 
     @Inject

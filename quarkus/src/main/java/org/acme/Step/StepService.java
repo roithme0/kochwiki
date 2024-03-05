@@ -10,6 +10,9 @@ import jakarta.ws.rs.Path;
 
 @Path("/steps")
 public class StepService {
+    /**
+     * Logger for this class
+     */
     private static final Logger LOG = Logger.getLogger(StepService.class);
 
     @Inject

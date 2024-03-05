@@ -16,6 +16,9 @@ import java.util.Map;
 
 @Path("/ingredients")
 public class IngredientService {
+    /**
+     * Logger for this class
+     */
     private static final Logger LOG = Logger.getLogger(IngredientService.class);
 
     @Inject

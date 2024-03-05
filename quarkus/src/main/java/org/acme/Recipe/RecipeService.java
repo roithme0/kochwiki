@@ -16,6 +16,9 @@ import jakarta.transaction.Transactional;
 
 @Path("/recipes")
 public class RecipeService {
+    /**
+     * Logger for this class
+     */
     private static final Logger LOG = Logger.getLogger(RecipeService.class);
 
     @Inject

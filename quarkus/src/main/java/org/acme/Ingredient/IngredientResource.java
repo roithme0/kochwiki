@@ -10,6 +10,9 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class IngredientResource implements PanacheRepository<Ingredient> {
+    /**
+     * Logger for this class
+     */
     private static final Logger LOG = Logger.getLogger(IngredientService.class);
 
     public Ingredient patch(Ingredient ingredient, Map<String, Object> updates) {
