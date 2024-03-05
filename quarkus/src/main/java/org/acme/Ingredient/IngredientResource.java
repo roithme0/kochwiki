@@ -10,11 +10,11 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class IngredientResource implements PanacheRepository<Ingredient> {
-    private static final Logger log = Logger.getLogger(IngredientService.class);
+    private static final Logger LOG = Logger.getLogger(IngredientService.class);
 
     public Ingredient patch(Ingredient ingredient, Map<String, Object> updates) {
         // update all fields except id and amounts if values are not null
-        log.debug("updates: " + updates);
+        LOG.debug("updates: " + updates);
         for (Map.Entry<String, Object> entry : updates.entrySet()) {
             String key = entry.getKey();
             Object value = entry.getValue();

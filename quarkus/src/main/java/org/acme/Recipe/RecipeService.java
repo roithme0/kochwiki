@@ -16,28 +16,28 @@ import jakarta.transaction.Transactional;
 
 @Path("/recipes")
 public class RecipeService {
-    private static final Logger log = Logger.getLogger(RecipeService.class);
+    private static final Logger LOG = Logger.getLogger(RecipeService.class);
 
     @Inject
     RecipeResource recipeResource;
 
     @GET
     public List<Recipe> findAll() {
-        log.info("GET: finding all recipes ...");
+        LOG.info("GET: finding all recipes ...");
         return recipeResource.listAll();
     }
 
     @GET
     @Path("/{id}")
     public Recipe findById(@PathParam("id") Long id) {
-        log.info("GET: finding recipe by id '" + id + "' ...");
+        LOG.info("GET: finding recipe by id '" + id + "' ...");
         return recipeResource.findById(id);
     }
 
     @POST
     @Transactional
     public Recipe create(Recipe recipe) {
-        log.info("POST: creating recipe '" + recipe.name + "' ...");
+        LOG.info("POST: creating recipe '" + recipe.name + "' ...");
         recipeResource.persist(recipe);
         return recipe;
     }
@@ -50,7 +50,7 @@ public class RecipeService {
         if (recipe == null) {
             throw new IllegalArgumentException("Recipe with id " + id + " does not exist");
         }
-        log.info("PATCH: patching recipe with id '" + id + "' ...");
+        LOG.info("PATCH: patching recipe with id '" + id + "' ...");
         return recipeResource.patch(recipe, updates);
     }
 
@@ -58,7 +58,7 @@ public class RecipeService {
     @Transactional
     @Path("/{id}")
     public void delete(@PathParam("id") Long id) {
-        log.info("DELETE: deleting recipe with id '" + id + "' ...");
+        LOG.info("DELETE: deleting recipe with id '" + id + "' ...");
         Recipe entity = Recipe.findById(id);
         recipeResource.delete(entity);
     }

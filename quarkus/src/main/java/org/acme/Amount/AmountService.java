@@ -10,7 +10,7 @@ import jakarta.ws.rs.GET;
 
 @Path("/amounts")
 public class AmountService {
-    private static final Logger log = Logger.getLogger(AmountService.class);
+    private static final Logger LOG = Logger.getLogger(AmountService.class);
 
     @Inject
     AmountResource amountResource;
@@ -20,7 +20,7 @@ public class AmountService {
      */
     @GET
     public List<Amount> listAll() {
-        log.info("GET: list all amounts ...");
+        LOG.info("GET: list all amounts ...");
         return amountResource.listAll();
     }
 }

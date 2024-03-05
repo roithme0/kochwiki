@@ -16,28 +16,28 @@ import java.util.Map;
 
 @Path("/ingredients")
 public class IngredientService {
-    private static final Logger log = Logger.getLogger(IngredientService.class);
+    private static final Logger LOG = Logger.getLogger(IngredientService.class);
 
     @Inject
     IngredientResource ingredientResource;
 
     @GET
     public List<Ingredient> listAll() {
-        log.info("GET: listing all ingredients ...");
+        LOG.info("GET: listing all ingredients ...");
         return ingredientResource.listAll();
     }
 
     @GET
     @Path("/{id}")
     public Ingredient findById(@PathParam("id") Long id) {
-        log.info("GET: find ingredient with id '" + id + "' ...");
+        LOG.info("GET: find ingredient with id '" + id + "' ...");
         return ingredientResource.findById(id);
     }
 
     @POST
     @Transactional
     public Ingredient create(Ingredient ingredient) {
-        log.info("POST: creating ingredient '" + ingredient.name + "' ...");
+        LOG.info("POST: creating ingredient '" + ingredient.name + "' ...");
         ingredientResource.persist(ingredient);
         return ingredient;
     }
@@ -46,7 +46,7 @@ public class IngredientService {
     @Path("/{id}")
     @Transactional
     public Ingredient patch(@PathParam("id") Long id, Map<String, Object> updates) {
-        log.info("PATCH: patching ingredient with id '" + id + "' ...");
+        LOG.info("PATCH: patching ingredient with id '" + id + "' ...");
         Ingredient ingredient = findById(id);
         if (ingredient == null) {
             throw new IllegalArgumentException("Ingredient with id " + id + " does not exist");
@@ -58,7 +58,7 @@ public class IngredientService {
     @Path("/{id}")
     @Transactional
     public void delete(@PathParam("id") Long id) {
-        log.info("DELETE: deleting ingredient with id '" + id + "' ...");
+        LOG.info("DELETE: deleting ingredient with id '" + id + "' ...");
         Ingredient ingredient = Ingredient.findById(id);
         ingredient.delete();
     }
