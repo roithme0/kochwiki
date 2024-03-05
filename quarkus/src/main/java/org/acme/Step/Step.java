@@ -74,10 +74,15 @@ public class Step extends PanacheEntity {
     public Step() {
     }
 
+    /**
+     * Constructor for creating a new step.
+     * @param paramIndex index of the step
+     * @param paramDescription description of the step
+     */
     public Step(
-            Integer index,
-            String description) {
-        this.setIndex(index);
-        this.description = description;
+            final Integer paramIndex,
+            String paramDescription) {
+        this.setIndex(paramIndex);
+        this.description = paramDescription;
     }
 }
