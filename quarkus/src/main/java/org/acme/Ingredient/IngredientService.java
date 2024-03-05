@@ -42,7 +42,7 @@ public class IngredientService {
      */
     @GET
     @Path("/{id}")
-    public Ingredient findById(@PathParam("id") Long id) {
+    public Ingredient findById(@PathParam("id") final Long id) {
         LOG.info("GET: find ingredient with id '" + id + "' ...");
         return ingredientResource.findById(id);
     }
@@ -53,7 +53,7 @@ public class IngredientService {
      */
     @POST
     @Transactional
-    public Ingredient create(Ingredient ingredient) {
+    public Ingredient create(final Ingredient ingredient) {
         LOG.info("POST: creating ingredient '" + ingredient.name + "' ...");
         ingredientResource.persist(ingredient);
         return ingredient;
@@ -67,7 +67,7 @@ public class IngredientService {
     @PATCH
     @Path("/{id}")
     @Transactional
-    public Ingredient patch(@PathParam("id") Long id, Map<String, Object> updates) {
+    public Ingredient patch(@PathParam("id") final Long id, final Map<String, Object> updates) {
         LOG.info("PATCH: patching ingredient with id '" + id + "' ...");
         Ingredient ingredient = findById(id);
         if (ingredient == null) {
@@ -83,7 +83,7 @@ public class IngredientService {
     @DELETE
     @Path("/{id}")
     @Transactional
-    public void delete(@PathParam("id") Long id) {
+    public void delete(@PathParam("id") final Long id) {
         LOG.info("DELETE: deleting ingredient with id '" + id + "' ...");
         Ingredient ingredient = Ingredient.findById(id);
         ingredient.delete();
