@@ -110,7 +110,7 @@ public class Recipe extends PanacheEntity {
     public void setPreptime(final Integer newPreptime) {
         final int minPreptime = 0;
         final int maxPreptime = 999;
-        
+
         if (newPreptime == null) { // allow null values
             return;
         }
@@ -153,7 +153,7 @@ public class Recipe extends PanacheEntity {
         }
     }
 
-    /** 
+    /**
      * Add single amount to recipe.
      * @param newAmount New amount to add.
      */
@@ -203,23 +203,10 @@ public class Recipe extends PanacheEntity {
         step.recipe = null;
     }
 
-    public Recipe() {
-    }
-
     /**
-     * Used only for import.sql.
+     * Default constructor for hibernate.
      */
-    public Recipe(
-            String name,
-            Integer servings,
-            Integer preptime,
-            String originName,
-            String originUrl) {
-        this.name = name;
-        this.setServings(servings);
-        this.setPreptime(preptime);
-        this.originName = originName;
-        this.setOriginUrl(originUrl);
+    public Recipe() {
     }
 
     public Recipe(
