@@ -209,22 +209,32 @@ public class Recipe extends PanacheEntity {
     public Recipe() {
     }
 
+    /**
+     * Constructor for recipe.
+     * @param paramName Name of the recipe.
+     * @param paramServings Number of servings the recipe is for.
+     * @param paramPreptime Preparation time of the recipe in minutes.
+     * @param paramOriginName Name of the origin of the recipe.
+     * @param paramOriginUrl URL of the origin of the recipe.
+     * @param paramAmounts List of amounts used in the recipe.
+     * @param paramSteps List of steps of the recipe.
+     */
     public Recipe(
-            String name,
-            Integer servings,
-            Integer preptime,
-            String originName,
-            String originUrl,
-            // File original,
-            // File image,
-            List<Amount> amounts,
-            List<Step> steps) {
-        this.name = name;
-        this.setServings(servings);
-        this.setPreptime(preptime);
-        this.originName = originName;
-        this.setOriginUrl(originUrl);
-        this.setAmounts(amounts);
-        this.setSteps(steps);
+            final String paramName,
+            final Integer paramServings,
+            final Integer paramPreptime,
+            final String paramOriginName,
+            final String paramOriginUrl,
+            // final File paramOriginal,
+            // final File paramImage,
+            final List<Amount> paramAmounts,
+            final List<Step> paramSteps) {
+        this.name = paramName;
+        this.setServings(paramServings);
+        this.setPreptime(paramPreptime);
+        this.originName = paramOriginName;
+        this.setOriginUrl(paramOriginUrl);
+        this.setAmounts(paramAmounts);
+        this.setSteps(paramSteps);
     }
 }
