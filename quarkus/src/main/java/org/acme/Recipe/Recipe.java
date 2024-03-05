@@ -109,10 +109,10 @@ public class Recipe extends PanacheEntity {
      * @param newServings New number of servings.
      */
     public void setServings(final Integer newServings) {
-        final int minServings = 0;
+        final int minServings = 1;
         final int maxServings = 99;
 
-        if (newServings <= minServings || newServings > maxServings) {
+        if (newServings < minServings || newServings > maxServings) {
             throw new IllegalArgumentException(String.format("Wert muss zwischen %d und %d liegen.", minServings, maxServings));
         }
         servings = newServings;
@@ -124,13 +124,13 @@ public class Recipe extends PanacheEntity {
      * @param newPreptime New preparation time in minutes.
      */
     public void setPreptime(final Integer newPreptime) {
-        final int minPreptime = 0;
+        final int minPreptime = 1;
         final int maxPreptime = 999;
 
         if (newPreptime == null) { // allow null values
             return;
         }
-        if (newPreptime <= minPreptime || newPreptime > maxPreptime) {
+        if (newPreptime < minPreptime || newPreptime > maxPreptime) {
             throw new IllegalArgumentException(String.format("Wert muss zwischen %d und %d liegen.", minPreptime, maxPreptime));
         }
         preptime = newPreptime;
