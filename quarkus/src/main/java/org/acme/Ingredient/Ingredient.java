@@ -215,7 +215,7 @@ public class Ingredient extends PanacheEntity {
      * Check new nutritional value.
      * @param value New nutritional value.
      */
-    private void checkNutritionalValue(final Integer newValue) {
+    private void checkNutritionalValue(final int newValue) {
         final int MIN_VALUE = 0;
         final int MAX_VALUE = 999;
 
