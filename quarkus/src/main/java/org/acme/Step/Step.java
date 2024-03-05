@@ -61,7 +61,7 @@ public class Step extends PanacheEntity {
      * Set index of the step.
      * @param newIndex new index
      */
-    public void setIndex(Integer newIndex) {
+    public void setIndex(final Integer newIndex) {
         if (newIndex < 0 || newIndex > 99) {
             throw new IllegalArgumentException("Wert muss zwischen 0 und 99 liegen.");
         }
