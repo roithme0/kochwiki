@@ -27,12 +27,19 @@ public class RecipeService {
     @Inject
     private RecipeResource recipeResource;
 
+    /**
+     * @return list of all recipes.
+     */
     @GET
     public List<Recipe> findAll() {
         LOG.info("GET: finding all recipes ...");
         return recipeResource.listAll();
     }
 
+    /**
+     * @param id of recipe to find.
+     * @return recipe with given id.
+     */
     @GET
     @Path("/{id}")
     public Recipe findById(@PathParam("id") Long id) {
@@ -40,6 +47,10 @@ public class RecipeService {
         return recipeResource.findById(id);
     }
 
+    /**
+     * @param recipe to create.
+     * @return created recipe.
+     */
     @POST
     @Transactional
     public Recipe create(Recipe recipe) {
@@ -48,6 +59,11 @@ public class RecipeService {
         return recipe;
     }
 
+    /**
+     * @param id of recipe to patch.
+     * @param updates to apply.
+     * @return patched recipe.
+     */
     @PATCH
     @Transactional
     @Path("/{id}")
@@ -60,6 +76,10 @@ public class RecipeService {
         return recipeResource.patch(recipe, updates);
     }
 
+    /**
+     * Delete recipe with given id.
+     * @param id of recipe to delete.
+     */
     @DELETE
     @Transactional
     @Path("/{id}")
