@@ -21,5 +21,6 @@ logs/
 # Docker
 *.tar
 
-# Other
+# Code Editor / IDE
 .vscode/
+.vs/
